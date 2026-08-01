@@ -5,252 +5,252 @@
     {
       "question": "Kaj pomeni izraz 'oblak' pri računalništvu?",
       "options": [
-        "A) Program za napoved vremena.",
-        "B) Shranjevanje podatkov na oddaljenih računalnikih prek interneta.",
-        "C) Vrsta računalniškega virusa."
+        "Shranjevanje podatkov na oddaljenih računalnikih prek interneta.",
+        "Vrsta računalniškega virusa.",
+        "Program za napoved vremena."
       ],
-      "correct": 1,
-      "explanation": "Oblak pomeni, da datoteke niso shranjene samo na našem računalniku ali telefonu, ampak na strežnikih ponudnika storitve."
+      "correct": 0,
+      "explanation": "Oblak (cloud) pomeni, da datoteke niso shranjene samo na vašem računalniku ali telefonu, ampak na oddaljenih strežnikih, do katerih dostopate prek interneta. To omogoča dostop do datotek od koder koli."
     },
     {
       "question": "Kaj je Google Drive?",
       "options": [
-        "A) Spletni brskalnik.",
-        "B) Storitev za shranjevanje datotek v oblaku.",
-        "C) Protivirusni program."
+        "Protivirusni program.",
+        "Storitev za shranjevanje datotek v oblaku.",
+        "Spletni brskalnik."
       ],
       "correct": 1,
-      "explanation": "Google Drive omogoča shranjevanje dokumentov, fotografij in drugih datotek ter dostop do njih prek interneta."
+      "explanation": "Google Drive je Googlova storitev za shranjevanje datotek v oblaku. Omogoča shranjevanje dokumentov, fotografij in drugih datotek ter dostop do njih prek interneta z različnih naprav."
     },
     {
       "question": "Kaj je OneDrive?",
       "options": [
-        "A) Program za urejanje fotografij.",
-        "B) Microsoftova storitev za shranjevanje datotek v oblaku.",
-        "C) Vrsta tiskalnika."
+        "Vrsta tiskalnika.",
+        "Microsoftova storitev za shranjevanje datotek v oblaku.",
+        "Program za urejanje fotografij."
       ],
       "correct": 1,
-      "explanation": "OneDrive je povezan z Microsoftovim računom in je pogosto že vključen v Windows."
+      "explanation": "OneDrive je Microsoftova storitev v oblaku, ki je pogosto že vgrajena v Windows. Omogoča shranjevanje in sinhronizacijo datotek med računalnikom, telefonom in tablico."
     },
     {
       "question": "Kaj potrebujemo za uporabo storitve v oblaku?",
       "options": [
-        "A) Samo tiskalnik.",
-        "B) Račun pri ponudniku storitve in internetno povezavo.",
-        "C) Posebno tipkovnico."
+        "Posebno tipkovnico.",
+        "Račun pri ponudniku storitve in internetno povezavo.",
+        "Samo tiskalnik."
       ],
       "correct": 1,
-      "explanation": "Za Google Drive potrebujemo Google račun, za OneDrive pa Microsoftov račun."
+      "explanation": "Za uporabo storitve v oblaku potrebujete uporabniški račun pri ponudniku (npr. Google račun za Google Drive, Microsoft račun za OneDrive) in internetno povezavo. Brez internetne povezave do oblačnih datotek ne morete dostopati."
     },
     {
       "question": "Kakšna je glavna prednost shranjevanja datotek v oblaku?",
       "options": [
-        "A) Računalnik porabi manj elektrike.",
-        "B) Do datotek lahko dostopamo iz različnih naprav.",
-        "C) Datoteke se same natisnejo."
+        "Računalnik porabi manj elektrike.",
+        "Datoteke se same natisnejo.",
+        "Do datotek lahko dostopamo iz različnih naprav."
       ],
-      "correct": 1,
-      "explanation": "Dokument, shranjen v oblaku, lahko odpremo na računalniku, telefonu ali tablici."
+      "correct": 2,
+      "explanation": "Glavna prednost oblaka je, da do datotek lahko dostopate z različnih naprav – dokument, shranjen v oblaku, odprete na računalniku, telefonu ali tablici, kjerkoli imate internetno povezavo."
     },
     {
       "question": "Kaj se zgodi, če se pokvari računalnik, datoteke pa imamo v oblaku?",
       "options": [
-        "A) Vse datoteke izginejo.",
-        "B) Do datotek lahko ponovno dostopamo iz druge naprave.",
-        "C) Internet se izklopi."
+        "Do datotek lahko ponovno dostopamo iz druge naprave.",
+        "Internet se izklopi.",
+        "Vse datoteke izginejo."
       ],
-      "correct": 1,
-      "explanation": "Oblak je lahko dodatna zaščita pred izgubo podatkov zaradi okvare računalnika."
+      "correct": 0,
+      "explanation": "Če imate datoteke shranjene v oblaku, jih lahko tudi po okvari računalnika dostopate iz druge naprave. Oblak je tako dodatna zaščita pred izgubo podatkov."
     },
     {
       "question": "Kaj je sinhronizacija datotek?",
       "options": [
-        "A) Izbris vseh datotek.",
-        "B) Samodejno usklajevanje datotek med napravami.",
-        "C) Zaklep računalnika."
+        "Zaklep računalnika.",
+        "Samodejno usklajevanje datotek med napravami.",
+        "Izbris vseh datotek."
       ],
       "correct": 1,
-      "explanation": "Če spremenimo datoteko na eni napravi, se sprememba lahko prenese tudi na druge naprave."
+      "explanation": "Sinhronizacija pomeni, da se spremembe datotek samodejno prenašajo med napravami. Če spremenite datoteko na računalniku, se sprememba prenese tudi na telefon in obratno."
     },
     {
       "question": "Ali lahko Google Drive uporabljamo tudi na telefonu?",
       "options": [
-        "A) Ne.",
-        "B) Da, z aplikacijo Google Drive.",
-        "C) Samo na televiziji."
+        "Da, z aplikacijo Google Drive.",
+        "Samo na televiziji.",
+        "Ne."
       ],
-      "correct": 1,
-      "explanation": "Z aplikacijo lahko dostopamo do svojih dokumentov in fotografij tudi na telefonu."
+      "correct": 0,
+      "explanation": "Google Drive ima aplikacijo za Android in iOS, s katero lahko dostopate do svojih dokumentov in fotografij tudi na telefonu. Datoteke lahko pregledujete, urejate in delite."
     },
     {
       "question": "Kaj pomeni deliti datoteko v oblaku?",
       "options": [
-        "A) Izbrisati datoteko.",
-        "B) Omogočiti drugi osebi dostop do datoteke ali mape.",
-        "C) Premakniti datoteko v Koš."
+        "Omogočiti drugi osebi dostop do datoteke ali mape.",
+        "Premakniti datoteko v Koš.",
+        "Izbrisati datoteko."
       ],
-      "correct": 1,
-      "explanation": "Datoteko lahko delimo na primer z družinskim članom ali sodelavcem."
+      "correct": 0,
+      "explanation": "Deljenje datoteke pomeni, da drugi osebi omogočite dostop do vaše datoteke ali mape v oblaku. Lahko določite, ali naj datoteko samo vidi ali jo lahko tudi ureja."
     },
     {
       "question": "Zakaj je pri deljenju datotek pomembna previdnost?",
       "options": [
-        "A) Ker se računalnik segreje.",
-        "B) Ker lahko napačni osebi omogočimo dostop do svojih podatkov.",
-        "C) Ker internet postane počasnejši."
+        "Ker se računalnik segreje.",
+        "Ker internet postane počasnejši.",
+        "Ker lahko napačni osebi omogočimo dostop do svojih podatkov."
       ],
-      "correct": 1,
-      "explanation": "Pred deljenjem preverimo, komu dovolimo dostop in kakšne pravice ima."
+      "correct": 2,
+      "explanation": "Pred deljenjem vedno preverimo, komu dovolimo dostop in kakšne pravice ima (samo ogled ali urejanje). Napačni osebi lahko omogočite dostop do občutljivih podatkov."
     },
     {
       "question": "Kaj pomeni, če je datoteka označena kot 'samo za ogled'?",
       "options": [
-        "A) Datoteka se izbriše.",
-        "B) Oseba jo lahko vidi, ne more pa je spreminjati.",
-        "C) Datoteka se samodejno natisne."
+        "Datoteka se samodejno natisne.",
+        "Oseba jo lahko vidi, ne more pa je spreminjati.",
+        "Datoteka se izbriše."
       ],
       "correct": 1,
-      "explanation": "Pri deljenju lahko določimo, ali lahko nekdo datoteko samo bere ali tudi ureja."
+      "explanation": "Ko datoteko delite z dovoljenjem 'samo za ogled', lahko druga oseba datoteko pregleduje, vendar je ne more spreminjati, brisati ali dodajati vsebine. To je varno za deljenje končnih dokumentov."
     },
     {
       "question": "Ali je oblak popolnoma varen?",
       "options": [
-        "A) Da, nikoli ne more biti težav.",
-        "B) Ne, zato moramo uporabljati močna gesla in dodatno zaščito.",
-        "C) Da, če imamo star računalnik."
+        "Ne, zato moramo uporabljati močna gesla in dodatno zaščito.",
+        "Da, če imamo star računalnik.",
+        "Da, nikoli ne more biti težav."
       ],
-      "correct": 1,
-      "explanation": "Oblak je zelo uporaben, vendar moramo še vedno skrbeti za varnost računa."
+      "correct": 0,
+      "explanation": "Oblak je zelo uporaben, vendar moramo še vedno skrbeti za varnost računa. Uporabljajte močna gesla, dvostopenjsko prijavo in bodite previdni, s kom delite dostop."
     },
     {
       "question": "Kako naložimo datoteko v Google Drive ali OneDrive?",
       "options": [
-        "A) Datoteko fotografiramo z zaslonom.",
-        "B) Izberemo možnost za nalaganje in izberemo datoteko iz računalnika ali telefona.",
-        "C) Datoteko pošljemo sami sebi po telefonu."
+        "Datoteko pošljemo sami sebi po telefonu.",
+        "Izberemo možnost za nalaganje in izberemo datoteko iz računalnika ali telefona.",
+        "Datoteko fotografiramo z zaslonom."
       ],
       "correct": 1,
-      "explanation": "Nalaganje pomeni, da kopijo datoteke prenesemo iz naprave v oblak."
+      "explanation": "Nalaganje (upload) pomeni, da kopijo datoteke prenesete iz naprave v oblak. V aplikaciji ali na spletni strani kliknete gumb za nalaganje in izberete datoteko, ki jo želite shraniti."
     },
     {
       "question": "Kaj je mapa v oblaku?",
       "options": [
-        "A) Fizična mapa na mizi.",
-        "B) Mesto za urejeno shranjevanje datotek.",
-        "C) Program za čiščenje računalnika."
+        "Program za čiščenje računalnika.",
+        "Mesto za urejeno shranjevanje datotek.",
+        "Fizična mapa na mizi."
       ],
       "correct": 1,
-      "explanation": "Tako kot na računalniku lahko tudi v oblaku ustvarimo mape za boljšo preglednost."
+      "explanation": "Tako kot na računalniku lahko tudi v oblaku ustvarite mape za boljšo preglednost. V mapah organizirate dokumente, fotografije in druge datoteke po temah."
     },
     {
       "question": "Zakaj je koristno ustvarjati mape za datoteke?",
       "options": [
-        "A) Ker računalnik dela hitreje.",
-        "B) Ker lažje najdemo dokumente, fotografije in druge datoteke.",
-        "C) Ker dobimo več prostora."
+        "Ker lažje najdemo dokumente, fotografije in druge datoteke.",
+        "Ker dobimo več prostora.",
+        "Ker računalnik dela hitreje."
       ],
-      "correct": 1,
-      "explanation": "Urejene mape preprečujejo, da bi se pomembne datoteke izgubile med množico drugih dokumentov."
+      "correct": 0,
+      "explanation": "Urejene mape preprečujejo, da bi se pomembne datoteke izgubile med množico drugih dokumentov. Z dobro organizacijo hitreje najdete, kar iščete."
     },
     {
       "question": "Kaj pomeni prenesti datoteko iz oblaka?",
       "options": [
-        "A) Izbrisati datoteko.",
-        "B) Kopirati datoteko iz oblaka na računalnik ali telefon.",
-        "C) Zakleniti datoteko."
+        "Zakleniti datoteko.",
+        "Izbrisati datoteko.",
+        "Kopirati datoteko iz oblaka na računalnik ali telefon."
       ],
-      "correct": 1,
-      "explanation": "Datoteko lahko prenesemo, če jo želimo uporabljati brez internetne povezave."
+      "correct": 2,
+      "explanation": "Prenos (download) iz oblaka pomeni, da kopijo datoteke shranite na svojo napravo. To je uporabno, kadar želite datoteko uporabljati brez internetne povezave."
     },
     {
       "question": "Kaj je Google Dokumenti (Google Docs)?",
       "options": [
-        "A) Program za igranje iger.",
-        "B) Spletni urejevalnik besedil za pisanje dokumentov.",
-        "C) Program za pregled vremena."
+        "Program za pregled vremena.",
+        "Spletni urejevalnik besedil za pisanje dokumentov.",
+        "Program za igranje iger."
       ],
       "correct": 1,
-      "explanation": "Google Dokumenti omogočajo pisanje in urejanje besedil neposredno v brskalniku."
+      "explanation": "Google Dokumenti so brezplačen spletni urejevalnik besedil, ki omogoča pisanje in urejanje dokumentov neposredno v brskalniku. Dokumenti se samodejno shranjujejo v Google Drive."
     },
     {
       "question": "Kakšna je prednost spletnega urejanja dokumentov?",
       "options": [
-        "A) Dokument se sam natisne.",
-        "B) Dokument lahko urejamo iz različnih naprav in se spremembe shranjujejo samodejno.",
-        "C) Dokumenta ni mogoče shraniti."
+        "Dokumenta ni mogoče shraniti.",
+        "Dokument se sam natisne.",
+        "Dokument lahko urejamo iz različnih naprav in se spremembe shranjujejo samodejno."
       ],
-      "correct": 1,
-      "explanation": "Ni treba vsakič ročno shranjevati, saj se spremembe običajno shranjujejo sproti."
+      "correct": 2,
+      "explanation": "Pri spletnih urejevalnikih (Google Docs, Office Online) ni treba vsakič ročno shranjevati, saj se spremembe shranjujejo sproti. Dokument lahko urejate na računalniku, nato pa nadaljujete na telefonu."
     },
     {
       "question": "Kaj pomeni obnoviti izbrisano datoteko iz oblaka?",
       "options": [
-        "A) Pretvoriti jo v fotografijo.",
-        "B) Vrniti datoteko iz koša nazaj med shranjene datoteke.",
-        "C) Poslati jo drugi osebi."
+        "Vrniti datoteko iz koša nazaj med shranjene datoteke.",
+        "Poslati jo drugi osebi.",
+        "Pretvoriti jo v fotografijo."
       ],
-      "correct": 1,
-      "explanation": "Večina storitev v oblaku nekaj časa hrani izbrisane datoteke v košu."
+      "correct": 0,
+      "explanation": "Večina storitev v oblaku (Google Drive, OneDrive) nekaj časa hrani izbrisane datoteke v košu. Če datoteko pomotoma izbrišete, jo lahko v določenem roku obnovite iz koša."
     },
     {
       "question": "Kakšna je razlika med datoteko na računalniku in datoteko v oblaku?",
       "options": [
-        "A) Datoteka v oblaku ne obstaja.",
-        "B) Datoteka v oblaku je shranjena na internetu in je dostopna iz več naprav.",
-        "C) Datoteka v računalniku je vedno nevarna."
+        "Datoteka v računalniku je vedno nevarna.",
+        "Datoteka v oblaku ne obstaja.",
+        "Datoteka v oblaku je shranjena na internetu in je dostopna iz več naprav."
       ],
-      "correct": 1,
-      "explanation": "Lokalna datoteka je shranjena na našem disku, oblačna datoteka pa na oddaljenem strežniku."
+      "correct": 2,
+      "explanation": "Lokalna datoteka je shranjena na trdem disku vašega računalnika, oblačna datoteka pa na oddaljenem strežniku. Do oblačne datoteke lahko dostopate z različnih naprav, lokalno datoteko pa samo z računalnika, na katerem je shranjena."
     },
     {
       "question": "Ali lahko v oblaku shranjujemo fotografije?",
       "options": [
-        "A) Ne.",
-        "B) Da, fotografije so ena najpogostejših vrst podatkov v oblaku.",
-        "C) Samo dokumente."
+        "Da, fotografije so ena najpogostejših vrst podatkov v oblaku.",
+        "Samo dokumente.",
+        "Ne."
       ],
-      "correct": 1,
-      "explanation": "Google Fotografije, Google Drive in OneDrive lahko uporabljamo tudi za shranjevanje slik."
+      "correct": 0,
+      "explanation": "Google Fotografije, Google Drive in OneDrive lahko uporabljamo tudi za shranjevanje fotografij. To je odličen način za varnostno kopiranje in organizacijo slik."
     },
     {
       "question": "Kaj storimo, če pozabimo geslo za račun v oblaku?",
       "options": [
-        "A) Ustvarimo nov računalnik.",
-        "B) Uporabimo možnost za obnovitev gesla.",
-        "C) Izbrišemo vse datoteke."
+        "Uporabimo možnost za obnovitev gesla.",
+        "Izbrišemo vse datoteke.",
+        "Ustvarimo nov računalnik."
       ],
-      "correct": 1,
-      "explanation": "Ponudniki omogočajo obnovitev računa z rezervnim e-naslovom, telefonom ali drugimi postopki."
+      "correct": 0,
+      "explanation": "Vsi ponudniki storitev v oblaku omogočajo obnovitev gesla prek rezervnega e-naslova, telefonske številke ali varnostnih vprašanj. Sledite navodilom na zaslonu in ponastavite geslo."
     },
     {
       "question": "Zakaj je pomembna uporaba močnega gesla za oblak?",
       "options": [
-        "A) Zaradi lepšega izgleda računa.",
-        "B) Ker geslo ščiti naše dokumente, fotografije in osebne podatke.",
-        "C) Ker internet deluje hitreje."
+        "Ker geslo ščiti naše dokumente, fotografije in osebne podatke.",
+        "Ker internet deluje hitreje.",
+        "Zaradi lepšega izgleda računa."
       ],
-      "correct": 1,
-      "explanation": "Če nekdo pridobi dostop do računa, lahko vidi ali izbriše naše datoteke."
+      "correct": 0,
+      "explanation": "Če nekdo pridobi dostop do vašega računa v oblaku, lahko vidi, izbriše ali zlorabi vaše dokumente, fotografije in osebne podatke. Močno geslo je osnovna zaščita."
     },
     {
       "question": "Kaj je dvostopenjska zaščita računa?",
       "options": [
-        "A) Dvakrat napišemo isto geslo.",
-        "B) Poleg gesla uporabimo še dodatno preverjanje identitete.",
-        "C) Uporabimo dva računalnika."
+        "Poleg gesla uporabimo še dodatno preverjanje identitete.",
+        "Uporabimo dva računalnika.",
+        "Dvakrat napišemo isto geslo."
       ],
-      "correct": 1,
-      "explanation": "Tudi če nekdo izve naše geslo, brez druge potrditve težje dostopa do računa."
+      "correct": 0,
+      "explanation": "Dvostopenjska zaščita (2FA) poleg gesla zahteva še dodatno potrditev – na primer kodo, ki jo dobite po SMS-u ali v aplikaciji. Tudi če nekdo izve vaše geslo, brez druge potrditve težje dostopa do računa."
     },
     {
       "question": "Katera navada je najboljša pri uporabi oblaka?",
       "options": [
-        "A) Vse datoteke shranimo brez urejanja.",
-        "B) Urejamo datoteke, uporabljamo varno geslo in pomembne podatke varnostno kopiramo.",
-        "C) Geslo napišemo na list ob računalniku."
+        "Geslo napišemo na list ob računalniku.",
+        "Vse datoteke shranimo brez urejanja.",
+        "Urejamo datoteke, uporabljamo varno geslo in pomembne podatke varnostno kopiramo."
       ],
-      "correct": 1,
-      "explanation": "Oblak je zelo priročen, vendar je varnost odvisna tudi od naših navad."
+      "correct": 2,
+      "explanation": "Oblak je zelo priročen, vendar je varnost odvisna tudi od naših navad. Urejajte datoteke v mape, uporabljajte močna gesla in redno varnostno kopirajte najpomembnejše podatke."
     }
   ]
 }
