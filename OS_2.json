@@ -1,152 +1,256 @@
-[
-  {
-    "q": "Kaj je glavna naloga map v računalniku?",
-    "a": ["Pospešujejo internet.", "Omogočajo urejeno shranjevanje in razvrščanje datotek.", "Varujejo računalnik pred virusi."],
-    "c": 1,
-    "e": "Mape so podobne predalom v omari. Pomagajo nam, da datoteke lažje najdemo."
-  },
-  {
-    "q": "Kaj je datoteka?",
-    "a": ["Del računalniškega zaslona.", "Shranjena vsebina, kot so dokument, fotografija ali glasba.", "Program za čiščenje računalnika."],
-    "c": 1,
-    "e": "Vsak dokument, slika, video ali glasba je shranjena kot datoteka."
-  },
-  {
-    "q": "Kaj je mapa Dokumenti?",
-    "a": ["Mapa za izbrisane datoteke.", "Privzeta mapa za shranjevanje osebnih dokumentov.", "Program za pisanje besedil."],
-    "c": 1,
-    "e": "Windows ustvari posebne mape, kot so Dokumenti, Slike, Glasba in Prenosi."
-  },
-  {
-    "q": "Kam se običajno shranijo datoteke, ki jih prenesemo iz interneta?",
-    "a": ["V Koš.", "V mapo Prenosi (Downloads).", "Na namizje vedno samodejno."],
-    "c": 1,
-    "e": "Datoteke, prenesene iz spleta, Windows običajno shrani v mapo Prenosi."
-  },
-  {
-    "q": "Kako ustvarimo novo mapo?",
-    "a": ["Izklopimo računalnik.", "Z desnim klikom izberemo Novo → Mapa.", "Pritisnemo tipko Enter."],
-    "c": 1,
-    "e": "Nove mape lahko ustvarimo skoraj kjerkoli, kjer imamo dovoljenje za shranjevanje."
-  },
-  {
-    "q": "Zakaj je smiselno fotografije razporediti v več map?",
-    "a": ["Ker računalnik drugače ne deluje.", "Ker jih lažje najdemo in uredimo.", "Ker fotografije postanejo bolj kakovostne."],
-    "c": 1,
-    "e": "Na primer: Slike → Počitnice 2026 → Morje. Tako hitreje najdemo določeno fotografijo."
-  },
-  {
-    "q": "Kaj naredimo, če želimo datoteko preimenovati?",
-    "a": ["Izbrišemo jo in ustvarimo novo.", "Kliknemo z desnim gumbom in izberemo Preimenuj.", "Računalnik ponovno zaženemo."],
-    "c": 1,
-    "e": "Ime datoteke lahko spremenimo, vsebina datoteke pa ostane enaka."
-  },
-  {
-    "q": "Kaj pomeni kopiranje datoteke?",
-    "a": ["Datoteko izbrišemo.", "Ustvarimo dodatno kopijo datoteke na drugem mestu.", "Datoteko zaklenemo."],
-    "c": 1,
-    "e": "Po kopiranju obstajata dve enaki datoteki."
-  },
-  {
-    "q": "Kaj pomeni premikanje datoteke?",
-    "a": ["Datoteko spremenimo v fotografijo.", "Datoteko prestavimo iz ene mape v drugo.", "Datoteko pošljemo po elektronski pošti."],
-    "c": 1,
-    "e": "Pri premikanju datoteka spremeni mesto, vendar ostane ista."
-  },
-  {
-    "q": "Kakšna je razlika med kopiranjem in premikanjem datoteke?",
-    "a": ["Ni nobene razlike.", "Pri kopiranju ostane izvirnik, pri premikanju ga prestavimo.", "Pri kopiranju se datoteka izbriše."],
-    "c": 1,
-    "e": "Kopiranje naredi dodatno različico, premikanje pa spremeni lokacijo."
-  },
-  {
-    "q": "Kaj pomeni, da datoteko shranimo?",
-    "a": ["Datoteko premaknemo v Koš.", "Spremembe v datoteki zapišemo na disk, da jih ne izgubimo.", "Datoteko pošljemo na internet."],
-    "c": 1,
-    "e": "Ko ustvarimo ali spremenimo dokument, ga moramo shraniti, sicer lahko ob zaprtju programa izgubimo spremembe."
-  },
-  {
-    "q": "Katero končnico ima običajno dokument, ustvarjen v programu Microsoft Word?",
-    "a": [".jpg", ".docx", ".mp3"],
-    "c": 1,
-    "e": "Končnica pove vrsto datoteke. Dokumenti Word imajo običajno končnico .docx, fotografije pa na primer .jpg."
-  },
-  {
-    "q": "Kaj pomeni ikona sličice pri fotografiji v Raziskovalcu datotek?",
-    "a": ["Fotografija je izbrisana.", "Windows prikaže predogled vsebine slike.", "Fotografije ni mogoče odpreti."],
-    "c": 1,
-    "e": "Windows pogosto prikaže majhen predogled fotografije, da jo lažje prepoznamo."
-  },
-  {
-    "q": "Kje najdemo datoteko, ki smo jo pravkar prenesli iz interneta?",
-    "a": ["Vedno na namizju.", "Najpogosteje v mapi Prenosi (Downloads).", "V košu."],
-    "c": 1,
-    "e": "Brskalniki običajno shranjujejo prenesene datoteke v mapo Prenosi."
-  },
-  {
-    "q": "Kaj se zgodi, če datoteko izbrišemo s tipko Delete?",
-    "a": ["Računalnik se izklopi.", "Datoteka se običajno premakne v Koš.", "Datoteka se samodejno pošlje po e-pošti."],
-    "c": 1,
-    "e": "Koš omogoča, da pomotoma izbrisano datoteko še lahko obnovimo."
-  },
-  {
-    "q": "Kaj pomeni \"izprazniti Koš\"?",
-    "a": ["Povečati prostor na namizju.", "Trajno odstraniti datoteke iz Koša.", "Ustvariti novo mapo."],
-    "c": 1,
-    "e": "Po izpraznitvi Koša datotek običajno ni več mogoče enostavno obnoviti."
-  },
-  {
-    "q": "Zakaj ni priporočljivo shranjevati vseh datotek samo na namizje?",
-    "a": ["Ker namizje ne podpira datotek.", "Ker lahko hitro postane nepregledno in težko najdemo stvari.", "Ker se računalnik zaradi tega vedno pokvari."],
-    "c": 1,
-    "e": "Namizje je namenjeno predvsem bližnjicam in nekaj pomembnim datotekam, ne pa za dolgoročno shranjevanje vsega."
-  },
-  {
-    "q": "Kako najhitreje poiščemo datoteko, če ne vemo, kje je shranjena?",
-    "a": ["Ponovno namestimo Windows.", "Uporabimo iskalno polje v Raziskovalcu datotek ali meniju Start.", "Izklopimo računalnik."],
-    "c": 1,
-    "e": "Windows omogoča iskanje po imenih datotek in map."
-  },
-  {
-    "q": "Kaj pomeni, če ima datoteka enako ime kot druga datoteka v isti mapi?",
-    "a": ["Računalnik se vedno ugasne.", "Windows običajno ne dovoli dveh enakih imen v isti mapi.", "Datoteki se samodejno združita."],
-    "c": 1,
-    "e": "V isti mapi ne moreta obstajati dve datoteki z enakim imenom in enako končnico."
-  },
-  {
-    "q": "Zakaj je koristno uporabljati smiselna imena datotek?",
-    "a": ["Ker datoteka zavzame manj prostora.", "Ker jo kasneje lažje najdemo.", "Ker računalnik deluje hitreje."],
-    "c": 1,
-    "e": "Ime \"Dopust_Bled_2026.jpg\" je bolj uporabno kot \"IMG00125.jpg\"."
-  },
-  {
-    "q": "Kaj naredimo, če želimo poslati fotografijo prijatelju po elektronski pošti?",
-    "a": ["Fotografijo izbrišemo.", "Dodamo jo kot priponko sporočilu.", "Spremenimo ime računalnika."],
-    "c": 1,
-    "e": "Datoteke, kot so slike in dokumenti, lahko pošiljamo kot priponke elektronske pošte."
-  },
-  {
-    "q": "Kaj je zunanja pomnilniška naprava?",
-    "a": ["Vrsta računalniškega virusa.", "Naprava za shranjevanje podatkov zunaj računalnika.", "Program za pisanje besedil."],
-    "c": 1,
-    "e": "Primeri zunanjih naprav so USB-ključki, zunanji diski in pomnilniške kartice."
-  },
-  {
-    "q": "Zakaj je priporočljivo pomembne fotografije shraniti še drugam?",
-    "a": ["Da jih računalnik ne vidi.", "Da jih ne izgubimo ob okvari računalnika.", "Da postanejo večje."],
-    "c": 1,
-    "e": "Varnostna kopija zaščiti podatke pred okvaro, krajo ali nenamernim izbrisom."
-  },
-  {
-    "q": "Kaj pomeni \"odpreti datoteko\"?",
-    "a": ["Izbrisati datoteko.", "Zagnati program, ki prikaže njeno vsebino.", "Premakniti datoteko v drugo mapo."],
-    "c": 1,
-    "e": "Ko odpremo dokument, fotografijo ali drugo datoteko, jo ustrezen program prikaže."
-  },
-  {
-    "q": "Kaj je dobra navada pri urejanju datotek?",
-    "a": ["Vse datoteke shranimo na namizje.", "Ustvarimo smiselne mape in datoteke redno urejamo.", "Datotek nikoli ne poimenujemo."],
-    "c": 1,
-    "e": "Urejene mape prihranijo čas in zmanjšajo možnost, da izgubimo pomembne dokumente ali fotografije."
-  }
-]
+{
+  "id": 2,
+  "title": "Datoteke in mape v Windows okolju",
+  "questions": [
+    {
+      "question": "Kaj je glavna naloga map v računalniku?",
+      "options": [
+        "A) Pospešujejo internet.",
+        "B) Omogočajo urejeno shranjevanje in razvrščanje datotek.",
+        "C) Varujejo računalnik pred virusi."
+      ],
+      "correct": 1,
+      "explanation": "Mape so podobne predalom v omari. Pomagajo nam, da datoteke lažje najdemo."
+    },
+    {
+      "question": "Kaj je datoteka?",
+      "options": [
+        "A) Del računalniškega zaslona.",
+        "B) Shranjena vsebina, kot so dokument, fotografija ali glasba.",
+        "C) Program za čiščenje računalnika."
+      ],
+      "correct": 1,
+      "explanation": "Vsak dokument, slika, video ali glasba je shranjena kot datoteka."
+    },
+    {
+      "question": "Kaj je mapa Dokumenti?",
+      "options": [
+        "A) Mapa za izbrisane datoteke.",
+        "B) Privzeta mapa za shranjevanje osebnih dokumentov.",
+        "C) Program za pisanje besedil."
+      ],
+      "correct": 1,
+      "explanation": "Windows ustvari posebne mape, kot so Dokumenti, Slike, Glasba in Prenosi."
+    },
+    {
+      "question": "Kam se običajno shranijo datoteke, ki jih prenesemo iz interneta?",
+      "options": [
+        "A) V Koš.",
+        "B) V mapo Prenosi (Downloads).",
+        "C) Na namizje vedno samodejno."
+      ],
+      "correct": 1,
+      "explanation": "Datoteke, prenesene iz spleta, Windows običajno shrani v mapo Prenosi."
+    },
+    {
+      "question": "Kako ustvarimo novo mapo?",
+      "options": [
+        "A) Izklopimo računalnik.",
+        "B) Z desnim klikom izberemo Novo → Mapa.",
+        "C) Pritisnemo tipko Enter."
+      ],
+      "correct": 1,
+      "explanation": "Nove mape lahko ustvarimo skoraj kjerkoli, kjer imamo dovoljenje za shranjevanje."
+    },
+    {
+      "question": "Zakaj je smiselno fotografije razporediti v več map?",
+      "options": [
+        "A) Ker računalnik drugače ne deluje.",
+        "B) Ker jih lažje najdemo in uredimo.",
+        "C) Ker fotografije postanejo bolj kakovostne."
+      ],
+      "correct": 1,
+      "explanation": "Na primer: Slike → Počitnice 2026 → Morje. Tako hitreje najdemo določeno fotografijo."
+    },
+    {
+      "question": "Kaj naredimo, če želimo datoteko preimenovati?",
+      "options": [
+        "A) Izbrišemo jo in ustvarimo novo.",
+        "B) Kliknemo z desnim gumbom in izberemo Preimenuj.",
+        "C) Računalnik ponovno zaženemo."
+      ],
+      "correct": 1,
+      "explanation": "Ime datoteke lahko spremenimo, vsebina datoteke pa ostane enaka."
+    },
+    {
+      "question": "Kaj pomeni kopiranje datoteke?",
+      "options": [
+        "A) Datoteko izbrišemo.",
+        "B) Ustvarimo dodatno kopijo datoteke na drugem mestu.",
+        "C) Datoteko zaklenemo."
+      ],
+      "correct": 1,
+      "explanation": "Po kopiranju obstajata dve enaki datoteki."
+    },
+    {
+      "question": "Kaj pomeni premikanje datoteke?",
+      "options": [
+        "A) Datoteko spremenimo v fotografijo.",
+        "B) Datoteko prestavimo iz ene mape v drugo.",
+        "C) Datoteko pošljemo po elektronski pošti."
+      ],
+      "correct": 1,
+      "explanation": "Pri premikanju datoteka spremeni mesto, vendar ostane ista."
+    },
+    {
+      "question": "Kakšna je razlika med kopiranjem in premikanjem datoteke?",
+      "options": [
+        "A) Ni nobene razlike.",
+        "B) Pri kopiranju ostane izvirnik, pri premikanju ga prestavimo.",
+        "C) Pri kopiranju se datoteka izbriše."
+      ],
+      "correct": 1,
+      "explanation": "Kopiranje naredi dodatno različico, premikanje pa spremeni lokacijo."
+    },
+    {
+      "question": "Kaj pomeni, da datoteko shranimo?",
+      "options": [
+        "A) Datoteko premaknemo v Koš.",
+        "B) Spremembe v datoteki zapišemo na disk, da jih ne izgubimo.",
+        "C) Datoteko pošljemo na internet."
+      ],
+      "correct": 1,
+      "explanation": "Ko ustvarimo ali spremenimo dokument, ga moramo shraniti, sicer lahko ob zaprtju programa izgubimo spremembe."
+    },
+    {
+      "question": "Katero končnico ima običajno dokument, ustvarjen v programu Microsoft Word?",
+      "options": [
+        "A) .jpg",
+        "B) .docx",
+        "C) .mp3"
+      ],
+      "correct": 1,
+      "explanation": "Končnica pove vrsto datoteke. Dokumenti Word imajo običajno končnico .docx, fotografije pa na primer .jpg."
+    },
+    {
+      "question": "Kaj pomeni ikona sličice pri fotografiji v Raziskovalcu datotek?",
+      "options": [
+        "A) Fotografija je izbrisana.",
+        "B) Windows prikaže predogled vsebine slike.",
+        "C) Fotografije ni mogoče odpreti."
+      ],
+      "correct": 1,
+      "explanation": "Windows pogosto prikaže majhen predogled fotografije, da jo lažje prepoznamo."
+    },
+    {
+      "question": "Kje najdemo datoteko, ki smo jo pravkar prenesli iz interneta?",
+      "options": [
+        "A) Vedno na namizju.",
+        "B) Najpogosteje v mapi Prenosi (Downloads).",
+        "C) V košu."
+      ],
+      "correct": 1,
+      "explanation": "Brskalniki običajno shranjujejo prenesene datoteke v mapo Prenosi."
+    },
+    {
+      "question": "Kaj se zgodi, če datoteko izbrišemo s tipko Delete?",
+      "options": [
+        "A) Računalnik se izklopi.",
+        "B) Datoteka se običajno premakne v Koš.",
+        "C) Datoteka se samodejno pošlje po e-pošti."
+      ],
+      "correct": 1,
+      "explanation": "Koš omogoča, da pomotoma izbrisano datoteko še lahko obnovimo."
+    },
+    {
+      "question": "Kaj pomeni 'izprazniti Koš'?",
+      "options": [
+        "A) Povečati prostor na namizju.",
+        "B) Trajno odstraniti datoteke iz Koša.",
+        "C) Ustvariti novo mapo."
+      ],
+      "correct": 1,
+      "explanation": "Po izpraznitvi Koša datotek običajno ni več mogoče enostavno obnoviti."
+    },
+    {
+      "question": "Zakaj ni priporočljivo shranjevati vseh datotek samo na namizje?",
+      "options": [
+        "A) Ker namizje ne podpira datotek.",
+        "B) Ker lahko hitro postane nepregledno in težko najdemo stvari.",
+        "C) Ker se računalnik zaradi tega vedno pokvari."
+      ],
+      "correct": 1,
+      "explanation": "Namizje je namenjeno predvsem bližnjicam in nekaj pomembnim datotekam, ne pa za dolgoročno shranjevanje vsega."
+    },
+    {
+      "question": "Kako najhitreje poiščemo datoteko, če ne vemo, kje je shranjena?",
+      "options": [
+        "A) Ponovno namestimo Windows.",
+        "B) Uporabimo iskalno polje v Raziskovalcu datotek ali meniju Start.",
+        "C) Izklopimo računalnik."
+      ],
+      "correct": 1,
+      "explanation": "Windows omogoča iskanje po imenih datotek in map."
+    },
+    {
+      "question": "Kaj pomeni, če ima datoteka enako ime kot druga datoteka v isti mapi?",
+      "options": [
+        "A) Računalnik se vedno ugasne.",
+        "B) Windows običajno ne dovoli dveh enakih imen v isti mapi.",
+        "C) Datoteki se samodejno združita."
+      ],
+      "correct": 1,
+      "explanation": "V isti mapi ne moreta obstajati dve datoteki z enakim imenom in enako končnico."
+    },
+    {
+      "question": "Zakaj je koristno uporabljati smiselna imena datotek?",
+      "options": [
+        "A) Ker datoteka zavzame manj prostora.",
+        "B) Ker jo kasneje lažje najdemo.",
+        "C) Ker računalnik deluje hitreje."
+      ],
+      "correct": 1,
+      "explanation": "Ime 'Dopust_Bled_2026.jpg' je bolj uporabno kot 'IMG00125.jpg'."
+    },
+    {
+      "question": "Kaj naredimo, če želimo poslati fotografijo prijatelju po elektronski pošti?",
+      "options": [
+        "A) Fotografijo izbrišemo.",
+        "B) Dodamo jo kot priponko sporočilu.",
+        "C) Spremenimo ime računalnika."
+      ],
+      "correct": 1,
+      "explanation": "Datoteke, kot so slike in dokumenti, lahko pošiljamo kot priponke elektronske pošte."
+    },
+    {
+      "question": "Kaj je zunanja pomnilniška naprava?",
+      "options": [
+        "A) Vrsta računalniškega virusa.",
+        "B) Naprava za shranjevanje podatkov zunaj računalnika.",
+        "C) Program za pisanje besedil."
+      ],
+      "correct": 1,
+      "explanation": "Primeri zunanjih naprav so USB-ključki, zunanji diski in pomnilniške kartice."
+    },
+    {
+      "question": "Zakaj je priporočljivo pomembne fotografije shraniti še drugam?",
+      "options": [
+        "A) Da jih računalnik ne vidi.",
+        "B) Da jih ne izgubimo ob okvari računalnika.",
+        "C) Da postanejo večje."
+      ],
+      "correct": 1,
+      "explanation": "Varnostna kopija zaščiti podatke pred okvaro, krajo ali nenamernim izbrisom."
+    },
+    {
+      "question": "Kaj pomeni 'odpreti datoteko'?",
+      "options": [
+        "A) Izbrisati datoteko.",
+        "B) Zagnati program, ki prikaže njeno vsebino.",
+        "C) Premakniti datoteko v drugo mapo."
+      ],
+      "correct": 1,
+      "explanation": "Ko odpremo dokument, fotografijo ali drugo datoteko, jo ustrezen program prikaže."
+    },
+    {
+      "question": "Kaj je dobra navada pri urejanju datotek?",
+      "options": [
+        "A) Vse datoteke shranimo na namizje.",
+        "B) Ustvarimo smiselne mape in datoteke redno urejamo.",
+        "C) Datotek nikoli ne poimenujemo."
+      ],
+      "correct": 1,
+      "explanation": "Urejene mape prihranijo čas in zmanjšajo možnost, da izgubimo pomembne dokumente ali fotografije."
+    }
+  ]
+}
