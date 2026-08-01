@@ -1,0 +1,152 @@
+[
+  {
+    "q": "Kaj je elektronska pošta (e-pošta)?",
+    "a": ["Program za urejanje fotografij.", "Storitev za pošiljanje in prejemanje elektronskih sporočil.", "Vrsta računalniškega virusa."],
+    "c": 1,
+    "e": "Elektronska pošta omogoča hitro pošiljanje sporočil, dokumentov, fotografij in drugih datotek prek interneta."
+  },
+  {
+    "q": "Kaj potrebujemo za uporabo elektronske pošte?",
+    "a": ["Samo tiskalnik.", "E-poštni račun in internetno povezavo.", "Poseben kabel za tipkovnico."],
+    "c": 1,
+    "e": "Za uporabo e-pošte potrebujemo svoj elektronski naslov (račun) in dostop do interneta."
+  },
+  {
+    "q": "Kaj je elektronski naslov?",
+    "a": ["Naslov domače hiše.", "Naslov, na katerega prejemamo in pošiljamo e-pošto.", "Geslo za računalnik."],
+    "c": 1,
+    "e": "Primer elektronskega naslova je sestavljen iz uporabniškega imena, znaka @ in ponudnika storitve."
+  },
+  {
+    "q": "Kaj pomeni znak @ v elektronskem naslovu?",
+    "a": ["Oznaka za izbris.", "Ločuje uporabniško ime od imena ponudnika e-pošte.", "Označuje nevarno sporočilo."],
+    "c": 1,
+    "e": "Znak @ (afna) je obvezen del vsakega elektronskega naslova."
+  },
+  {
+    "q": "Kaj vpišemo v polje \"Za\" pri pisanju e-pošte?",
+    "a": ["Svoje geslo.", "Elektronski naslov prejemnika.", "Ime računalnika."],
+    "c": 1,
+    "e": "V polje \"Za\" napišemo osebo ali osebe, katerim želimo poslati sporočilo."
+  },
+  {
+    "q": "Kaj napišemo v polje \"Zadeva\"?",
+    "a": ["Svoje uporabniško ime.", "Kratek opis vsebine sporočila.", "Telefonsko številko."],
+    "c": 1,
+    "e": "Dobra zadeva pomaga prejemniku hitro razumeti, česa se sporočilo tiče."
+  },
+  {
+    "q": "Kaj pomeni gumb \"Pošlji\"?",
+    "a": ["Izbriše sporočilo.", "Pošlje napisano sporočilo prejemniku.", "Shrani geslo."],
+    "c": 1,
+    "e": "Ko kliknemo Pošlji, se sporočilo prenese do prejemnikovega e-poštnega predala."
+  },
+  {
+    "q": "Kaj je priponka v e-pošti?",
+    "a": ["Vrsta gesla.", "Datoteka, dodana k elektronskemu sporočilu.", "Ime pošiljatelja."],
+    "c": 1,
+    "e": "Kot priponko lahko pošljemo fotografije, dokumente, PDF datoteke in druge datoteke."
+  },
+  {
+    "q": "Kaj naredimo, če dobimo priponko od neznanega pošiljatelja?",
+    "a": ["Takoj jo odpremo.", "Je ne odpremo in preverimo, kdo jo je poslal.", "Jo pošljemo naprej prijateljem."],
+    "c": 1,
+    "e": "Neznane priponke lahko vsebujejo viruse ali škodljive programe."
+  },
+  {
+    "q": "Kakšna je razlika med \"Odgovori\" in \"Posreduj\"?",
+    "a": ["Ni nobene razlike.", "Odgovori pošlje sporočilo prvotnemu pošiljatelju, Posreduj ga pošlje naprej drugim.", "Oboje izbriše sporočilo."],
+    "c": 1,
+    "e": "Pri odgovoru komuniciramo s pošiljateljem, pri posredovanju pa vsebino pošljemo še komu drugemu."
+  },
+  {
+    "q": "Kaj je mapa \"Prejeto\" (Inbox)?",
+    "a": ["Mapa za izbrisane datoteke.", "Mapa, kjer so prejeta sporočila.", "Mapa za programe."],
+    "c": 1,
+    "e": "V mapi Prejeto najdemo sporočila, ki smo jih prejeli od drugih uporabnikov."
+  },
+  {
+    "q": "Kaj je neželena pošta (Spam)?",
+    "a": ["Pomembna službena pošta.", "Neželena ali sumljiva sporočila, pogosto oglaševalska.", "Pošta, ki jo sami napišemo."],
+    "c": 1,
+    "e": "Filtri neželene pošte poskušajo samodejno ločiti nezaželena sporočila od pomembnih."
+  },
+  {
+    "q": "Kaj se zgodi, če kliknemo gumb \"Izbriši\" pri e-poštnem sporočilu?",
+    "a": ["Računalnik se izklopi.", "Sporočilo se običajno premakne v mapo Koš ali Izbrisano.", "Sporočilo se samodejno pošlje naprej."],
+    "c": 1,
+    "e": "Izbrisana sporočila pogosto niso takoj trajno odstranjena. Nekaj časa jih lahko še obnovimo iz mape Izbrisano."
+  },
+  {
+    "q": "Zakaj je koristno uporabljati iskanje v e-pošti?",
+    "a": ["Da povečamo velikost zaslona.", "Da hitro najdemo staro sporočilo ali priponko.", "Da izbrišemo vse sporočila."],
+    "c": 1,
+    "e": "Če imamo veliko sporočil, lahko z iskalnikom poiščemo pošiljatelja, besedo ali naslov sporočila."
+  },
+  {
+    "q": "Kaj pomeni odgovor \"Odgovori vsem\" (Reply all)?",
+    "a": ["Izbriše vse prejete maile.", "Odgovor pošlje vsem prejemnikom prvotnega sporočila.", "Sporočilo shrani v Koš."],
+    "c": 1,
+    "e": "To možnost uporabimo samo takrat, kadar želimo, da odgovor prejmejo vsi navedeni prejemniki."
+  },
+  {
+    "q": "Kaj pomeni polje CC pri e-pošti?",
+    "a": ["Skrito geslo.", "Kopija sporočila, ki jo prejmejo dodatni prejemniki.", "Izbris sporočila."],
+    "c": 1,
+    "e": "Prejemniki v polju CC vidijo, komu vse je bilo sporočilo poslano."
+  },
+  {
+    "q": "Kaj pomeni polje BCC pri e-pošti?",
+    "a": ["Večja priponka.", "Skrita kopija sporočila, kjer prejemniki ne vidijo drugih naslovov.", "Samodejno brisanje pošte."],
+    "c": 1,
+    "e": "BCC je uporabno pri pošiljanju sporočil več ljudem, kadar želimo zaščititi njihove elektronske naslove."
+  },
+  {
+    "q": "Kaj naredimo, če želimo shraniti priponko iz e-pošte?",
+    "a": ["Izklopimo internet.", "Kliknemo na priponko in izberemo možnost Shrani ali Prenesi.", "Izbrišemo celotno sporočilo."],
+    "c": 1,
+    "e": "Priponko lahko shranimo v mapo Dokumenti, Slike ali drugo izbrano mapo."
+  },
+  {
+    "q": "Zakaj ni dobro uporabljati istega gesla za vse e-poštne račune?",
+    "a": ["Ker računalnik postane počasnejši.", "Ker lahko ob razkritju enega gesla ogrozimo več računov.", "Ker e-pošta ne bo delovala."],
+    "c": 1,
+    "e": "Za pomembne račune je priporočljivo uporabljati različna in dovolj močna gesla."
+  },
+  {
+    "q": "Kaj je preverjanje v dveh korakih (2FA)?",
+    "a": ["Dvakrat vpišemo isto geslo.", "Poleg gesla uporabimo še dodatno potrditev identitete.", "Dvakrat odpremo program."],
+    "c": 1,
+    "e": "Po vnosu gesla lahko na primer dobimo potrditveno kodo na telefon."
+  },
+  {
+    "q": "Kako prepoznamo sumljivo e-pošto?",
+    "a": ["Vedno vsebuje fotografije.", "Zahteva nujno ukrepanje, geslo ali osebne podatke.", "Vedno prihaja zjutraj."],
+    "c": 1,
+    "e": "Goljufi pogosto ustvarjajo občutek nujnosti, na primer: \"Takoj potrdite račun, sicer bo zaprt.\""
+  },
+  {
+    "q": "Ali banka običajno zahteva, da po e-pošti pošljemo svoje geslo?",
+    "a": ["Da, vedno.", "Ne, banke ne zahtevajo pošiljanja gesel po e-pošti.", "Samo ob nedeljah."],
+    "c": 1,
+    "e": "Gesla, PIN kode in druge občutljive podatke vedno varujemo in jih ne pošiljamo po elektronski pošti."
+  },
+  {
+    "q": "Kaj storimo, če dobimo sumljivo sporočilo, ki naj bi bilo od banke?",
+    "a": ["Kliknemo povezavo in vpišemo podatke.", "Ne klikamo povezav in preverimo pri banki po uradni poti.", "Sporočilo pošljemo vsem prijateljem."],
+    "c": 1,
+    "e": "Lažna sporočila pogosto posnemajo banke, dostavne službe ali državne ustanove."
+  },
+  {
+    "q": "Zakaj je dobro imeti urejen e-poštni predal?",
+    "a": ["Ker internet deluje hitreje.", "Ker pomembna sporočila in dokumente lažje najdemo.", "Ker računalnik porabi manj elektrike."],
+    "c": 1,
+    "e": "Mape, oznake in brisanje nepotrebne pošte pomagajo ohraniti preglednost."
+  },
+  {
+    "q": "Kaj je dobra navada pri uporabi elektronske pošte?",
+    "a": ["Odpremo vsako priponko.", "Previdno preverimo pošiljatelja in vsebino sporočila.", "Svoje geslo zaupamo drugim."],
+    "c": 1,
+    "e": "Previdnost pri e-pošti je ena najpomembnejših zaščit pred spletnimi prevarami."
+  }
+]

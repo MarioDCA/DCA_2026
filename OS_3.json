@@ -1,0 +1,152 @@
+[
+  {
+    "q": "Kaj je internet?",
+    "a": ["Program za pisanje besedil.", "Svetovno omrežje povezanih računalnikov in naprav.", "Vrsta računalniškega zaslona."],
+    "c": 1,
+    "e": "Internet povezuje milijone računalnikov, telefonov in drugih naprav po vsem svetu."
+  },
+  {
+    "q": "Kaj potrebujemo za dostop do interneta doma?",
+    "a": ["Samo tiskalnik.", "Internetno povezavo in napravo, kot je računalnik ali telefon.", "Samo program Word."],
+    "c": 1,
+    "e": "Za internet potrebujemo povezavo (npr. optiko, kabel ali mobilno povezavo) in napravo za uporabo."
+  },
+  {
+    "q": "Kaj je spletni brskalnik?",
+    "a": ["Program za zaščito pred virusi.", "Program za ogled spletnih strani.", "Program za čiščenje tipkovnice."],
+    "c": 1,
+    "e": "Najbolj znani brskalniki so Microsoft Edge, Google Chrome, Mozilla Firefox in Safari."
+  },
+  {
+    "q": "Kateri od teh programov je spletni brskalnik?",
+    "a": ["Microsoft Word.", "Google Chrome.", "Kalkulator."],
+    "c": 1,
+    "e": "Chrome je brskalnik, Word pa je program za pisanje dokumentov."
+  },
+  {
+    "q": "Kaj je spletna stran?",
+    "a": ["Datoteka na namizju.", "Stran z informacijami, ki jo odpremo v brskalniku.", "Vrsta tiskalnika."],
+    "c": 1,
+    "e": "Spletne strani vsebujejo besedilo, slike, videoposnetke in povezave."
+  },
+  {
+    "q": "Kaj je spletni naslov (URL)?",
+    "a": ["Geslo za računalnik.", "Naslov, kjer najdemo določeno spletno stran.", "Ime uporabnika."],
+    "c": 1,
+    "e": "Primer spletnega naslova je naslov neke spletne strani, ki ga vpišemo v vrstico brskalnika."
+  },
+  {
+    "q": "Kam vpišemo spletni naslov?",
+    "a": ["V program Kalkulator.", "V naslovno vrstico spletnega brskalnika.", "V Koš."],
+    "c": 1,
+    "e": "Naslovna vrstica je na vrhu okna brskalnika in je namenjena vpisovanju spletnih naslovov ali iskalnih pojmov."
+  },
+  {
+    "q": "Kaj naredi gumb za osvežitev strani (⟳)?",
+    "a": ["Izklopi računalnik.", "Ponovno naloži trenutno spletno stran.", "Izbriše vse podatke."],
+    "c": 1,
+    "e": "Osvežitev je uporabna, če se stran ni pravilno prikazala ali želimo videti nove podatke."
+  },
+  {
+    "q": "Kaj je povezava (link) na spletni strani?",
+    "a": ["Vrsta virusa.", "Element, ki nas s klikom odpelje na drugo stran ali vsebino.", "Program za pisanje."],
+    "c": 1,
+    "e": "Povezave so pogosto obarvane ali podčrtane. S klikom odpremo drugo vsebino."
+  },
+  {
+    "q": "Kaj pomeni odpreti nov zavihek v brskalniku?",
+    "a": ["Izbrisati trenutno stran.", "Odpreti dodatno stran, ne da bi zaprli trenutno.", "Izklopiti internet."],
+    "c": 1,
+    "e": "Zavihki omogočajo, da imamo odprtih več spletnih strani hkrati."
+  },
+  {
+    "q": "Kaj naredi gumb Nazaj (←) v brskalniku?",
+    "a": ["Zapre računalnik.", "Vrne nas na prej obiskano spletno stran.", "Izbriše zgodovino."],
+    "c": 1,
+    "e": "Gumb Nazaj omogoča vračanje po straneh, ki smo jih že obiskali."
+  },
+  {
+    "q": "Kaj je spletni iskalnik?",
+    "a": ["Program za risanje.", "Storitev za iskanje informacij na internetu.", "Mapa za shranjevanje datotek."],
+    "c": 1,
+    "e": "Iskalniki, kot je Google, pomagajo najti spletne strani, slike, novice in druge informacije."
+  },
+  {
+    "q": "Kako najbolje poiščemo informacijo na internetu?",
+    "a": ["Naključno klikamo različne spletne strani.", "V iskalnik vpišemo ključne besede.", "Izklopimo računalnik in ga ponovno vključimo."],
+    "c": 1,
+    "e": "Iskalniki najbolje delujejo, če vpišemo kratke in jasne besede, povezane s tem, kar iščemo."
+  },
+  {
+    "q": "Kaj so ključne besede pri iskanju na internetu?",
+    "a": ["Gesla za prijavo.", "Besede ali izrazi, ki opišejo, kaj iščemo.", "Imena računalniških programov."],
+    "c": 1,
+    "e": "Če iščemo na primer recept za potico, vpišemo \"recept potica\", ne celotnega vprašanja."
+  },
+  {
+    "q": "Kaj pomeni, če se besedilo na spletni strani spremeni v roko kazalca?",
+    "a": ["Računalnik se je pokvaril.", "Tam je običajno povezava, na katero lahko kliknemo.", "Stran se bo zaprla."],
+    "c": 1,
+    "e": "Kazalec v obliki roke pogosto pomeni, da je element klikljiv."
+  },
+  {
+    "q": "Kaj je zaznamek (priljubljena stran oziroma Bookmark)?",
+    "a": ["Izbrisana spletna stran.", "Shranjen spletni naslov, da ga pozneje lažje najdemo.", "Vrsta računalniškega virusa."],
+    "c": 1,
+    "e": "Če pogosto obiskujemo neko spletno stran, jo lahko shranimo med priljubljene."
+  },
+  {
+    "q": "Zakaj uporabljamo zavihke v brskalniku?",
+    "a": ["Da povečamo velikost zaslona.", "Da imamo odprtih več spletnih strani hkrati.", "Da izbrišemo zgodovino."],
+    "c": 1,
+    "e": "Na primer: v enem zavihku imamo e-pošto, v drugem novice, v tretjem recept."
+  },
+  {
+    "q": "Kaj je zgodovina brskanja?",
+    "a": ["Seznam nameščenih programov.", "Seznam spletnih strani, ki smo jih obiskali.", "Seznam dokumentov v Wordu."],
+    "c": 1,
+    "e": "Brskalnik si lahko zapomni obiskane strani, da jih kasneje lažje najdemo."
+  },
+  {
+    "q": "Kaj pomeni prenesti datoteko (download)?",
+    "a": ["Izbrisati datoteko.", "Kopirati datoteko iz interneta na svojo napravo.", "Poslati datoteko v Koš."],
+    "c": 1,
+    "e": "Prenesemo lahko na primer fotografijo, dokument ali program."
+  },
+  {
+    "q": "Kaj storimo, če spletna stran zahteva nenavadno namestitev programa?",
+    "a": ["Takoj namestimo program.", "Preverimo, ali je stran zaupanja vredna, in smo previdni.", "Pošljemo povezavo vsem prijateljem."],
+    "c": 1,
+    "e": "Neznani programi lahko vsebujejo škodljivo programsko opremo."
+  },
+  {
+    "q": "Kaj pomeni simbol ključavnice ob spletnem naslovu?",
+    "a": ["Stran je zagotovo brez napak.", "Povezava med brskalnikom in stranjo je šifrirana.", "Računalnik je zaklenjen."],
+    "c": 1,
+    "e": "Ključavnica pomeni, da je povezava zaščitena (HTTPS). Ne pomeni pa, da je spletna stran nujno poštena."
+  },
+  {
+    "q": "Zakaj ni dobro klikati vseh povezav v elektronski pošti?",
+    "a": ["Ker internet preneha delovati.", "Ker lahko vodijo na nevarne ali lažne spletne strani.", "Ker se računalnik vedno izklopi."],
+    "c": 1,
+    "e": "Goljufi pogosto pošiljajo lažna sporočila z namenom kraje gesel ali podatkov."
+  },
+  {
+    "q": "Kaj je spletna prevara (phishing)?",
+    "a": ["Hitrejši internet.", "Poskus pridobiti osebne podatke z lažnimi sporočili ali stranmi.", "Program za urejanje slik."],
+    "c": 1,
+    "e": "Prevaranti se pogosto pretvarjajo, da so banka, dostavna služba ali znano podjetje."
+  },
+  {
+    "q": "Kaj je dobro storiti pri uporabi javnega Wi-Fi omrežja?",
+    "a": ["Vpisati vsa pomembna gesla brez razmišljanja.", "Biti previden pri dostopu do občutljivih podatkov.", "Izklopiti protivirusni program."],
+    "c": 1,
+    "e": "Javna omrežja niso vedno varna. Pri njihovi uporabi bodimo previdni predvsem pri spletnih bankah in prijavah."
+  },
+  {
+    "q": "Kaj naredimo, če spletna stran izgleda sumljivo?",
+    "a": ["Vpišemo svoje geslo, da preverimo.", "Stran zapremo in ne vnašamo osebnih podatkov.", "Pošljemo svoje podatke upravitelju strani."],
+    "c": 1,
+    "e": "Če stran zahteva nenavadne podatke, obljublja neverjetne nagrade ali deluje sumljivo, jo raje zapremo."
+  }
+]

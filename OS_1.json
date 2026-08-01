@@ -1,0 +1,227 @@
+[
+  {
+    "question": "Kaj je operacijski sistem Windows?",
+    "answers": [
+      { "text": "Program za pisanje besedil.", "correct": false },
+      { "text": "Program, ki omogoča delovanje računalnika in drugih programov.", "correct": true },
+      { "text": "Protivirusni program.", "correct": false }
+    ],
+    "explanation": "Windows je operacijski sistem. Brez njega računalnik ne bi mogel poganjati programov, kot so Word, Chrome ali Excel."
+  },
+  {
+    "question": "Kaj predstavlja namizje (Desktop)?",
+    "answers": [
+      { "text": "Glavni zaslon sistema Windows z ikonami in opravilno vrstico.", "correct": true },
+      { "text": "Mapa z dokumenti.", "correct": false },
+      { "text": "Program za urejanje fotografij.", "correct": false }
+    ],
+    "explanation": "Namizje je prvi zaslon, ki ga vidite po prijavi v Windows. Na njem so lahko ikone programov in datotek."
+  },
+  {
+    "question": "Čemu je namenjen gumb Start?",
+    "answers": [
+      { "text": "Za odpiranje interneta.", "correct": false },
+      { "text": "Za dostop do programov, nastavitev in možnosti izklopa računalnika.", "correct": true },
+      { "text": "Za shranjevanje dokumentov.", "correct": false }
+    ],
+    "explanation": "Gumb Start je izhodišče za skoraj vse pomembne funkcije v sistemu Windows."
+  },
+  {
+    "question": "Kaj običajno naredi dvojni klik z levim gumbom miške na ikoni programa?",
+    "answers": [
+      { "text": "Označi program.", "correct": false },
+      { "text": "Odpre program.", "correct": true },
+      { "text": "Izbriše program.", "correct": false }
+    ],
+    "explanation": "Dvojni klik je najpogostejši način za odpiranje programov ali datotek."
+  },
+  {
+    "question": "Čemu je namenjen desni gumb miške?",
+    "answers": [
+      { "text": "Za povečavo zaslona.", "correct": false },
+      { "text": "Za prikaz dodatnih možnosti (priročnega menija).", "correct": true },
+      { "text": "Za zapiranje računalnika.", "correct": false }
+    ],
+    "explanation": "Desni klik odpre meni z možnostmi, ki so odvisne od tega, na kaj ste kliknili."
+  },
+  {
+    "question": "Kaj pomeni znak X v zgornjem desnem kotu okna?",
+    "answers": [
+      { "text": "Poveča okno.", "correct": false },
+      { "text": "Zapre trenutno okno ali program.", "correct": true },
+      { "text": "Zmanjša velikost besedila.", "correct": false }
+    ],
+    "explanation": "Klik na X zapre odprto okno. Če dokument ni shranjen, vas Windows običajno opozori."
+  },
+  {
+    "question": "Kaj se zgodi, če kliknete gumb z znakom – (vodoravna črta)?",
+    "answers": [
+      { "text": "Zapre program.", "correct": false },
+      { "text": "Okno se skrije v opravilno vrstico, program pa ostane odprt.", "correct": true },
+      { "text": "Izbriše trenutno datoteko.", "correct": false }
+    ],
+    "explanation": "To imenujemo pomanjšanje okna. Program še vedno deluje."
+  },
+  {
+    "question": "Kaj je opravilna vrstica?",
+    "answers": [
+      { "text": "Mapa z dokumenti.", "correct": false },
+      { "text": "Vrstica, kjer so gumb Start, odprti programi in sistemske ikone.", "correct": true },
+      { "text": "Seznam vseh datotek na računalniku.", "correct": false }
+    ],
+    "explanation": "V opravilni vrstici lahko hitro preklapljate med odprtimi programi."
+  },
+  {
+    "question": "Kaj predstavlja ikona Koš (Recycle Bin)?",
+    "answers": [
+      { "text": "Program za čiščenje računalnika.", "correct": false },
+      { "text": "Mesto, kamor se začasno shranijo izbrisane datoteke.", "correct": true },
+      { "text": "Mapo za fotografije.", "correct": false }
+    ],
+    "explanation": "Če datoteko pomotoma izbrišete, jo lahko pogosto obnovite iz Koša, dokler ga ne izpraznite."
+  },
+  {
+    "question": "Kako praviloma izberete eno datoteko?",
+    "answers": [
+      { "text": "Enkrat kliknete nanjo z levim gumbom miške.", "correct": true },
+      { "text": "Dvakrat kliknete z desnim gumbom.", "correct": false },
+      { "text": "Premaknete kazalec nad datoteko.", "correct": false }
+    ],
+    "explanation": "En klik datoteko označi, dvojni klik pa jo običajno odpre."
+  },
+  {
+    "question": "Kako pravilno izklopimo računalnik z Windows?",
+    "answers": [
+      { "text": "Z gumbom za izklop na električni vtičnici.", "correct": false },
+      { "text": "Kliknemo Start → Napajanje → Zaustavitev sistema.", "correct": true },
+      { "text": "Pritisnemo tipko Delete na tipkovnici.", "correct": false }
+    ],
+    "explanation": "Pravilna zaustavitev omogoči, da Windows varno zapre programe in shrani potrebne podatke."
+  },
+  {
+    "question": "Kaj naredimo, če se program ne odziva več?",
+    "answers": [
+      { "text": "Takoj izklopimo računalnik iz elektrike.", "correct": false },
+      { "text": "Počakamo nekaj časa ali program zapremo prek Upravitelja opravil.", "correct": true },
+      { "text": "Izbrišemo program iz računalnika.", "correct": false }
+    ],
+    "explanation": "Včasih se program zaradi napake \"zamrzne\". Ni ga treba takoj odstraniti ali izklopiti računalnika."
+  },
+  {
+    "question": "Kaj je mapa v sistemu Windows?",
+    "answers": [
+      { "text": "Program za internet.", "correct": false },
+      { "text": "Mesto, kjer organizirano shranjujemo datoteke.", "correct": true },
+      { "text": "Vrsta računalniškega virusa.", "correct": false }
+    ],
+    "explanation": "Mape pomagajo urediti dokumente, fotografije, glasbo in druge datoteke."
+  },
+  {
+    "question": "Kaj je datoteka?",
+    "answers": [
+      { "text": "Shranjena vsebina, na primer dokument, fotografija ali glasba.", "correct": true },
+      { "text": "Vrsta računalniškega zaslona.", "correct": false },
+      { "text": "Gumb na tipkovnici.", "correct": false }
+    ],
+    "explanation": "Datoteke vsebujejo podatke. Vsaka ima običajno svoje ime in končnico (npr. .docx, .jpg, .pdf)."
+  },
+  {
+    "question": "Kaj pomeni, da datoteko shranimo?",
+    "answers": [
+      { "text": "Izbrišemo jo iz računalnika.", "correct": false },
+      { "text": "Shranimo spremembe, da jih lahko pozneje ponovno odpremo.", "correct": true },
+      { "text": "Pošljemo jo v koš.", "correct": false }
+    ],
+    "explanation": "Če dokumenta ne shranimo, lahko ob zaprtju programa izgubimo narejene spremembe."
+  },
+  {
+    "question": "Kje običajno najdemo program Raziskovalec datotek (File Explorer)?",
+    "answers": [
+      { "text": "Samo na internetu.", "correct": false },
+      { "text": "V opravilni vrstici ali prek menija Start.", "correct": true },
+      { "text": "V košu.", "correct": false }
+    ],
+    "explanation": "Raziskovalec datotek uporabljamo za pregledovanje map in datotek na računalniku."
+  },
+  {
+    "question": "Kaj pomeni bližnjica na namizju?",
+    "answers": [
+      { "text": "Kopija celotnega programa.", "correct": false },
+      { "text": "Ikona, ki omogoča hitrejši dostop do programa ali datoteke.", "correct": true },
+      { "text": "Datoteka, ki je ni mogoče izbrisati.", "correct": false }
+    ],
+    "explanation": "Če izbrišemo bližnjico, običajno ne izbrišemo programa ali datoteke, na katero kaže."
+  },
+  {
+    "question": "Kako premaknemo okno programa po zaslonu?",
+    "answers": [
+      { "text": "Kliknemo gumb Start.", "correct": false },
+      { "text": "Povlečemo naslovno vrstico okna z miško.", "correct": true },
+      { "text": "Pritisnemo tipko Enter.", "correct": false }
+    ],
+    "explanation": "Okno lahko premaknemo tako, da kliknemo zgornji del okna in ga povlečemo."
+  },
+  {
+    "question": "Kaj naredi kombinacija tipk Ctrl + C?",
+    "answers": [
+      { "text": "Zapre program.", "correct": false },
+      { "text": "Kopira izbrano besedilo ali datoteko.", "correct": true },
+      { "text": "Izklopi računalnik.", "correct": false }
+    ],
+    "explanation": "Ctrl + C pomeni kopiranje. Pogosto jo uporabljamo skupaj s Ctrl + V za lepljenje."
+  },
+  {
+    "question": "Kaj naredi kombinacija tipk Ctrl + V?",
+    "answers": [
+      { "text": "Izbriše izbrano vsebino.", "correct": false },
+      { "text": "Prilepi prej kopirano vsebino.", "correct": true },
+      { "text": "Odpre meni Start.", "correct": false }
+    ],
+    "explanation": "Najprej nekaj kopiramo (Ctrl + C), nato pa prilepimo (Ctrl + V)."
+  },
+  {
+    "question": "Čemu služi tipka Delete?",
+    "answers": [
+      { "text": "Za povečanje glasnosti.", "correct": false },
+      { "text": "Za brisanje izbrane vsebine ali datotek.", "correct": true },
+      { "text": "Za odpiranje interneta.", "correct": false }
+    ],
+    "explanation": "Izbrisane datoteke se običajno premaknejo v Koš, od koder jih lahko še obnovimo."
+  },
+  {
+    "question": "Kaj pomeni, če je ob datoteki znak ključavnice?",
+    "answers": [
+      { "text": "Datoteka je nevaren virus.", "correct": false },
+      { "text": "Datoteka ali mapa ima omejen dostop oziroma zaščito.", "correct": true },
+      { "text": "Datoteka je samodejno izbrisana.", "correct": false }
+    ],
+    "explanation": "Nekatere datoteke so zaščitene, da jih uporabnik ne spremeni ali izbriše po pomoti."
+  },
+  {
+    "question": "Zakaj je dobro imeti varnostno kopijo pomembnih datotek?",
+    "answers": [
+      { "text": "Da računalnik dela počasneje.", "correct": false },
+      { "text": "Da jih lahko obnovimo ob okvari ali izgubi podatkov.", "correct": true },
+      { "text": "Da se poveča velikost zaslona.", "correct": false }
+    ],
+    "explanation": "Fotografije, dokumente in druge pomembne datoteke je priporočljivo shraniti tudi na zunanji disk ali v oblak."
+  },
+  {
+    "question": "Kaj pomeni obvestilo Windows Update?",
+    "answers": [
+      { "text": "Opozorilo, da zmanjkuje prostora za fotografije.", "correct": false },
+      { "text": "Obvestilo o posodobitvah sistema Windows.", "correct": true },
+      { "text": "Sporočilo za izbris vseh programov.", "correct": false }
+    ],
+    "explanation": "Posodobitve izboljšajo varnost in odpravljajo napake v sistemu."
+  },
+  {
+    "question": "Kaj storimo, če želimo poiskati program ali datoteko v Windows?",
+    "answers": [
+      { "text": "Ponovno namestimo Windows.", "correct": false },
+      { "text": "Uporabimo iskalno polje v meniju Start.", "correct": true },
+      { "text": "Izklopimo računalnik.", "correct": false }
+    ],
+    "explanation": "Windows ima vgrajeno iskanje, s katerim hitro najdemo programe, nastavitve in datoteke."
+  }
+]
