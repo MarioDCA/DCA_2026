@@ -212,7 +212,7 @@
             font-size: 16px;
         }
         
-        /* Vprašanje - BREZ podvojnega napisa "Vprašanje X" */
+        /* Vprašanje - BREZ podvojnega napisa */
         .vprasanje {
             margin: 10px 0;
             padding: 14px 16px;
@@ -482,7 +482,7 @@
             </div>
         </div>
         
-        <!-- Footer - manj prostora -->
+        <!-- Footer -->
         <div class="footer">
             <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
         </div>
@@ -755,7 +755,7 @@
                     <span class="skupina-info ${kategorija}">${skupina}</span>
                 </div>
                 
-                <!-- VPRAŠANJE - BREZ podvojnega napisa "Vprašanje X" -->
+                <!-- VPRAŠANJE - BREZ podvojnega napisa -->
                 <div class="vprasanje">
                     <h3>${vpr.vprasanje || 'Vprašanje'}</h3>
                     
@@ -938,6 +938,74 @@
         function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, emoji, podrobnosti) {
             const vsebina = document.getElementById('vsebina');
             
+            // ============================================================
+            // ČE JE OCENA MANJ KOT 3 - PRIKAŽI SAMO NAPAČNE ODGOVORE + 💪
+            // ============================================================
+            let ocenaStevilka = 1;
+            if (odstotek >= 90) ocenaStevilka = 5;
+            else if (odstotek >= 75) ocenaStevilka = 4;
+            else if (odstotek >= 60) ocenaStevilka = 3;
+            else if (odstotek >= 40) ocenaStevilka = 2;
+            else ocenaStevilka = 1;
+            
+            if (ocenaStevilka < 3) {
+                // Pregled samo napačnih odgovorov
+                let reviewHtml = "<h2>📝 Pregled napačnih odgovorov:</h2>";
+                let hasWrong = false;
+                kvizPodatki.vprasanja.forEach((vpr, idx) => {
+                    const odg = odgovori[idx];
+                    if (odg !== null && odg !== vpr.pravilni) {
+                        hasWrong = true;
+                        const correctText = vpr.moznosti[vpr.pravilni];
+                        const userText = vpr.moznosti[odg];
+                        reviewHtml += `
+                            <div style="margin:15px auto;width:95%;max-width:600px;text-align:left;font-size:16px;border-left:4px solid var(--wrong);padding-left:15px;background:var(--bg-card);border-radius:8px;padding:12px 15px;">
+                                <b>❓ Vprašanje ${idx+1}:</b> ${vpr.vprasanje}<br>
+                                <b><span style="color:var(--correct);">✔ Pravilen odgovor:</span></b> ${correctText}<br>
+                                <b><span style="color:var(--wrong);">✘ Tvoj odgovor:</span></b> ${userText}
+                            </div>
+                        `;
+                    }
+                });
+                if (!hasWrong) {
+                    reviewHtml = "<h2>🎉 Zelo dobro! Vsi odgovori so pravilni, a žal premalo za pozitivno oceno. Preveri ocenjevanje.</h2>";
+                }
+                
+                let counter = 20;
+                const html = `
+                    <div class="rezultat">
+                        <div style="font-size:60px; margin-bottom:10px;">💪</div>
+                        <h2>Dober poskus!</h2>
+                        <div class="stevilka">${pravilni} / ${skupaj}</div>
+                        <div class="odstotek">${odstotek}% uspešnosti</div>
+                        <div class="ocena" style="color: ${ocenaBarva};">Ocena: ${ocenaBesedilo}</div>
+                        
+                        ${reviewHtml}
+                        
+                        <div style="margin-top:20px; padding:15px; background:var(--bg-container); border-radius:8px; border:1px solid var(--border-color);">
+                            <div style="font-size:20px; font-weight:bold; color:var(--wrong);">Kviz boš moral/a ponoviti za uspešen zaključek.</div>
+                            <div style="font-size:18px; margin-top:10px;">Samodejna ponovitev čez:</div>
+                            <div id="count" style="font-size:60px;font-weight:bold;margin-top:10px;color:var(--wrong);">${counter}</div>
+                        </div>
+                    </div>
+                `;
+                vsebina.innerHTML = html;
+                
+                const interval = setInterval(() => {
+                    counter--;
+                    const countEl = document.getElementById('count');
+                    if (countEl) countEl.textContent = counter;
+                    if (counter === 0) {
+                        clearInterval(interval);
+                        ponovnoResi();
+                    }
+                }, 1000);
+                return;
+            }
+            
+            // ============================================================
+            // OCENA >= 3 - PRIKAŽI REZULTAT Z NAPAČNIMI ODGOVORI
+            // ============================================================
             let tabela = '';
             if (podrobnosti && podrobnosti.length > 0) {
                 tabela = `
@@ -946,7 +1014,7 @@
                         <table>
                             <thead><tr><th>Vprašanje</th><th>Rezultat</th></tr></thead>
                             <tbody>
-                    `;
+                `;
                 podrobnosti.forEach(p => {
                     const ikona = p.pravilno ? '✅' : '❌';
                     const razred = p.pravilno ? 'pravilno' : 'napacno';
@@ -956,6 +1024,26 @@
                 tabela += `</tbody></table></div>`;
             }
             
+            // Pregled samo napačnih odgovorov
+            let reviewHtml = "<h2>📝 Pregled napačnih odgovorov:</h2>";
+            let hasWrong = false;
+            kvizPodatki.vprasanja.forEach((vpr, idx) => {
+                const odg = odgovori[idx];
+                if (odg !== null && odg !== vpr.pravilni) {
+                    hasWrong = true;
+                    const correctText = vpr.moznosti[vpr.pravilni];
+                    const userText = vpr.moznosti[odg];
+                    reviewHtml += `
+                        <div style="margin:15px auto;width:95%;max-width:600px;text-align:left;font-size:16px;border-left:4px solid var(--wrong);padding-left:15px;background:var(--bg-card);border-radius:8px;padding:12px 15px;">
+                            <b>❓ Vprašanje ${idx+1}:</b> ${vpr.vprasanje}<br>
+                            <b><span style="color:var(--correct);">✔ Pravilen odgovor:</span></b> ${correctText}<br>
+                            <b><span style="color:var(--wrong);">✘ Tvoj odgovor:</span></b> ${userText}
+                        </div>
+                    `;
+                }
+            });
+            if (!hasWrong) reviewHtml = "<h2>🎉 Super! Vsi odgovori so pravilni.</h2>";
+            
             const html = `
                 <div class="rezultat">
                     <div style="font-size: 48px; margin-bottom: 8px;">${emoji}</div>
@@ -964,7 +1052,7 @@
                     <div class="odstotek">${odstotek}% uspešnosti</div>
                     <div class="ocena" style="color: ${ocenaBarva};">Ocena: ${ocenaBesedilo}</div>
                     
-                    ${tabela}
+                    ${reviewHtml}
                     
                     <div class="gumbi">
                         <a href="index.html?resen=true" class="gumb">🏠 Nazaj na meni</a>
@@ -972,7 +1060,6 @@
                     </div>
                 </div>
             `;
-            
             vsebina.innerHTML = html;
         }
         
