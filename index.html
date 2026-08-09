@@ -19,91 +19,96 @@
             font-family: Arial, sans-serif; 
             max-width: 900px; 
             margin: 0 auto; 
-            padding: 20px; 
+            padding: 10px 20px; 
             background: #f0f4f8;
         }
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         h1 { 
             color: #667eea; 
             text-align: center;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 24px;
         }
         .stats {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 5px;
         }
         .stats-item {
             text-align: center;
+            padding: 2px 10px;
         }
         .stats-item .stevilka {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: bold;
             display: block;
+            line-height: 1.2;
         }
         .stats-item .label {
-            font-size: 13px;
+            font-size: 12px;
             opacity: 0.9;
         }
         .stats-item .reset {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 4px 12px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 12px;
-            margin-top: 5px;
+            font-size: 11px;
+            margin-top: 2px;
             transition: background 0.3s;
         }
         .stats-item .reset:hover {
             background: rgba(255,255,255,0.3);
         }
         .kategorija {
-            margin: 30px 0;
-            padding: 20px;
-            border-radius: 12px;
+            margin: 12px 0;
+            padding: 12px 15px;
+            border-radius: 10px;
             background: #f8f9fa;
         }
         .kategorija h2 {
-            margin-top: 0;
+            margin: 0 0 4px 0;
+            font-size: 17px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
-        .kategorija.zacetniki { border-left: 5px solid #2ecc71; }
-        .kategorija.srednji { border-left: 5px solid #f39c12; }
-        .kategorija.napredni { border-left: 5px solid #e74c3c; }
+        .kategorija.zacetniki { border-left: 4px solid #2ecc71; }
+        .kategorija.srednji { border-left: 4px solid #f39c12; }
+        .kategorija.napredni { border-left: 4px solid #e74c3c; }
         
         .kviz-gumb {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 6px 6px 6px 0;
+            padding: 6px 14px;
+            margin: 3px 4px 3px 0;
             background: #667eea;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.2s;
             border: none;
             cursor: pointer;
             position: relative;
         }
         .kviz-gumb:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
         .kviz-gumb.zelen { background: #2ecc71; }
         .kviz-gumb.zelen:hover { background: #27ae60; }
@@ -114,51 +119,63 @@
         
         .kviz-gumb .reseno {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -6px;
+            right: -6px;
             background: #2ecc71;
             color: white;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 12px;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
         .opis {
             color: #6c757d;
-            font-size: 14px;
-            margin: 5px 0 15px 0;
+            font-size: 13px;
+            margin: 2px 0 6px 0;
         }
         .oznaka {
             display: inline-block;
-            padding: 3px 14px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 1px 10px;
+            border-radius: 10px;
+            font-size: 11px;
             font-weight: bold;
-            margin-left: 10px;
+            margin-left: 6px;
         }
         .oznaka.zelen { background: #2ecc71; color: white; }
         .oznaka.oranzen { background: #f39c12; color: white; }
         .oznaka.rdec { background: #e74c3c; color: white; }
         .uvod {
             background: #e8f4fd;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
             border-left: 4px solid #667eea;
+            font-size: 14px;
         }
         .uvod strong { color: #667eea; }
+        .uvod small {
+            font-size: 12px;
+            color: #6c757d;
+            display: block;
+            margin-top: 2px;
+        }
         .footer {
-            margin-top: 30px;
-            padding-top: 15px;
+            margin-top: 15px;
+            padding-top: 10px;
             border-top: 1px solid #dee2e6;
             text-align: center;
             color: #6c757d;
-            font-size: 13px;
+            font-size: 12px;
+        }
+        .gumb-vrstica {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
         }
     </style>
 </head>
@@ -173,11 +190,11 @@
         <div class="stats" id="statistika">
             <div class="stats-item">
                 <span class="stevilka" id="skupajResenih">0</span>
-                <span class="label">✅ Rešenih kvizov</span>
+                <span class="label">✅ Rešenih</span>
             </div>
             <div class="stats-item">
                 <span class="stevilka" id="skupajVseh">26</span>
-                <span class="label">📚 Vseh kvizov</span>
+                <span class="label">📚 Vseh</span>
             </div>
             <div class="stats-item">
                 <span class="stevilka" id="odstotek">0%</span>
@@ -185,46 +202,39 @@
             </div>
             <div class="stats-item">
                 <button class="reset" onclick="ponastaviVse()">🗑️ Ponastavi</button>
-                <span class="label">Izbriši zgodovino</span>
             </div>
         </div>
         
         <div class="uvod">
-            <p>📌 <strong>Kje začeti?</strong> Priporočamo, da najprej rešiš kvize iz <strong>začetniške</strong> kategorije. 
-            ✅ <strong>Zeleni znak</strong> pomeni, da si kviz že rešil.</p>
-            <p style="font-size: 13px; color: #6c757d; margin-top: 5px;">💾 Podatki o rešenih kvizih se shranijo v tvoj brskalnik (LocalStorage).</p>
+            📌 <strong>Kje začeti?</strong> Priporočamo kvize iz <strong>začetniške</strong> kategorije.
+            <small>💾 Podatki o rešenih kvizih se shranijo v tvoj brskalnik (LocalStorage).</small>
         </div>
 
         <!-- ZAČETNIŠKI KVIZI -->
         <div class="kategorija zacetniki">
-            <h2>🟢 Za začetnike <span class="oznaka zelen">10 kvizov</span></h2>
-            <p class="opis">Osnovni pojmi računalništva - primerno za vse.</p>
-            <div id="zacetniki"></div>
+            <h2>🟢 Za začetnike <span class="oznaka zelen">10</span></h2>
+            <div id="zacetniki" class="gumb-vrstica"></div>
         </div>
 
         <!-- SREDNJE ZAHTEVNI KVIZI -->
         <div class="kategorija srednji">
-            <h2>🟡 Srednja zahtevnost <span class="oznaka oranzen">8 kvizov</span></h2>
-            <p class="opis">Za tiste, ki že poznate osnove in želite več znanja.</p>
-            <div id="srednji"></div>
+            <h2>🟡 Srednja zahtevnost <span class="oznaka oranzen">8</span></h2>
+            <div id="srednji" class="gumb-vrstica"></div>
         </div>
 
         <!-- NAPREDNI KVIZI -->
         <div class="kategorija napredni">
-            <h2>🔴 Za napredne <span class="oznaka rdec">8 kvizov</span></h2>
-            <p class="opis">Za tiste, ki že obvladate osnove in želite poglobljeno znanje.</p>
-            <div id="napredni"></div>
+            <h2>🔴 Za napredne <span class="oznaka rdec">8</span></h2>
+            <div id="napredni" class="gumb-vrstica"></div>
         </div>
 
         <div class="footer">
-            <p>📅 Zadnja posodobitev: 2026-08-09 | Vsi kvizi so namenjeni učenju osnov računalništva.</p>
-            <p>© 2026 - Vse pravice pridržane</p>
+            <p>📅 Zadnja posodobitev: 2026-08-09 | © 2026 - Vse pravice pridržane</p>
         </div>
     </div>
 
     <!-- ========================================================== -->
     <!-- JAVASCRIPT                                                  -->
-    <!-- Inačica: 2026-08-09                                        -->
     <!-- ========================================================== -->
     <script>
         // ============================================================
@@ -246,7 +256,7 @@
             srednji: [
                 { id: 'OR_11.json', naslov: 'Računalniška omrežja', ikona: '🖧' },
                 { id: 'OR_12.json', naslov: 'Podatkovne baze', ikona: '🗄️' },
-                { id: 'OR_13.json', naslov: 'Programiranje - osnove', ikona: '💻' },
+                { id: 'OR_13.json', naslov: 'Programiranje', ikona: '💻' },
                 { id: 'OR_14.json', naslov: 'Algoritmi', ikona: '🧮' },
                 { id: 'OR_15.json', naslov: 'Umetna inteligenca 1', ikona: '🤖' },
                 { id: 'OR_16.json', naslov: 'Umetna inteligenca 2', ikona: '🤖' },
@@ -279,16 +289,6 @@
                 return JSON.parse(localStorage.getItem('reseniKvizi')) || [];
             } catch {
                 return [];
-            }
-        }
-
-        function shraniResenKviz(kvizId) {
-            let reseni = getReseniKvizi();
-            if (!reseni.includes(kvizId)) {
-                reseni.push(kvizId);
-                localStorage.setItem('reseniKvizi', JSON.stringify(reseni));
-                posodobiStatistiko();
-                generirajGumbe();
             }
         }
 
