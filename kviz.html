@@ -399,7 +399,6 @@
             localStorage.setItem('kvizTheme', isLight ? 'light' : 'dark');
         }
         
-        // Ob nalaganju preveri shranjeno temo
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('kvizTheme');
             if (savedTheme === 'light') {
@@ -416,11 +415,11 @@
         }
         
         // ============================================================
-        // KONFIGURACIJA KVIZOV
+        // KONFIGURACIJA KVIZOV - OR_01.json do OR_26.json
         // ============================================================
         const KVIZI = {
             zacetniki: [
-                { id: 'OR_01.json', naslov: 'Osnovni pojmi 1', ikona: '📘' },
+                { id: 'OR_01.json', naslov: 'Osnove dela z Windows', ikona: '📘' },
                 { id: 'OR_02.json', naslov: 'Osnovni pojmi 2', ikona: '📘' },
                 { id: 'OR_03.json', naslov: 'Internet 1', ikona: '🌐' },
                 { id: 'OR_04.json', naslov: 'Internet 2', ikona: '🌐' },
@@ -442,8 +441,8 @@
                 { id: 'OR_18.json', naslov: 'Prompti 2', ikona: '✍️' }
             ],
             napredni: [
-                { id: 'OR_19.json', naslov: 'Napredna AI 1', ikona: '🧠' },
-                { id: 'OR_20.json', naslov: 'Napredna AI 2', ikona: '🧠' },
+                { id: 'OR_19.json', naslov: 'Napredna UI 1', ikona: '🧠' },
+                { id: 'OR_20.json', naslov: 'Napredna UI 2', ikona: '🧠' },
                 { id: 'OR_21.json', naslov: 'Strojno učenje', ikona: '📊' },
                 { id: 'OR_22.json', naslov: 'Nevronske mreže', ikona: '🧬' },
                 { id: 'OR_23.json', naslov: 'Veliki podatki', ikona: '📈' },
@@ -533,12 +532,28 @@
                 
                 kvizPodatki = await response.json();
                 
+                // ============================================================
+                // PRILAGODI STRUKTURO JSON (angleško → slovensko)
+                // ============================================================
+                // Preveri, ali JSON uporablja angleške nazive
+                if (kvizPodatki.questions && !kvizPodatki.vprasanja) {
+                    // Pretvori angleške nazive v slovenske
+                    kvizPodatki.vprasanja = kvizPodatki.questions.map(q => ({
+                        vprasanje: q.question,
+                        moznosti: q.options,
+                        pravilni: q.correct,
+                        pojasnilo: q.explanation || ''
+                    }));
+                }
+                
+                // Če ni niti slovenskih niti angleških vprašanj
                 if (!kvizPodatki.vprasanja || kvizPodatki.vprasanja.length === 0) {
                     throw new Error('Kviz nima vprašanj.');
                 }
                 
+                // Nastavi naslov
                 const info = najdiInfo(kvizIme);
-                document.getElementById('kvizNaslov').textContent = info ? info.naslov : kvizIme;
+                document.getElementById('kvizNaslov').textContent = info ? info.naslov : (kvizPodatki.title || kvizIme);
                 
                 odgovori = new Array(kvizPodatki.vprasanja.length).fill(null);
                 
