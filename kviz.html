@@ -71,62 +71,46 @@
             align-items: center;
             border-bottom: 2px solid var(--accent);
             padding-bottom: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
         .header h1 { 
             margin: 0; 
             color: var(--accent); 
-            font-size: 18px;
+            font-size: 17px;
             transition: color 0.3s;
         }
         .header-right {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
         .header a {
             color: var(--accent);
             text-decoration: none;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border: 2px solid var(--accent);
             border-radius: 8px;
             transition: all 0.3s;
-            font-size: 13px;
+            font-size: 12px;
         }
         .header a:hover { 
             background: var(--accent); 
             color: white; 
         }
         
-        /* Gumb za preklop načina */
-        .theme-toggle {
+        .theme-toggle, .info-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 3px 10px;
-            border-radius: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 10px;
             transition: all 0.3s;
         }
-        .theme-toggle:hover {
-            background: var(--bg-hover);
-        }
-        
-        /* Gumb za info */
-        .info-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 3px 10px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 11px;
-            transition: all 0.3s;
-        }
-        .info-btn:hover {
+        .theme-toggle:hover, .info-btn:hover {
             background: var(--bg-hover);
         }
         
@@ -145,7 +129,7 @@
         }
         .modal-content {
             background: var(--bg-container);
-            padding: 25px 30px;
+            padding: 20px 25px;
             border-radius: 15px;
             width: 550px;
             max-width: 90%;
@@ -160,16 +144,16 @@
             color: var(--accent);
             text-align: center;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
         .modal-content ul {
             padding-left: 20px;
             list-style: none;
         }
         .modal-content li {
-            margin: 12px 0;
+            margin: 10px 0;
             line-height: 1.5;
-            font-size: 14px;
+            font-size: 13px;
         }
         .modal-content li strong {
             color: var(--accent);
@@ -177,8 +161,8 @@
         .closeModal {
             display: block;
             width: 100px;
-            margin: 20px auto 0 auto;
-            padding: 8px 16px;
+            margin: 15px auto 0 auto;
+            padding: 6px 14px;
             background: var(--accent);
             color: white;
             border: none;
@@ -186,7 +170,7 @@
             cursor: pointer;
             text-align: center;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
         }
         .closeModal:hover {
             opacity: 0.8;
@@ -197,16 +181,16 @@
             display: flex;
             justify-content: space-between;
             background: var(--bg-card);
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border: 1px solid var(--border-color);
-            font-size: 13px;
+            font-size: 12px;
         }
         .info-box .item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
         .info-box .label {
             color: var(--text-muted);
@@ -228,9 +212,9 @@
             font-size: 16px;
         }
         
-        /* Vprašanje */
+        /* Vprašanje - BREZ podvojnega napisa "Vprašanje X" */
         .vprasanje {
-            margin: 12px 0;
+            margin: 10px 0;
             padding: 14px 16px;
             background: var(--bg-card);
             border-radius: 10px;
@@ -241,15 +225,6 @@
             margin-top: 0;
             color: var(--text-secondary);
             font-size: 16px;
-        }
-        .vprasanje .stevilka {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-size: 11px;
-            margin-bottom: 6px;
         }
         
         /* Možnosti - s številkami 1, 2, 3... */
@@ -313,7 +288,7 @@
             text-align: center;
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 8px;
+            margin-top: 6px;
         }
         .tipka-info kbd {
             background: var(--bg-card);
@@ -446,12 +421,12 @@
         .error a { color: var(--accent); }
         
         .footer {
-            margin-top: 12px;
+            margin-top: 6px;
+            padding-top: 4px;
+            border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
             font-size: 11px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 8px;
         }
         .footer .deepseek {
             color: #4a8a9a;
@@ -496,18 +471,18 @@
             <div class="modal-content">
                 <h3>ℹ️ Informacije o kvizu</h3>
                 <ul>
-                    <li><strong>📚 Izbira kviza:</strong> Na začetni strani izbereš temo, ki te zanima. Vprašanja se naložijo glede na tvojo izbiro.</li>
-                    <li><strong>⏱️ Čas za razlago:</strong> Po odgovoru imaš <strong>20 sekund</strong> časa, da prebereš razlago. Lahko pa prej pritisneš <strong>presledek</strong> in greš takoj naprej.</li>
-                    <li><strong>🎯 Odgovori:</strong> Klikni na številko odgovora (1, 2, 3...). Po odgovoru dobiš takojšnjo povratno informacijo in razlago.</li>
-                    <li><strong>🌙 Temni / ☀️ Svetli način:</strong> Z gumbom desno zgoraj lahko preklapljaš med temnim in svetlim ozadjem.</li>
-                    <li><strong>📊 Napredek:</strong> V info okvirčku na vrhu spremljaš število odgovorjenih vprašanj in pravilnih odgovorov.</li>
-                    <li><strong>🏆 Rezultat:</strong> Na koncu kviza dobiš oceno (1-5) in pregled vseh odgovorov.</li>
+                    <li><strong>📚 Izbira kviza:</strong> Na začetni strani izbereš temo, ki te zanima.</li>
+                    <li><strong>⏱️ Čas za razlago:</strong> Po odgovoru imaš <strong>20 sekund</strong> časa za branje razlage. Lahko pa prej pritisneš <strong>presledek</strong>.</li>
+                    <li><strong>🎯 Odgovori:</strong> Klikni na številko odgovora (1, 2, 3...).</li>
+                    <li><strong>🌙 Temni / ☀️ Svetli način:</strong> Preklapljaš z gumbom desno zgoraj.</li>
+                    <li><strong>📊 Napredek:</strong> Slediš številu odgovorjenih in pravilnih odgovorov.</li>
+                    <li><strong>🏆 Rezultat:</strong> Na koncu dobiš oceno (1-5) in pregled odgovorov.</li>
                 </ul>
                 <button class="closeModal" onclick="closeInfoModal()">Zapri</button>
             </div>
         </div>
         
-        <!-- Footer -->
+        <!-- Footer - manj prostora -->
         <div class="footer">
             <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
         </div>
@@ -718,11 +693,7 @@
             ustavTimer();
             
             timerInterval = setTimeout(() => {
-                // Po 20 sekundah samodejno pojdi naprej
-                if (!zakljuceno && odgovori[trenutnoVprasanje] !== null) {
-                    naslednjeVprasanje();
-                } else if (!zakljuceno && odgovori[trenutnoVprasanje] === null) {
-                    // Če ni bilo odgovora, pojdi naprej (brez odgovora)
+                if (!zakljuceno) {
                     naslednjeVprasanje();
                 }
             }, CAS_ZA_BRANJE * 1000);
@@ -736,7 +707,7 @@
         }
         
         // ============================================================
-        // PRIKAZ VPRAŠANJA
+        // PRIKAZ VPRAŠANJA - BREZ podvojnega napisa
         // ============================================================
         function prikaziVprasanje(index) {
             const vsebina = document.getElementById('vsebina');
@@ -784,9 +755,8 @@
                     <span class="skupina-info ${kategorija}">${skupina}</span>
                 </div>
                 
-                <!-- VPRAŠANJE -->
+                <!-- VPRAŠANJE - BREZ podvojnega napisa "Vprašanje X" -->
                 <div class="vprasanje">
-                    <div class="stevilka">Vprašanje ${index + 1}</div>
                     <h3>${vpr.vprasanje || 'Vprašanje'}</h3>
                     
                     <div class="moznosti">
@@ -875,7 +845,6 @@
             
             odgovori[vprIndex] = moznostIndex;
             
-            // Ponovno prikaži vprašanje (prikaže se razlaga in timer se zažene)
             prikaziVprasanje(vprIndex);
         }
         
@@ -898,10 +867,8 @@
         document.addEventListener('keydown', function(e) {
             if (e.code === 'Space') {
                 e.preventDefault();
-                // Preveri, ali smo na vprašanju in ali je odgovor že izbran
                 const vsebina = document.getElementById('vsebina');
                 if (!zakljuceno && vsebina.querySelector('.vprasanje')) {
-                    // Preveri, ali je odgovor že izbran (timer teče)
                     if (odgovori[trenutnoVprasanje] !== null) {
                         ustavTimer();
                         naslednjeVprasanje();

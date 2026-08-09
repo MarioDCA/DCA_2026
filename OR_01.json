@@ -213,14 +213,14 @@
       "explanation": "Tipka Delete izbriše izbrano vsebino (besedilo, datoteko ali mapo). Izbrisane datoteke se običajno premaknejo v Koš, od koder jih lahko še obnovite."
     },
     {
-      "question": "Kaj pomeni, če je ob datoteki znak ključavnice?",
+      "question": "Kaj pomeni, da program pripnemo na opravilno vrstico?",
       "options": [
-        "Datoteka je samodejno izbrisana.",
-        "Datoteka ali mapa ima omejen dostop oziroma zaščito.",
-        "Datoteka je nevaren virus."
+        "Program se samodejno zažene vsakič, ko vklopimo računalnik.",
+        "Program ostane viden v opravilni vrstici tudi, ko ga zapremo, za hiter dostop.",
+        "Program se izbriše z računalnika."
       ],
       "correct": 1,
-      "explanation": "Ključavnica pomeni, da je datoteka ali mapa zaščitena – nimate dovoljenja za spreminjanje ali brisanje. To je pogosto pri sistemskih datotekah ali datotekah, ki jih uporablja drug program."
+      "explanation": "Če program pripnete na opravilno vrstico, ostane njegova ikona tam tudi po zaprtju. To vam omogoča, da program hitro zaženete z enim klikom, ne da bi ga morali iskati v meniju Start. To naredite z desnim klikom na ikono programa in izbiro 'Pripni na opravilno vrstico'."
     },
     {
       "question": "Zakaj je dobro imeti varnostno kopijo pomembnih datotek?",
