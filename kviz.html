@@ -322,35 +322,6 @@
             font-size: 17px;
             color: var(--text-muted);
         }
-        .rezultat .podrobnosti {
-            margin-top: 12px;
-            text-align: left;
-        }
-        .rezultat .podrobnosti table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 8px;
-        }
-        .rezultat .podrobnosti th {
-            background: var(--accent);
-            color: white;
-            padding: 6px 10px;
-            text-align: center;
-        }
-        .rezultat .podrobnosti td {
-            padding: 5px 10px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            color: var(--text-primary);
-        }
-        .rezultat .podrobnosti .pravilno {
-            background: #d4edda;
-            color: #155724;
-        }
-        .rezultat .podrobnosti .napacno {
-            background: #f8d7da;
-            color: #721c24;
-        }
         .rezultat .gumbi {
             justify-content: center;
             margin-top: 15px;
@@ -903,43 +874,38 @@
             const skupaj = kvizPodatki.vprasanja.length;
             const odstotek = Math.round((pravilni / skupaj) * 100);
             
-            let ocenaBesedilo, ocenaBarva, emoji;
+            let ocenaBesedilo, ocenaBarva;
             if (odstotek >= 90) { 
                 ocenaBesedilo = "ODLIČNO (5)"; 
                 ocenaBarva = "#2ecc71"; 
-                emoji = "🏆"; 
             } else if (odstotek >= 75) { 
                 ocenaBesedilo = "PRAV DOBRO (4)"; 
                 ocenaBarva = "#f39c12"; 
-                emoji = "🌟"; 
             } else if (odstotek >= 60) { 
                 ocenaBesedilo = "DOBRO (3)"; 
                 ocenaBarva = "#e67e22"; 
-                emoji = "👍"; 
             } else if (odstotek >= 40) { 
                 ocenaBesedilo = "ZAHTEVA VEČ VADE (2)"; 
                 ocenaBarva = "#e74c3c"; 
-                emoji = "📚"; 
             } else { 
                 ocenaBesedilo = "POSKUSI ZNOVA (1)"; 
                 ocenaBarva = "#e74c3c"; 
-                emoji = "💪"; 
             }
             
             const kvizIme = getParam('kviz');
             shraniResenKviz(kvizIme);
             
-            prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, emoji, podrobnosti);
+            prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, podrobnosti);
         }
         
         // ============================================================
         // PRIKAZ REZULTATA
         // ============================================================
-        function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, emoji, podrobnosti) {
+        function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, podrobnosti) {
             const vsebina = document.getElementById('vsebina');
             
             // ============================================================
-            // ČE JE OCENA MANJ KOT 3 - PRIKAŽI SAMO NAPAČNE ODGOVORE + 💪
+            // ČE JE OCENA MANJ KOT 3 - PRIKAŽI SAMO NAPAČNE ODGOVORE + obvestilo
             // ============================================================
             let ocenaStevilka = 1;
             if (odstotek >= 90) ocenaStevilka = 5;
@@ -949,8 +915,8 @@
             else ocenaStevilka = 1;
             
             if (ocenaStevilka < 3) {
-                // Pregled samo napačnih odgovorov
-                let reviewHtml = "<h2>📝 Pregled napačnih odgovorov:</h2>";
+                // Pregled samo napačnih odgovorov - manjši font, ni bold
+                let reviewHtml = "<h2 style='font-size:18px;'>📝 Pregled napačnih odgovorov:</h2>";
                 let hasWrong = false;
                 kvizPodatki.vprasanja.forEach((vpr, idx) => {
                     const odg = odgovori[idx];
@@ -959,22 +925,21 @@
                         const correctText = vpr.moznosti[vpr.pravilni];
                         const userText = vpr.moznosti[odg];
                         reviewHtml += `
-                            <div style="margin:15px auto;width:95%;max-width:600px;text-align:left;font-size:16px;border-left:4px solid var(--wrong);padding-left:15px;background:var(--bg-card);border-radius:8px;padding:12px 15px;">
-                                <b>❓ Vprašanje ${idx+1}:</b> ${vpr.vprasanje}<br>
-                                <b><span style="color:var(--correct);">✔ Pravilen odgovor:</span></b> ${correctText}<br>
-                                <b><span style="color:var(--wrong);">✘ Tvoj odgovor:</span></b> ${userText}
+                            <div style="margin:10px auto;width:95%;max-width:600px;text-align:left;font-size:14px;border-left:3px solid var(--wrong);padding-left:12px;background:var(--bg-card);border-radius:6px;padding:10px 12px;">
+                                <div>❓ Vprašanje ${idx+1}: ${vpr.vprasanje}</div>
+                                <div style="color:var(--correct);">✔ Pravilen odgovor: ${correctText}</div>
+                                <div style="color:var(--wrong);">✘ Napačno: ${userText}</div>
                             </div>
                         `;
                     }
                 });
                 if (!hasWrong) {
-                    reviewHtml = "<h2>🎉 Zelo dobro! Vsi odgovori so pravilni, a žal premalo za pozitivno oceno. Preveri ocenjevanje.</h2>";
+                    reviewHtml = "<h2 style='font-size:18px;'>🎉 Zelo dobro! Vsi odgovori so pravilni, a žal premalo za pozitivno oceno. Preveri ocenjevanje.</h2>";
                 }
                 
-                let counter = 20;
+                let counter = 30;
                 const html = `
                     <div class="rezultat">
-                        <div style="font-size:60px; margin-bottom:10px;">💪</div>
                         <h2>Dober poskus!</h2>
                         <div class="stevilka">${pravilni} / ${skupaj}</div>
                         <div class="odstotek">${odstotek}% uspešnosti</div>
@@ -983,9 +948,9 @@
                         ${reviewHtml}
                         
                         <div style="margin-top:20px; padding:15px; background:var(--bg-container); border-radius:8px; border:1px solid var(--border-color);">
-                            <div style="font-size:20px; font-weight:bold; color:var(--wrong);">Kviz boš moral/a ponoviti za uspešen zaključek.</div>
-                            <div style="font-size:18px; margin-top:10px;">Samodejna ponovitev čez:</div>
-                            <div id="count" style="font-size:60px;font-weight:bold;margin-top:10px;color:var(--wrong);">${counter}</div>
+                            <div style="font-size:18px; color:var(--wrong);">Kviz boš moral/a ponoviti za uspešen zaključek.</div>
+                            <div style="font-size:16px; margin-top:8px;">Samodejna ponovitev čez:</div>
+                            <div id="count" style="font-size:48px;font-weight:bold;margin-top:8px;color:var(--wrong);">${counter}</div>
                         </div>
                     </div>
                 `;
@@ -1006,26 +971,8 @@
             // ============================================================
             // OCENA >= 3 - PRIKAŽI REZULTAT Z NAPAČNIMI ODGOVORI
             // ============================================================
-            let tabela = '';
-            if (podrobnosti && podrobnosti.length > 0) {
-                tabela = `
-                    <div class="podrobnosti">
-                        <h4>📝 Podrobnosti po vprašanjih:</h4>
-                        <table>
-                            <thead><tr><th>Vprašanje</th><th>Rezultat</th></tr></thead>
-                            <tbody>
-                `;
-                podrobnosti.forEach(p => {
-                    const ikona = p.pravilno ? '✅' : '❌';
-                    const razred = p.pravilno ? 'pravilno' : 'napacno';
-                    const besedilo = p.pravilno ? 'Pravilno' : 'Napačno';
-                    tabela += `<tr class="${razred}"><td>${p.stevilka}</td><td>${ikona} ${besedilo}</td></tr>`;
-                });
-                tabela += `</tbody></table></div>`;
-            }
-            
-            // Pregled samo napačnih odgovorov
-            let reviewHtml = "<h2>📝 Pregled napačnih odgovorov:</h2>";
+            // Pregled samo napačnih odgovorov - manjši font, ni bold
+            let reviewHtml = "<h2 style='font-size:18px;'>📝 Pregled napačnih odgovorov:</h2>";
             let hasWrong = false;
             kvizPodatki.vprasanja.forEach((vpr, idx) => {
                 const odg = odgovori[idx];
@@ -1034,19 +981,18 @@
                     const correctText = vpr.moznosti[vpr.pravilni];
                     const userText = vpr.moznosti[odg];
                     reviewHtml += `
-                        <div style="margin:15px auto;width:95%;max-width:600px;text-align:left;font-size:16px;border-left:4px solid var(--wrong);padding-left:15px;background:var(--bg-card);border-radius:8px;padding:12px 15px;">
-                            <b>❓ Vprašanje ${idx+1}:</b> ${vpr.vprasanje}<br>
-                            <b><span style="color:var(--correct);">✔ Pravilen odgovor:</span></b> ${correctText}<br>
-                            <b><span style="color:var(--wrong);">✘ Tvoj odgovor:</span></b> ${userText}
+                        <div style="margin:10px auto;width:95%;max-width:600px;text-align:left;font-size:14px;border-left:3px solid var(--wrong);padding-left:12px;background:var(--bg-card);border-radius:6px;padding:10px 12px;">
+                            <div>❓ Vprašanje ${idx+1}: ${vpr.vprasanje}</div>
+                            <div style="color:var(--correct);">✔ Pravilen odgovor: ${correctText}</div>
+                            <div style="color:var(--wrong);">✘ Napačno: ${userText}</div>
                         </div>
                     `;
                 }
             });
-            if (!hasWrong) reviewHtml = "<h2>🎉 Super! Vsi odgovori so pravilni.</h2>";
+            if (!hasWrong) reviewHtml = "<h2 style='font-size:18px;'>🎉 Super! Vsi odgovori so pravilni.</h2>";
             
             const html = `
                 <div class="rezultat">
-                    <div style="font-size: 48px; margin-bottom: 8px;">${emoji}</div>
                     <h2>🎉 Kviz zaključen!</h2>
                     <div class="stevilka">${pravilni} / ${skupaj}</div>
                     <div class="odstotek">${odstotek}% uspešnosti</div>
