@@ -34,14 +34,14 @@
             color: #a8b5e0; 
             text-align: center;
             border-bottom: 2px solid #2a3a5e;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             margin-top: 0;
-            font-size: 24px;
+            font-size: 22px;
         }
         .stats {
             background: linear-gradient(135deg, #1a1a3e 0%, #2a1a4e 100%);
             color: #e0e0e0;
-            padding: 10px 15px;
+            padding: 8px 15px;
             border-radius: 10px;
             margin-bottom: 15px;
             display: flex;
@@ -161,18 +161,11 @@
             padding: 8px 15px;
             border-radius: 8px;
             margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-            font-size: 14px;
             border: 1px solid #2a3a5e;
-            border-left-width: 4px;
+            text-align: center;
+            font-size: 14px;
         }
         .uvod strong { color: #8899dd; }
-        .uvod small {
-            font-size: 12px;
-            color: #6688aa;
-            display: block;
-            margin-top: 2px;
-        }
         .footer {
             margin-top: 15px;
             padding-top: 10px;
@@ -206,7 +199,7 @@
     <!-- GLAVNA VSEBINA                                              -->
     <!-- ========================================================== -->
     <div class="container">
-        <h1>🎯 Kvizi - Osnove računalništva in AI</h1>
+        <h1>🎯 Kvizi iz osnov računalništva in UI</h1>
         
         <!-- STATISTIKA -->
         <div class="stats" id="statistika">
@@ -224,12 +217,12 @@
             </div>
             <div class="stats-item">
                 <button class="reset" onclick="ponastaviVse()">🗑️ Ponastavi</button>
+                <span class="label">(zbriši zgodovino)</span>
             </div>
         </div>
         
         <div class="uvod">
             📌 <strong>Kje začeti?</strong> Priporočamo kvize iz <strong>začetniške</strong> kategorije.
-            <small>💾 Podatki o rešenih kvizih se shranijo v tvoj brskalnik (LocalStorage).</small>
         </div>
 
         <!-- ZAČETNIŠKI KVIZI -->
