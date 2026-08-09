@@ -3,13 +3,6 @@
 <!-- INČICA: 2026-08-09                                             -->
 <!-- Opis: Prikaz in reševanje posameznega kviza                    -->
 <!-- Avtor: M.V.                                                   -->
-<!--                                                               -->
-<!-- Lastnosti:                                                    -->
-<!-- - Naloži kviz iz JSON datoteke (parameter ?kviz=OR_01.json)   -->
-<!-- - Prikazuje vprašanja z možnimi odgovori                      -->
-<!-- - Prešteje pravilne/napačne odgovore                          -->
-<!-- - Po koncu shrani rezultat v LocalStorage                     -->
-<!-- - Prikaže rezultat z oceno                                    -->
 <!-- ============================================================ -->
 <html>
 <head>
@@ -19,22 +12,56 @@
     
     <style>
         /* ========================================================== */
-        /* STILI ZA KVIZ                                               */
-        /* Zadnja posodobitev: 2026-08-09                             */
+        /* STILI ZA KVIZ - TEMNI NAČIN (privzeto)                     */
         /* ========================================================== */
+        :root {
+            --bg-body: #1a1a2e;
+            --bg-container: #16213e;
+            --bg-card: #1a2a4a;
+            --bg-hover: #2a3a5e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a8b5e0;
+            --text-muted: #8899bb;
+            --border-color: #2a3a5e;
+            --shadow: rgba(0,0,0,0.4);
+            --correct: #2ecc71;
+            --wrong: #e74c3c;
+            --accent: #667eea;
+        }
         
+        /* Svetli način */
+        body.light-mode {
+            --bg-body: #f0f4f8;
+            --bg-container: #ffffff;
+            --bg-card: #f8f9fa;
+            --bg-hover: #e8f4fd;
+            --text-primary: #212529;
+            --text-secondary: #2d3748;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --shadow: rgba(0,0,0,0.1);
+            --correct: #2ecc71;
+            --wrong: #e74c3c;
+            --accent: #667eea;
+        }
+        
+        * { box-sizing: border-box; }
         body { 
             font-family: Arial, sans-serif; 
             max-width: 700px; 
             margin: 0 auto; 
-            padding: 20px; 
-            background: #f0f4f8;
+            padding: 10px 20px; 
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
         }
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: var(--bg-container);
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background 0.3s, border 0.3s;
         }
         
         /* Glava */
@@ -42,142 +69,170 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             gap: 10px;
         }
         .header h1 { 
             margin: 0; 
-            color: #667eea; 
-            font-size: 22px;
+            color: var(--accent); 
+            font-size: 20px;
+            transition: color 0.3s;
         }
         .header a {
-            color: #667eea;
+            color: var(--accent);
             text-decoration: none;
-            padding: 8px 15px;
-            border: 2px solid #667eea;
+            padding: 6px 14px;
+            border: 2px solid var(--accent);
             border-radius: 8px;
             transition: all 0.3s;
+            font-size: 14px;
         }
         .header a:hover { 
-            background: #667eea; 
+            background: var(--accent); 
             color: white; 
         }
         
-        /* Napredek (števec vprašanj) */
+        /* Gumb za preklop načina */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 4px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        .theme-toggle:hover {
+            background: var(--bg-hover);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Napredek */
         .progress {
             text-align: center;
-            color: #6c757d;
+            color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .progress strong {
-            color: #667eea;
+            color: var(--accent);
             font-size: 18px;
         }
         
         /* Vprašanje */
         .vprasanje {
-            margin: 20px 0;
-            padding: 20px;
-            background: #f8f9fa;
+            margin: 15px 0;
+            padding: 15px 18px;
+            background: var(--bg-card);
             border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: background 0.3s, border 0.3s;
         }
         .vprasanje h3 {
             margin-top: 0;
-            color: #2d3748;
+            color: var(--text-secondary);
+            font-size: 17px;
         }
         .vprasanje .stevilka {
             display: inline-block;
-            background: #667eea;
+            background: var(--accent);
             color: white;
             padding: 2px 12px;
             border-radius: 12px;
-            font-size: 13px;
-            margin-bottom: 10px;
+            font-size: 12px;
+            margin-bottom: 8px;
         }
         
         /* Možnosti */
-        .moznosti { 
-            margin: 10px 0; 
-        }
+        .moznosti { margin: 10px 0; }
         .moznost {
             display: block;
-            padding: 12px 18px;
-            margin: 6px 0;
-            background: white;
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
+            padding: 10px 16px;
+            margin: 5px 0;
+            background: var(--bg-container);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 15px;
+            font-size: 14px;
             text-align: left;
             width: 100%;
+            color: var(--text-primary);
         }
         .moznost:hover { 
-            background: #e8f4fd; 
-            border-color: #667eea; 
+            background: var(--bg-hover); 
+            border-color: var(--accent); 
         }
         .moznost.izbrana { 
-            background: #667eea; 
+            background: var(--accent); 
             color: white; 
-            border-color: #667eea; 
+            border-color: var(--accent); 
         }
         .moznost.pravilna { 
-            background: #2ecc71; 
+            background: var(--correct); 
             color: white; 
-            border-color: #2ecc71; 
+            border-color: var(--correct); 
         }
         .moznost.napacna { 
-            background: #e74c3c; 
+            background: var(--wrong); 
             color: white; 
-            border-color: #e74c3c; 
+            border-color: var(--wrong); 
         }
         .moznost.onemogocena {
             cursor: not-allowed;
             opacity: 0.7;
         }
         
-        /* Pojasnilo (če obstaja) */
+        /* Pojasnilo */
         .pojasnilo {
-            margin-top: 15px;
-            padding: 12px 16px;
-            background: #e8f4fd;
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: var(--bg-card);
             border-radius: 8px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid var(--accent);
             font-size: 14px;
-            color: #2d3748;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-left-width: 4px;
         }
         .pojasnilo strong {
-            color: #667eea;
+            color: var(--accent);
         }
         
         /* Gumbi */
         .gumbi {
             display: flex;
             justify-content: space-between;
-            margin-top: 25px;
+            margin-top: 20px;
             gap: 10px;
             flex-wrap: wrap;
         }
         .gumb {
-            padding: 12px 30px;
+            padding: 10px 25px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s;
         }
         .gumb.naprej { 
-            background: #667eea; 
+            background: var(--accent); 
             color: white; 
         }
         .gumb.naprej:hover { 
             background: #5a67d8; 
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 8px var(--shadow);
         }
         .gumb.nazaj { 
             background: #6c757d; 
@@ -193,7 +248,7 @@
             transform: none !important;
         }
         .gumb.potekaj {
-            background: #e74c3c;
+            background: var(--wrong);
             color: white;
         }
         .gumb.potekaj:hover {
@@ -204,44 +259,46 @@
         /* Rezultat */
         .rezultat {
             text-align: center;
-            padding: 30px;
-            background: #f8f9fa;
+            padding: 25px;
+            background: var(--bg-card);
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
         }
         .rezultat .stevilka {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: bold;
-            color: #667eea;
+            color: var(--accent);
         }
         .rezultat .ocena {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 8px 0;
         }
         .rezultat .odstotek {
-            font-size: 18px;
-            color: #6c757d;
+            font-size: 17px;
+            color: var(--text-muted);
         }
         .rezultat .podrobnosti {
-            margin-top: 15px;
+            margin-top: 12px;
             text-align: left;
         }
         .rezultat .podrobnosti table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .rezultat .podrobnosti th {
-            background: #667eea;
+            background: var(--accent);
             color: white;
-            padding: 8px 12px;
+            padding: 6px 10px;
             text-align: center;
         }
         .rezultat .podrobnosti td {
-            padding: 6px 10px;
-            border: 1px solid #dee2e6;
+            padding: 5px 10px;
+            border: 1px solid var(--border-color);
             text-align: center;
+            color: var(--text-primary);
         }
         .rezultat .podrobnosti .pravilno {
             background: #d4edda;
@@ -251,24 +308,23 @@
             background: #f8d7da;
             color: #721c24;
         }
-        
         .rezultat .gumbi {
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
-        /* Nalaganje (loading) */
+        /* Nalaganje */
         .loading {
             text-align: center;
             padding: 40px;
-            color: #6c757d;
+            color: var(--text-muted);
         }
         .loading .spinner {
             display: inline-block;
             width: 40px;
             height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -277,55 +333,50 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Skupina info (začetniki/srednji/napredni) */
         .skupina-info {
             display: inline-block;
-            padding: 4px 15px;
+            padding: 3px 12px;
             border-radius: 12px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
-            margin-left: 10px;
+            margin-left: 8px;
         }
-        .skupina-info.zacetniki { background: #2ecc71; color: white; }
-        .skupina-info.srednji { background: #f39c12; color: white; }
+        .skupina-info.zacetniki { background: #2ecc71; color: #1a1a2e; }
+        .skupina-info.srednji { background: #f39c12; color: #1a1a2e; }
         .skupina-info.napredni { background: #e74c3c; color: white; }
         
-        /* Napaka */
         .error {
             text-align: center;
             padding: 40px;
-            color: #e74c3c;
+            color: var(--wrong);
         }
-        .error .velik {
-            font-size: 48px;
-        }
-        .error a {
-            color: #667eea;
-        }
+        .error .velik { font-size: 48px; }
+        .error a { color: var(--accent); }
         
-        /* Footer */
         .footer {
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: center;
-            color: #6c757d;
-            font-size: 12px;
-            border-top: 1px solid #dee2e6;
-            padding-top: 15px;
+            color: var(--text-muted);
+            font-size: 11px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+        .footer .deepseek {
+            color: #4a8a9a;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- ========================================================== -->
-    <!-- GLAVNA VSEBINA                                              -->
-    <!-- ========================================================== -->
     <div class="container" id="app">
-        <!-- Glava -->
         <div class="header">
             <h1>📝 <span id="kvizNaslov">Kviz</span></h1>
-            <a href="index.html">🏠 Nazaj na meni</a>
+            <div class="header-right">
+                <button class="theme-toggle" onclick="toggleTheme()">🌓 Preklopi</button>
+                <a href="index.html">🏠 Meni</a>
+            </div>
         </div>
         
-        <!-- Vsebina (se naloži z JavaScript) -->
         <div id="vsebina">
             <div class="loading">
                 <div class="spinner"></div>
@@ -333,30 +384,39 @@
             </div>
         </div>
         
-        <!-- Noga -->
         <div class="footer">
-            <p>© 2026 - Vse pravice pridržane</p>
+            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
         </div>
     </div>
 
-    <!-- ========================================================== -->
-    <!-- JAVASCRIPT                                                  -->
-    <!-- Inačica: 2026-08-09                                        -->
-    <!-- Opis: Nalaganje in reševanje kviza                         -->
-    <!-- ========================================================== -->
     <script>
+        // ============================================================
+        // TEMNI / SVETLI NAČIN
+        // ============================================================
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('kvizTheme', isLight ? 'light' : 'dark');
+        }
+        
+        // Ob nalaganju preveri shranjeno temo
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('kvizTheme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        });
+        
         // ============================================================
         // POMOŽNE FUNKCIJE
         // ============================================================
-        
-        // Pridobi parameter iz URL-ja
         function getParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
         
         // ============================================================
-        // KONFIGURACIJA KVIZOV - OR_01.json do OR_26.json
+        // KONFIGURACIJA KVIZOV
         // ============================================================
         const KVIZI = {
             zacetniki: [
@@ -374,7 +434,7 @@
             srednji: [
                 { id: 'OR_11.json', naslov: 'Računalniška omrežja', ikona: '🖧' },
                 { id: 'OR_12.json', naslov: 'Podatkovne baze', ikona: '🗄️' },
-                { id: 'OR_13.json', naslov: 'Programiranje - osnove', ikona: '💻' },
+                { id: 'OR_13.json', naslov: 'Programiranje', ikona: '💻' },
                 { id: 'OR_14.json', naslov: 'Algoritmi', ikona: '🧮' },
                 { id: 'OR_15.json', naslov: 'Umetna inteligenca 1', ikona: '🤖' },
                 { id: 'OR_16.json', naslov: 'Umetna inteligenca 2', ikona: '🤖' },
@@ -393,7 +453,6 @@
             ]
         };
         
-        // Poišči kategorijo za kviz
         function najdiKategorijo(kvizId) {
             for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
                 if (kvizi.some(k => k.id === kvizId)) {
@@ -403,8 +462,26 @@
             return 'zacetniki';
         }
         
+        function najdiInfo(kvizId) {
+            for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
+                const najden = kvizi.find(k => k.id === kvizId);
+                if (najden) return najden;
+            }
+            return null;
+        }
+        
+        function getSkupina(kvizId) {
+            const kategorija = najdiKategorijo(kvizId);
+            const imena = {
+                zacetniki: '🟢 Za začetnike',
+                srednji: '🟡 Srednja zahtevnost',
+                napredni: '🔴 Za napredne'
+            };
+            return imena[kategorija] || '🟢 Za začetnike';
+        }
+        
         // ============================================================
-        // LOCALSTORAGE FUNKCIJE
+        // LOCALSTORAGE
         // ============================================================
         function getReseniKvizi() {
             try {
@@ -423,34 +500,32 @@
         }
         
         // ============================================================
-        // SPREMENLJIVKE ZA KVIZ
+        // SPREMENLJIVKE
         // ============================================================
-        let kvizPodatki = null;      // Vsi podatki kviza
-        let trenutnoVprasanje = 0;   // Indeks trenutnega vprašanja
-        let odgovori = [];           // Shranjeni odgovori uporabnika
-        let zakljuceno = false;      // Ali je kviz zaključen
+        let kvizPodatki = null;
+        let trenutnoVprasanje = 0;
+        let odgovori = [];
+        let zakljuceno = false;
         
         // ============================================================
-        // GLAVNA FUNKCIJA ZA NALAGANJE KVIZA
+        // NALAGANJE KVIZA
         // ============================================================
         async function loadQuiz() {
             const vsebina = document.getElementById('vsebina');
             const kvizIme = getParam('kviz');
             
-            // Preveri, ali je kviz izbran
             if (!kvizIme) {
                 vsebina.innerHTML = `
                     <div class="error">
                         <div class="velik">❌</div>
                         <h2>Napaka</h2>
-                        <p>Kviz ni izbran. Prosimo, vrnite se na <a href="index.html">meni</a>.</p>
+                        <p>Kviz ni izbran. Vrnite se na <a href="index.html">meni</a>.</p>
                     </div>
                 `;
                 return;
             }
             
             try {
-                // Naloži JSON datoteko
                 const response = await fetch(kvizIme);
                 if (!response.ok) {
                     throw new Error(`Kviz "${kvizIme}" ni bil najden.`);
@@ -458,26 +533,20 @@
                 
                 kvizPodatki = await response.json();
                 
-                // Preveri, ali ima kviz vprašanja
                 if (!kvizPodatki.vprasanja || kvizPodatki.vprasanja.length === 0) {
                     throw new Error('Kviz nima vprašanj.');
                 }
                 
-                // Nastavi naslov
                 const info = najdiInfo(kvizIme);
                 document.getElementById('kvizNaslov').textContent = info ? info.naslov : kvizIme;
                 
-                // Inicializiraj odgovore
                 odgovori = new Array(kvizPodatki.vprasanja.length).fill(null);
                 
-                // Poskusi obnoviti odgovore iz LocalStorage
                 const obnovljeno = obnoviOdgovore();
                 if (!obnovljeno) {
-                    // Če ni obnovljenih odgovorov, začni na začetku
                     trenutnoVprasanje = 0;
                 }
                 
-                // Pokaži trenutno vprašanje
                 prikaziVprasanje(trenutnoVprasanje);
                 
             } catch (error) {
@@ -493,43 +562,17 @@
         }
         
         // ============================================================
-        // POMOŽNE FUNKCIJE ZA KVIZ
-        // ============================================================
-        
-        // Najdi informacije o kvizu
-        function najdiInfo(kvizId) {
-            for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
-                const najden = kvizi.find(k => k.id === kvizId);
-                if (najden) return najden;
-            }
-            return null;
-        }
-        
-        // Pridobi skupino (začetniki/srednji/napredni)
-        function getSkupina(kvizId) {
-            const kategorija = najdiKategorijo(kvizId);
-            const imena = {
-                zacetniki: '🟢 Za začetnike',
-                srednji: '🟡 Srednja zahtevnost',
-                napredni: '🔴 Za napredne'
-            };
-            return imena[kategorija] || '🟢 Za začetnike';
-        }
-        
-        // ============================================================
         // PRIKAZ VPRAŠANJA
         // ============================================================
         function prikaziVprasanje(index) {
             const vsebina = document.getElementById('vsebina');
             const skupaj = kvizPodatki.vprasanja.length;
             
-            // Če smo že zaključili, pokaži rezultat
             if (zakljuceno) {
                 prikaziRezultat();
                 return;
             }
             
-            // Če smo na koncu, zaključi kviz
             if (index >= skupaj) {
                 zakljuciKviz();
                 return;
@@ -541,15 +584,12 @@
             const skupina = getSkupina(kvizIme);
             const kategorija = najdiKategorijo(kvizIme);
             
-            // Ustvari HTML za vprašanje
             let html = `
-                <!-- Napredek -->
                 <div class="progress">
                     Vprašanje <strong>${index + 1}</strong> od <strong>${skupaj}</strong>
                     <span class="skupina-info ${kategorija}">${skupina}</span>
                 </div>
                 
-                <!-- Vprašanje -->
                 <div class="vprasanje">
                     <div class="stevilka">Vprašanje ${index + 1}</div>
                     <h3>${vpr.vprasanje || 'Vprašanje'}</h3>
@@ -557,7 +597,6 @@
                     <div class="moznosti">
             `;
             
-            // Dodaj možnosti
             if (vpr.moznosti && vpr.moznosti.length > 0) {
                 vpr.moznosti.forEach((moznost, i) => {
                     let classNames = 'moznost';
@@ -573,7 +612,7 @@
                         classNames += ' moznost-aktivna';
                     }
                     
-                    const oznaka = String.fromCharCode(65 + i); // A, B, C, D...
+                    const oznaka = String.fromCharCode(65 + i);
                     html += `
                         <button class="${classNames}" 
                                 onclick="${izbran === null ? `izberiOdgovor(${index}, ${i})` : ''}"
@@ -588,7 +627,6 @@
                     </div>
             `;
             
-            // Pokaži pojasnilo, če obstaja in je odgovor izbran
             if (izbran !== null && vpr.pojasnilo) {
                 const pravilno = izbran === vpr.pravilni;
                 html += `
@@ -603,20 +641,18 @@
             html += `
                 </div>
                 
-                <!-- Gumbi -->
                 <div class="gumbi">
                     <button class="gumb nazaj" onclick="prejsnjeVprasanje()" ${index === 0 ? 'disabled' : ''}>
                         ⬅ Nazaj
                     </button>
                     <button class="gumb naprej" onclick="naslednjeVprasanje()" ${izbran === null && !zakljuceno ? 'disabled' : ''}>
-                        ${index === skupaj - 1 ? '📊 Zaključi kviz' : 'Naslednje ➡'}
+                        ${index === skupaj - 1 ? '📊 Zaključi' : 'Naslednje ➡'}
                     </button>
                 </div>
             `;
             
             vsebina.innerHTML = html;
             
-            // Pomakni na vrh vprašanja (za mobilne naprave)
             const vprElement = document.querySelector('.vprasanje');
             if (vprElement) {
                 vprElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -624,48 +660,39 @@
         }
         
         // ============================================================
-        // FUNKCIJE ZA KRMILJENJE KVIZA
+        // FUNKCIJE ZA KRMILJENJE
         // ============================================================
-        
-        // Izberi odgovor
         function izberiOdgovor(vprIndex, moznostIndex) {
             if (zakljuceno) return;
-            if (odgovori[vprIndex] !== null) return; // že izbrano
+            if (odgovori[vprIndex] !== null) return;
             
             odgovori[vprIndex] = moznostIndex;
             
-            // Shrani v LocalStorage (medtem ko rešuje)
             const kvizIme = getParam('kviz');
             const kljuc = 'kviz_odgovori_' + kvizIme;
             localStorage.setItem(kljuc, JSON.stringify(odgovori));
             
-            // Ponovno prikaži vprašanje
             prikaziVprasanje(vprIndex);
         }
         
-        // Naslednje vprašanje
         function naslednjeVprasanje() {
             if (zakljuceno) return;
             
             const skupaj = kvizPodatki.vprasanja.length;
             
-            // Če smo na zadnjem vprašanju in imamo odgovor, zaključi
             if (trenutnoVprasanje === skupaj - 1) {
-                // Preveri, ali imamo odgovor na zadnje vprašanje
                 if (odgovori[trenutnoVprasanje] !== null) {
                     zakljuciKviz();
                 }
                 return;
             }
             
-            // Pojdi na naslednje vprašanje
             if (odgovori[trenutnoVprasanje] !== null) {
                 trenutnoVprasanje++;
                 prikaziVprasanje(trenutnoVprasanje);
             }
         }
         
-        // Prejšnje vprašanje
         function prejsnjeVprasanje() {
             if (zakljuceno) return;
             if (trenutnoVprasanje > 0) {
@@ -681,7 +708,6 @@
             if (zakljuceno) return;
             zakljuceno = true;
             
-            // Preštej pravilne odgovore
             let pravilni = 0;
             const podrobnosti = [];
             
@@ -700,7 +726,6 @@
             const skupaj = kvizPodatki.vprasanja.length;
             const odstotek = Math.round((pravilni / skupaj) * 100);
             
-            // Določi oceno
             let ocenaBesedilo, ocenaBarva, emoji;
             if (odstotek >= 90) { 
                 ocenaBesedilo = "ODLIČNO (5)"; 
@@ -724,15 +749,12 @@
                 emoji = "💪"; 
             }
             
-            // Shrani v LocalStorage (da je kviz rešen)
             const kvizIme = getParam('kviz');
             shraniResenKviz(kvizIme);
             
-            // Izbriši začasne odgovore
             const kljuc = 'kviz_odgovori_' + kvizIme;
             localStorage.removeItem(kljuc);
             
-            // Prikaži rezultat
             prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, emoji, podrobnosti);
         }
         
@@ -742,7 +764,6 @@
         function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, emoji, podrobnosti) {
             const vsebina = document.getElementById('vsebina');
             
-            // Če nismo posredovali parametrov, jih izračunaj
             if (pravilni === undefined) {
                 pravilni = 0;
                 skupaj = kvizPodatki.vprasanja.length;
@@ -762,7 +783,6 @@
                 
                 odstotek = Math.round((pravilni / skupaj) * 100);
                 
-                // Določi oceno
                 if (odstotek >= 90) { 
                     ocenaBesedilo = "ODLIČNO (5)"; 
                     ocenaBarva = "#2ecc71"; 
@@ -786,42 +806,27 @@
                 }
             }
             
-            // Ustvari tabelo s podrobnostmi
             let tabela = '';
             if (podrobnosti && podrobnosti.length > 0) {
                 tabela = `
                     <div class="podrobnosti">
                         <h4>📝 Podrobnosti po vprašanjih:</h4>
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Vprašanje</th>
-                                    <th>Rezultat</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Vprašanje</th><th>Rezultat</th></tr></thead>
                             <tbody>
                     `;
                 podrobnosti.forEach(p => {
                     const ikona = p.pravilno ? '✅' : '❌';
                     const razred = p.pravilno ? 'pravilno' : 'napacno';
                     const besedilo = p.pravilno ? 'Pravilno' : 'Napačno';
-                    tabela += `
-                        <tr class="${razred}">
-                            <td>${p.stevilka}</td>
-                            <td>${ikona} ${besedilo}</td>
-                        </tr>
-                    `;
+                    tabela += `<tr class="${razred}"><td>${p.stevilka}</td><td>${ikona} ${besedilo}</td></tr>`;
                 });
-                tabela += `
-                            </tbody>
-                        </table>
-                    </div>
-                `;
+                tabela += `</tbody></table></div>`;
             }
             
             const html = `
                 <div class="rezultat">
-                    <div style="font-size: 48px; margin-bottom: 10px;">${emoji}</div>
+                    <div style="font-size: 48px; margin-bottom: 8px;">${emoji}</div>
                     <h2>🎉 Kviz zaključen!</h2>
                     <div class="stevilka">${pravilni} / ${skupaj}</div>
                     <div class="odstotek">${odstotek}% uspešnosti</div>
@@ -843,26 +848,21 @@
         // PONOVNO REŠEVANJE
         // ============================================================
         function ponovnoResi() {
-            // Ponastavi spremenljivke
             const skupaj = kvizPodatki.vprasanja.length;
             odgovori = new Array(skupaj).fill(null);
             trenutnoVprasanje = 0;
             zakljuceno = false;
             
-            // Izbriši začasne odgovore
             const kvizIme = getParam('kviz');
             const kljuc = 'kviz_odgovori_' + kvizIme;
             localStorage.removeItem(kljuc);
             
-            // Pokaži prvo vprašanje
             prikaziVprasanje(0);
-            
-            // Pomakni na vrh
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         // ============================================================
-        // OBNOVI ZAČASNE ODGOVORE (če uporabnik osveži stran)
+        // OBNOVI ODGOVORE
         // ============================================================
         function obnoviOdgovore() {
             const kvizIme = getParam('kviz');
@@ -877,14 +877,12 @@
                     if (Array.isArray(parsed) && parsed.length === kvizPodatki.vprasanja.length) {
                         odgovori = parsed;
                         
-                        // Preveri, ali so vsi odgovori izbrani (kviz je bil zaključen)
                         const vsiIzbrani = odgovori.every(o => o !== null);
                         if (vsiIzbrani) {
                             zakljuceno = true;
                             return true;
                         }
                         
-                        // Poišči prvo neodgovorjeno vprašanje
                         const prvoNeodgovorjeno = odgovori.findIndex(o => o === null);
                         if (prvoNeodgovorjeno !== -1) {
                             trenutnoVprasanje = prvoNeodgovorjeno;
@@ -894,31 +892,27 @@
                         
                         return true;
                     }
-                } catch (e) {
-                    // Če je napaka, ignoriraj
-                }
+                } catch (e) {}
             }
             return false;
         }
         
         // ============================================================
-        // ZAŽENI OB NALAGANJU
+        // ZAŽENI
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Preveri, ali imamo parameter ?kviz=
             const kvizIme = getParam('kviz');
             if (!kvizIme) {
                 document.getElementById('vsebina').innerHTML = `
                     <div class="error">
                         <div class="velik">❌</div>
                         <h2>Napaka</h2>
-                        <p>Kviz ni izbran. Prosimo, vrnite se na <a href="index.html">meni</a>.</p>
+                        <p>Kviz ni izbran. Vrnite se na <a href="index.html">meni</a>.</p>
                     </div>
                 `;
                 return;
             }
             
-            // Naloži kviz
             loadQuiz();
         });
     </script>
