@@ -27,8 +27,6 @@
             --correct: #2ecc71;
             --wrong: #e74c3c;
             --accent: #667eea;
-            --timer-warning: #f39c12;
-            --timer-danger: #e74c3c;
         }
         
         /* Svetli način */
@@ -45,8 +43,6 @@
             --correct: #2ecc71;
             --wrong: #e74c3c;
             --accent: #667eea;
-            --timer-warning: #f39c12;
-            --timer-danger: #e74c3c;
         }
         
         * { box-sizing: border-box; }
@@ -196,7 +192,7 @@
             opacity: 0.8;
         }
         
-        /* INFO OKNO - vsebina */
+        /* INFO OKVIRČEK */
         .info-box {
             display: flex;
             justify-content: space-between;
@@ -218,33 +214,6 @@
         .info-box .value {
             font-weight: bold;
             color: var(--text-secondary);
-        }
-        
-        /* Timer */
-        .timer {
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            padding: 6px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            background: var(--bg-card);
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            transition: all 0.3s;
-        }
-        .timer.warning {
-            border-color: var(--timer-warning);
-            color: var(--timer-warning);
-        }
-        .timer.danger {
-            border-color: var(--timer-danger);
-            color: var(--timer-danger);
-            animation: blink 0.5s ease-in-out infinite alternate;
-        }
-        @keyframes blink {
-            from { opacity: 1; }
-            to { opacity: 0.3; }
         }
         
         /* Napredek */
@@ -423,6 +392,7 @@
             transition: all 0.3s;
             background: var(--accent);
             color: white;
+            text-decoration: none;
         }
         .rezultat .gumbi .gumb:hover {
             transform: translateY(-2px);
@@ -488,7 +458,6 @@
             font-weight: bold;
         }
         
-        /* Scrollbar za temni način */
         ::-webkit-scrollbar {
             width: 8px;
             background: var(--bg-body);
@@ -528,7 +497,7 @@
                 <h3>ℹ️ Informacije o kvizu</h3>
                 <ul>
                     <li><strong>📚 Izbira kviza:</strong> Na začetni strani izbereš temo, ki te zanima. Vprašanja se naložijo glede na tvojo izbiro.</li>
-                    <li><strong>⏱️ Samodejni premik:</strong> Po kliku na odgovor se kviz samodejno premakne na naslednje vprašanje po <strong>20 sekundah</strong>. Lahko pa prej pritisneš <strong>presledek</strong> (najdaljša tipka) in greš takoj naprej.</li>
+                    <li><strong>⏱️ Čas za razlago:</strong> Po odgovoru imaš <strong>20 sekund</strong> časa, da prebereš razlago. Lahko pa prej pritisneš <strong>presledek</strong> in greš takoj naprej.</li>
                     <li><strong>🎯 Odgovori:</strong> Klikni na številko odgovora (1, 2, 3...). Po odgovoru dobiš takojšnjo povratno informacijo in razlago.</li>
                     <li><strong>🌙 Temni / ☀️ Svetli način:</strong> Z gumbom desno zgoraj lahko preklapljaš med temnim in svetlim ozadjem.</li>
                     <li><strong>📊 Napredek:</strong> V info okvirčku na vrhu spremljaš število odgovorjenih vprašanj in pravilnih odgovorov.</li>
@@ -572,7 +541,6 @@
             document.getElementById('infoModal').style.display = 'none';
         }
         
-        // Zapri modal ob kliku zunaj njega
         window.addEventListener('click', function(e) {
             const modal = document.getElementById('infoModal');
             if (e.target === modal) {
@@ -680,8 +648,7 @@
         let odgovori = [];
         let zakljuceno = false;
         let timerInterval = null;
-        let casOstanka = 20;
-        const CAS_NA_VPRASANJE = 20;
+        const CAS_ZA_BRANJE = 20;
         
         // ============================================================
         // NALAGANJE KVIZA
@@ -745,44 +712,26 @@
         }
         
         // ============================================================
-        // TIMER
+        // TIMER (skrit - samo v ozadju)
         // ============================================================
         function startTimer() {
             ustavTimer();
-            casOstanka = CAS_NA_VPRASANJE;
-            posodobiTimerPrikaz();
             
-            timerInterval = setInterval(() => {
-                casOstanka--;
-                posodobiTimerPrikaz();
-                
-                if (casOstanka <= 0) {
-                    ustavTimer();
-                    if (odgovori[trenutnoVprasanje] === null) {
-                        naslednjeVprasanje();
-                    }
+            timerInterval = setTimeout(() => {
+                // Po 20 sekundah samodejno pojdi naprej
+                if (!zakljuceno && odgovori[trenutnoVprasanje] !== null) {
+                    naslednjeVprasanje();
+                } else if (!zakljuceno && odgovori[trenutnoVprasanje] === null) {
+                    // Če ni bilo odgovora, pojdi naprej (brez odgovora)
+                    naslednjeVprasanje();
                 }
-            }, 1000);
+            }, CAS_ZA_BRANJE * 1000);
         }
         
         function ustavTimer() {
             if (timerInterval) {
-                clearInterval(timerInterval);
+                clearTimeout(timerInterval);
                 timerInterval = null;
-            }
-        }
-        
-        function posodobiTimerPrikaz() {
-            const timerElement = document.getElementById('timer');
-            if (!timerElement) return;
-            
-            timerElement.textContent = casOstanka + 's';
-            timerElement.className = 'timer';
-            
-            if (casOstanka <= 5) {
-                timerElement.classList.add('danger');
-            } else if (casOstanka <= 10) {
-                timerElement.classList.add('warning');
             }
         }
         
@@ -828,9 +777,6 @@
                         <span class="value">${index + 1}</span>
                     </div>
                 </div>
-                
-                <!-- TIMER -->
-                <div class="timer" id="timer">${CAS_NA_VPRASANJE}s</div>
                 
                 <!-- NAPREDEK -->
                 <div class="progress">
@@ -889,13 +835,16 @@
                 </div>
                 
                 <div class="tipka-info">
-                    Za naslednje vprašanje pritisni <kbd>Presledek</kbd> ali počakaj, da poteče čas.
+                    ${izbran !== null ? 'Za nadaljevanje pritisni <kbd>Presledek</kbd> ali počakaj, da poteče čas za branje razlage.' : 'Izberi odgovor.'}
                 </div>
             `;
             
             vsebina.innerHTML = html;
             
-            startTimer();
+            // Zaženi timer samo, če je odgovor že izbran
+            if (izbran !== null) {
+                startTimer();
+            }
             
             const vprElement = document.querySelector('.vprasanje');
             if (vprElement) {
@@ -925,23 +874,15 @@
             if (odgovori[vprIndex] !== null) return;
             
             odgovori[vprIndex] = moznostIndex;
-            ustavTimer();
             
-            if (vprIndex === kvizPodatki.vprasanja.length - 1) {
-                zakljuciKviz();
-            } else {
-                prikaziVprasanje(vprIndex);
-            }
+            // Ponovno prikaži vprašanje (prikaže se razlaga in timer se zažene)
+            prikaziVprasanje(vprIndex);
         }
         
         function naslednjeVprasanje() {
             if (zakljuceno) return;
             
             ustavTimer();
-            
-            if (odgovori[trenutnoVprasanje] === null) {
-                // označi kot napačno (null ostane)
-            }
             
             if (trenutnoVprasanje < kvizPodatki.vprasanja.length - 1) {
                 trenutnoVprasanje++;
@@ -957,9 +898,14 @@
         document.addEventListener('keydown', function(e) {
             if (e.code === 'Space') {
                 e.preventDefault();
-                if (!zakljuceno && document.getElementById('vsebina').querySelector('.vprasanje')) {
-                    ustavTimer();
-                    naslednjeVprasanje();
+                // Preveri, ali smo na vprašanju in ali je odgovor že izbran
+                const vsebina = document.getElementById('vsebina');
+                if (!zakljuceno && vsebina.querySelector('.vprasanje')) {
+                    // Preveri, ali je odgovor že izbran (timer teče)
+                    if (odgovori[trenutnoVprasanje] !== null) {
+                        ustavTimer();
+                        naslednjeVprasanje();
+                    }
                 }
             }
         });
