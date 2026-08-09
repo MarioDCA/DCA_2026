@@ -12,7 +12,7 @@
     
     <style>
         /* ========================================================== */
-        /* STILI ZA KVIZ MENI                                          */
+        /* STILI ZA KVIZ MENI - TEMNI NAČIN                           */
         /* ========================================================== */
         * { box-sizing: border-box; }
         body { 
@@ -20,25 +20,27 @@
             max-width: 900px; 
             margin: 0 auto; 
             padding: 10px 20px; 
-            background: #f0f4f8;
+            background: #1a1a2e;
+            color: #e0e0e0;
         }
         .container {
-            background: white;
+            background: #16213e;
             padding: 20px 25px;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            border: 1px solid #2a3a5e;
         }
         h1 { 
-            color: #667eea; 
+            color: #a8b5e0; 
             text-align: center;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #2a3a5e;
             padding-bottom: 10px;
             margin-top: 0;
             font-size: 24px;
         }
         .stats {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2a1a4e 100%);
+            color: #e0e0e0;
             padding: 10px 15px;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -46,6 +48,7 @@
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 5px;
+            border: 1px solid #2a3a5e;
         }
         .stats-item {
             text-align: center;
@@ -56,15 +59,16 @@
             font-weight: bold;
             display: block;
             line-height: 1.2;
+            color: #a8b5e0;
         }
         .stats-item .label {
             font-size: 12px;
-            opacity: 0.9;
+            opacity: 0.8;
         }
         .stats-item .reset {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #2a3a5e;
+            color: #e0e0e0;
             padding: 4px 12px;
             border-radius: 15px;
             cursor: pointer;
@@ -73,13 +77,14 @@
             transition: background 0.3s;
         }
         .stats-item .reset:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.2);
         }
         .kategorija {
             margin: 12px 0;
             padding: 12px 15px;
             border-radius: 10px;
-            background: #f8f9fa;
+            background: #1a2a4a;
+            border: 1px solid #2a3a5e;
         }
         .kategorija h2 {
             margin: 0 0 4px 0;
@@ -87,6 +92,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            color: #c8d0e8;
         }
         .kategorija.zacetniki { border-left: 4px solid #2ecc71; }
         .kategorija.srednji { border-left: 4px solid #f39c12; }
@@ -96,33 +102,34 @@
             display: inline-block;
             padding: 6px 14px;
             margin: 3px 4px 3px 0;
-            background: #667eea;
-            color: white;
+            background: #2a3a5e;
+            color: #e0e0e0;
             text-decoration: none;
             border-radius: 6px;
             font-size: 13px;
             transition: all 0.2s;
-            border: none;
+            border: 1px solid #3a4a6e;
             cursor: pointer;
             position: relative;
         }
         .kviz-gumb:hover {
             transform: translateY(-1px);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            background: #3a4a6e;
         }
-        .kviz-gumb.zelen { background: #2ecc71; }
-        .kviz-gumb.zelen:hover { background: #27ae60; }
-        .kviz-gumb.oranzen { background: #f39c12; }
-        .kviz-gumb.oranzen:hover { background: #e67e22; }
-        .kviz-gumb.rdec { background: #e74c3c; }
-        .kviz-gumb.rdec:hover { background: #c0392b; }
+        .kviz-gumb.zelen { background: #1a6a3a; border-color: #2ecc71; }
+        .kviz-gumb.zelen:hover { background: #2a7a4a; }
+        .kviz-gumb.oranzen { background: #7a5a1a; border-color: #f39c12; }
+        .kviz-gumb.oranzen:hover { background: #8a6a2a; }
+        .kviz-gumb.rdec { background: #6a1a1a; border-color: #e74c3c; }
+        .kviz-gumb.rdec:hover { background: #7a2a2a; }
         
         .kviz-gumb .reseno {
             position: absolute;
             top: -6px;
             right: -6px;
             background: #2ecc71;
-            color: white;
+            color: #1a1a2e;
             border-radius: 50%;
             width: 18px;
             height: 18px;
@@ -131,10 +138,10 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
         .opis {
-            color: #6c757d;
+            color: #8899bb;
             font-size: 13px;
             margin: 2px 0 6px 0;
         }
@@ -146,36 +153,51 @@
             font-weight: bold;
             margin-left: 6px;
         }
-        .oznaka.zelen { background: #2ecc71; color: white; }
-        .oznaka.oranzen { background: #f39c12; color: white; }
+        .oznaka.zelen { background: #2ecc71; color: #1a1a2e; }
+        .oznaka.oranzen { background: #f39c12; color: #1a1a2e; }
         .oznaka.rdec { background: #e74c3c; color: white; }
         .uvod {
-            background: #e8f4fd;
+            background: #1a2a4a;
             padding: 8px 15px;
             border-radius: 8px;
             margin-bottom: 12px;
             border-left: 4px solid #667eea;
             font-size: 14px;
+            border: 1px solid #2a3a5e;
+            border-left-width: 4px;
         }
-        .uvod strong { color: #667eea; }
+        .uvod strong { color: #8899dd; }
         .uvod small {
             font-size: 12px;
-            color: #6c757d;
+            color: #6688aa;
             display: block;
             margin-top: 2px;
         }
         .footer {
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #2a3a5e;
             text-align: center;
-            color: #6c757d;
+            color: #6688aa;
             font-size: 12px;
         }
         .gumb-vrstica {
             display: flex;
             flex-wrap: wrap;
             gap: 2px;
+        }
+        
+        /* Scrollbar za temni način */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #1a1a2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3a5e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a4a6e;
         }
     </style>
 </head>
