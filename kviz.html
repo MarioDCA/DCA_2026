@@ -830,17 +830,16 @@
                     </div>
             `;
             
-            if (izbran !== null && vpr.pojasnilo) {
-                const pravilno = izbran === vpr.pravilni;
-                html += `
-                    <div class="pojasnilo" style="border-left-color: ${pravilno ? '#2ecc71' : '#e74c3c'};">
-                        <strong>${pravilno ? '✅ Pravilno!' : '❌ Napačno.'}</strong>
-                        <br>
-                        ${vpr.pojasnilo}
-                    </div>
-                `;
-            }
-            
+        if (izbran !== null && vpr.pojasnilo) {
+            const pravilno = izbran === vpr.pravilni;
+            html += `
+            <div class="pojasnilo" style="border-left-color: ${pravilno ? '#2ecc71' : '#e74c3c'};">
+            <strong style="color: ${pravilno ? '#2ecc71' : '#e74c3c'};">${pravilno ? '✅ Pravilno!' : '❌ Napačno.'}</strong>
+            <br>
+            ${vpr.pojasnilo}
+            </div>
+            `;
+        }           
             html += `
                 </div>
                 
