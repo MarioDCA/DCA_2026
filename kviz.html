@@ -278,14 +278,14 @@
             border-radius: 8px;
             border-left: 4px solid var(--accent);
             font-size: 15px;
-            color: var(--text-secondary);
+            color: #ffffff;
             border: 1px solid var(--border-color);
             border-left-width: 4px;
         }
         .pojasnilo strong {
             color: var(--accent);
         }
-        
+
         /* Tipka presledek - povečana in krepko */
         .tipka-info {
             text-align: center;
@@ -467,7 +467,7 @@
         <!-- Footer -->
         <div class="footer">
             <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
-            <p class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-10, 22:12</p>
+            <p class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-10, 14:05</p>
         </div>
     </div>
 
@@ -517,41 +517,41 @@
         // ============================================================
         // KONFIGURACIJA KVIZOV
         // ============================================================
-        const KVIZI = {
-            zacetniki: [
-                { id: 'OR_01.json', naslov: 'Osnove dela z računalnikom', ikona: '📘' },
-                { id: 'OR_02.json', naslov: 'Delo z datotekami in mapami', ikona: '📘' },
-                { id: 'OR_03.json', naslov: 'Uvod v internet', ikona: '🌐' },
-                { id: 'OR_04.json', naslov: 'Brskanje po spletu', ikona: '🌐' },
-                { id: 'OR_05.json', naslov: 'Osnove digitalne varnosti', ikona: '🔒' },
-                { id: 'OR_06.json', naslov: 'Zaščita pred goljufijami', ikona: '🔒' },
-                { id: 'OR_07.json', naslov: 'Računalniške komponente', ikona: '💻' },
-                { id: 'OR_08.json', naslov: 'Zunanje naprave', ikona: '💻' },
-                { id: 'OR_09.json', naslov: 'Pametni telefoni', ikona: '📱' },
-                { id: 'OR_10.json', naslov: 'Tablični računalniki', ikona: '📱' }
-            ],
-            srednji: [
-                { id: 'OR_11.json', naslov: 'Omrežja in povezave', ikona: '🖧' },
-                { id: 'OR_12.json', naslov: 'Podatki in baze', ikona: '🗄️' },
-                { id: 'OR_13.json', naslov: 'Uvod v programiranje', ikona: '💻' },
-                { id: 'OR_14.json', naslov: 'Algoritmi in logika', ikona: '🧮' },
-                { id: 'OR_15.json', naslov: 'Umetna inteligenca - uvod', ikona: '🤖' },
-                { id: 'OR_16.json', naslov: 'Uporaba umetne inteligence', ikona: '🤖' },
-                { id: 'OR_17.json', naslov: 'Pisanje pozivov (promptov) 1', ikona: '✍️' },
-                { id: 'OR_18.json', naslov: 'Pisanje pozivov (promptov) 2', ikona: '✍️' }
-            ],
-            napredni: [
-                { id: 'OR_19.json', naslov: 'Napredna umetna inteligenca', ikona: '🧠' },
-                { id: 'OR_20.json', naslov: 'UI v vsakdanjem življenju', ikona: '🧠' },
-                { id: 'OR_21.json', naslov: 'Strojno učenje - osnove', ikona: '📊' },
-                { id: 'OR_22.json', naslov: 'Nevronske mreže', ikona: '🧬' },
-                { id: 'OR_23.json', naslov: 'Veliki podatki (Big Data)', ikona: '📈' },
-                { id: 'OR_24.json', naslov: 'Kibernetska varnost', ikona: '🛡️' },
-                { id: 'OR_25.json', naslov: 'Spletne tehnologije', ikona: '🌍' },
-                { id: 'OR_26.json', naslov: 'Digitalna pismenost', ikona: '📖' }
-            ]
-        };
-        
+
+const KVIZI = {
+    zacetniki: [
+        { id: 'OR_01.json', naslov: 'Osnove dela z računalnikom – Windows 10/11', ikona: '💻' },
+        { id: 'OR_02.json', naslov: 'Datoteke in mape v Windows okolju', ikona: '📁' },
+        { id: 'OR_03.json', naslov: 'Internet in spletni brskalniki', ikona: '🌐' },
+        { id: 'OR_04.json', naslov: 'Elektronska pošta (e-pošta)', ikona: '✉️' },
+        { id: 'OR_05.json', naslov: 'Varnost na spletu', ikona: '🔒' },
+        { id: 'OR_06.json', naslov: 'Pametni telefon Android', ikona: '📱' },
+        { id: 'OR_07.json', naslov: 'Google Iskanje in napredno iskanje', ikona: '🔍' },
+        { id: 'OR_08.json', naslov: 'ChatGPT in umetna inteligenca', ikona: '🤖' },
+        { id: 'OR_09.json', naslov: 'Fotografije s telefonom in Google Fotografije', ikona: '📷' },
+        { id: 'OR_10.json', naslov: 'Spletno bančništvo in varni spletni nakupi', ikona: '🏦' }
+    ],
+    srednji: [
+        { id: 'OR_11.json', naslov: 'Google Drive, OneDrive in delo v oblaku', ikona: '☁️' },
+        { id: 'OR_12.json', naslov: 'Windows 10 – urejanje datotek, map in Raziskovalec', ikona: '🖥️' },
+        { id: 'OR_13.json', naslov: 'Elektronska pošta – napredna uporaba in varnost', ikona: '📧' },
+        { id: 'OR_14.json', naslov: 'Windows 10 – nastavitve in prilagajanje okolja', ikona: '⚙️' },
+        { id: 'OR_15.json', naslov: 'Pametni telefon – nastavitve, baterija in vzdrževanje', ikona: '🔋' },
+        { id: 'OR_16.json', naslov: 'Fotografije – urejanje, shranjevanje in deljenje', ikona: '🖼️' },
+        { id: 'OR_17.json', naslov: 'Internet – iskanje, Google in preverjanje virov', ikona: '🌍' },
+        { id: 'OR_18.json', naslov: 'Umetna inteligenca in ChatGPT – osnovna uporaba', ikona: '🧠' }
+    ],
+    napredni: [
+        { id: 'OR_19.json', naslov: 'Spletne prevare, phishing in varnost računov', ikona: '🛡️' },
+        { id: 'OR_20.json', naslov: 'Delo z dokumenti – Word, PDF in tiskanje', ikona: '📄' },
+        { id: 'OR_21.json', naslov: 'Windows 10 – bližnjice na tipkovnici', ikona: '⌨️' },
+        { id: 'OR_22.json', naslov: 'Pametni telefon – vsakodnevna uporaba', ikona: '📲' },
+        { id: 'OR_23.json', naslov: 'Elektronska pošta – pošiljanje in organizacija', ikona: '📨' },
+        { id: 'OR_24.json', naslov: 'Spletno bančništvo in spletni nakupi', ikona: '💳' },
+        { id: 'OR_25.json', naslov: 'Umetna inteligenca za vsakdanjo uporabo', ikona: '🤖' },
+        { id: 'OR_26.json', naslov: 'Naprednejša uporaba računalnika in interneta', ikona: '🚀' }
+    ]
+};        
         function najdiKategorijo(kvizId) {
             for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
                 if (kvizi.some(k => k.id === kvizId)) {
