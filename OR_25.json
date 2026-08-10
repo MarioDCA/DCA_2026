@@ -5,41 +5,41 @@
     {
       "question": "Kaj pomeni kratica AI (Artificial Intelligence)?",
       "options": [
-        "Umetna inteligenca – računalniški sistemi, ki lahko opravljajo naloge, za katere je običajno potrebna človeška inteligenca.",
+        "Avtomatski internet.",
         "Posebna vrsta računalnika.",
-        "Avtomatski internet."
+        "Umetna inteligenca – računalniški sistemi, ki lahko opravljajo naloge, za katere je običajno potrebna človeška inteligenca."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Umetna inteligenca (AI) je tehnologija, ki omogoča računalnikom izvajanje nalog, za katere običajno potrebujemo človeško razmišljanje – odgovarjanje na vprašanja, prevajanje, pisanje povzetkov, ustvarjanje slik in pomoč pri številnih opravilih."
     },
     {
       "question": "Kako deluje ChatGPT?",
       "options": [
         "Gre za človeka, ki odgovarja na vprašanja.",
-        "Gre za program umetne inteligence, ki analizira besedilo in ustvari odgovor.",
-        "Gre za iskalnik, ki išče odgovore po internetu."
+        "Gre za iskalnik, ki išče odgovore po internetu.",
+        "Gre za program umetne inteligence, ki analizira besedilo in ustvari odgovor."
       ],
-      "correct": 1,
+      "correct": 2,
       "explanation": "ChatGPT je program umetne inteligence, ki na podlagi ogromne količine podatkov in vzorcev v jeziku ustvari smiseln odgovor. Ne gre za človeka, ampak za računalniški program, ki simulira pogovor."
     },
     {
       "question": "Katero opravilo lahko uspešno opravi umetna inteligenca?",
       "options": [
-        "Pomaga napisati besedilo, razložiti pojem ali povzeti članek.",
+        "Samodejno popravi pokvarjen računalnik.",
         "Napolni baterijo telefona.",
-        "Samodejno popravi pokvarjen računalnik."
+        "Pomaga napisati besedilo, razložiti pojem ali povzeti članek."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "AI pomaga pri delu z informacijami – lahko piše besedila, razlaga pojme, povzema članke, prevaja in ustvarja ideje. Ne more pa popraviti fizičnih naprav ali izvajati opravil v resničnem svetu."
     },
     {
       "question": "Ali so odgovori umetne inteligence vedno pravilni?",
       "options": [
-        "Ne, lahko vsebujejo napake ali zastarele informacije.",
         "Samo ob vikendih.",
-        "Da, vedno."
+        "Da, vedno.",
+        "Ne, lahko vsebujejo napake ali zastarele informacije."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "AI ni nezmotljiva – lahko poda napačne, nepopolne ali zastarele informacije. Zato je pomembno, da pomembne informacije vedno preverite v zanesljivih virih."
     },
     {
@@ -55,39 +55,39 @@
     {
       "question": "Ali lahko umetni inteligenci postavimo vprašanje v slovenščini?",
       "options": [
-        "Da, večina sodobnih sistemov dobro razume slovenščino.",
         "Samo v angleščini.",
-        "Ne."
+        "Ne.",
+        "Da, večina sodobnih sistemov dobro razume slovenščino."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Večina sodobnih sistemov umetne inteligence (ChatGPT, Copilot, Gemini) podpira slovenščino. Vprašanja lahko postavite v svojem jeziku in dobite odgovor v slovenščini."
     },
     {
       "question": "Kako običajno dobimo boljši odgovor umetne inteligence?",
       "options": [
+        "Z zelo kratkim vprašanjem.",
         "Z jasnim in čim bolj natančnim vprašanjem.",
-        "Z velikimi tiskanimi črkami.",
-        "Z zelo kratkim vprašanjem."
+        "Z velikimi tiskanimi črkami."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Bolj natančno in jasno kot postavite vprašanje, bolj uporaben odgovor boste dobili. Dodajte konkretne podrobnosti, primere ali omejitve, da AI razume, kaj točno potrebujete."
     },
     {
       "question": "Ali lahko umetna inteligenca pomaga napisati elektronsko sporočilo?",
       "options": [
-        "Da, lahko pripravi osnutek ali popravi besedilo.",
         "Samo če gre za angleščino.",
+        "Da, lahko pripravi osnutek ali popravi besedilo.",
         "Ne."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "AI lahko pomaga pri pisanju elektronskih sporočil – pripravi osnutek, predlaga boljši slog, popravi slovnične napake ali prilagodi ton sporočilu. Vedno pa besedilo pred pošiljanjem pregledajte."
     },
     {
       "question": "Ali lahko umetna inteligenca pomaga pri prevajanju?",
       "options": [
         "Da, lahko prevede besedila med številnimi jeziki.",
-        "Samo posamezne besede.",
-        "Ne."
+        "Ne.",
+        "Samo posamezne besede."
       ],
       "correct": 0,
       "explanation": "AI lahko prevaja besede, stavke in daljša besedila med številnimi jeziki. Pri pomembnih dokumentih (pogodbe, uradna pisma) je prevod vseeno dobro pregledati."
@@ -95,19 +95,19 @@
     {
       "question": "Ali lahko umetna inteligenca pomaga pri učenju?",
       "options": [
-        "Da, razlaga pojme, odgovarja na vprašanja in pripravlja primere.",
         "Samo pri matematiki.",
+        "Da, razlaga pojme, odgovarja na vprašanja in pripravlja primere.",
         "Ne."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "AI je lahko odličen učni pomočnik – razlaga zapletene pojme na preprost način, odgovarja na vprašanja, pripravlja primere in vaje ter prilagaja razlago vašemu znanju."
     },
     {
       "question": "Ali umetna inteligenca vedno razume naše vprašanje?",
       "options": [
         "Ne, včasih vprašanje razume drugače, kot smo mislili.",
-        "Nikoli.",
-        "Vedno."
+        "Vedno.",
+        "Nikoli."
       ],
       "correct": 0,
       "explanation": "AI včasih vprašanje razume drugače, kot ste mislili. Če odgovor ni ustrezen, poskusite vprašanje preoblikovati ali dodati več podrobnosti."
@@ -115,21 +115,21 @@
     {
       "question": "Kaj pomeni 'pogovor' (chat) z umetno inteligenco?",
       "options": [
-        "Pisna izmenjava vprašanj in odgovorov.",
         "Video konferenca.",
-        "Telefonski klic."
+        "Telefonski klic.",
+        "Pisna izmenjava vprašanj in odgovorov."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Pogovor z AI poteka pisno – v pogovorno okno napišete vprašanja in AI odgovarja. V istem pogovoru lahko postavljate dodatna vprašanja in nadaljujete temo."
     },
     {
       "question": "Ali lahko umetna inteligenca pomaga pri načrtovanju potovanja?",
       "options": [
+        "Ne.",
         "Da, lahko predlaga poti, znamenitosti, prenočišča in okvirni načrt potovanja.",
-        "Samo kupi vozovnico.",
-        "Ne."
+        "Samo kupi vozovnico."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "AI lahko pripravi predloge za potovanja – katere znamenitosti obiskati, v kakšnem vrstnem redu, predloge za prenočišča in okvirni dnevni red. Končne podatke (vozni redi, cene) pa vedno preverite pri uradnih ponudnikih."
     },
     {
@@ -145,29 +145,29 @@
     {
       "question": "Ali lahko umetna inteligenca pomaga napisati življenjepis ali prošnjo za zaposlitev?",
       "options": [
-        "Da, lahko pripravi osnutek ali izboljša besedilo.",
         "Samo v angleščini.",
-        "Ne."
+        "Ne.",
+        "Da, lahko pripravi osnutek ali izboljša besedilo."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "AI lahko pripravi osnutek življenjepisa ali motivacijskega pisma, predlaga boljši slog in popravi napake. Končno različico vedno pregledate in prilagodite svojim izkušnjam."
     },
     {
       "question": "Ali je dobro umetni inteligenci posredovati številko bančne kartice ali gesla?",
       "options": [
-        "Ne, občutljivih osebnih podatkov nikoli ne posredujemo.",
+        "Da.",
         "Samo če vprašamo dvakrat.",
-        "Da."
+        "Ne, občutljivih osebnih podatkov nikoli ne posredujemo."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Gesla, številke kartic in druge zaupne podatke vedno varujemo. Nikoli jih ne vnašajte v pogovor z AI, tako kot jih ne bi zaupali neznancu."
     },
     {
       "question": "Ali lahko umetna inteligenca ustvarja slike?",
       "options": [
         "Da, nekateri sistemi lahko ustvarjajo slike na podlagi opisa uporabnika.",
-        "Samo črno-bele.",
-        "Ne."
+        "Ne.",
+        "Samo črno-bele."
       ],
       "correct": 0,
       "explanation": "Poleg besedila lahko nekateri sistemi umetne inteligence (npr. DALL-E, Midjourney) ustvarjajo slike na podlagi vašega opisa. Vpišete lahko 'nariši mi ...' in sistem ustvari sliko."
@@ -176,8 +176,8 @@
       "question": "Kaj naredimo, če umetna inteligenca odgovori napačno?",
       "options": [
         "Postavimo dodatno vprašanje ali preverimo odgovor v drugih virih.",
-        "Izključimo internet.",
-        "Takoj jo izbrišemo."
+        "Takoj jo izbrišemo.",
+        "Izključimo internet."
       ],
       "correct": 0,
       "explanation": "AI se lahko zmoti – zato je dobro kritično presojati odgovore. Če opazite napako, postavite dodatno vprašanje, zahtevajte pojasnilo ali preverite informacije pri drugih virih."
@@ -185,31 +185,31 @@
     {
       "question": "Ali lahko umetna inteligenca pomaga pri pisanju pisem in elektronske pošte?",
       "options": [
+        "Ne.",
         "Da, lahko pripravi osnutek ali izboljša že napisano besedilo.",
-        "Samo poslovna pisma.",
-        "Ne."
+        "Samo poslovna pisma."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "AI lahko pomaga pri pisanju različnih vrst pisem – uradnih, zasebnih ali zahvalnih. Pripravi osnutek, predlaga boljši način izražanja ali popravi slog."
     },
     {
       "question": "Ali lahko umetna inteligenca pomaga pri razlagi zdravstvenih izrazov?",
       "options": [
-        "Da, lahko pojasni izraze v razumljivem jeziku, vendar ne nadomesti zdravnika.",
+        "Ne.",
         "Vedno postavi diagnozo.",
-        "Ne."
+        "Da, lahko pojasni izraze v razumljivem jeziku, vendar ne nadomesti zdravnika."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "AI lahko pojasni zdravstvene izraze in pojme na preprost način. Vendar ne more postaviti diagnoze ali nadomestiti zdravnika – za zdravstvene težave se vedno posvetujte z zdravstvenim delavcem."
     },
     {
       "question": "Kaj je največja prednost umetne inteligence?",
       "options": [
-        "Hitro pomaga poiskati informacije, pripraviti besedila in razložiti različne teme.",
         "Samodejno popravi vse računalnike.",
+        "Hitro pomaga poiskati informacije, pripraviti besedila in razložiti različne teme.",
         "Nikoli ne naredi napake."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Največja prednost AI je hitrost in vsestranskost – v nekaj sekundah lahko poišče informacije, pripravi besedila, razloži pojme in pomaga pri številnih opravilih, kar prihrani veliko časa."
     },
     {
@@ -226,8 +226,8 @@
       "question": "Kako najbolje uporabljamo umetno inteligenco?",
       "options": [
         "Uporabljamo jo kot pomočnika in pomembne informacije preverimo.",
-        "Nikoli ne postavimo dodatnega vprašanja.",
-        "Slepo verjamemo vsakemu odgovoru."
+        "Slepo verjamemo vsakemu odgovoru.",
+        "Nikoli ne postavimo dodatnega vprašanja."
       ],
       "correct": 0,
       "explanation": "Najboljše rezultate dosežemo s sodelovanjem med človekom in umetno inteligenco. Uporabljajte AI kot pomočnika, vendar vedno preverjajte pomembne informacije in uporabljajte lastno presojo."
@@ -246,8 +246,8 @@
       "question": "Katero pravilo je najpomembnejše pri uporabi umetne inteligence?",
       "options": [
         "Postavljamo jasna vprašanja, varujemo zasebnost in pomembne informacije preverimo v zanesljivih virih.",
-        "Vedno uporabimo prvi odgovor brez razmisleka.",
-        "Objavimo vse svoje osebne podatke."
+        "Objavimo vse svoje osebne podatke.",
+        "Vedno uporabimo prvi odgovor brez razmisleka."
       ],
       "correct": 0,
       "explanation": "Umetna inteligenca je zelo uporaben pomočnik, vendar najboljše rezultate dosežemo, če jo uporabljamo premišljeno in kritično. Postavljajte jasna vprašanja, varujte zasebnost in vedno preverjajte pomembne informacije."

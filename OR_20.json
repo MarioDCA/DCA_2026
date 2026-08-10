@@ -5,209 +5,209 @@
     {
       "question": "Kaj je dokument na računalniku?",
       "options": [
-        "Datoteka, ki vsebuje besedilo, slike ali druge podatke.",
         "Vrsta računalniškega kabla.",
-        "Samo fotografija."
+        "Samo fotografija.",
+        "Datoteka, ki vsebuje besedilo, slike ali druge podatke."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Dokument je datoteka, ki vsebuje besedilo, slike, tabele ali druge podatke. Dokumenti so lahko pisma, pogodbe, zapiski, računi, poročila ali druga besedila, ustvarjena v programih za urejanje."
     },
     {
       "question": "Kateri program pogosto uporabljamo za pisanje besedil?",
       "options": [
-        "Microsoft Word.",
+        "Kalkulator.",
         "Koš.",
-        "Kalkulator."
+        "Microsoft Word."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Microsoft Word je najbolj razširjen program za ustvarjanje in urejanje dokumentov. Uporabljamo ga za pisanje pisem, poročil, življenjepisov in drugih besedil. Obstajajo tudi brezplačne alternative (LibreOffice, Google Docs)."
     },
     {
       "question": "Kaj pomeni shraniti dokument?",
       "options": [
-        "Zapisati dokument na računalnik, da ga lahko pozneje ponovno odpremo.",
         "Poslati ga v tiskalnik.",
+        "Zapisati dokument na računalnik, da ga lahko pozneje ponovno odpremo.",
         "Izbrisati dokument."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Shranjevanje dokumenta pomeni, da trenutne spremembe zapišete na trdi disk. Če dokumenta ne shranite pred zaprtjem programa, boste vse spremembe izgubili. Vedno redno shranjujte med delom."
     },
     {
       "question": "Katera bližnjica se pogosto uporablja za shranjevanje dokumenta?",
       "options": [
-        "Ctrl + Z.",
         "Ctrl + S.",
-        "Ctrl + P."
+        "Ctrl + P.",
+        "Ctrl + Z."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Ctrl + S je univerzalna bližnjica za shranjevanje (Save). Uporabite jo v večini programov. Navadite se pogosto pritiskati Ctrl + S, da ne izgubite dela ob morebitnem izpadu programa ali elektrike."
     },
     {
       "question": "Kako organiziramo datoteke v mapah?",
       "options": [
-        "Vse datoteke damo v eno mapo.",
         "Ustvarimo podmape po temah (npr. Dokumenti, Slike, Glasba).",
-        "Datotek sploh ne shranjujemo v mape."
+        "Datotek sploh ne shranjujemo v mape.",
+        "Vse datoteke damo v eno mapo."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Dobra organizacija datotek pomeni, da imate mape za različne teme in znotraj njih podmape. Na primer: Dokumenti → Služba → Poročila 2026. Tako hitro najdete, kar iščete."
     },
     {
       "question": "Zakaj je koristno urejati dokumente v mape?",
       "options": [
+        "Ker računalnik postane glasnejši.",
         "Ker lažje najdemo datoteke.",
-        "Ker dobimo hitrejši internet.",
-        "Ker računalnik postane glasnejši."
+        "Ker dobimo hitrejši internet."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Dobro urejene mape preprečujejo izgubljanje dokumentov in prihranijo čas. Namesto da iščete po vseh datotekah, greste neposredno v ustrezno mapo in takoj najdete, kar potrebujete."
     },
     {
       "question": "Kaj pomeni končnica datoteke .docx?",
       "options": [
-        "Datoteka Microsoft Word dokumenta.",
         "Računalniški virus.",
-        "Vrsta fotografije."
+        "Vrsta fotografije.",
+        "Datoteka Microsoft Word dokumenta."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Končnica .docx označuje dokument Microsoft Word. To je najpogostejša oblika za besedilne dokumente. Druge pogoste končnice: .pdf za dokumente, ki ohranijo obliko, .jpg za fotografije."
     },
     {
       "question": "Kaj pomeni končnica PDF?",
       "options": [
+        "Program za igre.",
         "Oblika dokumenta, ki ohrani enak videz na različnih napravah.",
-        "Vrsta gesla.",
-        "Program za igre."
+        "Vrsta gesla."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "PDF (Portable Document Format) je oblika dokumenta, ki ohrani enak videz na vseh napravah – ne glede na to, ali ga odprete na računalniku, telefonu ali tablici. Zelo je pogost za račune, obrazce in uradne dokumente."
     },
     {
       "question": "Zakaj pošiljamo dokumente pogosto v obliki PDF?",
       "options": [
+        "Ker jih ni mogoče odpreti.",
         "Ker se videz dokumenta običajno ne spremeni pri pošiljanju.",
-        "Ker zavzamejo vedno največ prostora.",
-        "Ker jih ni mogoče odpreti."
+        "Ker zavzamejo vedno največ prostora."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "PDF datoteke ohranijo oblikovanje (pisave, slike, postavitev) ne glede na to, na kateri napravi jih odpremo. Prejemnik vidi dokument natanko tako, kot ste ga pripravili."
     },
     {
       "question": "Kako odpremo dokument, ki smo ga prejeli po e-pošti?",
       "options": [
+        "Izklopimo računalnik.",
         "Kliknemo priponko in jo odpremo ali shranimo.",
-        "Izbrišemo sporočilo.",
-        "Izklopimo računalnik."
+        "Izbrišemo sporočilo."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "V e-pošti kliknite na priponko (datoteko, priloženo sporočilu). Ponavadi se vam ponudi možnost, da datoteko odprete neposredno ali jo shranite na računalnik. Pred odpiranjem preverite, ali zaupate pošiljatelju."
     },
     {
       "question": "Kaj storimo, če ne najdemo dokumenta?",
       "options": [
+        "Kupimo nov računalnik.",
         "Uporabimo iskanje v Raziskovalcu datotek.",
-        "Izklopimo internet.",
-        "Kupimo nov računalnik."
+        "Izklopimo internet."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "V iskalno polje v Raziskovalcu datotek (ali v meniju Start) vpišete ime dokumenta ali del imena. Windows bo poiskal vse datoteke, ki ustrezajo iskanju, in jih prikazal."
     },
     {
       "question": "Kaj je Raziskovalec datotek?",
       "options": [
-        "Program za pregledovanje in urejanje datotek ter map.",
         "Program za izdelavo virusov.",
+        "Program za pregledovanje in urejanje datotek ter map.",
         "Program za gledanje televizije."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Raziskovalec datotek (ikona rumene mape) je osnovni program v Windows za pregledovanje in upravljanje datotek, map in naprav. Z njim kopirate, premikate, brišete in organizirate datoteke."
     },
     {
       "question": "Kaj pomeni kopirati datoteko?",
       "options": [
+        "Izbrisati datoteko.",
         "Ustvariti dodatno kopijo datoteke na drugem mestu.",
-        "Spremeniti barvo datoteke.",
-        "Izbrisati datoteko."
+        "Spremeniti barvo datoteke."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Kopiranje datoteke pomeni, da na drugem mestu (npr. v drugi mapi) ustvarite popolnoma enako kopijo. Izvirna datoteka ostane na svojem mestu, dodana je le nova kopija. To je uporabno pri varnostnem shranjevanju."
     },
     {
       "question": "Kaj pomeni premakniti datoteko?",
       "options": [
-        "Prenesti datoteko iz ene mape v drugo.",
+        "Ustvariti virus.",
         "Spremeniti geslo.",
-        "Ustvariti virus."
+        "Prenesti datoteko iz ene mape v drugo."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Premikanje datoteke pomeni, da jo prestavite z enega mesta na drugo (npr. iz ene mape v drugo). Pri premiku datoteka ni več na prvotnem mestu – tam je ni več."
     },
     {
       "question": "Kakšna je razlika med kopiranjem in premikanjem?",
       "options": [
-        "Pri kopiranju ostane original, pri premikanju se spremeni lokacija.",
         "Premikanje izbriše računalnik.",
+        "Pri kopiranju ostane original, pri premikanju se spremeni lokacija.",
         "Ni razlike."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Kopiranje ustvari dodatno kopijo na novem mestu, izvirnik pa ostane na starem. Premikanje pa izvirnik prestavi na novo mesto – na starem mestu datoteke ni več. Kopiranje je varnejše, kadar niste prepričani."
     },
     {
       "question": "Kaj je USB ključ?",
       "options": [
-        "Prenosna naprava za shranjevanje podatkov.",
         "Vrsta zaslona.",
-        "Program za pisanje."
+        "Program za pisanje.",
+        "Prenosna naprava za shranjevanje podatkov."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "USB ključek (tudi 'palčnik') je majhna prenosna naprava za shranjevanje podatkov. Uporabljamo ga za prenos dokumentov, fotografij in drugih datotek med računalniki ali za varnostno kopiranje."
     },
     {
       "question": "Zakaj moramo USB ključ varno odstraniti iz računalnika?",
       "options": [
+        "Da postane hitrejši.",
         "Da zmanjšamo možnost poškodbe podatkov.",
-        "Da se spremeni barva.",
-        "Da postane hitrejši."
+        "Da se spremeni barva."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Preden izvlečete USB ključek, vedno uporabite 'Varno odstrani strojno opremo' (ikona v opravilni vrstici). S tem preprečite, da bi se podatki na ključku poškodovali, če računalnik še zapisuje nanj."
     },
     {
       "question": "Kaj pomeni tiskanje dokumenta?",
       "options": [
+        "Shranjevanje v oblak.",
         "Izdelava papirne kopije dokumenta s tiskalnikom.",
-        "Brisanje dokumenta.",
-        "Shranjevanje v oblak."
+        "Brisanje dokumenta."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Tiskanje pomeni, da dokument natisnete na papir s tiskalnikom. To omogoča uporabo dokumenta tudi brez računalnika – na primer za podpisovanje, branje ali arhiviranje."
     },
     {
       "question": "Katera bližnjica se pogosto uporablja za tiskanje?",
       "options": [
-        "Ctrl + P.",
         "Ctrl + C.",
-        "Ctrl + S."
+        "Ctrl + S.",
+        "Ctrl + P."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Ctrl + P je univerzalna bližnjica za tiskanje (Print). Odpre okno za tiskanje, kjer lahko izberete tiskalnik, število kopij in druge nastavitve."
     },
     {
       "question": "Kaj storimo, če tiskalnik ne tiska?",
       "options": [
+        "Izbrišemo Windows.",
         "Preverimo povezavo, papir, črnilo in ali je tiskalnik vklopljen.",
-        "Odstranimo tipkovnico.",
-        "Izbrišemo Windows."
+        "Odstranimo tipkovnico."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Večina težav s tiskalnikom je posledica preprostih vzrokov: tiskalnik ni vklopljen, zmanjkalo je papirja ali črnila, kabel ni pravilno priključen. Najprej preverite te osnovne stvari."
     },
     {
       "question": "Kaj je oblak (cloud) pri shranjevanju podatkov?",
       "options": [
         "Shranjevanje datotek na oddaljenih strežnikih prek interneta.",
-        "Vrsta računalniškega zaslona.",
-        "Vremenska napoved."
+        "Vremenska napoved.",
+        "Vrsta računalniškega zaslona."
       ],
       "correct": 0,
       "explanation": "Oblak (cloud) pomeni shranjevanje podatkov na oddaljenih strežnikih, do katerih dostopate prek interneta. Primeri oblačnih storitev so Google Drive, OneDrive in Dropbox."
@@ -215,41 +215,41 @@
     {
       "question": "Zakaj uporabljamo shranjevanje v oblaku?",
       "options": [
+        "Ker računalnik ne potrebuje elektrike.",
         "Ker lahko do datotek dostopamo iz različnih naprav.",
-        "Ker izbriše vse viruse.",
-        "Ker računalnik ne potrebuje elektrike."
+        "Ker izbriše vse viruse."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Oblak omogoča dostop do dokumentov tudi, če računalnik ni pri roki. Datoteke lahko odprete na telefonu, tablici ali drugem računalniku, kjerkoli imate internetno povezavo."
     },
     {
       "question": "Kaj pomeni varnostna kopija dokumentov?",
       "options": [
+        "Sprememba pisave.",
         "Dodatna kopija pomembnih datotek za primer izgube.",
-        "Izbris starih dokumentov.",
-        "Sprememba pisave."
+        "Izbris starih dokumentov."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Varnostna kopija (backup) je dodatna kopija pomembnih datotek, shranjena na drugem mestu (zunanji disk, USB, oblak). Ščiti pred okvaro računalnika, izgubo ali krajo podatkov."
     },
     {
       "question": "Zakaj ni dobro imeti vseh dokumentov samo na namizju?",
       "options": [
+        "Ker namizje izgine.",
         "Ker hitro postane nepregledno in težje najdemo datoteke.",
-        "Ker računalnik ne deluje.",
-        "Ker namizje izgine."
+        "Ker računalnik ne deluje."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Namizje je namenjeno bližnjicam in redko uporabljenim datotekam. Če nanj shranite vse dokumente, postane nepregledno in težko najdete določeno datoteko. Za urejenost uporabljajte smiselne mape."
     },
     {
       "question": "Katera navada je najboljša pri delu z dokumenti?",
       "options": [
-        "Redno shranjujemo, urejamo v mape in izdelamo varnostne kopije.",
+        "Dokumentov nikoli ne shranjujemo.",
         "Vse datoteke pustimo na namizju.",
-        "Dokumentov nikoli ne shranjujemo."
+        "Redno shranjujemo, urejamo v mape in izdelamo varnostne kopije."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Urejeni dokumenti in varnostne kopije preprečijo veliko težav. Redno shranjujte med delom, organizirajte datoteke v mape in delajte varnostne kopije pomembnih dokumentov."
     }
   ]

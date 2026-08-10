@@ -711,10 +711,12 @@
                 if (!kvizPodatki.vprasanja || kvizPodatki.vprasanja.length === 0) {
                     throw new Error('Kviz nima vprašanj.');
                 }
-                
                 const info = najdiInfo(kvizIme);
-                document.getElementById('kvizNaslov').textContent = info ? info.naslov : (kvizPodatki.title || kvizIme);
+                // Uporabi ID iz JSON (npr. 1, 2, 3 ...)
+                const id = kvizPodatki.id || '';
+                document.getElementById('kvizNaslov').textContent = info ? `${id} - ${info.naslov}` : (kvizPodatki.title || kvizIme); 
                 
+
                 odgovori = new Array(kvizPodatki.vprasanja.length).fill(null);
                 trenutnoVprasanje = 0;
                 zakljuceno = false;
