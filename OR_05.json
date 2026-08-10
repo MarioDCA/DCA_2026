@@ -5,11 +5,11 @@
     {
       "question": "Kaj pomeni varna uporaba interneta?",
       "options": [
-        "Da previdno uporabljamo splet in varujemo svoje podatke.",
         "Da uporabljamo samo eno spletno stran.",
-        "Da nikoli ne uporabljamo računalnika."
+        "Da nikoli ne uporabljamo računalnika.",
+        "Da previdno uporabljamo splet in varujemo svoje podatke."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Varna uporaba interneta pomeni, da pazimo na gesla, osebne podatke, povezave in datoteke, ki jih odpiramo. Večina spletnih težav nastane zaradi neprevidnosti uporabnika."
     },
     {
@@ -25,39 +25,39 @@
     {
       "question": "Katero geslo je najvarnejše?",
       "options": [
+        "geslo",
         "123456",
-        "ModraRiba!72Gozd",
-        "geslo"
+        "ModraRiba!72Gozd"
       ],
-      "correct": 1,
+      "correct": 2,
       "explanation": "Dobro geslo vsebuje kombinacijo velikih in malih črk, številk ter posebnih znakov. Primer dobrega gesla: 'ModraRiba!72Gozd' je dolgo, vsebuje različne znake in si ga je mogoče zapomniti."
     },
     {
       "question": "Ali je priporočljivo isto geslo uporabljati za vse spletne račune?",
       "options": [
-        "Ne, ker lahko napadalec z enim geslom dostopa do več računov.",
         "Da, ker si ga lažje zapomnimo.",
+        "Ne, ker lahko napadalec z enim geslom dostopa do več računov.",
         "Samo pri elektronski pošti."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Za pomembne račune uporabljamo različna gesla. Če nekdo izve eno geslo, ne more dostopati do vseh vaših računov, kar zmanjša tveganje."
     },
     {
       "question": "Kaj je phishing (spletno ribarjenje)?",
       "options": [
-        "Način tiskanja dokumentov.",
         "Prevara, pri kateri želijo napadalci pridobiti naše podatke.",
+        "Način tiskanja dokumentov.",
         "Program za hitrejši internet."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Napadalci se pogosto pretvarjajo, da so banka, podjetje ali znana oseba. Pošiljajo lažna sporočila, da bi pridobili vaša gesla ali druge osebne podatke."
     },
     {
       "question": "Dobili ste e-pošto: 'Vaš račun bo zaprt. Takoj kliknite povezavo.' Kaj naredite?",
       "options": [
-        "Pošljete svoje geslo.",
+        "Takoj kliknete povezavo.",
         "Ne kliknete povezave in preverite sporočilo.",
-        "Takoj kliknete povezavo."
+        "Pošljete svoje geslo."
       ],
       "correct": 1,
       "explanation": "Občutek nujnosti je pogost znak spletne prevare. Prevaranti želijo, da ukrepate brez razmisleka. Vedno preverite sporočilo pri uradnem viru, preden kliknete povezave."
@@ -65,98 +65,98 @@
     {
       "question": "Ali smemo neznancem po telefonu ali e-pošti povedati svoje geslo?",
       "options": [
+        "Ne, gesla nikoli ne zaupamo drugim.",
         "Samo ob vikendih.",
-        "Da, če lepo prosijo.",
-        "Ne, gesla nikoli ne zaupamo drugim."
+        "Da, če lepo prosijo."
       ],
-      "correct": 2,
+      "correct": 0,
       "explanation": "Prave ustanove (banke, Microsoft, Google ...) nikoli ne zahtevajo vašega gesla. Če kdo zahteva geslo, gre skoraj zagotovo za prevaro."
     },
     {
       "question": "Kaj je računalniški virus?",
       "options": [
-        "Program za urejanje slik.",
         "Vrsta spletnega brskalnika.",
-        "Škodljiv program, ki lahko poškoduje ali zlorabi računalnik."
+        "Škodljiv program, ki lahko poškoduje ali zlorabi računalnik.",
+        "Program za urejanje slik."
       ],
-      "correct": 2,
+      "correct": 1,
       "explanation": "Virusi lahko povzročijo izgubo podatkov ali omogočijo nepooblaščen dostop. Zaščitimo se z dobrim protivirusnim programom in previdnostjo pri odpiranju datotek."
     },
     {
       "question": "Kako zmanjšamo možnost okužbe z virusi?",
       "options": [
+        "Odpremo vse priponke v e-pošti.",
         "Posodabljamo sistem in ne odpiramo sumljivih datotek.",
-        "Izklopimo zaščito računalnika.",
-        "Odpremo vse priponke v e-pošti."
+        "Izklopimo zaščito računalnika."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Previdnost in posodobitve so pomembna zaščita pred škodljivo programsko opremo. Vedno preverimo, ali datoteka prihaja iz zaupanja vrednega vira."
     },
     {
       "question": "Zakaj nameščamo posodobitve sistema Windows?",
       "options": [
-        "Da izboljšamo varnost in odpravimo napake.",
         "Da spremenimo barvo zaslona.",
-        "Da izbrišemo vse datoteke."
+        "Da izbrišemo vse datoteke.",
+        "Da izboljšamo varnost in odpravimo napake."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Posodobitve pogosto vsebujejo popravke za varnostne luknje, ki jih napadalci lahko izkoristijo. Redne posodobitve so ključne za varnost računalnika."
     },
     {
       "question": "Kaj je protivirusni program?",
       "options": [
+        "Program za izdelavo dokumentov.",
         "Program, ki pomaga odkrivati in odstranjevati škodljivo programsko opremo.",
-        "Program za gledanje filmov.",
-        "Program za izdelavo dokumentov."
+        "Program za gledanje filmov."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Protivirusni program pomaga zaščititi računalnik pred različnimi grožnjami, kot so virusi, trojanci in druge zlonamerne programske opreme."
     },
     {
       "question": "Kaj storimo, če se na zaslonu pojavi sumljivo opozorilo?",
       "options": [
+        "Vpišemo svoje geslo.",
         "Previdno preverimo sporočilo in ne klikamo neznanih povezav.",
-        "Takoj kliknemo vse gumbe.",
-        "Vpišemo svoje geslo."
+        "Takoj kliknemo vse gumbe."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Nekatera lažna opozorila poskušajo uporabnika prestrašiti, da bi namestil škodljiv program. Ne kliči na navedene telefonske številke in ne vnašaj osebnih podatkov."
     },
     {
       "question": "Kaj storimo, če dobimo SMS sporočilo z neznano povezavo?",
       "options": [
-        "Sporočilo posredujemo prijateljem.",
         "Ne kliknemo povezave in preverimo, kdo jo je poslal.",
-        "Takoj kliknemo povezavo."
+        "Takoj kliknemo povezavo.",
+        "Sporočilo posredujemo prijateljem."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Prevaranti pogosto pošiljajo lažna SMS sporočila, ki vodijo na strani za krajo podatkov. Ne klikaj povezav, razen če si popolnoma prepričan, kdo jih je poslal."
     },
     {
       "question": "Kaj pomeni dvostopenjska prijava (2FA)?",
       "options": [
+        "Poleg gesla uporabimo še dodatno potrditev prijave.",
         "Dvakrat odpremo spletno stran.",
-        "Dvakrat vnesemo isto geslo.",
-        "Poleg gesla uporabimo še dodatno potrditev prijave."
+        "Dvakrat vnesemo isto geslo."
       ],
-      "correct": 2,
+      "correct": 0,
       "explanation": "Pri dvostopenjski prijavi poleg gesla uporabimo na primer kodo iz telefona ali potrditveno aplikacijo. To močno poveča varnost, saj tudi če nekdo izve geslo, brez dodatne kode ne more dostopati."
     },
     {
       "question": "Zakaj ni dobro objavljati preveč osebnih podatkov na internetu?",
       "options": [
+        "Ker se računalnik pokvari.",
         "Ker jih lahko kdo zlorabi.",
-        "Ker internet postane počasnejši.",
-        "Ker se računalnik pokvari."
+        "Ker internet postane počasnejši."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Podatki, kot so naslov, telefonska številka ali podatki o dopustu, lahko pomagajo nepridipravom. Bodite previdni, kaj objavljate na družbenih omrežjih."
     },
     {
       "question": "Kaj spada med osebne podatke?",
       "options": [
-        "Vrsta tipkovnice.",
         "Barva računalniške mize.",
+        "Vrsta tipkovnice.",
         "Ime, naslov, telefonska številka in osebni podatki."
       ],
       "correct": 2,
@@ -165,21 +165,21 @@
     {
       "question": "Ali je varno uporabljati isto geslo za elektronsko pošto in spletno banko?",
       "options": [
+        "Da, vedno.",
         "Ne, pomembni računi naj imajo različna gesla.",
-        "Samo če imamo nov računalnik.",
-        "Da, vedno."
+        "Samo če imamo nov računalnik."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "E-pošta je pogosto ključ do drugih računov, zato jo moramo posebej zaščititi. Če nekdo prevzame e-poštni račun, lahko prek njega dostopa tudi do drugih storitev."
     },
     {
       "question": "Kaj je varnostna kopija?",
       "options": [
-        "Vrsta računalniškega virusa.",
         "Dodatna kopija pomembnih podatkov za primer izgube.",
-        "Kopija zaslona."
+        "Kopija zaslona.",
+        "Vrsta računalniškega virusa."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Varnostne kopije zaščitijo fotografije, dokumente in druge pomembne datoteke. Če se računalnik pokvari ali ga ukradejo, lahko podatke obnovite iz varnostne kopije."
     },
     {
@@ -195,29 +195,29 @@
     {
       "question": "Kaj je javno Wi-Fi omrežje?",
       "options": [
-        "Program za zaščito računalnika.",
         "Zasebno domače omrežje.",
-        "Brezžično omrežje, dostopno več uporabnikom, na primer v lokalu ali hotelu."
+        "Brezžično omrežje, dostopno več uporabnikom, na primer v lokalu ali hotelu.",
+        "Program za zaščito računalnika."
       ],
-      "correct": 2,
+      "correct": 1,
       "explanation": "Javni Wi-Fi je priročen, vendar moramo biti previdni pri vnosu pomembnih podatkov. Ne uporabljajte spletne banke ali vnašajte gesel prek neznanih javnih omrežij."
     },
     {
       "question": "Ali je dobro opravljati spletno bančništvo prek neznanega javnega Wi-Fi omrežja?",
       "options": [
-        "Samo ponoči.",
         "Da, vedno.",
-        "Raje ne, uporabimo varno povezavo."
+        "Raje ne, uporabimo varno povezavo.",
+        "Samo ponoči."
       ],
-      "correct": 2,
+      "correct": 1,
       "explanation": "Pri javnih omrežjih obstaja večje tveganje za prestrezanje podatkov. Za spletno banko in druge občutljive storitve uporabite domače omrežje ali mobilne podatke."
     },
     {
       "question": "Kaj storimo, če nas po telefonu pokliče oseba, ki trdi, da je iz Microsofta, in želi dostop do računalnika?",
       "options": [
-        "Povemo ji svoje geslo.",
+        "Takoj ji omogočimo dostop.",
         "Klic prekinemo, ker gre pogosto za prevaro.",
-        "Takoj ji omogočimo dostop."
+        "Povemo ji svoje geslo."
       ],
       "correct": 1,
       "explanation": "Microsoft in podobna podjetja običajno ne kličejo uporabnikov in ne zahtevajo oddaljenega dostopa. To je pogosta prevara, znana kot 'tehnična podpora'."
@@ -225,31 +225,31 @@
     {
       "question": "Kako preverimo, ali je spletna trgovina zaupanja vredna?",
       "options": [
-        "Vnesemo podatke kartice takoj.",
+        "Preverimo podatke o trgovini, ocene in pogoje poslovanja.",
         "Kupimo čim dražji izdelek.",
-        "Preverimo podatke o trgovini, ocene in pogoje poslovanja."
+        "Vnesemo podatke kartice takoj."
       ],
-      "correct": 2,
+      "correct": 0,
       "explanation": "Pred nakupom preverimo, kdo je ponudnik in ali ima stran osnovne podatke o podjetju. Preberemo tudi mnenja drugih kupcev in pogoje poslovanja."
     },
     {
       "question": "Kaj storimo, če izgubimo telefon, na katerem imamo e-pošto in druge račune?",
       "options": [
-        "Telefon zaklenemo oziroma zaščitimo račune.",
         "Ničesar.",
+        "Telefon zaklenemo oziroma zaščitimo račune.",
         "Objavimo izgubo na spletu z vsemi podatki."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Telefon lahko vsebuje veliko osebnih podatkov, zato ga moramo zaščititi z geslom, PIN-om ali biometrijo. Ob izgubi takoj spremenimo gesla za pomembne račune."
     },
     {
       "question": "Katera navada najbolj pripomore k varni uporabi interneta?",
       "options": [
-        "Svoje geslo zaupamo družinskim članom in prijateljem.",
         "Razmišljamo pred klikom in varujemo svoje podatke.",
+        "Svoje geslo zaupamo družinskim članom in prijateljem.",
         "Kliknemo vsako povezavo, ki jo dobimo."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Najpomembnejša zaščita je previdnost uporabnika. Večina spletnih prevar uspe zato, ker uporabnik klikne na povezavo ali razkrije podatke brez razmisleka."
     }
   ]

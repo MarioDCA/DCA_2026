@@ -5,19 +5,19 @@
     {
       "question": "Kaj je operacijski sistem na pametnem telefonu?",
       "options": [
+        "Vrsta polnilnega kabla.",
         "Program, ki upravlja delovanje telefona in aplikacij.",
-        "Fotografija na zaslonu.",
-        "Vrsta polnilnega kabla."
+        "Fotografija na zaslonu."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Operacijski sistem je osnovna programska oprema telefona. Najpogostejša operacijska sistema za telefone sta Android in iOS (Apple). Upravljata vse funkcije in aplikacije na telefonu."
     },
     {
       "question": "Kaj je aplikacija (app)?",
       "options": [
         "Program, ki omogoča določeno opravilo na telefonu.",
-        "Vrsta SIM kartice.",
-        "Del telefonske baterije."
+        "Del telefonske baterije.",
+        "Vrsta SIM kartice."
       ],
       "correct": 0,
       "explanation": "Aplikacije (apps) so programi, ki jih namestite na telefon za različna opravila – fotografiranje, sporočanje, vreme, banko, zemljevide, igre in drugo. Namestite jih iz trgovine z aplikacijami."
@@ -26,8 +26,8 @@
       "question": "Kako običajno namestimo novo aplikacijo na telefon Android?",
       "options": [
         "Iz trgovine Google Play.",
-        "Iz koša.",
-        "Iz elektronske pošte."
+        "Iz elektronske pošte.",
+        "Iz koša."
       ],
       "correct": 0,
       "explanation": "Google Play je uradna trgovina za aplikacije Android in je varnejša izbira kot neznane spletne strani. Aplikacije tam so preverjene in redno posodobljene."
@@ -35,21 +35,21 @@
     {
       "question": "Zakaj je dobro redno posodabljati aplikacije?",
       "options": [
-        "Ker posodobitve odpravljajo napake in izboljšajo varnost.",
         "Ker izbrišejo vse fotografije.",
+        "Ker posodobitve odpravljajo napake in izboljšajo varnost.",
         "Ker telefon postane večji."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Posodobitve aplikacij pogosto vsebujejo varnostne popravke, izboljšave delovanja in nove funkcije. Redno posodabljanje zagotavlja boljše in varnejše delovanje telefona."
     },
     {
       "question": "Kaj najbolj vpliva na porabo baterije telefona?",
       "options": [
+        "Barva telefona.",
         "Svetlost zaslona, uporaba aplikacij in povezave (Wi-Fi, GPS, Bluetooth).",
-        "Ime telefona.",
-        "Barva telefona."
+        "Ime telefona."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Največ energije porabijo zaslon (zlasti pri visoki svetlosti), zahtevne aplikacije (igre, video) in stalne povezave (Wi-Fi, GPS, Bluetooth). Zmanjšanje svetlosti in izklop nepotrebnih povezav podaljša baterijo."
     },
     {
@@ -65,11 +65,11 @@
     {
       "question": "Ali je dobro pustiti vse aplikacije ves čas odprte?",
       "options": [
+        "Da, vedno.",
         "Ne, nepotrebne aplikacije lahko zapremo.",
-        "Telefon se bo pokvaril, če jih zapremo.",
-        "Da, vedno."
+        "Telefon se bo pokvaril, če jih zapremo."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Sodobni telefoni sicer dobro upravljajo aplikacije, vendar nepotrebno delujoče aplikacije v ozadju lahko porabljajo baterijo in pomnilnik. Zaprite jih, ko jih ne potrebujete več."
     },
     {
@@ -85,21 +85,21 @@
     {
       "question": "Kako sprostimo prostor na telefonu?",
       "options": [
-        "Izbrišemo nepotrebne fotografije, videe in aplikacije.",
         "Zamenjamo ozadje.",
+        "Izbrišemo nepotrebne fotografije, videe in aplikacije.",
         "Izklopimo zvonjenje."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Fotografije in videoposnetki pogosto zasedejo največ prostora. Redno brišite nepotrebne datoteke, premikajte fotografije v oblak in odstranjujte aplikacije, ki jih ne uporabljate."
     },
     {
       "question": "Kaj je Wi-Fi?",
       "options": [
+        "Vrsta baterije.",
         "Brezžična povezava z internetom.",
-        "Program za fotografije.",
-        "Vrsta baterije."
+        "Program za fotografije."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Wi-Fi je brezžična tehnologija, ki omogoča povezavo telefona z internetom prek usmerjevalnika (routerja). Je hitrejša in običajno cenejša od mobilnih podatkov."
     },
     {
@@ -116,8 +116,8 @@
       "question": "Kaj je Bluetooth?",
       "options": [
         "Brezžična povezava za naprave na kratki razdalji.",
-        "Program za čiščenje telefona.",
-        "Vrsta interneta."
+        "Vrsta interneta.",
+        "Program za čiščenje telefona."
       ],
       "correct": 0,
       "explanation": "Bluetooth je brezžična tehnologija za kratke razdalje (do 10 metrov). Uporabljamo jo za povezavo s slušalkami, zvočniki, avtomobilom ali za prenos datotek med napravami."
@@ -125,19 +125,19 @@
     {
       "question": "Kaj pomeni način Letalo (Airplane mode)?",
       "options": [
+        "Telefon se spremeni v računalnik.",
         "Izklopi brezžične povezave, kot so mobilno omrežje in običajno Wi-Fi/Bluetooth.",
-        "Izbriše aplikacije.",
-        "Telefon se spremeni v računalnik."
+        "Izbriše aplikacije."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Način Letalo izklopi vse brezžične povezave (mobilno omrežje, Wi-Fi, Bluetooth). Uporabljamo ga med letom ali kadar želimo začasno prekiniti vse povezave, na primer ponoči."
     },
     {
       "question": "Kaj je GPS?",
       "options": [
         "Sistem za določanje položaja telefona.",
-        "Vrsta baterije.",
-        "Program za pisanje."
+        "Program za pisanje.",
+        "Vrsta baterije."
       ],
       "correct": 0,
       "explanation": "GPS (Global Positioning System) je satelitski sistem za določanje natančnega položaja telefona. Uporabljajo ga zemljevidi, navigacijske aplikacije in nekatere druge storitve."
@@ -145,49 +145,49 @@
     {
       "question": "Zakaj aplikacije zahtevajo dovoljenja?",
       "options": [
-        "Ker potrebujejo dostop do določenih funkcij, kot so kamera, mikrofon ali lokacija.",
         "Ker želijo spremeniti telefonsko številko.",
+        "Ker potrebujejo dostop do določenih funkcij, kot so kamera, mikrofon ali lokacija.",
         "Da telefon postane lepši."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Aplikacije potrebujejo dovoljenja za dostop do določenih funkcij telefona. Preden dovoljenje potrdite, razmislite, ali ga aplikacija res potrebuje – na primer aplikacija za zemljevide potrebuje lokacijo, igra pa ne."
     },
     {
       "question": "Kako zaščitimo telefon pred nepooblaščeno uporabo?",
       "options": [
+        "Pustimo zaslon vedno odklenjen.",
         "Uporabimo PIN, geslo, vzorec ali prstni odtis.",
-        "Odstranimo vse aplikacije.",
-        "Pustimo zaslon vedno odklenjen."
+        "Odstranimo vse aplikacije."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Zaklep zaslona (PIN, geslo, vzorec, prstni odtis) je osnovna zaščita telefona. Ščiti vaše osebne podatke, fotografije, sporočila in dostop do računov."
     },
     {
       "question": "Zakaj ni dobro uporabljati istega gesla povsod?",
       "options": [
+        "Ker telefon počasneje dela.",
         "Ker lahko ob razkritju enega gesla napadalec dostopa do več računov.",
-        "Ker se baterija hitreje prazni.",
-        "Ker telefon počasneje dela."
+        "Ker se baterija hitreje prazni."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Za pomembne račune (e-pošta, banka, družbena omrežja) uporabljajte različna in dovolj močna gesla. Če nekdo izve eno geslo, ne more dostopati do vseh vaših računov."
     },
     {
       "question": "Kaj naredimo, če izgubimo telefon?",
       "options": [
+        "Nič.",
         "Poskusimo ga poiskati, zaklenemo napravo in po potrebi obvestimo operaterja.",
-        "Objavimo geslo na internetu.",
-        "Nič."
+        "Objavimo geslo na internetu."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Sodobni telefoni omogočajo oddaljeno iskanje in zaklep naprave (Google 'Poišči mojo napravo', Samsung 'Find My Mobile'). Takoj spremenite gesla za pomembne račune."
     },
     {
       "question": "Zakaj je varnostna kopija telefona pomembna?",
       "options": [
         "Ker omogoča obnovitev podatkov ob izgubi ali okvari telefona.",
-        "Ker izboljša signal.",
-        "Ker poveča velikost zaslona."
+        "Ker poveča velikost zaslona.",
+        "Ker izboljša signal."
       ],
       "correct": 0,
       "explanation": "Varnostna kopija shrani stike, fotografije, sporočila in nastavitve. Ob zamenjavi ali izgubi telefona lahko podatke enostavno obnovite na novi napravi."
@@ -196,8 +196,8 @@
       "question": "Kaj je ponovni zagon telefona?",
       "options": [
         "Izklop in ponovni vklop telefona.",
-        "Menjava SIM kartice.",
-        "Izbris vseh podatkov."
+        "Izbris vseh podatkov.",
+        "Menjava SIM kartice."
       ],
       "correct": 0,
       "explanation": "Ponovni zagon (restart) izklopi in ponovno vklopi telefon. To pogosto odpravi manjše težave z delovanjem, saj se vsi procesi ponovno zaženejo."
@@ -205,51 +205,51 @@
     {
       "question": "Kaj storimo, če telefon deluje počasi?",
       "options": [
+        "Takoj kupimo novega.",
         "Preverimo prostor, posodobitve in nepotrebne aplikacije.",
-        "Odstranimo kartico SIM.",
-        "Takoj kupimo novega."
+        "Odstranimo kartico SIM."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Počasno delovanje je pogosto posledica pomanjkanja prostora, zastarelih aplikacij ali preveč odprtih programov. Sprostite prostor, posodobite aplikacije in zaprite nepotrebne programe."
     },
     {
       "question": "Zakaj je pomembno zaščititi telefon pred virusi in prevarami?",
       "options": [
+        "Ker telefon drugače spremeni barvo.",
         "Ker telefon vsebuje osebne podatke, fotografije in dostop do računov.",
-        "Ker baterija ne deluje.",
-        "Ker telefon drugače spremeni barvo."
+        "Ker baterija ne deluje."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Telefon je danes osebni računalnik v žepu – vsebuje osebne podatke, fotografije, sporočila in dostop do bančnih ter drugih računov. Zato potrebuje ustrezno zaščito."
     },
     {
       "question": "Kaj storimo pred prodajo starega telefona?",
       "options": [
+        "Pustimo svoje račune prijavljene.",
         "Naredimo varnostno kopijo in izbrišemo osebne podatke.",
-        "Izklopimo samo zvok.",
-        "Pustimo svoje račune prijavljene."
+        "Izklopimo samo zvok."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Pred prodajo ali podaritvijo telefona najprej naredite varnostno kopijo pomembnih podatkov, nato pa telefon ponastavite na tovarniške nastavitve. Tako preprečite, da bi novi uporabnik dostopal do vaših podatkov."
     },
     {
       "question": "Zakaj je koristno poznati nastavitve telefona?",
       "options": [
+        "Ker telefon postane dražji.",
         "Ker lahko prilagodimo telefon svojim potrebam in rešimo pogoste težave.",
-        "Ker ne potrebujemo več interneta.",
-        "Ker telefon postane dražji."
+        "Ker ne potrebujemo več interneta."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Poznavanje nastavitev telefona omogoča bolj samostojno uporabo – lahko prilagodite zaslon, zvok, povezave, varnost in odpravite pogoste težave brez pomoči drugih."
     },
     {
       "question": "Katera navada je najboljša pri uporabi pametnega telefona?",
       "options": [
+        "Nameščamo vse aplikacije, ki jih najdemo.",
         "Telefon redno posodabljamo, varujemo dostop in uporabljamo zaupanja vredne aplikacije.",
-        "Vedno izklopimo vse varnostne funkcije.",
-        "Nameščamo vse aplikacije, ki jih najdemo."
+        "Vedno izklopimo vse varnostne funkcije."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Varna in premišljena uporaba prepreči večino težav s pametnim telefonom. Redno posodabljajte telefon in aplikacije, uporabljajte zaklep zaslona in nameščajte aplikacije le iz zaupanja vrednih virov."
     }
   ]

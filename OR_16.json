@@ -5,8 +5,8 @@
     {
       "question": "Kam se običajno shranijo fotografije, posnete s telefonom Android?",
       "options": [
-        "V telefonski imenik.",
         "V aplikacijo Kalkulator.",
+        "V telefonski imenik.",
         "V aplikacijo Galerija ali Google Fotografije."
       ],
       "correct": 2,
@@ -16,18 +16,18 @@
       "question": "Kaj je aplikacija Google Fotografije?",
       "options": [
         "Program za tiskanje.",
-        "Aplikacija za ogled, urejanje in shranjevanje fotografij.",
-        "Program za telefoniranje."
+        "Program za telefoniranje.",
+        "Aplikacija za ogled, urejanje in shranjevanje fotografij."
       ],
-      "correct": 1,
+      "correct": 2,
       "explanation": "Google Fotografije je brezplačna aplikacija in storitev v oblaku za shranjevanje, urejanje in ogled fotografij. Omogoča tudi samodejno varnostno kopiranje in iskanje po vsebini fotografij."
     },
     {
       "question": "Kaj pomeni varnostna kopija fotografij?",
       "options": [
         "Shranjevanje dodatne kopije fotografij, da jih ne izgubimo.",
-        "Izbris fotografij.",
-        "Sprememba barve fotografije."
+        "Sprememba barve fotografije.",
+        "Izbris fotografij."
       ],
       "correct": 0,
       "explanation": "Varnostna kopija (backup) je dodatna kopija fotografij, shranjena na drugem mestu (npr. v oblaku ali na računalniku). Če telefon izgubimo ali se pokvari, lahko fotografije obnovimo iz varnostne kopije."
@@ -35,19 +35,19 @@
     {
       "question": "Zakaj je koristno shranjevati fotografije v oblak?",
       "options": [
+        "Ker lahko do fotografij dostopamo tudi iz druge naprave.",
         "Ker fotografije postanejo papirnate.",
-        "Ker telefon postane težji.",
-        "Ker lahko do fotografij dostopamo tudi iz druge naprave."
+        "Ker telefon postane težji."
       ],
-      "correct": 2,
+      "correct": 0,
       "explanation": "Fotografije v oblaku lahko pogledate na telefonu, računalniku ali tablici, kjerkoli imate internetno povezavo. To omogoča enostaven dostop do slik tudi, če zamenjate napravo."
     },
     {
       "question": "Kako prenesemo fotografije iz telefona na računalnik?",
       "options": [
         "S kablom USB, prek oblaka ali brezžično.",
-        "S pritiskom tipke Delete.",
-        "Z izklopom telefona."
+        "Z izklopom telefona.",
+        "S pritiskom tipke Delete."
       ],
       "correct": 0,
       "explanation": "Fotografije prenesete na več načinov: s podatkovnim kablom USB (povežete telefon z računalnikom), prek storitev v oblaku (Google Fotografije, OneDrive) ali brezžično (Bluetooth, Wi-Fi Direct)."
@@ -55,41 +55,41 @@
     {
       "question": "Kaj se pogosto zgodi, če imamo na telefonu preveč fotografij?",
       "options": [
-        "Internet postane hitrejši.",
         "Pomnilnik se zapolni in telefon lahko deluje počasneje.",
-        "Telefon dobi več prostora."
+        "Telefon dobi več prostora.",
+        "Internet postane hitrejši."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Fotografije in videoposnetki so velike datoteke, ki lahko hitro zapolnijo prostor v telefonu. Ko je pomnilnik poln, telefon deluje počasneje in ne more nameščati novih aplikacij ali posodobitev."
     },
     {
       "question": "Kako sprostimo prostor, ki ga zasedajo fotografije?",
       "options": [
-        "Zamenjamo ozadje telefona.",
         "Izbrišemo nepotrebne fotografije ali jih shranimo drugam.",
+        "Zamenjamo ozadje telefona.",
         "Izklopimo Wi-Fi."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Najboljši način za sprostitev prostora je brisanje nepotrebnih fotografij in videoposnetkov ali njihovo premikanje v oblak ali na računalnik. Pred brisanjem vedno preverite, ali imate kopijo."
     },
     {
       "question": "Kaj je album fotografij?",
       "options": [
-        "Vrsta pomnilniške kartice.",
         "Zbirka fotografij, urejenih po določeni temi.",
-        "Program za zaščito telefona."
+        "Program za zaščito telefona.",
+        "Vrsta pomnilniške kartice."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Album je zbirka fotografij, urejenih po določeni temi – na primer za dopust, družino, rojstne dneve ali druge dogodke. Albumi olajšajo iskanje in pregledovanje fotografij."
     },
     {
       "question": "Zakaj je koristno poimenovati albume fotografij?",
       "options": [
-        "Ker fotografije postanejo večje.",
         "Ker lažje najdemo določene fotografije.",
-        "Telefon dela hitreje."
+        "Telefon dela hitreje.",
+        "Ker fotografije postanejo večje."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Dobro poimenovani albumi (npr. 'Počitnice 2026', 'Družina', 'Rojstni dan') omogočajo hitrejše iskanje spominov. Namesto da pregledujete vse fotografije, greste neposredno v ustrezen album."
     },
     {
@@ -105,39 +105,39 @@
     {
       "question": "Kaj pomeni urejanje fotografije?",
       "options": [
-        "Premik fotografije v Koš.",
         "Spreminjanje videza fotografije, na primer obrezovanje ali prilagoditev svetlosti.",
-        "Izbris fotografije."
+        "Izbris fotografije.",
+        "Premik fotografije v Koš."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Urejanje fotografije pomeni spreminjanje njenega videza – lahko jo obrežete, zavrtite, prilagodite svetlost, kontrast ali dodate filtre. Osnovna orodja za urejanje so običajno že vgrajena v telefon."
     },
     {
       "question": "Kaj pomeni obrezovanje fotografije?",
       "options": [
-        "Izbris vseh fotografij.",
         "Odstranitev nepotrebnih delov slike.",
-        "Povečanje glasnosti telefona."
+        "Povečanje glasnosti telefona.",
+        "Izbris vseh fotografij."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Obrezovanje (cropping) pomeni, da iz fotografije odstranite nepotrebne dele – na primer moteče robove ali neželene predmete. Tako poudarite pomemben del fotografije in izboljšate kompozicijo."
     },
     {
       "question": "Zakaj je koristno fotografije razvrstiti po datumih ali dogodkih?",
       "options": [
-        "Ker internet deluje hitreje.",
         "Ker jih lažje najdemo in pregledamo.",
-        "Ker telefon porabi manj baterije."
+        "Ker telefon porabi manj baterije.",
+        "Ker internet deluje hitreje."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Razvrščanje fotografij po datumih ali dogodkih omogoča hitro iskanje določenega dogodka. Namesto da pregledujete na tisoče fotografij, greste neposredno v ustrezen časovni okvir."
     },
     {
       "question": "Kaj naredimo, če pomotoma izbrišemo fotografijo?",
       "options": [
         "Preverimo mapo Koš ali Nedavno izbrisano.",
-        "Izklopimo internet.",
-        "Kupimo nov telefon."
+        "Kupimo nov telefon.",
+        "Izklopimo internet."
       ],
       "correct": 0,
       "explanation": "Večina telefonov ima mapo Koš ali Nedavno izbrisano, kamor se izbrisane fotografije premaknejo za določen čas (običajno 30 dni). V tem času jih lahko še obnovite."
@@ -145,19 +145,19 @@
     {
       "question": "Kaj je format fotografije JPG?",
       "options": [
-        "Program za internet.",
         "Ena najpogostejših oblik zapisa digitalnih fotografij.",
-        "Vrsta gesla."
+        "Vrsta gesla.",
+        "Program za internet."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "JPG (ali JPEG) je najpogostejša oblika zapisa digitalnih fotografij. Večina fotografij s telefonov in fotoaparatov je shranjena v tem formatu, ki združuje dobro kakovost in majhno velikost datoteke."
     },
     {
       "question": "Zakaj fotografije z visoko kakovostjo zasedejo več prostora?",
       "options": [
         "Ker vsebujejo več podatkov in podrobnosti.",
-        "Ker potrebujejo internet.",
-        "Ker imajo več barv na zaslonu."
+        "Ker imajo več barv na zaslonu.",
+        "Ker potrebujejo internet."
       ],
       "correct": 0,
       "explanation": "Boljša kakovost fotografije pomeni več podrobnosti in s tem večjo datoteko. Fotografije z visoko ločljivostjo (več megapikslov) zasedejo več prostora kot fotografije z nižjo ločljivostjo."
@@ -165,11 +165,11 @@
     {
       "question": "Kaj je posnetek zaslona (screenshot)?",
       "options": [
-        "Izbris zaslona.",
         "Slika tega, kar trenutno vidimo na zaslonu telefona ali računalnika.",
+        "Izbris zaslona.",
         "Fotografija s fotoaparatom."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Posnetek zaslona (screenshot) je slika trenutnega prikaza na zaslonu. Uporabljamo ga za shranjevanje informacij, deljenje vsebine ali pomoč pri težavah."
     },
     {
@@ -185,11 +185,11 @@
     {
       "question": "Zakaj ni dobro objaviti vseh fotografij javno na internetu?",
       "options": [
-        "Ker telefon ne deluje.",
         "Ker lahko razkrijejo zasebne podatke ali lokacijo.",
-        "Ker fotografije izgubijo barvo."
+        "Ker fotografije izgubijo barvo.",
+        "Ker telefon ne deluje."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Ko fotografijo objavite na spletu, lahko izgubite nadzor nad tem, kdo jo vidi ali shrani. Fotografije lahko razkrijejo vašo lokacijo, družinske člane ali druge zasebne podatke. Zato vedno premislite, preden objavite."
     },
     {
@@ -205,11 +205,11 @@
     {
       "question": "Zakaj je pomembno imeti kopijo pomembnih fotografij?",
       "options": [
-        "Ker telefon potrebuje več aplikacij.",
         "Ker lahko izgubimo telefon ali se naprava pokvari.",
-        "Zaradi lepšega telefona."
+        "Zaradi lepšega telefona.",
+        "Ker telefon potrebuje več aplikacij."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Fotografije so pogosto neponovljivi spomini (poroke, rojstva, potovanja). Zato jih je pomembno zaščititi z varnostno kopijo – če izgubite telefon ali se pokvari, bodo fotografije še vedno shranjene drugje."
     },
     {
@@ -226,8 +226,8 @@
       "question": "Kaj storimo pred brisanjem večjega števila fotografij?",
       "options": [
         "Preverimo, ali imamo pomembne fotografije shranjene drugje.",
-        "Izbrišemo tudi aplikacije.",
-        "Izključimo telefon."
+        "Izključimo telefon.",
+        "Izbrišemo tudi aplikacije."
       ],
       "correct": 0,
       "explanation": "Pred brisanjem večjega števila fotografij vedno preverite, ali imate pomembne fotografije shranjene drugje (v oblaku, na računalniku). Nepremišljeno brisanje lahko povzroči izgubo dragocenih spominov."
@@ -235,21 +235,21 @@
     {
       "question": "Zakaj je koristno poznati delo s fotografijami?",
       "options": [
-        "Ker ne potrebujemo več računalnika.",
         "Ker lahko samostojno urejamo, shranjujemo in delimo svoje slike.",
+        "Ker ne potrebujemo več računalnika.",
         "Ker telefon postane hitrejši."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Fotografije so ena najpogosteje uporabljenih funkcij pametnega telefona. Znati jih urejati, shranjevati in deliti vam omogoča, da ohranite in delite svoje spomine na najboljši način."
     },
     {
       "question": "Katera navada je najboljša pri fotografijah?",
       "options": [
-        "Vse fotografije takoj izbrišemo.",
         "Pomembne fotografije uredimo in varnostno kopiramo.",
+        "Vse fotografije takoj izbrišemo.",
         "Vse fotografije pustimo brez urejanja."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Urejena in varno shranjena zbirka fotografij vam omogoča, da jih ohranite za prihodnost. Redno urejajte fotografije v albume in jih varnostno kopirajte v oblak ali na računalnik."
     }
   ]

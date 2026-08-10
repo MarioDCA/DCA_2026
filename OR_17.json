@@ -5,29 +5,29 @@
     {
       "question": "Kaj je internet?",
       "options": [
-        "Globalno omrežje, ki povezuje računalnike in druge naprave.",
         "Vrsta računalniškega virusa.",
+        "Globalno omrežje, ki povezuje računalnike in druge naprave.",
         "Program za pisanje besedil."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Internet je globalno omrežje, ki povezuje milijone računalnikov, telefonov in drugih naprav po vsem svetu. Omogoča dostop do spletnih strani, elektronske pošte, videov in številnih storitev."
     },
     {
       "question": "Kaj je spletni brskalnik?",
       "options": [
         "Program za čiščenje zaslona.",
-        "Program za tiskanje.",
-        "Program, s katerim odpiramo spletne strani."
+        "Program, s katerim odpiramo spletne strani.",
+        "Program za tiskanje."
       ],
-      "correct": 2,
+      "correct": 1,
       "explanation": "Spletni brskalnik je program, ki omogoča ogled spletnih strani. Primeri brskalnikov so Google Chrome, Microsoft Edge, Mozilla Firefox in Safari. Brskalnik prikaže vsebino spletne strani na vašem zaslonu."
     },
     {
       "question": "Kaj je spletni naslov (URL)?",
       "options": [
         "Naslov, po katerem najdemo določeno spletno stran.",
-        "Telefonska številka.",
-        "Geslo za računalnik."
+        "Geslo za računalnik.",
+        "Telefonska številka."
       ],
       "correct": 0,
       "explanation": "Spletni naslov (URL) je edinstven naslov spletne strani, na primer https://www.google.si. Vpišete ga v naslovno vrstico brskalnika, da odprete želeno stran."
@@ -35,8 +35,8 @@
     {
       "question": "Kje v brskalnik vpišemo besede za iskanje?",
       "options": [
-        "V kalkulator.",
         "V Koš.",
+        "V kalkulator.",
         "V naslovno oziroma iskalno vrstico."
       ],
       "correct": 2,
@@ -45,11 +45,11 @@
     {
       "question": "Za kaj uporabljamo Google?",
       "options": [
-        "Samo za pošiljanje elektronske pošte.",
         "Za iskanje informacij, slik, zemljevidov in videoposnetkov.",
+        "Samo za pošiljanje elektronske pošte.",
         "Samo za urejanje fotografij."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Google je najbolj znan spletni iskalnik, ki omogoča iskanje spletnih strani, slik, zemljevidov, videoposnetkov, novic in številnih drugih informacij."
     },
     {
@@ -65,19 +65,19 @@
     {
       "question": "Kateri način iskanja je običajno bolj učinkovit?",
       "options": [
+        "Napišemo samo 'nekaj'.",
         "Uporabimo več natančnih besed, ki opisujejo iskanje.",
-        "Vedno kliknemo prvi rezultat.",
-        "Napišemo samo 'nekaj'."
+        "Vedno kliknemo prvi rezultat."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Namesto 'recept' je bolje napisati 'recept za jabolčni zavitek' – s tem zožite iskanje in dobite natančnejše rezultate. Več natančnih besed vam pomaga najti točno tisto, kar iščete."
     },
     {
       "question": "Kaj je rezultat iskanja?",
       "options": [
-        "Vrsta datoteke.",
+        "Program, ki se namesti na računalnik.",
         "Seznam spletnih strani, ki ustrezajo iskanju.",
-        "Program, ki se namesti na računalnik."
+        "Vrsta datoteke."
       ],
       "correct": 1,
       "explanation": "Rezultat iskanja je seznam spletnih strani, ki jih je iskalnik našel na podlagi vaših ključnih besed. Strani so razvrščene po pomembnosti in ustreznosti."
@@ -85,9 +85,9 @@
     {
       "question": "Kaj so oglasi v Googlovem iskanju?",
       "options": [
-        "Virusi.",
+        "Vedno najboljši odgovor.",
         "Plačane povezave, ki so prikazane poleg rezultatov iskanja.",
-        "Vedno najboljši odgovor."
+        "Virusi."
       ],
       "correct": 1,
       "explanation": "Oglasi (označeni s 'Sponzorirano' ali 'Oglas') so plačane povezave, ki se prikažejo poleg ali nad organskimi rezultati. Oglasi so lahko koristni, vendar niso nujno najboljši ali najbolj zanesljiv rezultat."
@@ -95,21 +95,21 @@
     {
       "question": "Zakaj ni dobro vedno klikniti prvega rezultata iskanja?",
       "options": [
-        "Ker internet preneha delovati.",
         "Ker je lahko prvi rezultat oglas ali manj zanesljiva stran.",
-        "Ker računalnik ugasne."
+        "Ker računalnik ugasne.",
+        "Ker internet preneha delovati."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Prvi rezultat je lahko plačan oglas ali stran, ki ni nujno najbolj zanesljiva. Vedno preverite več virov, še posebej pri pomembnih informacijah (zdravje, finance, novice)."
     },
     {
       "question": "Kaj je zaznamek (bookmark) v brskalniku?",
       "options": [
+        "Vrsta virusa.",
         "Geslo za internet.",
-        "Shranjena povezava do priljubljene spletne strani.",
-        "Vrsta virusa."
+        "Shranjena povezava do priljubljene spletne strani."
       ],
-      "correct": 1,
+      "correct": 2,
       "explanation": "Zaznamek je shranjena povezava do spletne strani, ki jo pogosto obiskujete. Namesto da vsakič znova vnašate naslov, jo odprete s klikom na zaznamek v brskalniku."
     },
     {
@@ -125,21 +125,21 @@
     {
       "question": "Kaj je lažna novica (fake news)?",
       "options": [
+        "Novica, napisana z velikimi črkami.",
         "Neresnična ali zavajajoča informacija, predstavljena kot novica.",
-        "Novica iz časopisa.",
-        "Novica, napisana z velikimi črkami."
+        "Novica iz časopisa."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Lažna novica je neresnična ali zavajajoča informacija, ki je predstavljena kot resnična novica. Na internetu lahko vsak objavi informacijo, zato je pomembno preverjanje virov."
     },
     {
       "question": "Kako preverimo, ali je spletna informacija zanesljiva?",
       "options": [
+        "Verjamemo vsaki objavi.",
         "Preverimo vir, avtorja in primerjamo informacije z drugimi stranmi.",
-        "Pogledamo samo sliko.",
-        "Verjamemo vsaki objavi."
+        "Pogledamo samo sliko."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Zanesljivost informacije preverite tako, da pogledate vir (kdo je objavil), avtorja in ali se informacija ujema z drugimi zanesljivimi viri. Več virov daje večjo verjetnost, da je informacija pravilna."
     },
     {
@@ -155,29 +155,29 @@
     {
       "question": "Kaj je povezava (link) na spletni strani?",
       "options": [
-        "Vrsta dokumenta.",
         "Klikljiv element, ki nas odpre na drugo stran ali vsebino.",
+        "Vrsta dokumenta.",
         "Gumb za izklop računalnika."
       ],
-      "correct": 1,
+      "correct": 0,
       "explanation": "Povezava (link) je klikljiv element na spletni strani – pogosto je podčrtan ali drugače obarvan. S klikom nanjo se premaknete na drugo spletno stran, dokument ali drug del iste strani."
     },
     {
       "question": "Zakaj moramo biti previdni pri klikanju povezav v e-pošti?",
       "options": [
+        "Ker se lahko spremeni tipkovnica.",
         "Ker internet postane hitrejši.",
-        "Ker lahko povezava vodi na lažno ali nevarno spletno stran.",
-        "Ker se lahko spremeni tipkovnica."
+        "Ker lahko povezava vodi na lažno ali nevarno spletno stran."
       ],
-      "correct": 1,
+      "correct": 2,
       "explanation": "Prevaranti pogosto uporabljajo lažne povezave v e-pošti za krajo gesel ali bančnih podatkov. Vedno preverite pošiljatelja in povezavo, preden kliknete."
     },
     {
       "question": "Kaj pomeni 'https' na začetku spletnega naslova?",
       "options": [
         "Da je povezava med uporabnikom in stranjo šifrirana.",
-        "Da je stran plačljiva.",
-        "Da je stran vedno brez napak."
+        "Da je stran vedno brez napak.",
+        "Da je stran plačljiva."
       ],
       "correct": 0,
       "explanation": "HTTPS (z zeleno ključavnico v naslovni vrstici) pomeni, da so podatki med vašim brskalnikom in spletno stranjo šifrirani. To poveča varnost povezave, vendar še ne pomeni, da je stran nujno zaupanja vredna."
@@ -185,19 +185,19 @@
     {
       "question": "Kaj je zgodovina brskalnika?",
       "options": [
+        "Seznam nameščenih programov.",
         "Seznam spletnih strani, ki smo jih obiskali.",
-        "Seznam gesel.",
-        "Seznam nameščenih programov."
+        "Seznam gesel."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Zgodovina brskalnika je seznam spletnih strani, ki ste jih obiskali v preteklih dneh ali tednih. Brskalnik si jih zapomni, da jih lahko kasneje hitro najdete."
     },
     {
       "question": "Zakaj lahko izbrišemo zgodovino brskalnika?",
       "options": [
         "Zaradi zasebnosti in urejenosti brskalnika.",
-        "Da dobimo več prostora za fotografije.",
-        "Da internet deluje dvakrat hitreje."
+        "Da internet deluje dvakrat hitreje.",
+        "Da dobimo več prostora za fotografije."
       ],
       "correct": 0,
       "explanation": "Brisanje zgodovine odstrani zapis o obiskanih straneh na vaši napravi. To poveča zasebnost in ohranja brskalnik urejen, vendar ne vpliva na hitrost interneta."
@@ -205,51 +205,51 @@
     {
       "question": "Kaj je prenos datoteke iz interneta?",
       "options": [
+        "Izbris spletne strani.",
         "Kopiranje datoteke iz interneta na naš računalnik ali telefon.",
-        "Izklop Wi-Fi.",
-        "Izbris spletne strani."
+        "Izklop Wi-Fi."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Prenos (download) pomeni, da kopirate datoteko z interneta na svoj računalnik ali telefon. Prenesete lahko dokumente, slike, programe in druge datoteke."
     },
     {
       "question": "Zakaj ne prenašamo programov iz neznanih spletnih strani?",
       "options": [
+        "Ker imajo lahko napačno barvo.",
         "Ker lahko vsebujejo škodljivo programsko opremo.",
-        "Ker zavzamejo manj prostora.",
-        "Ker imajo lahko napačno barvo."
+        "Ker zavzamejo manj prostora."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Programe nameščajte predvsem iz uradnih in zaupanja vrednih virov (uradne spletne strani, Microsoft Store, Google Play). Neznane strani lahko vsebujejo viruse ali škodljivo programsko opremo."
     },
     {
       "question": "Kaj storimo, če spletna stran zahteva nenavadne podatke?",
       "options": [
+        "Vnesemo vse podatke.",
         "Preverimo stran in ne posredujemo nepotrebnih podatkov.",
-        "Pošljemo svoje geslo.",
-        "Vnesemo vse podatke."
+        "Pošljemo svoje geslo."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Če spletna stran zahteva podatke, ki jih za svoje delovanje ne potrebuje (npr. gesla, številke dokumentov), bodite previdni. Osebnih podatkov ne vpisujte na sumljive spletne strani."
     },
     {
       "question": "Zakaj je koristno primerjati informacije iz več virov?",
       "options": [
+        "Ker internet postane hitrejši.",
         "Ker lahko odkrijemo napake ali zavajajoče informacije.",
-        "Ker računalnik dobi več pomnilnika.",
-        "Ker internet postane hitrejši."
+        "Ker računalnik dobi več pomnilnika."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Primerjava informacij iz več zanesljivih virov vam pomaga ločiti dejstva od napačnih ali zavajajočih informacij. To je še posebej pomembno pri pomembnih temah (zdravje, novice, zgodovina)."
     },
     {
       "question": "Katera navada je najboljša pri uporabi interneta?",
       "options": [
+        "Kliknemo vsako povezavo.",
         "Razmišljamo pred klikom, preverjamo vire in varujemo osebne podatke.",
-        "Uporabljamo isto geslo povsod.",
-        "Kliknemo vsako povezavo."
+        "Uporabljamo isto geslo povsod."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Pametna in previdna uporaba interneta je najboljša zaščita pred prevarami. Vedno razmislite, preden kliknete povezavo, preverite vire in varujte svoje osebne podatke."
     }
   ]

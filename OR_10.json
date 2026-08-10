@@ -5,49 +5,49 @@
     {
       "question": "Kaj je spletno bančništvo?",
       "options": [
-        "Uporaba bančnih storitev prek računalnika ali telefona.",
         "Program za igranje iger.",
-        "Vrsta kreditne kartice."
+        "Vrsta kreditne kartice.",
+        "Uporaba bančnih storitev prek računalnika ali telefona."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Spletno bančništvo omogoča pregled stanja na računu, plačevanje računov, nakazila in druge bančne storitve brez obiska poslovalnice. Vse opravite prek spletne strani ali mobilne aplikacije banke."
     },
     {
       "question": "Kaj potrebujemo za uporabo spletne banke?",
       "options": [
+        "Samo telefonsko številko.",
         "Poseben tiskalnik.",
-        "Bančni račun, dostopne podatke in ustrezno varnostno preverjanje.",
-        "Samo telefonsko številko."
+        "Bančni račun, dostopne podatke in ustrezno varnostno preverjanje."
       ],
-      "correct": 1,
+      "correct": 2,
       "explanation": "Za spletno banko potrebujete bančni račun, uporabniško ime in geslo, ki vam ga dodeli banka, ter način za dodatno preverjanje identitete (SMS koda, potrditvena aplikacija ali čitalnik kartic)."
     },
     {
       "question": "Ali smemo komu povedati geslo za spletno banko?",
       "options": [
-        "Ne, gesla in varnostnih kod nikoli ne delimo z drugimi.",
         "Da, če oseba trdi, da je iz banke.",
+        "Ne, gesla in varnostnih kod nikoli ne delimo z drugimi.",
         "Da, če je sorodnik."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Banka od svojih strank nikoli ne zahteva, da povedo geslo, PIN ali potrditvene kode. Če kdo zahteva vaše geslo, gre skoraj zagotovo za poskus prevare – takoj prekinite stik."
     },
     {
       "question": "Kaj je mobilna banka?",
       "options": [
+        "Bančna aplikacija na pametnem telefonu.",
         "Vrsta telefonskega klica.",
-        "Telefon z večjo baterijo.",
-        "Bančna aplikacija na pametnem telefonu."
+        "Telefon z večjo baterijo."
       ],
-      "correct": 2,
+      "correct": 0,
       "explanation": "Mobilna banka je aplikacija, ki jo namestite na telefon in omogoča opravljanje bančnih storitev od koder koli. Pogosto je še bolj priročna kot spletna banka na računalniku."
     },
     {
       "question": "Kaj je phishing pri spletni banki?",
       "options": [
-        "Vrsta bančne kartice.",
+        "Hitrejše plačilo računa.",
         "Prevara, pri kateri želijo pridobiti naše bančne podatke.",
-        "Hitrejše plačilo računa."
+        "Vrsta bančne kartice."
       ],
       "correct": 1,
       "explanation": "Phishing je prevara, pri kateri se napadalci pretvarjajo, da so banka, in pošiljajo lažna sporočila (e-pošta, SMS) z namenom, da bi pridobili vaše bančne podatke ali gesla. Nikoli ne klikajte povezav v takih sporočilih."
@@ -56,8 +56,8 @@
       "question": "Dobite e-pošto: 'Vaša banka je zaznala težavo. Kliknite povezavo in potrdite podatke.' Kaj naredite?",
       "options": [
         "Ne kliknete povezave in preverite pri banki po uradni poti.",
-        "Vpišete svoje geslo.",
-        "Takoj kliknete povezavo."
+        "Takoj kliknete povezavo.",
+        "Vpišete svoje geslo."
       ],
       "correct": 0,
       "explanation": "Banka praviloma ne zahteva vnosa občutljivih podatkov prek povezav v e-pošti. Če prejmete takšno sporočilo, ne klikajte povezav in se obrnite neposredno na banko prek uradne telefonske številke ali spletne strani."
@@ -66,8 +66,8 @@
       "question": "Kaj je PIN?",
       "options": [
         "Osebna številčna koda za potrjevanje ali uporabo kartice.",
-        "Telefonska številka banke.",
-        "Ime uporabnika."
+        "Ime uporabnika.",
+        "Telefonska številka banke."
       ],
       "correct": 0,
       "explanation": "PIN (Personal Identification Number) je osebna številčna koda, s katero potrjujete transakcije ali uporabljate bančno kartico. PIN hranimo zase in ga nikoli ne zapisujemo na kartico ali delimo z drugimi."
@@ -76,8 +76,8 @@
       "question": "Kaj naredimo, če izgubimo bančno kartico?",
       "options": [
         "Takoj obvestimo banko in kartico blokiramo.",
-        "Objavimo izgubo na internetu.",
-        "Počakamo nekaj tednov."
+        "Počakamo nekaj tednov.",
+        "Objavimo izgubo na internetu."
       ],
       "correct": 0,
       "explanation": "Ob izgubi ali kraji kartice takoj pokličemo banko in jo blokiramo. S tem preprečimo, da bi nekdo zlorabil kartico. Večina bank ima 24-urno telefonsko številko za prijavo izgubljenih kartic."
@@ -86,8 +86,8 @@
       "question": "Kaj preverimo pred nakupom v spletni trgovini?",
       "options": [
         "Podatke o trgovcu, ocene, pogoje nakupa in način plačila.",
-        "Samo velikost slike izdelka.",
-        "Samo barvo spletne strani."
+        "Samo barvo spletne strani.",
+        "Samo velikost slike izdelka."
       ],
       "correct": 0,
       "explanation": "Pred nakupom preverimo, ali ima trgovina jasne podatke o podjetju (naslov, telefon, email), preberemo pogoje poslovanja, pogoje vračila in mnenja drugih kupcev. Neznane trgovine lahko skrivajo prevare."
@@ -95,21 +95,21 @@
     {
       "question": "Kaj pomeni varna spletna povezava HTTPS?",
       "options": [
+        "Stran je zagotovo brez napak.",
         "Podatki med uporabnikom in stranjo so šifrirani.",
-        "Stran je vedno brezplačna.",
-        "Stran je zagotovo brez napak."
+        "Stran je vedno brezplačna."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "HTTPS (z zeleno ključavnico v naslovni vrstici) pomeni, da so podatki med vašim brskalnikom in spletno stranjo šifrirani. To je pomembno pri vnosu gesel, bančnih podatkov in osebnih informacij."
     },
     {
       "question": "Ali je varno nakupovati v vsaki spletni trgovini, ki ima zelo nizke cene?",
       "options": [
+        "Da, nižja cena pomeni boljšo ponudbo.",
         "Ne, nenavadno nizke cene so lahko znak prevare.",
-        "Da, če je stran barvita.",
-        "Da, nižja cena pomeni boljšo ponudbo."
+        "Da, če je stran barvita."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Izjemno nizke cene (ki so bistveno nižje od drugod) so pogosto znak prevare. Prevaranti privabljajo kupce z neverjetnimi ponudbami, nato pa izdelkov ne pošljejo ali pošljejo ponaredke."
     },
     {
@@ -125,19 +125,19 @@
     {
       "question": "Ali je varno shraniti podatke bančne kartice v vsako spletno trgovino?",
       "options": [
+        "Da, vedno.",
         "Ne, podatke shranjujemo samo pri preverjenih in zaupanja vrednih storitvah.",
-        "Da, če je trgovina lepa.",
-        "Da, vedno."
+        "Da, če je trgovina lepa."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Podatke bančne kartice shranjujte samo pri zaupanja vrednih in preverjenih trgovinah. Če pride do vdora v spletno trgovino, lahko pride do zlorabe shranjenih podatkov. Uporabite tudi enkratne virtualne kartice, če jih banka omogoča."
     },
     {
       "question": "Kaj naredimo, če prejemo SMS: 'Vaš paket čaka. Plačajte 2 € za dostavo'?",
       "options": [
         "Ne kliknemo povezave in preverimo sporočilo pri dostavni službi.",
-        "Vpišemo podatke kartice.",
-        "Takoj kliknemo povezavo."
+        "Takoj kliknemo povezavo.",
+        "Vpišemo podatke kartice."
       ],
       "correct": 0,
       "explanation": "To je pogosta prevara, pri kateri želijo storilci pridobiti podatke vaše kartice. Dostavne službe običajno ne zahtevajo plačila prek SMS povezav. Vedno preverite pri uradni dostavni službi."
@@ -145,29 +145,29 @@
     {
       "question": "Kaj je spletna trgovina?",
       "options": [
-        "Spletna stran, kjer lahko kupujemo izdelke ali storitve.",
         "Vrsta računalniškega virusa.",
-        "Program za urejanje fotografij."
+        "Program za urejanje fotografij.",
+        "Spletna stran, kjer lahko kupujemo izdelke ali storitve."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Spletna trgovina je spletna stran, kjer lahko pregledujete in naročate izdelke ali storitve. Nakup opravite prek interneta, izdelke pa prejmete po pošti ali prek dostavne službe."
     },
     {
       "question": "Katere podatke običajno potrebujemo za spletni nakup?",
       "options": [
+        "Geslo za elektronsko pošto.",
         "Podatke za dostavo in način plačila.",
-        "PIN bančne kartice.",
-        "Geslo za elektronsko pošto."
+        "PIN bančne kartice."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Za spletni nakup potrebujemo naslov za dostavo (ime, priimek, naslov, poštno številko) in način plačila (številko kartice, datum veljavnosti in varnostno kodo). PIN-a bančne kartice praviloma nikoli ne vpisujemo v spletne trgovine."
     },
     {
       "question": "Kaj je varnostna koda (CVV) na kartici?",
       "options": [
         "Kratka varnostna številka na kartici za spletna plačila.",
-        "Geslo za računalnik.",
-        "Telefonska številka banke."
+        "Telefonska številka banke.",
+        "Geslo za računalnik."
       ],
       "correct": 0,
       "explanation": "CVV (ali CVC) je trimestna varnostna številka, ki je običajno na zadnji strani kartice. Uporablja se za potrjevanje spletnih plačil. Tudi to kodo varujemo in je ne posredujemo neznancem."
@@ -176,8 +176,8 @@
       "question": "Kaj storimo, če spletna stran zahteva nenavadne podatke za nakup?",
       "options": [
         "Prekinemo nakup in preverimo, ali je stran zaupanja vredna.",
-        "Pošljemo svoje dokumente.",
-        "Vnesemo vse podatke."
+        "Vnesemo vse podatke.",
+        "Pošljemo svoje dokumente."
       ],
       "correct": 0,
       "explanation": "Prevarantske strani pogosto zahtevajo podatke, ki jih za nakup sploh ne potrebujemo (npr. gesla, številke osebnih dokumentov). Če stran zahteva nenavadne podatke, nakup prekinemo in preverimo verodostojnost trgovine."
@@ -185,29 +185,29 @@
     {
       "question": "Kaj je Google Pay ali podobna storitev mobilnega plačevanja?",
       "options": [
-        "Storitev za varno plačevanje s telefonom.",
+        "Program za čiščenje telefona.",
         "Spletni brskalnik.",
-        "Program za čiščenje telefona."
+        "Storitev za varno plačevanje s telefonom."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Google Pay in podobne storitve omogočajo plačevanje s telefonom namesto s fizično kartico. Telefon približate POS-terminalu in plačilo potrdite z biometrijo (prstni odtis) ali PIN-om. Je varno in priročno."
     },
     {
       "question": "Zakaj je pri spletnem nakupu pomembna dobra zaščita telefona?",
       "options": [
+        "Zaradi lepšega zaslona.",
         "Ker telefon lahko vsebuje bančne aplikacije in osebne podatke.",
-        "Ker telefon drugače ne zvoni.",
-        "Zaradi lepšega zaslona."
+        "Ker telefon drugače ne zvoni."
       ],
-      "correct": 0,
+      "correct": 1,
       "explanation": "Telefon danes vsebuje bančne aplikacije, podatke o karticah in osebne podatke. Zaklep zaslona, redne posodobitve in previdnost pri nameščanju aplikacij ščitijo naše podatke pred nepooblaščenim dostopom."
     },
     {
       "question": "Kaj storimo, če opazimo sumljivo plačilo na bančnem računu?",
       "options": [
         "Takoj obvestimo banko in preverimo transakcijo.",
-        "Ignoriramo ga.",
-        "Objavimo podatke na družbenem omrežju."
+        "Objavimo podatke na družbenem omrežju.",
+        "Ignoriramo ga."
       ],
       "correct": 0,
       "explanation": "Če opazite sumljivo ali nepoznano plačilo, takoj obvestite banko. Banka bo preverila transakcijo in vam po potrebi pomagala pri reklamaciji. Hitro ukrepanje lahko prepreči nadaljnjo škodo."
@@ -216,8 +216,8 @@
       "question": "Zakaj ni priporočljivo opravljati spletnih nakupov prek neznanega javnega Wi-Fi omrežja?",
       "options": [
         "Ker je povezava lahko manj varna in obstaja večje tveganje za prestrezanje podatkov.",
-        "Ker trgovine ne delujejo ponoči.",
-        "Ker telefon ne bo imel zvoka."
+        "Ker telefon ne bo imel zvoka.",
+        "Ker trgovine ne delujejo ponoči."
       ],
       "correct": 0,
       "explanation": "Javna Wi-Fi omrežja (v kavarnah, hotelih) niso vedno varna. Napadalci lahko prestrežejo podatke, ki jih pošiljate. Za spletno banko in plačila uporabite domače omrežje ali mobilne podatke."
@@ -225,19 +225,19 @@
     {
       "question": "Kaj pomeni reklamacija pri spletnem nakupu?",
       "options": [
-        "Zahteva kupca zaradi težave z izdelkom ali storitvijo.",
         "Plačilo dodatnega davka.",
-        "Novo geslo za trgovino."
+        "Novo geslo za trgovino.",
+        "Zahteva kupca zaradi težave z izdelkom ali storitvijo."
       ],
-      "correct": 0,
+      "correct": 2,
       "explanation": "Reklamacija je uradna zahteva kupca, ko izdelek ni ustrezen (pokvarjen, napačen, poškodovan) ali storitev ni bila izvedena pravilno. Kupec ima pri spletnih nakupih zakonsko določene pravice, vključno s pravico do vračila."
     },
     {
       "question": "Kaj naredimo po uporabi spletne banke na javnem računalniku?",
       "options": [
         "Odjavimo se in ne shranimo podatkov za prijavo.",
-        "Pustimo odprto stran.",
-        "Shranimo geslo."
+        "Shranimo geslo.",
+        "Pustimo odprto stran."
       ],
       "correct": 0,
       "explanation": "Na javnih ali tujih računalnikih se po uporabi spletne banke vedno odjavimo in ne shranimo podatkov za prijavo. Tako preprečimo, da bi naslednji uporabnik dostopal do našega računa."
@@ -246,8 +246,8 @@
       "question": "Katera navada najbolj pripomore k varnemu spletnemu nakupovanju?",
       "options": [
         "Preverimo trgovino, varujemo podatke in razmišljamo pred plačilom.",
-        "Vedno uporabimo isto geslo.",
-        "Kliknemo vsako ugodno ponudbo."
+        "Kliknemo vsako ugodno ponudbo.",
+        "Vedno uporabimo isto geslo."
       ],
       "correct": 0,
       "explanation": "Najboljša zaščita je kombinacija previdnosti, varnih gesel in preverjanja informacij. Vedno preverite trgovino, ne delite nepotrebnih podatkov in ne hitite s plačili – prevaranti pogosto ustvarjajo občutek nujnosti."
