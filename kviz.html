@@ -86,6 +86,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            flex-wrap: wrap;
         }
         .header a {
             color: var(--accent);
@@ -94,24 +95,24 @@
             border: 2px solid var(--accent);
             border-radius: 8px;
             transition: all 0.3s;
-            font-size: 14px;
+            font-size: 12px;
         }
         .header a:hover { 
             background: var(--accent); 
             color: white; 
         }
         
-        .theme-toggle, .info-btn {
+        .theme-toggle, .info-btn, .sound-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             padding: 3px 8px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.3s;
         }
-        .theme-toggle:hover, .info-btn:hover {
+        .theme-toggle:hover, .info-btn:hover, .sound-toggle:hover {
             background: var(--bg-hover);
         }
         
@@ -179,7 +180,7 @@
             opacity: 0.8;
         }
         
-        /* INFO OKVIRČEK - brez "📝 Vprašanje" */
+        /* INFO OKVIRČEK */
         .info-box {
             display: flex;
             justify-content: space-between;
@@ -215,7 +216,7 @@
             font-size: 19px;
         }
         
-        /* Vprašanje - BREZ podvojnega napisa */
+        /* Vprašanje */
         .vprasanje {
             margin: 10px 0;
             padding: 14px 16px;
@@ -270,7 +271,7 @@
             opacity: 0.7;
         }
         
-        /* Pojasnilo - zmanjšano */
+        /* Pojasnilo */
         .pojasnilo {
             margin-top: 8px;
             padding: 6px 10px;
@@ -286,7 +287,7 @@
             color: var(--accent);
         }
         
-        /* Tipka presledek - povečana in krepko */
+        /* Tipka presledek */
         .tipka-info {
             text-align: center;
             font-size: 18px;
@@ -397,7 +398,7 @@
         .error .velik { font-size: 48px; }
         .error a { color: var(--accent); }
         
-        /* Footer - bolj stisnjen */
+        /* Footer */
         .footer {
             margin-top: 4px;
             padding-top: 3px;
@@ -437,6 +438,7 @@
             <div class="header-right">
                 <button class="info-btn" onclick="showInfoModal()">ℹ️ Info</button>
                 <button class="theme-toggle" onclick="toggleTheme()">🌓 Preklopi</button>
+                <button class="sound-toggle" onclick="toggleSound()" id="soundToggle">🔊 Zvok vklopljen</button>
                 <a href="index.html">🏠 Meni</a>
             </div>
         </div>
@@ -458,6 +460,7 @@
                     <li><strong>⏱️ Čas za razlago:</strong> Po odgovoru imaš <strong>20 sekund</strong> časa za branje razlage. Lahko pa prej pritisneš <strong>presledek</strong>.</li>
                     <li><strong>🎯 Odgovori:</strong> Klikni na številko odgovora (1, 2, 3...).</li>
                     <li><strong>🌙 Temni / ☀️ Svetli način:</strong> Preklapljaš z gumbom desno zgoraj.</li>
+                    <li><strong>🔊 Zvok:</strong> Z gumbom poleg lahko izklopiš ali vklopiš zvok ob odgovorih.</li>
                     <li><strong>📊 Napredek:</strong> Slediš številu odgovorjenih in pravilnih odgovorov.</li>
                     <li><strong>🏆 Rezultat:</strong> Na koncu dobiš oceno (1-5) in pregled odgovorov.</li>
                 </ul>
@@ -465,10 +468,10 @@
             </div>
         </div>
         
-        <!-- Footer - stisnjen -->
+        <!-- Footer -->
         <div class="footer">
-            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span> &nbsp;|&nbsp; <span class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-10, 17:12</span></p>
-        </div>    
+            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span> · <span class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-10, 14:05</span></p>
+        </div>
     </div>
 
     <script>
@@ -487,6 +490,64 @@
                 document.body.classList.add('light-mode');
             }
         });
+        
+        // ============================================================
+        // ZVOK
+        // ============================================================
+        let soundEnabled = (localStorage.getItem('kvizSound') !== 'off');
+        let audioCtx = null;
+        
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('kvizSound', soundEnabled ? 'on' : 'off');
+            const btn = document.getElementById('soundToggle');
+            if (soundEnabled) {
+                btn.innerHTML = '🔊 Zvok vklopljen';
+            } else {
+                btn.innerHTML = '🔇 Zvok izklopljen';
+            }
+        }
+        
+        function initAudioOnUserInteraction() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+        
+        function playCorrect() {
+            if (!soundEnabled) return;
+            initAudioOnUserInteraction();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.value = 0.3;
+            osc.frequency.value = 900;
+            osc.type = 'sine';
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+        
+        function playWrong() {
+            if (!soundEnabled) return;
+            initAudioOnUserInteraction();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.value = 0.3;
+            osc.frequency.value = 150;
+            osc.type = 'square';
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+            osc.stop(audioCtx.currentTime + 0.5);
+        }
         
         // ============================================================
         // INFO OKNO
@@ -690,7 +751,7 @@
         }
         
         // ============================================================
-        // PRIKAZ VPRAŠANJA - BREZ podvojnega napisa in brez "📝 Vprašanje"
+        // PRIKAZ VPRAŠANJA
         // ============================================================
         function prikaziVprasanje(index) {
             const vsebina = document.getElementById('vsebina');
@@ -716,7 +777,7 @@
             const pravilniDoSedaj = prestejPravilne();
             
             let html = `
-                <!-- INFO OKVIRČEK - brez "📝 Vprašanje" -->
+                <!-- INFO OKVIRČEK -->
                 <div class="info-box">
                     <div class="item">
                         <span class="label">📊 Napredek:</span>
@@ -734,7 +795,7 @@
                     <span class="skupina-info ${kategorija}">${skupina}</span>
                 </div>
                 
-                <!-- VPRAŠANJE - BREZ podvojnega napisa -->
+                <!-- VPRAŠANJE -->
                 <div class="vprasanje">
                     <h3>${vpr.vprasanje || 'Vprašanje'}</h3>
                     
@@ -823,6 +884,14 @@
             if (odgovori[vprIndex] !== null) return;
             
             odgovori[vprIndex] = moznostIndex;
+            
+            // Predvajaj zvok
+            const vpr = kvizPodatki.vprasanja[vprIndex];
+            if (moznostIndex === vpr.pravilni) {
+                playCorrect();
+            } else {
+                playWrong();
+            }
             
             prikaziVprasanje(vprIndex);
         }
@@ -923,7 +992,7 @@
             else ocenaStevilka = 1;
             
             if (ocenaStevilka < 3) {
-                // Pregled samo napačnih odgovorov - manjši font, ni bold
+                // Pregled samo napačnih odgovorov
                 let reviewHtml = "<h2 style='font-size:20px;'>📝 Pregled napačnih odgovorov:</h2>";
                 let hasWrong = false;
                 kvizPodatki.vprasanja.forEach((vpr, idx) => {
@@ -979,7 +1048,6 @@
             // ============================================================
             // OCENA >= 3 - PRIKAŽI REZULTAT Z NAPAČNIMI ODGOVORI
             // ============================================================
-            // Pregled samo napačnih odgovorov - manjši font, ni bold
             let reviewHtml = "<h2 style='font-size:20px;'>📝 Pregled napačnih odgovorov:</h2>";
             let hasWrong = false;
             kvizPodatki.vprasanja.forEach((vpr, idx) => {
@@ -1038,6 +1106,12 @@
         // ZAŽENI
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
+            // Obnovi stanje zvoka
+            const soundBtn = document.getElementById('soundToggle');
+            if (!soundEnabled) {
+                soundBtn.innerHTML = '🔇 Zvok izklopljen';
+            }
+            
             const kvizIme = getParam('kviz');
             if (!kvizIme) {
                 document.getElementById('vsebina').innerHTML = `
