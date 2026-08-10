@@ -179,7 +179,7 @@
             opacity: 0.8;
         }
         
-        /* INFO OKVIRČEK */
+        /* INFO OKVIRČEK - brez "📝 Vprašanje" */
         .info-box {
             display: flex;
             justify-content: space-between;
@@ -270,14 +270,14 @@
             opacity: 0.7;
         }
         
-        /* Pojasnilo */
+        /* Pojasnilo - zmanjšano */
         .pojasnilo {
-            margin-top: 10px;
-            padding: 8px 12px;
+            margin-top: 8px;
+            padding: 6px 10px;
             background: var(--bg-card);
-            border-radius: 8px;
+            border-radius: 6px;
             border-left: 4px solid var(--accent);
-            font-size: 15px;
+            font-size: 14px;
             color: #ffffff;
             border: 1px solid var(--border-color);
             border-left-width: 4px;
@@ -285,7 +285,7 @@
         .pojasnilo strong {
             color: var(--accent);
         }
-
+        
         /* Tipka presledek - povečana in krepko */
         .tipka-info {
             text-align: center;
@@ -397,14 +397,15 @@
         .error .velik { font-size: 48px; }
         .error a { color: var(--accent); }
         
+        /* Footer - bolj stisnjen */
         .footer {
-            margin-top: 6px;
-            padding-top: 4px;
+            margin-top: 4px;
+            padding-top: 3px;
             border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
-            font-size: 13px;
-            line-height: 1.8;
+            font-size: 12px;
+            line-height: 1.5;
         }
         .footer .deepseek {
             color: #4a8a9a;
@@ -412,7 +413,7 @@
         }
         .footer .zadnja-sprememba {
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: 11px;
         }
         
         ::-webkit-scrollbar {
@@ -464,7 +465,7 @@
             </div>
         </div>
         
-        <!-- Footer -->
+        <!-- Footer - stisnjen -->
         <div class="footer">
             <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
             <p class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-10, 14:05</p>
@@ -517,41 +518,41 @@
         // ============================================================
         // KONFIGURACIJA KVIZOV
         // ============================================================
-
-const KVIZI = {
-    zacetniki: [
-        { id: 'OR_01.json', naslov: 'Osnove dela z računalnikom – Windows 10/11', ikona: '💻' },
-        { id: 'OR_02.json', naslov: 'Datoteke in mape v Windows okolju', ikona: '📁' },
-        { id: 'OR_03.json', naslov: 'Internet in spletni brskalniki', ikona: '🌐' },
-        { id: 'OR_04.json', naslov: 'Elektronska pošta (e-pošta)', ikona: '✉️' },
-        { id: 'OR_05.json', naslov: 'Varnost na spletu', ikona: '🔒' },
-        { id: 'OR_06.json', naslov: 'Pametni telefon Android', ikona: '📱' },
-        { id: 'OR_07.json', naslov: 'Google Iskanje in napredno iskanje', ikona: '🔍' },
-        { id: 'OR_08.json', naslov: 'ChatGPT in umetna inteligenca', ikona: '🤖' },
-        { id: 'OR_09.json', naslov: 'Fotografije s telefonom in Google Fotografije', ikona: '📷' },
-        { id: 'OR_10.json', naslov: 'Spletno bančništvo in varni spletni nakupi', ikona: '🏦' }
-    ],
-    srednji: [
-        { id: 'OR_11.json', naslov: 'Google Drive, OneDrive in delo v oblaku', ikona: '☁️' },
-        { id: 'OR_12.json', naslov: 'Windows 10 – urejanje datotek, map in Raziskovalec', ikona: '🖥️' },
-        { id: 'OR_13.json', naslov: 'Elektronska pošta – napredna uporaba in varnost', ikona: '📧' },
-        { id: 'OR_14.json', naslov: 'Windows 10 – nastavitve in prilagajanje okolja', ikona: '⚙️' },
-        { id: 'OR_15.json', naslov: 'Pametni telefon – nastavitve, baterija in vzdrževanje', ikona: '🔋' },
-        { id: 'OR_16.json', naslov: 'Fotografije – urejanje, shranjevanje in deljenje', ikona: '🖼️' },
-        { id: 'OR_17.json', naslov: 'Internet – iskanje, Google in preverjanje virov', ikona: '🌍' },
-        { id: 'OR_18.json', naslov: 'Umetna inteligenca in ChatGPT – osnovna uporaba', ikona: '🧠' }
-    ],
-    napredni: [
-        { id: 'OR_19.json', naslov: 'Spletne prevare, phishing in varnost računov', ikona: '🛡️' },
-        { id: 'OR_20.json', naslov: 'Delo z dokumenti – Word, PDF in tiskanje', ikona: '📄' },
-        { id: 'OR_21.json', naslov: 'Windows 10 – bližnjice na tipkovnici', ikona: '⌨️' },
-        { id: 'OR_22.json', naslov: 'Pametni telefon – vsakodnevna uporaba', ikona: '📲' },
-        { id: 'OR_23.json', naslov: 'Elektronska pošta – pošiljanje in organizacija', ikona: '📨' },
-        { id: 'OR_24.json', naslov: 'Spletno bančništvo in spletni nakupi', ikona: '💳' },
-        { id: 'OR_25.json', naslov: 'Umetna inteligenca za vsakdanjo uporabo', ikona: '🤖' },
-        { id: 'OR_26.json', naslov: 'Naprednejša uporaba računalnika in interneta', ikona: '🚀' }
-    ]
-};        
+        const KVIZI = {
+            zacetniki: [
+                { id: 'OR_01.json', naslov: 'Osnove dela z računalnikom – Windows 10/11', ikona: '💻' },
+                { id: 'OR_02.json', naslov: 'Datoteke in mape v Windows okolju', ikona: '📁' },
+                { id: 'OR_03.json', naslov: 'Internet in spletni brskalniki', ikona: '🌐' },
+                { id: 'OR_04.json', naslov: 'Elektronska pošta (e-pošta)', ikona: '✉️' },
+                { id: 'OR_05.json', naslov: 'Varnost na spletu', ikona: '🔒' },
+                { id: 'OR_06.json', naslov: 'Pametni telefon Android', ikona: '📱' },
+                { id: 'OR_07.json', naslov: 'Google Iskanje in napredno iskanje', ikona: '🔍' },
+                { id: 'OR_08.json', naslov: 'ChatGPT in umetna inteligenca', ikona: '🤖' },
+                { id: 'OR_09.json', naslov: 'Fotografije s telefonom in Google Fotografije', ikona: '📷' },
+                { id: 'OR_10.json', naslov: 'Spletno bančništvo in varni spletni nakupi', ikona: '🏦' }
+            ],
+            srednji: [
+                { id: 'OR_11.json', naslov: 'Google Drive, OneDrive in delo v oblaku', ikona: '☁️' },
+                { id: 'OR_12.json', naslov: 'Windows 10 – urejanje datotek, map in Raziskovalec', ikona: '🖥️' },
+                { id: 'OR_13.json', naslov: 'Elektronska pošta – napredna uporaba in varnost', ikona: '📧' },
+                { id: 'OR_14.json', naslov: 'Windows 10 – nastavitve in prilagajanje okolja', ikona: '⚙️' },
+                { id: 'OR_15.json', naslov: 'Pametni telefon – nastavitve, baterija in vzdrževanje', ikona: '🔋' },
+                { id: 'OR_16.json', naslov: 'Fotografije – urejanje, shranjevanje in deljenje', ikona: '🖼️' },
+                { id: 'OR_17.json', naslov: 'Internet – iskanje, Google in preverjanje virov', ikona: '🌍' },
+                { id: 'OR_18.json', naslov: 'Umetna inteligenca in ChatGPT – osnovna uporaba', ikona: '🧠' }
+            ],
+            napredni: [
+                { id: 'OR_19.json', naslov: 'Spletne prevare, phishing in varnost računov', ikona: '🛡️' },
+                { id: 'OR_20.json', naslov: 'Delo z dokumenti – Word, PDF in tiskanje', ikona: '📄' },
+                { id: 'OR_21.json', naslov: 'Windows 10 – bližnjice na tipkovnici', ikona: '⌨️' },
+                { id: 'OR_22.json', naslov: 'Pametni telefon – vsakodnevna uporaba', ikona: '📲' },
+                { id: 'OR_23.json', naslov: 'Elektronska pošta – pošiljanje in organizacija', ikona: '📨' },
+                { id: 'OR_24.json', naslov: 'Spletno bančništvo in spletni nakupi', ikona: '💳' },
+                { id: 'OR_25.json', naslov: 'Umetna inteligenca za vsakdanjo uporabo', ikona: '🤖' },
+                { id: 'OR_26.json', naslov: 'Naprednejša uporaba računalnika in interneta', ikona: '🚀' }
+            ]
+        };
+        
         function najdiKategorijo(kvizId) {
             for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
                 if (kvizi.some(k => k.id === kvizId)) {
@@ -690,7 +691,7 @@ const KVIZI = {
         }
         
         // ============================================================
-        // PRIKAZ VPRAŠANJA - BREZ podvojnega napisa
+        // PRIKAZ VPRAŠANJA - BREZ podvojnega napisa in brez "📝 Vprašanje"
         // ============================================================
         function prikaziVprasanje(index) {
             const vsebina = document.getElementById('vsebina');
@@ -716,7 +717,7 @@ const KVIZI = {
             const pravilniDoSedaj = prestejPravilne();
             
             let html = `
-                <!-- INFO OKVIRČEK -->
+                <!-- INFO OKVIRČEK - brez "📝 Vprašanje" -->
                 <div class="info-box">
                     <div class="item">
                         <span class="label">📊 Napredek:</span>
@@ -725,10 +726,6 @@ const KVIZI = {
                     <div class="item">
                         <span class="label">✅ Pravilnih:</span>
                         <span class="value">${pravilniDoSedaj}</span>
-                    </div>
-                    <div class="item">
-                        <span class="label">📝 Vprašanje:</span>
-                        <span class="value">${index + 1}</span>
                     </div>
                 </div>
                 
