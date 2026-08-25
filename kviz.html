@@ -405,7 +405,6 @@
         .footer {
             margin-top: 4px;
             padding-top: 3px;
-            border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
             font-size: 12px;
@@ -473,7 +472,7 @@
         
         <!-- Footer -->
         <div class="footer">
-            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span> · <span class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-10, 14:05</span></p>
+            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span> · <span class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-25</span></p>
         </div>
     </div>
 
@@ -762,11 +761,6 @@
             const vsebina = document.getElementById('vsebina');
             const skupaj = kvizPodatki.vprasanja.length;
             
-            if (zakljuceno) {
-                prikaziRezultat();
-                return;
-            }
-            
             if (index >= skupaj) {
                 zakljuciKviz();
                 return;
@@ -938,18 +932,10 @@
             ustavTimer();
             
             let pravilni = 0;
-            const podrobnosti = [];
             
             kvizPodatki.vprasanja.forEach((vpr, i) => {
                 const odg = odgovori[i];
-                const pravilno = odg === vpr.pravilni;
-                if (pravilno) pravilni++;
-                podrobnosti.push({
-                    stevilka: i + 1,
-                    pravilno: pravilno,
-                    odgovor: odg !== null ? odg : -1,
-                    pravilniOdgovor: vpr.pravilni
-                });
+                if (odg === vpr.pravilni) pravilni++;
             });
             
             const skupaj = kvizPodatki.vprasanja.length;
@@ -976,13 +962,13 @@
             const kvizIme = getParam('kviz');
             shraniResenKviz(kvizIme);
             
-            prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, podrobnosti);
+            prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva);
         }
         
         // ============================================================
         // PRIKAZ REZULTATA
         // ============================================================
-        function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva, podrobnosti) {
+        function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva) {
             const vsebina = document.getElementById('vsebina');
             
             // ============================================================
