@@ -153,24 +153,24 @@
       "explanation": "To možnost uporabimo samo takrat, kadar želimo, da odgovor prejmejo vsi navedeni prejemniki. V nasprotnem primeru uporabimo samo 'Odgovori'."
     },
     {
-      "question": "Kaj pomeni polje CC pri e-pošti?",
+      "question": "Kaj pomeni polje Kp pri e-pošti?",
       "options": [
         "Kopija sporočila, ki jo prejmejo dodatni prejemniki.",
         "Izbris sporočila.",
         "Skrito geslo."
       ],
       "correct": 0,
-      "explanation": "CC pomeni 'Carbon Copy' (kopija). Prejemniki v polju CC vidijo, komu vse je bilo sporočilo poslano. Uporablja se, ko želimo, da so vsi obveščeni."
+      "explanation": "Kp pomeni 'kopija' (angleško CC - Carbon Copy). Prejemniki v polju Kp vidijo, komu vse je bilo sporočilo poslano. Uporablja se, ko želimo, da so vsi obveščeni."
     },
     {
-      "question": "Kaj pomeni polje BCC pri e-pošti?",
+      "question": "Kaj pomeni polje Skp pri e-pošti?",
       "options": [
         "Skrita kopija sporočila, kjer prejemniki ne vidijo drugih naslovov.",
         "Večja priponka.",
         "Samodejno brisanje pošte."
       ],
       "correct": 0,
-      "explanation": "BCC pomeni 'Blind Carbon Copy' (skrita kopija). Prejemniki v polju BCC ne vidijo drugih prejemnikov. To je uporabno pri pošiljanju sporočil več ljudem, kadar želimo zaščititi njihove e-naslove."
+      "explanation": "Skp pomeni 'skrita kopija' (angleško BCC - Blind Carbon Copy). Prejemniki v polju Skp ne vidijo drugih prejemnikov. To je uporabno pri pošiljanju sporočil več ljudem, kadar želimo zaščititi njihove e-naslove."
     },
     {
       "question": "Kaj naredimo, če želimo shraniti priponko iz e-pošte?",
