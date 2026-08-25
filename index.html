@@ -66,6 +66,8 @@
             opacity: 0.8;
         }
         .stats-item .reset {
+            display: block;
+            margin: 0 auto;
             background: rgba(255,255,255,0.1);
             border: 1px solid #2a3a5e;
             color: #e0e0e0;
@@ -73,7 +75,6 @@
             border-radius: 15px;
             cursor: pointer;
             font-size: 11px;
-            margin-top: 2px;
             transition: background 0.3s;
         }
         .stats-item .reset:hover {
@@ -222,7 +223,7 @@
             </div>
             <div class="stats-item">
                 <button class="reset" onclick="ponastaviVse()">🗑️ Ponastavi</button>
-                <span class="label">(zbriši zgodovino)</span>
+                <span class="label" style="margin-top:2px; display:inline-block;">(zbriši zgodovino)</span>
             </div>
         </div>
         
