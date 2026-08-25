@@ -233,14 +233,14 @@
       "explanation": "Pred nakupom preverimo, kdo je ponudnik in ali ima stran osnovne podatke o podjetju. Preberemo tudi mnenja drugih kupcev in pogoje poslovanja."
     },
     {
-      "question": "Kaj storimo, če izgubimo telefon, na katerem imamo e-pošto in druge račune?",
+      "question": "Zakaj je dobro telefon zaklepati s kodo, PIN-om ali prstnim odtisom?",
       "options": [
-        "Ničesar.",
-        "Telefon zaklenemo oziroma zaščitimo račune.",
-        "Objavimo izgubo na spletu z vsemi podatki."
+        "Da se telefon hitreje polni.",
+        "Da že vnaprej zaščitimo svoje podatke, če telefon izgubimo ali nam ga ukradejo.",
+        "Da telefon deluje hitreje."
       ],
       "correct": 1,
-      "explanation": "Telefon lahko vsebuje veliko osebnih podatkov, zato ga moramo zaščititi z geslom, PIN-om ali biometrijo. Ob izgubi takoj spremenimo gesla za pomembne račune."
+      "explanation": "Telefon pogosto vsebuje e-pošto, gesla, fotografije in druge osebne podatke. Če ga zaklepamo s kodo, PIN-om, geslom ali prstnim odtisom, nepooblaščeni osebi otežimo dostop do teh podatkov, tudi če telefon izgubimo ali nam ga ukradejo."
     },
     {
       "question": "Katera navada najbolj pripomore k varni uporabi interneta?",
