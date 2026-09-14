@@ -168,7 +168,6 @@
         .uvod strong { color: #8899dd; }
         .uvod .rdec-tekst { color: #e74c3c; }
         .uvod .zelen-tekst { color: #2ecc71; }
-        .uvod .rumen-tekst { color: #f1c40f; }
         .footer {
             margin-top: 2px;
             padding-top: 2px;
@@ -186,79 +185,6 @@
             flex-wrap: wrap;
             gap: 2px;
         }
-
-        /* SKUPINE - IZBIRNI ZASLON */
-        .skupine-mreza {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-        .skupina-kartica {
-            cursor: pointer;
-            padding: 18px 14px;
-            border-radius: 12px;
-            background: #1a2a4a;
-            border: 1px solid #2a3a5e;
-            text-align: center;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-        }
-        .skupina-kartica:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-            background: #1f3355;
-        }
-        .skupina-kartica.zacetniki { border-top: 4px solid #2ecc71; }
-        .skupina-kartica.srednji { border-top: 4px solid #f39c12; }
-        .skupina-kartica.napredni { border-top: 4px solid #e74c3c; }
-        .skupina-ikona { font-size: 34px; margin-bottom: 6px; }
-        .skupina-kartica h2 {
-            margin: 0 0 4px 0;
-            font-size: 16px;
-            color: #c8d0e8;
-        }
-        .skupina-opis {
-            color: #8899bb;
-            font-size: 12px;
-            margin: 4px 0 8px 0;
-            min-height: 32px;
-        }
-        .skupina-stevilo {
-            font-size: 13px;
-            font-weight: bold;
-            color: #c8d0e8;
-        }
-        .skupina-napredek {
-            font-size: 12px;
-            color: #6688aa;
-            margin-top: 2px;
-        }
-        .skupina-kartica.zaklenjena {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-        .skupina-kartica.zaklenjena:hover {
-            transform: none;
-            box-shadow: none;
-            background: #1a2a4a;
-        }
-        .skupina-kartica.zaklenjena .skupina-napredek {
-            color: #8899bb;
-        }
-        .nazaj-gumb {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #2a3a5e;
-            color: #e0e0e0;
-            border: 1px solid #3a4a6e;
-            padding: 6px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            font-size: 13px;
-        }
-        .nazaj-gumb:hover { background: #3a4a6e; }
         
         /* Scrollbar za temni način */
         ::-webkit-scrollbar {
@@ -302,50 +228,30 @@
         </div>
         
         <div class="uvod">
-            📌 <strong class="rdec-tekst">Kje začeti?</strong><br>
-            Začnite pri kvizih <strong class="zelen-tekst">za začetnike</strong>.<br>
-            Ko rešite vse (ali vsaj 70&nbsp;%) kvizov iz te skupine, se odklene naslednja, <strong class="rumen-tekst">srednja</strong> skupina — in ko rešite še vsaj 70&nbsp;% te, se odklene še zadnja, <strong class="rdec-tekst">napredna</strong> skupina.
+            📌 <strong class="rdec-tekst">Kje začeti?</strong> Priporočamo kvize iz <strong class="zelen-tekst">začetniške</strong> kategorije.
         </div>
 
-        <!-- POGLED: IZBIRA SKUPINE -->
-        <div id="pogledSkupine">
-            <div class="skupine-mreza">
-                <div class="skupina-kartica zacetniki" onclick="odpriSkupino('zacetniki')">
-                    <div class="skupina-ikona">🟢</div>
-                    <h2>Za začetnike</h2>
-                    <div class="skupina-opis">Osnove dela z računalnikom, internetom in telefonom</div>
-                    <div class="skupina-stevilo"><span id="steviloZacetniki">10</span> kvizov</div>
-                    <div class="skupina-napredek" id="napredekZacetniki"></div>
-                </div>
-                <div class="skupina-kartica srednji" onclick="odpriSkupino('srednji')">
-                    <div class="skupina-ikona">🟡</div>
-                    <h2>Srednja zahtevnost</h2>
-                    <div class="skupina-opis">Nekoliko naprednejša uporaba računalnika, oblaka in telefona</div>
-                    <div class="skupina-stevilo"><span id="steviloSrednji">8</span> kvizov</div>
-                    <div class="skupina-napredek" id="napredekSrednji"></div>
-                </div>
-                <div class="skupina-kartica napredni" onclick="odpriSkupino('napredni')">
-                    <div class="skupina-ikona">🔴</div>
-                    <h2>Za napredne</h2>
-                    <div class="skupina-opis">Varnost, dokumenti, bližnjice in naprednejša uporaba</div>
-                    <div class="skupina-stevilo"><span id="steviloNapredni">8</span> kvizov</div>
-                    <div class="skupina-napredek" id="napredekNapredni"></div>
-                </div>
-            </div>
+        <!-- ZAČETNIŠKI KVIZI -->
+        <div class="kategorija zacetniki">
+            <h2>🟢 Za začetnike <span class="oznaka zelen">10</span></h2>
+            <div id="zacetniki" class="gumb-vrstica"></div>
         </div>
 
-        <!-- POGLED: SEZNAM KVIZOV V IZBRANI SKUPINI -->
-        <div id="pogledKvizi" style="display:none;">
-            <button class="nazaj-gumb" onclick="prikaziSkupine()">← Nazaj na skupine</button>
-            <div class="kategorija" id="kategorijaOkvir">
-                <h2 id="kategorijaNaslov"></h2>
-                <div id="kvizSeznam" class="gumb-vrstica"></div>
-            </div>
+        <!-- SREDNJE ZAHTEVNI KVIZI -->
+        <div class="kategorija srednji">
+            <h2>🟡 Srednja zahtevnost <span class="oznaka oranzen">8</span></h2>
+            <div id="srednji" class="gumb-vrstica"></div>
+        </div>
+
+        <!-- NAPREDNI KVIZI -->
+        <div class="kategorija napredni">
+            <h2>🔴 Za napredne <span class="oznaka rdec">8</span></h2>
+            <div id="napredni" class="gumb-vrstica"></div>
         </div>
 
         <div class="footer">
-            <p>📅 Zadnja posodobitev 2026-09-09</p>
-            <p>Ustvarjeno s Claude Sonnet 5</p>
+            <p>📅 Zadnja posodobitev: 2026-08-25</p>
+            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
         </div>
     </div>
 
@@ -398,27 +304,6 @@ const KVIZI = {
             napredni: 'rdec'
         };
 
-        const NASLOVI_SKUPIN = {
-            zacetniki: '🟢 Za začetnike',
-            srednji: '🟡 Srednja zahtevnost',
-            napredni: '🔴 Za napredne'
-        };
-
-        const ID_STEVILA = {
-            zacetniki: 'steviloZacetniki',
-            srednji: 'steviloSrednji',
-            napredni: 'steviloNapredni'
-        };
-
-        const ID_NAPREDKA = {
-            zacetniki: 'napredekZacetniki',
-            srednji: 'napredekSrednji',
-            napredni: 'napredekNapredni'
-        };
-
-        let trenutnaSkupina = null;
-        let testniNacin = false; // skrivni način za testiranje (tipka "n")
-
         // ============================================================
         // FUNKCIJE ZA LOCALSTORAGE
         // ============================================================
@@ -438,30 +323,8 @@ const KVIZI = {
             if (confirm('Ali res želiš izbrisati vso zgodovino rešenih kvizov?')) {
                 localStorage.removeItem('reseniKvizi');
                 posodobiStatistiko();
-                posodobiKarticeSkupin();
-                if (trenutnaSkupina) generirajGumbe(trenutnaSkupina);
+                generirajGumbe();
             }
-        }
-
-        // ============================================================
-        // NAPREDEK IN ODKLEPANJE SKUPIN (prag 70 %)
-        // ============================================================
-        const PRAG_ODKLEPANJA = 0.7;
-
-        function delezResenihVSkupini(skupina) {
-            const kvizi = KVIZI[skupina];
-            if (!kvizi || kvizi.length === 0) return 0;
-            const reseni = getReseniKvizi();
-            const reseniVSkupini = kvizi.filter(k => reseni.includes(k.id)).length;
-            return reseniVSkupini / kvizi.length;
-        }
-
-        function jeSkupinaOdklenjena(skupina) {
-            if (testniNacin) return true;
-            if (skupina === 'zacetniki') return true;
-            if (skupina === 'srednji') return delezResenihVSkupini('zacetniki') >= PRAG_ODKLEPANJA;
-            if (skupina === 'napredni') return delezResenihVSkupini('srednji') >= PRAG_ODKLEPANJA;
-            return false;
         }
 
         // ============================================================
@@ -471,94 +334,35 @@ const KVIZI = {
             const reseni = getReseniKvizi();
             const vseh = Object.values(KVIZI).reduce((sum, kat) => sum + kat.length, 0);
             const odstotek = vseh > 0 ? Math.round((reseni.length / vseh) * 100) : 0;
-
+            
             document.getElementById('skupajResenih').textContent = reseni.length;
             document.getElementById('skupajVseh').textContent = vseh;
             document.getElementById('odstotek').textContent = odstotek + '%';
         }
 
-        // Napredek, stevilo kvizov in zaklep/odklep na kartici vsake skupine
-        function posodobiKarticeSkupin() {
-            const reseni = getReseniKvizi();
-            Object.keys(KVIZI).forEach(skupina => {
-                const kvizi = KVIZI[skupina];
-                const reseniVSkupini = kvizi.filter(k => reseni.includes(k.id)).length;
-
-                const stEl = document.getElementById(ID_STEVILA[skupina]);
-                if (stEl) stEl.textContent = kvizi.length;
-
-                const kartica = document.querySelector(`.skupina-kartica.${skupina}`);
-                const odklenjena = jeSkupinaOdklenjena(skupina);
-
-                const napEl = document.getElementById(ID_NAPREDKA[skupina]);
-                if (napEl) {
-                    if (odklenjena) {
-                        napEl.textContent = `✅ ${reseniVSkupini} / ${kvizi.length} rešenih`;
-                    } else {
-                        napEl.textContent = '🔒 Najprej rešite prejšnjo skupino (vsaj 70 %)';
-                    }
-                }
-
-                if (kartica) {
-                    kartica.classList.toggle('zaklenjena', !odklenjena);
-                }
-            });
-        }
-
         // ============================================================
-        // PREKLOP MED POGLEDOMA
+        // GENERIRANJE GUMBOV
         // ============================================================
-        function odpriSkupino(skupina, dodajVZgodovino = true) {
-            if (!KVIZI[skupina]) return;
-            if (!jeSkupinaOdklenjena(skupina)) return; // zaklenjena skupina - ignoriraj klik
-
-            trenutnaSkupina = skupina;
-
-            document.getElementById('pogledSkupine').style.display = 'none';
-            document.getElementById('pogledKvizi').style.display = 'block';
-            document.getElementById('kategorijaNaslov').textContent = NASLOVI_SKUPIN[skupina];
-
-            generirajGumbe(skupina);
-            window.scrollTo(0, 0);
-
-            if (dodajVZgodovino) {
-                history.pushState({ skupina }, '', '?skupina=' + skupina);
-            }
-        }
-
-        function prikaziSkupine(dodajVZgodovino = true) {
-            trenutnaSkupina = null;
-            document.getElementById('pogledKvizi').style.display = 'none';
-            document.getElementById('pogledSkupine').style.display = 'block';
-            posodobiKarticeSkupin();
-            window.scrollTo(0, 0);
-
-            if (dodajVZgodovino) {
-                history.pushState({}, '', window.location.pathname);
-            }
-        }
-
-        // ============================================================
-        // GENERIRANJE GUMBOV ZA IZBRANO SKUPINO
-        // ============================================================
-        function generirajGumbe(skupina) {
-            const container = document.getElementById('kvizSeznam');
-            if (!container) return;
-
-            container.innerHTML = '';
-            const kvizi = KVIZI[skupina];
-            const barva = BARVE[skupina] || 'zelen';
-
-            kvizi.forEach(kviz => {
-                const resen = jeKvizResen(kviz.id);
-                const gumb = document.createElement('a');
-                gumb.className = `kviz-gumb ${barva}`;
-                gumb.href = `kviz.html?kviz=${kviz.id}`;
-                gumb.innerHTML = `
-                    ${kviz.ikona} ${kviz.naslov}
-                    ${resen ? '<span class="reseno">✅</span>' : ''}
-                `;
-                container.appendChild(gumb);
+        function generirajGumbe() {
+            Object.keys(KVIZI).forEach(kategorija => {
+                const container = document.getElementById(kategorija);
+                if (!container) return;
+                
+                container.innerHTML = '';
+                const kvizi = KVIZI[kategorija];
+                const barva = BARVE[kategorija] || 'zelen';
+                
+                kvizi.forEach(kviz => {
+                    const resen = jeKvizResen(kviz.id);
+                    const gumb = document.createElement('a');
+                    gumb.className = `kviz-gumb ${barva}`;
+                    gumb.href = `kviz.html?kviz=${kviz.id}`;
+                    gumb.innerHTML = `
+                        ${kviz.ikona} ${kviz.naslov}
+                        ${resen ? '<span class="reseno">✅</span>' : ''}
+                    `;
+                    container.appendChild(gumb);
+                });
             });
         }
 
@@ -567,38 +371,13 @@ const KVIZI = {
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             posodobiStatistiko();
-            posodobiKarticeSkupin();
-
+            generirajGumbe();
+            
             const params = new URLSearchParams(window.location.search);
-
             if (params.get('resen')) {
                 posodobiStatistiko();
-                posodobiKarticeSkupin();
+                generirajGumbe();
                 window.history.replaceState({}, document.title, window.location.pathname);
-            }
-
-            const skupinaIzURL = params.get('skupina');
-            if (skupinaIzURL && KVIZI[skupinaIzURL]) {
-                odpriSkupino(skupinaIzURL, false);
-            }
-        });
-
-        // Podpora za gumb "nazaj" v brskalniku
-        window.addEventListener('popstate', function() {
-            const params = new URLSearchParams(window.location.search);
-            const skupinaIzURL = params.get('skupina');
-            if (skupinaIzURL && KVIZI[skupinaIzURL]) {
-                odpriSkupino(skupinaIzURL, false);
-            } else {
-                prikaziSkupine(false);
-            }
-        });
-
-        // Skrivna bližnjica za testiranje: tipka "n" odklene vse skupine
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'n' || e.key === 'N') {
-                testniNacin = true;
-                posodobiKarticeSkupin();
             }
         });
     </script>

@@ -168,7 +168,6 @@
         .uvod strong { color: #8899dd; }
         .uvod .rdec-tekst { color: #e74c3c; }
         .uvod .zelen-tekst { color: #2ecc71; }
-        .uvod .rumen-tekst { color: #f1c40f; }
         .footer {
             margin-top: 2px;
             padding-top: 2px;
@@ -233,18 +232,6 @@
             color: #6688aa;
             margin-top: 2px;
         }
-        .skupina-kartica.zaklenjena {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-        .skupina-kartica.zaklenjena:hover {
-            transform: none;
-            box-shadow: none;
-            background: #1a2a4a;
-        }
-        .skupina-kartica.zaklenjena .skupina-napredek {
-            color: #8899bb;
-        }
         .nazaj-gumb {
             display: inline-flex;
             align-items: center;
@@ -302,9 +289,7 @@
         </div>
         
         <div class="uvod">
-            📌 <strong class="rdec-tekst">Kje začeti?</strong><br>
-            Začnite pri kvizih <strong class="zelen-tekst">za začetnike</strong>.<br>
-            Ko rešite vse (ali vsaj 70&nbsp;%) kvizov iz te skupine, se odklene naslednja, <strong class="rumen-tekst">srednja</strong> skupina — in ko rešite še vsaj 70&nbsp;% te, se odklene še zadnja, <strong class="rdec-tekst">napredna</strong> skupina.
+            📌 <strong class="rdec-tekst">Kje začeti?</strong> Priporočamo kvize iz <strong class="zelen-tekst">začetniške</strong> kategorije.
         </div>
 
         <!-- POGLED: IZBIRA SKUPINE -->
@@ -344,8 +329,8 @@
         </div>
 
         <div class="footer">
-            <p>📅 Zadnja posodobitev 2026-09-09</p>
-            <p>Ustvarjeno s Claude Sonnet 5</p>
+            <p>📅 Zadnja posodobitev: 2026-08-25</p>
+            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span></p>
         </div>
     </div>
 
@@ -417,7 +402,6 @@ const KVIZI = {
         };
 
         let trenutnaSkupina = null;
-        let testniNacin = false; // skrivni način za testiranje (tipka "n")
 
         // ============================================================
         // FUNKCIJE ZA LOCALSTORAGE
@@ -444,27 +428,6 @@ const KVIZI = {
         }
 
         // ============================================================
-        // NAPREDEK IN ODKLEPANJE SKUPIN (prag 70 %)
-        // ============================================================
-        const PRAG_ODKLEPANJA = 0.7;
-
-        function delezResenihVSkupini(skupina) {
-            const kvizi = KVIZI[skupina];
-            if (!kvizi || kvizi.length === 0) return 0;
-            const reseni = getReseniKvizi();
-            const reseniVSkupini = kvizi.filter(k => reseni.includes(k.id)).length;
-            return reseniVSkupini / kvizi.length;
-        }
-
-        function jeSkupinaOdklenjena(skupina) {
-            if (testniNacin) return true;
-            if (skupina === 'zacetniki') return true;
-            if (skupina === 'srednji') return delezResenihVSkupini('zacetniki') >= PRAG_ODKLEPANJA;
-            if (skupina === 'napredni') return delezResenihVSkupini('srednji') >= PRAG_ODKLEPANJA;
-            return false;
-        }
-
-        // ============================================================
         // STATISTIKA
         // ============================================================
         function posodobiStatistiko() {
@@ -477,7 +440,7 @@ const KVIZI = {
             document.getElementById('odstotek').textContent = odstotek + '%';
         }
 
-        // Napredek, stevilo kvizov in zaklep/odklep na kartici vsake skupine
+        // Napredek in stevilo kvizov na kartici vsake skupine
         function posodobiKarticeSkupin() {
             const reseni = getReseniKvizi();
             Object.keys(KVIZI).forEach(skupina => {
@@ -487,21 +450,8 @@ const KVIZI = {
                 const stEl = document.getElementById(ID_STEVILA[skupina]);
                 if (stEl) stEl.textContent = kvizi.length;
 
-                const kartica = document.querySelector(`.skupina-kartica.${skupina}`);
-                const odklenjena = jeSkupinaOdklenjena(skupina);
-
                 const napEl = document.getElementById(ID_NAPREDKA[skupina]);
-                if (napEl) {
-                    if (odklenjena) {
-                        napEl.textContent = `✅ ${reseniVSkupini} / ${kvizi.length} rešenih`;
-                    } else {
-                        napEl.textContent = '🔒 Najprej rešite prejšnjo skupino (vsaj 70 %)';
-                    }
-                }
-
-                if (kartica) {
-                    kartica.classList.toggle('zaklenjena', !odklenjena);
-                }
+                if (napEl) napEl.textContent = `✅ ${reseniVSkupini} / ${kvizi.length} rešenih`;
             });
         }
 
@@ -510,8 +460,6 @@ const KVIZI = {
         // ============================================================
         function odpriSkupino(skupina, dodajVZgodovino = true) {
             if (!KVIZI[skupina]) return;
-            if (!jeSkupinaOdklenjena(skupina)) return; // zaklenjena skupina - ignoriraj klik
-
             trenutnaSkupina = skupina;
 
             document.getElementById('pogledSkupine').style.display = 'none';
@@ -591,14 +539,6 @@ const KVIZI = {
                 odpriSkupino(skupinaIzURL, false);
             } else {
                 prikaziSkupine(false);
-            }
-        });
-
-        // Skrivna bližnjica za testiranje: tipka "n" odklene vse skupine
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'n' || e.key === 'N') {
-                testniNacin = true;
-                posodobiKarticeSkupin();
             }
         });
     </script>
