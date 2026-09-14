@@ -1,606 +1,426 @@
 <!DOCTYPE html>
-<!-- ============================================================ -->
-<!-- INČICA: 2026-08-09                                             -->
-<!-- Opis: Glavni meni za 26 kvizov iz osnov računalništva in AI   -->
-<!-- Avtor: M.V.                                                   -->
-<!-- ============================================================ -->
-<html>
+<html lang="sl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kviz - Osnove računalništva</title>
-    
+    <title>DCA Kviz</title>
     <style>
-        /* ========================================================== */
-        /* STILI ZA KVIZ MENI - TEMNI NAČIN                           */
-        /* ========================================================== */
-        * { box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 6px 20px; 
-            background: #1a1a2e;
-            color: #e0e0e0;
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
         }
-        .container {
-            background: #16213e;
-            padding: 8px 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-            border: 1px solid #2a3a5e;
-        }
-        h1 { 
-            color: #a8b5e0; 
-            text-align: center;
-            padding-bottom: 2px;
-            margin-top: 0;
-            margin-bottom: 6px;
-            font-size: 22px;
-        }
-        .stats {
-            background: linear-gradient(135deg, #1a1a3e 0%, #2a1a4e 100%);
-            color: #e0e0e0;
-            padding: 6px 15px;
-            border-radius: 10px;
-            margin-bottom: 8px;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 5px;
-            border: 1px solid #2a3a5e;
+            justify-content: center;
         }
-        .stats-item {
-            text-align: center;
-            padding: 2px 10px;
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .stats-item .stevilka {
-            font-size: 22px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--secondary);
             font-weight: bold;
-            display: block;
-            line-height: 1.2;
-            color: #a8b5e0;
-        }
-        .stats-item .label {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-        .stats-item .reset {
-            display: block;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid #2a3a5e;
-            color: #e0e0e0;
-            padding: 4px 12px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 11px;
-            transition: background 0.3s;
-        }
-        .stats-item .reset:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        .kategorija {
-            margin: 8px 0;
-            padding: 8px 15px;
-            border-radius: 10px;
-            background: #1a2a4a;
-            border: 1px solid #2a3a5e;
-        }
-        .kategorija h2 {
-            margin: 0 0 4px 0;
-            font-size: 17px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: #c8d0e8;
+            gap: 5px;
         }
-        .kategorija.zacetniki { border-left: 4px solid #2ecc71; }
-        .kategorija.srednji { border-left: 4px solid #f39c12; }
-        .kategorija.napredni { border-left: 4px solid #e74c3c; }
-        
-        .kviz-gumb {
-            display: inline-block;
-            padding: 6px 14px;
-            margin: 3px 4px 3px 0;
-            background: #2a3a5e;
-            color: #e0e0e0;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 13px;
-            transition: all 0.2s;
-            border: 1px solid #3a4a6e;
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--light);
+            border-radius: 5px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option-btn {
+            padding: 15px 20px;
+            border: 2px solid var(--light);
+            background: white;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 1rem;
             cursor: pointer;
-            position: relative;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .kviz-gumb:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            background: #3a4a6e;
+
+        .option-btn:hover:not([disabled]) {
+            border-color: var(--secondary);
+            background-color: #f8fbfe;
         }
-        .kviz-gumb.zelen { background: #1a6a3a; border-color: #2ecc71; }
-        .kviz-gumb.zelen:hover { background: #2a7a4a; }
-        .kviz-gumb.oranzen { background: #FFB07C; border-color: #FFB07C; color: #1a1a2e; }
-        .kviz-gumb.oranzen:hover { background: #E8966A; }
-        .kviz-gumb.rdec { background: #e74c3c; border-color: #e74c3c; color: #1a1a2e; }
-        .kviz-gumb.rdec:hover { background: #c0392b; }
-        .kviz-gumb .reseno {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            background: #2ecc71;
-            color: #1a1a2e;
+
+        .option-badge {
+            background: var(--light);
+            color: var(--dark);
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .opis {
-            color: #8899bb;
-            font-size: 13px;
-            margin: 2px 0 6px 0;
-        }
-        .oznaka {
-            display: inline-block;
-            padding: 1px 10px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: bold;
-            margin-left: 6px;
-        }
-        .oznaka.zelen { background: #2ecc71; color: #1a1a2e; }
-        .oznaka.oranzen { background: #f39c12; color: #1a1a2e; }
-        .oznaka.rdec { background: #e74c3c; color: white; }
-        .uvod {
-            background: #1a2a4a;
-            padding: 6px 15px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            border: 1px solid #2a3a5e;
-            text-align: center;
-            font-size: 14px;
-        }
-        .uvod strong { color: #8899dd; }
-        .uvod .rdec-tekst { color: #e74c3c; }
-        .uvod .zelen-tekst { color: #2ecc71; }
-        .uvod .rumen-tekst { color: #f1c40f; }
-        .footer {
-            margin-top: 2px;
-            padding-top: 2px;
-            border-top: 1px solid #2a3a5e;
-            text-align: center;
-            color: #6688aa;
-            font-size: 12px;
-        }
-        .footer .deepseek {
-            color: #4a8a9a;
-            font-weight: bold;
-        }
-        .gumb-vrstica {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
-        /* SKUPINE - IZBIRNI ZASLON */
-        .skupine-mreza {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin-bottom: 10px;
+        .option-btn.correct {
+            border-color: var(--success);
+            background-color: #e8f8f0;
+            color: #27ae60;
         }
-        .skupina-kartica {
-            cursor: pointer;
-            padding: 18px 14px;
-            border-radius: 12px;
-            background: #1a2a4a;
-            border: 1px solid #2a3a5e;
-            text-align: center;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+
+        .option-btn.correct .option-badge {
+            background: var(--success);
+            color: white;
         }
-        .skupina-kartica:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-            background: #1f3355;
+
+        .option-btn.wrong {
+            border-color: var(--danger);
+            background-color: #fdeaea;
+            color: #c0392b;
         }
-        .skupina-kartica.zacetniki { border-top: 4px solid #2ecc71; }
-        .skupina-kartica.srednji { border-top: 4px solid #f39c12; }
-        .skupina-kartica.napredni { border-top: 4px solid #e74c3c; }
-        .skupina-ikona { font-size: 34px; margin-bottom: 6px; }
-        .skupina-kartica h2 {
-            margin: 0 0 4px 0;
-            font-size: 16px;
-            color: #c8d0e8;
+
+        .option-btn.wrong .option-badge {
+            background: var(--danger);
+            color: white;
         }
-        .skupina-opis {
-            color: #8899bb;
-            font-size: 12px;
-            margin: 4px 0 8px 0;
-            min-height: 32px;
-        }
-        .skupina-stevilo {
-            font-size: 13px;
-            font-weight: bold;
-            color: #c8d0e8;
-        }
-        .skupina-napredek {
-            font-size: 12px;
-            color: #6688aa;
-            margin-top: 2px;
-        }
-        .skupina-kartica.zaklenjena {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-        .skupina-kartica.zaklenjena:hover {
-            transform: none;
-            box-shadow: none;
-            background: #1a2a4a;
-        }
-        .skupina-kartica.zaklenjena .skupina-napredek {
-            color: #8899bb;
-        }
-        .nazaj-gumb {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #2a3a5e;
-            color: #e0e0e0;
-            border: 1px solid #3a4a6e;
-            padding: 6px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            font-size: 13px;
-        }
-        .nazaj-gumb:hover { background: #3a4a6e; }
-        
-        /* Scrollbar za temni način */
-        ::-webkit-scrollbar {
-            width: 8px;
-            background: #1a1a2e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2a3a5e;
+
+        .explanation {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
             border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3a4a6e;
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: #bdc3c7;
+        }
+
+        .shortcut-hint {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .badge-shuffled {
+            font-size: 0.75rem;
+            background: #e1b12c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 10px;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- ========================================================== -->
-    <!-- GLAVNA VSEBINA                                              -->
-    <!-- ========================================================== -->
-    <div class="container">
-        <h1>🎯 Kvizi iz osnov računalništva in UI</h1>
-        
-        <!-- STATISTIKA -->
-        <div class="stats" id="statistika">
-            <div class="stats-item">
-                <span class="stevilka" id="skupajResenih">0</span>
-                <span class="label">✅ Rešenih</span>
-            </div>
-            <div class="stats-item">
-                <span class="stevilka" id="skupajVseh">26</span>
-                <span class="label">📚 Vseh</span>
-            </div>
-            <div class="stats-item">
-                <span class="stevilka" id="odstotek">0%</span>
-                <span class="label">📊 Napredek</span>
-            </div>
-            <div class="stats-item">
-                <button class="reset" onclick="ponastaviVse()">🗑️ Ponastavi</button>
-                <span class="label" style="margin-top:2px; display:inline-block;">(zbriši zgodovino)</span>
-            </div>
-        </div>
-        
-        <div class="uvod">
-            📌 <strong class="rdec-tekst">Kje začeti?</strong><br>
-            Začnite pri kvizih <strong class="zelen-tekst">za začetnike</strong>.<br>
-            Ko rešite vse (ali vsaj 70&nbsp;%) kvizov iz te skupine, se odklene naslednja, <strong class="rumen-tekst">srednja</strong> skupina — in ko rešite še vsaj 70&nbsp;% te, se odklene še zadnja, <strong class="rdec-tekst">napredna</strong> skupina.
-        </div>
 
-        <!-- POGLED: IZBIRA SKUPINE -->
-        <div id="pogledSkupine">
-            <div class="skupine-mreza">
-                <div class="skupina-kartica zacetniki" onclick="odpriSkupino('zacetniki')">
-                    <div class="skupina-ikona">🟢</div>
-                    <h2>Za začetnike</h2>
-                    <div class="skupina-opis">Osnove dela z računalnikom, internetom in telefonom</div>
-                    <div class="skupina-stevilo"><span id="steviloZacetniki">10</span> kvizov</div>
-                    <div class="skupina-napredek" id="napredekZacetniki"></div>
-                </div>
-                <div class="skupina-kartica srednji" onclick="odpriSkupino('srednji')">
-                    <div class="skupina-ikona">🟡</div>
-                    <h2>Srednja zahtevnost</h2>
-                    <div class="skupina-opis">Nekoliko naprednejša uporaba računalnika, oblaka in telefona</div>
-                    <div class="skupina-stevilo"><span id="steviloSrednji">8</span> kvizov</div>
-                    <div class="skupina-napredek" id="napredekSrednji"></div>
-                </div>
-                <div class="skupina-kartica napredni" onclick="odpriSkupino('napredni')">
-                    <div class="skupina-ikona">🔴</div>
-                    <h2>Za napredne</h2>
-                    <div class="skupina-opis">Varnost, dokumenti, bližnjice in naprednejša uporaba</div>
-                    <div class="skupina-stevilo"><span id="steviloNapredni">8</span> kvizov</div>
-                    <div class="skupina-napredek" id="napredekNapredni"></div>
-                </div>
-            </div>
+<div class="container">
+    <div class="header">
+        <a href="index.html" class="back-btn">← Nazaj na seznam kvizov</a>
+        <div>
+            <span id="quiz-title" style="font-weight: bold;">Nalaganje...</span>
+            <span id="shuffle-badge" class="badge-shuffled">🔀 Premešano</span>
         </div>
-
-        <!-- POGLED: SEZNAM KVIZOV V IZBRANI SKUPINI -->
-        <div id="pogledKvizi" style="display:none;">
-            <button class="nazaj-gumb" onclick="prikaziSkupine()">← Nazaj na skupine</button>
-            <div class="kategorija" id="kategorijaOkvir">
-                <h2 id="kategorijaNaslov"></h2>
-                <div id="kvizSeznam" class="gumb-vrstica"></div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>📅 Zadnja posodobitev 2026-09-09</p>
-            <p>Ustvarjeno s Claude Sonnet 5</p>
-        </div>
+        <div id="score-counter">Rezultat: 0</div>
     </div>
 
-    <!-- ========================================================== -->
-    <!-- JAVASCRIPT                                                  -->
-    <!-- ========================================================== -->
-    <script>
-        // ============================================================
-        // KONFIGURACIJA KVIZOV - OR_01.json do OR_26.json
-        // ============================================================
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
 
-const KVIZI = {
-    zacetniki: [
-        { id: 'OR_01.json', naslov: 'Osnove dela z računalnikom – Windows 10/11', ikona: '💻' },
-        { id: 'OR_02.json', naslov: 'Datoteke in mape v Windows okolju', ikona: '📁' },
-        { id: 'OR_03.json', naslov: 'Internet in spletni brskalniki', ikona: '🌐' },
-        { id: 'OR_04.json', naslov: 'Elektronska pošta (e-pošta)', ikona: '✉️' },
-        { id: 'OR_05.json', naslov: 'Varnost na spletu', ikona: '🔒' },
-        { id: 'OR_06.json', naslov: 'Pametni telefon Android', ikona: '📱' },
-        { id: 'OR_07.json', naslov: 'Google Iskanje in napredno iskanje', ikona: '🔍' },
-        { id: 'OR_08.json', naslov: 'ChatGPT in umetna inteligenca', ikona: '🤖' },
-        { id: 'OR_09.json', naslov: 'Fotografije s telefonom in Google Fotografije', ikona: '📷' },
-        { id: 'OR_10.json', naslov: 'Spletno bančništvo in varni spletni nakupi', ikona: '🏦' }
-    ],
-    srednji: [
-        { id: 'OR_11.json', naslov: 'Google Drive, OneDrive in delo v oblaku', ikona: '☁️' },
-        { id: 'OR_12.json', naslov: 'Windows 10 – urejanje datotek, map in Raziskovalec', ikona: '🖥️' },
-        { id: 'OR_13.json', naslov: 'Elektronska pošta – napredna uporaba in varnost', ikona: '📧' },
-        { id: 'OR_14.json', naslov: 'Windows 10 – nastavitve in prilagajanje okolja', ikona: '⚙️' },
-        { id: 'OR_15.json', naslov: 'Pametni telefon – nastavitve, baterija in vzdrževanje', ikona: '🔋' },
-        { id: 'OR_16.json', naslov: 'Fotografije – urejanje, shranjevanje in deljenje', ikona: '🖼️' },
-        { id: 'OR_17.json', naslov: 'Internet – iskanje, Google in preverjanje virov', ikona: '🌍' },
-        { id: 'OR_18.json', naslov: 'Umetna inteligenca in ChatGPT – osnovna uporaba', ikona: '🧠' }
-    ],
-    napredni: [
-        { id: 'OR_19.json', naslov: 'Spletne prevare, phishing in varnost računov', ikona: '🛡️' },
-        { id: 'OR_20.json', naslov: 'Delo z dokumenti – Word, PDF in tiskanje', ikona: '📄' },
-        { id: 'OR_21.json', naslov: 'Windows 10 – bližnjice na tipkovnici', ikona: '⌨️' },
-        { id: 'OR_22.json', naslov: 'Pametni telefon – vsakodnevna uporaba', ikona: '📲' },
-        { id: 'OR_23.json', naslov: 'Elektronska pošta – pošiljanje in organizacija', ikona: '📨' },
-        { id: 'OR_24.json', naslov: 'Spletno bančništvo in spletni nakupi', ikona: '💳' },
-        { id: 'OR_25.json', naslov: 'Umetna inteligenca za vsakdanjo uporabo', ikona: '🤖' },
-        { id: 'OR_26.json', naslov: 'Naprednejša uporaba računalnika in interneta', ikona: '🚀' }
-    ]
-};
+    <div id="quiz-content">
+        <div class="question-title" id="question-text">Pripravljam vprašanje...</div>
+        
+        <div class="options-grid" id="options-container">
+            <!-- Možnosti odgovorov -->
+        </div>
 
-        const BARVE = {
-            zacetniki: 'zelen',
-            srednji: 'oranzen',
-            napredni: 'rdec'
-        };
+        <div class="explanation" id="explanation">
+            <strong>Razlaga:</strong> <span id="explanation-text"></span>
+        </div>
 
-        const NASLOVI_SKUPIN = {
-            zacetniki: '🟢 Za začetnike',
-            srednji: '🟡 Srednja zahtevnost',
-            napredni: '🔴 Za napredne'
-        };
+        <div class="controls">
+            <button class="btn btn-secondary" onclick="ponastaviKviz()">Ponastavi ta kviz</button>
+            <button class="btn btn-primary" id="next-btn" onclick="naslednjeVprasanje()" style="display: none;">Naprej →</button>
+        </div>
 
-        const ID_STEVILA = {
-            zacetniki: 'steviloZacetniki',
-            srednji: 'steviloSrednji',
-            napredni: 'steviloNapredni'
-        };
+        <div class="shortcut-hint">
+            💡 Namig: Odgovore lahko izbiraš s tipkami <strong>1, 2, 3, 4</strong> ali potrdiš z <strong>Enter</strong>.
+        </div>
+    </div>
+</div>
 
-        const ID_NAPREDKA = {
-            zacetniki: 'napredekZacetniki',
-            srednji: 'napredekSrednji',
-            napredni: 'napredekNapredni'
-        };
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const jsonFile = urlParams.get('file') || 'OR_01.json';
+    const STORAGE_KEY = `dca_napredek_${jsonFile}`;
 
-        let trenutnaSkupina = null;
-        let testniNacin = false; // skrivni način za testiranje (tipka "n")
+    let vprasanja = [];
+    let trenutnoVprasanje = 0;
+    let rezultat = 0;
+    let odgovoreno = false;
+    let jePremesano = false;
 
-        // ============================================================
-        // FUNKCIJE ZA LOCALSTORAGE
-        // ============================================================
-        function getReseniKvizi() {
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const explanationDiv = document.getElementById('explanation');
+    const explanationText = document.getElementById('explanation-text');
+    const nextBtn = document.getElementById('next-btn');
+    const scoreCounter = document.getElementById('score-counter');
+    const progressFill = document.getElementById('progress-fill');
+    const quizTitle = document.getElementById('quiz-title');
+    const shuffleBadge = document.getElementById('shuffle-badge');
+
+    // Algoritem za mešanje polja (Fisher-Yates)
+    function mesajPolje(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function zagonKviza() {
+        quizTitle.textContent = jsonFile.replace('.json', '');
+
+        fetch(jsonFile)
+            .then(res => res.json())
+            .then(data => {
+                vprasanja = data;
+                naloziNapredek();
+                prikaziVprasanje();
+            })
+            .catch(err => {
+                questionText.textContent = "Napaka pri nalaganju kviza.";
+                console.error("Napaka:", err);
+            });
+    }
+
+    function naloziNapredek() {
+        const shranjeno = localStorage.getItem(STORAGE_KEY);
+        if (shranjeno) {
             try {
-                return JSON.parse(localStorage.getItem('reseniKvizi')) || [];
-            } catch {
-                return [];
-            }
-        }
+                const stanje = JSON.parse(shranjeno);
+                trenutnoVprasanje = stanje.trenutnoVprasanje || 0;
+                rezultat = stanje.rezultat || 0;
+                jePremesano = stanje.jePremesano || false;
 
-        function jeKvizResen(kvizId) {
-            return getReseniKvizi().includes(kvizId);
-        }
-
-        function ponastaviVse() {
-            if (confirm('Ali res želiš izbrisati vso zgodovino rešenih kvizov?')) {
-                localStorage.removeItem('reseniKvizi');
-                posodobiStatistiko();
-                posodobiKarticeSkupin();
-                if (trenutnaSkupina) generirajGumbe(trenutnaSkupina);
-            }
-        }
-
-        // ============================================================
-        // NAPREDEK IN ODKLEPANJE SKUPIN (prag 70 %)
-        // ============================================================
-        const PRAG_ODKLEPANJA = 0.7;
-
-        function delezResenihVSkupini(skupina) {
-            const kvizi = KVIZI[skupina];
-            if (!kvizi || kvizi.length === 0) return 0;
-            const reseni = getReseniKvizi();
-            const reseniVSkupini = kvizi.filter(k => reseni.includes(k.id)).length;
-            return reseniVSkupini / kvizi.length;
-        }
-
-        function jeSkupinaOdklenjena(skupina) {
-            if (testniNacin) return true;
-            if (skupina === 'zacetniki') return true;
-            if (skupina === 'srednji') return delezResenihVSkupini('zacetniki') >= PRAG_ODKLEPANJA;
-            if (skupina === 'napredni') return delezResenihVSkupini('srednji') >= PRAG_ODKLEPANJA;
-            return false;
-        }
-
-        // ============================================================
-        // STATISTIKA
-        // ============================================================
-        function posodobiStatistiko() {
-            const reseni = getReseniKvizi();
-            const vseh = Object.values(KVIZI).reduce((sum, kat) => sum + kat.length, 0);
-            const odstotek = vseh > 0 ? Math.round((reseni.length / vseh) * 100) : 0;
-
-            document.getElementById('skupajResenih').textContent = reseni.length;
-            document.getElementById('skupajVseh').textContent = vseh;
-            document.getElementById('odstotek').textContent = odstotek + '%';
-        }
-
-        // Napredek, stevilo kvizov in zaklep/odklep na kartici vsake skupine
-        function posodobiKarticeSkupin() {
-            const reseni = getReseniKvizi();
-            Object.keys(KVIZI).forEach(skupina => {
-                const kvizi = KVIZI[skupina];
-                const reseniVSkupini = kvizi.filter(k => reseni.includes(k.id)).length;
-
-                const stEl = document.getElementById(ID_STEVILA[skupina]);
-                if (stEl) stEl.textContent = kvizi.length;
-
-                const kartica = document.querySelector(`.skupina-kartica.${skupina}`);
-                const odklenjena = jeSkupinaOdklenjena(skupina);
-
-                const napEl = document.getElementById(ID_NAPREDKA[skupina]);
-                if (napEl) {
-                    if (odklenjena) {
-                        napEl.textContent = `✅ ${reseniVSkupini} / ${kvizi.length} rešenih`;
-                    } else {
-                        napEl.textContent = '🔒 Najprej rešite prejšnjo skupino (vsaj 70 %)';
-                    }
+                // Če je bil kviz že ponastavljen/premešan v preteklosti, mešamo vprašanja po shranjenem vrstnem redu ali na novo
+                if (stanje.shranjenaVprasanja && stanje.shranjenaVprasanja.length > 0) {
+                    vprasanja = stanje.shranjenaVprasanja;
                 }
-
-                if (kartica) {
-                    kartica.classList.toggle('zaklenjena', !odklenjena);
-                }
-            });
-        }
-
-        // ============================================================
-        // PREKLOP MED POGLEDOMA
-        // ============================================================
-        function odpriSkupino(skupina, dodajVZgodovino = true) {
-            if (!KVIZI[skupina]) return;
-            if (!jeSkupinaOdklenjena(skupina)) return; // zaklenjena skupina - ignoriraj klik
-
-            trenutnaSkupina = skupina;
-
-            document.getElementById('pogledSkupine').style.display = 'none';
-            document.getElementById('pogledKvizi').style.display = 'block';
-            document.getElementById('kategorijaNaslov').textContent = NASLOVI_SKUPIN[skupina];
-
-            generirajGumbe(skupina);
-            window.scrollTo(0, 0);
-
-            if (dodajVZgodovino) {
-                history.pushState({ skupina }, '', '?skupina=' + skupina);
+            } catch (e) {
+                console.error("Napaka pri branju napredka", e);
             }
         }
+    }
 
-        function prikaziSkupine(dodajVZgodovino = true) {
-            trenutnaSkupina = null;
-            document.getElementById('pogledKvizi').style.display = 'none';
-            document.getElementById('pogledSkupine').style.display = 'block';
-            posodobiKarticeSkupin();
-            window.scrollTo(0, 0);
+    function shraniNapredek() {
+        const stanje = {
+            trenutnoVprasanje: trenutnoVprasanje,
+            rezultat: rezultat,
+            jePremesano: jePremesano,
+            shranjenaVprasanja: vprasanja // Shranimo vrstne rede, da ob osvežitvi ne premeša znova
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stanje));
+    }
 
-            if (dodajVZgodovino) {
-                history.pushState({}, '', window.location.pathname);
-            }
+    function ponastaviKviz() {
+        if (confirm("Želiš ponastaviti kviz? Ob ponovitvi se bodo vprašanja premešala za samostojno utrjevanje.")) {
+            localStorage.removeItem(STORAGE_KEY);
+            
+            // Ponovno pridobimo originalna vprašanja in jih premešamo
+            vprasanja = mesajPolje(vprasanja);
+            jePremesano = true;
+            trenutnoVprasanje = 0;
+            rezultat = 0;
+
+            shraniNapredek();
+            prikaziVprasanje();
+        }
+    }
+
+    function prikaziVprasanje() {
+        odgovoreno = false;
+        explanationDiv.style.display = 'none';
+        nextBtn.style.display = 'none';
+
+        // Prikaz značke, če so vprašanja premešana
+        shuffleBadge.style.display = jePremesano ? 'inline' : 'none';
+
+        if (trenutnoVprasanje >= vprasanja.length) {
+            zakljuciKviz();
+            return;
         }
 
-        // ============================================================
-        // GENERIRANJE GUMBOV ZA IZBRANO SKUPINO
-        // ============================================================
-        function generirajGumbe(skupina) {
-            const container = document.getElementById('kvizSeznam');
-            if (!container) return;
+        const q = vprasanja[trenutnoVprasanje];
+        
+        questionText.textContent = `${trenutnoVprasanje + 1}. ${q.question || q.vprasanje}`;
+        scoreCounter.textContent = `Rezultat: ${rezultat}/${vprasanja.length}`;
+        progressFill.style.width = `${((trenutnoVprasanje) / vprasanja.length) * 100}%`;
 
-            container.innerHTML = '';
-            const kvizi = KVIZI[skupina];
-            const barva = BARVE[skupina] || 'zelen';
+        optionsContainer.innerHTML = '';
+        const opcije = q.options || q.odgovori || [];
+        const crke = ['A', 'B', 'C', 'D'];
 
-            kvizi.forEach(kviz => {
-                const resen = jeKvizResen(kviz.id);
-                const gumb = document.createElement('a');
-                gumb.className = `kviz-gumb ${barva}`;
-                gumb.href = `kviz.html?kviz=${kviz.id}`;
-                gumb.innerHTML = `
-                    ${kviz.ikona} ${kviz.naslov}
-                    ${resen ? '<span class="reseno">✅</span>' : ''}
-                `;
-                container.appendChild(gumb);
-            });
-        }
-
-        // ============================================================
-        // ZAŽENI OB NALAGANJU
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', function() {
-            posodobiStatistiko();
-            posodobiKarticeSkupin();
-
-            const params = new URLSearchParams(window.location.search);
-
-            if (params.get('resen')) {
-                posodobiStatistiko();
-                posodobiKarticeSkupin();
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-
-            const skupinaIzURL = params.get('skupina');
-            if (skupinaIzURL && KVIZI[skupinaIzURL]) {
-                odpriSkupino(skupinaIzURL, false);
-            }
+        opcije.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerHTML = `<span class="option-badge">${crke[idx] || (idx + 1)}</span> ${opt}`;
+            btn.onclick = () => preveriOdgovor(idx);
+            optionsContainer.appendChild(btn);
         });
+    }
 
-        // Podpora za gumb "nazaj" v brskalniku
-        window.addEventListener('popstate', function() {
-            const params = new URLSearchParams(window.location.search);
-            const skupinaIzURL = params.get('skupina');
-            if (skupinaIzURL && KVIZI[skupinaIzURL]) {
-                odpriSkupino(skupinaIzURL, false);
-            } else {
-                prikaziSkupine(false);
-            }
-        });
+    function preveriOdgovor(izbraniIndeks) {
+        if (odgovoreno) return;
+        odgovoreno = true;
 
-        // Skrivna bližnjica za testiranje: tipka "n" odklene vse skupine
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'n' || e.key === 'N') {
-                testniNacin = true;
-                posodobiKarticeSkupin();
+        const q = vprasanja[trenutnoVprasanje];
+        const pravilniIndeks = q.correct !== undefined ? q.correct : q.pravilni;
+        const gumbi = optionsContainer.children;
+
+        if (izbraniIndeks === pravilniIndeks) {
+            gumbi[izbraniIndeks].classList.add('correct');
+            rezultat++;
+        } else {
+            gumbi[izbraniIndeks].classList.add('wrong');
+            if (gumbi[pravilniIndeks]) {
+                gumbi[pravilniIndeks].classList.add('correct');
             }
-        });
-    </script>
+        }
+
+        Array.from(gumbi).forEach(g => g.disabled = true);
+
+        if (q.explanation || q.razlaga) {
+            explanationText.textContent = q.explanation || q.razlaga;
+            explanationDiv.style.display = 'block';
+        }
+
+        scoreCounter.textContent = `Rezultat: ${rezultat}/${vprasanja.length}`;
+        nextBtn.style.display = 'inline-block';
+        
+        shraniNapredek();
+    }
+
+    function naslednjeVprasanje() {
+        trenutnoVprasanje++;
+        shraniNapredek();
+        prikaziVprasanje();
+    }
+
+    function zakljuciKviz() {
+        progressFill.style.width = '100%';
+        questionText.textContent = "🎉 Kviz je zaključen!";
+        optionsContainer.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <h3>Tvoj končni rezultat: ${rezultat} od ${vprasanja.length} točk</h3>
+                <p>Uspešnost: ${Math.round((rezultat / vprasanja.length) * 100)}%</p>
+                <button class="btn btn-primary" onclick="ponastaviKviz()" style="margin-top: 15px;">Ponovno rešuj (premešaj vprašanja) 🔀</button>
+            </div>
+        `;
+        nextBtn.style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (['1', '2', '3', '4'].includes(e.key)) {
+            const indeks = parseInt(e.key) - 1;
+            const gumbi = optionsContainer.children;
+            if (gumbi[indeks] && !odgovoreno) {
+                gumbi[indeks].click();
+            }
+        } else if (e.key === 'Enter' && odgovoreno && nextBtn.style.display !== 'none') {
+            naslednjeVprasanje();
+        }
+    });
+
+    zagonKviza();
+</script>
+
 </body>
 </html>
