@@ -190,7 +190,7 @@
 
 <div class="container">
     <div class="header">
-        <a href="index.html" class="back-btn">← Nazaj na seznam kvizov</a>
+        <a href="index.html" id="back-link" class="back-btn">← Nazaj na seznam kvizov</a>
         <div id="quiz-title" style="font-weight: bold;">Nalaganje...</div>
         <div id="score-counter">Rezultat: 0</div>
     </div>
@@ -215,16 +215,24 @@
             <button class="btn btn-primary" id="next-btn" onclick="naslednjeVprasanje()" style="display: none;">Naprej →</button>
         </div>
 
-        <div class="shortcut-hint">
+        <div class="shortcut-hint" id="shortcut-hint">
             💡 Namig: Odgovore lahko izbiraš tudi s tipkami <strong>1, 2, 3, 4</strong> na tipkovnici.
         </div>
     </div>
 </div>
 
 <script>
-    // 1. PREBIRANJE PARAMETROV IZ URL-JA (npr. kviz.html?file=OR_01.json)
+    // 1. PREBIRANJE PARAMETROV IZ URL-JA (npr. kviz.html?kviz=OR_01.json&skupina=zacetniki&naslov=...)
     const urlParams = new URLSearchParams(window.location.search);
-    const jsonFile = urlParams.get('file') || 'OR_01.json';
+    const jsonFile = urlParams.get('kviz') || urlParams.get('file') || 'OR_01.json';
+    const skupinaIzURL = urlParams.get('skupina');
+    const naslovIzURL = urlParams.get('naslov');
+
+    // Gumb "Nazaj" naj vrne uporabnika v isto skupino, iz katere je prišel
+    const backLink = document.getElementById('back-link');
+    if (skupinaIzURL) {
+        backLink.href = `index.html?skupina=${encodeURIComponent(skupinaIzURL)}`;
+    }
     
     // Unikatni ključ za spomin brskalnika za vsak JSON kviz posebej
     const STORAGE_KEY = `dca_napredek_${jsonFile}`;
@@ -246,7 +254,7 @@
 
     // 2. NALAGANJE JSON DATOTEKE IN SHRANJENEGA STANJA
     function zagonKviza() {
-        quizTitle.textContent = jsonFile.replace('.json', '');
+        quizTitle.textContent = naslovIzURL || jsonFile.replace('.json', '');
 
         fetch(jsonFile)
             .then(res => res.json())
@@ -321,6 +329,11 @@
             btn.onclick = () => preveriOdgovor(idx);
             optionsContainer.appendChild(btn);
         });
+
+        // Namig s tipkami naj kaže samo toliko številk, kolikor je res možnosti
+        const stevilkeZaNamig = opcije.map((_, idx) => idx + 1).join(', ');
+        document.getElementById('shortcut-hint').innerHTML =
+            `💡 Namig: Odgovore lahko izbiraš tudi s tipkami <strong>${stevilkeZaNamig}</strong> na tipkovnici.`;
     }
 
     // 5. PREVERJANJE ODGOVORA
@@ -373,6 +386,23 @@
             </div>
         `;
         nextBtn.style.display = 'none';
+
+        oznaciKvizKotResen();
+    }
+
+    // Zabeleži ta kviz med rešene, da ga index.html upošteva pri
+    // odklepanju naslednje skupine (skupaj s pragom 70 % na glavni strani)
+    function oznaciKvizKotResen() {
+        let reseni = [];
+        try {
+            reseni = JSON.parse(localStorage.getItem('reseniKvizi')) || [];
+        } catch (e) {
+            reseni = [];
+        }
+        if (!reseni.includes(jsonFile)) {
+            reseni.push(jsonFile);
+            localStorage.setItem('reseniKvizi', JSON.stringify(reseni));
+        }
     }
 
     // 6. UPRAVLJANJE S TIPKOVNICO (Tipke 1, 2, 3, 4)
