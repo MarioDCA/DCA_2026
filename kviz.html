@@ -256,7 +256,7 @@
     function zagonKviza() {
         quizTitle.textContent = naslovIzURL || jsonFile.replace('.json', '');
 
-        fetch(jsonFile)
+        fetch(jsonFile + '?v=' + Date.now())
             .then(res => res.json())
             .then(data => {
                 vprasanja = data; // Vprašanja v originalnem (fiksnem) vrstnem redu za tečaj
