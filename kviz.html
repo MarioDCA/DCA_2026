@@ -1,426 +1,1139 @@
 <!DOCTYPE html>
-<html lang="sl">
+<!-- ============================================================ -->
+<!-- INČICA: 2026-08-10                                             -->
+<!-- Opis: Prikaz in reševanje posameznega kviza                    -->
+<!-- Avtor: M.V.                                                   -->
+<!-- ============================================================ -->
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCA Kviz</title>
+    <title>Kviz</title>
+    
     <style>
+        /* ========================================================== */
+        /* STILI ZA KVIZ - TEMNI NAČIN (privzeto)                     */
+        /* ========================================================== */
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --success: #2ecc71;
-            --danger: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
+            --bg-body: #1a1a2e;
+            --bg-container: #16213e;
+            --bg-card: #1a2a4a;
+            --bg-hover: #2a3a5e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a8b5e0;
+            --text-muted: #8899bb;
+            --border-color: #2a3a5e;
+            --shadow: rgba(0,0,0,0.4);
+            --correct: #2ecc71;
+            --wrong: #e74c3c;
+            --accent: #667eea;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+        
+        /* Svetli način */
+        body.light-mode {
+            --bg-body: #f0f4f8;
+            --bg-container: #ffffff;
+            --bg-card: #f8f9fa;
+            --bg-hover: #e8f4fd;
+            --text-primary: #212529;
+            --text-secondary: #2d3748;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --shadow: rgba(0,0,0,0.1);
+            --correct: #2ecc71;
+            --wrong: #e74c3c;
+            --accent: #667eea;
         }
-
+        
+        * { box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 850px;
+            margin: 0 auto; 
+            padding: 15px 25px; 
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
+            font-size: 17px;
+        }
         .container {
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            padding: 30px;
+            background: var(--bg-container);
+            padding: 15px 20px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background 0.3s, border 0.3s;
         }
+        
+        /* Glava */
 
         .header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--light);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            flex-direction: column;    /* elementi drug pod drugim */
+            align-items: center;       /* centrirano */
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            gap: 6px;
         }
-
-        .back-btn {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background-color: var(--light);
-            border-radius: 5px;
-            margin-bottom: 25px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: var(--secondary);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .question-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .options-grid {
-            display: grid;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .option-btn {
-            padding: 15px 20px;
-            border: 2px solid var(--light);
-            background: white;
-            border-radius: 8px;
-            text-align: left;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .option-btn:hover:not([disabled]) {
-            border-color: var(--secondary);
-            background-color: #f8fbfe;
-        }
-
-        .option-badge {
-            background: var(--light);
-            color: var(--dark);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .option-btn.correct {
-            border-color: var(--success);
-            background-color: #e8f8f0;
-            color: #27ae60;
-        }
-
-        .option-btn.correct .option-badge {
-            background: var(--success);
-            color: white;
-        }
-
-        .option-btn.wrong {
-            border-color: var(--danger);
-            background-color: #fdeaea;
-            color: #c0392b;
-        }
-
-        .option-btn.wrong .option-badge {
-            background: var(--danger);
-            color: white;
-        }
-
-        .explanation {
-            background-color: #f8f9fa;
-            border-left: 4px solid var(--secondary);
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: background 0.2s;
-        }
-
-        .btn-primary {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #2980b9;
-        }
-
-        .btn-secondary {
-            background-color: var(--light);
-            color: var(--dark);
-        }
-
-        .btn-secondary:hover {
-            background-color: #bdc3c7;
-        }
-
-        .shortcut-hint {
-            font-size: 0.8rem;
-            color: #7f8c8d;
+        .header h1 { 
+            margin: 0; 
+            color: var(--accent); 
+            font-size: 22px;
+            transition: color 0.3s;
             text-align: center;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;   /* centrirano */
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .header a {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 3px 10px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 12px;
+        }
+        .header a:hover { 
+            background: var(--accent); 
+            color: white; 
+        }
+        
+        .theme-toggle, .info-btn, .sound-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 3px 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.3s;
+        }
+        .theme-toggle:hover, .info-btn:hover, .sound-toggle:hover {
+            background: var(--bg-hover);
+        }
+        
+        /* INFO OKNO (modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: var(--bg-container);
+            padding: 20px 25px;
+            border-radius: 15px;
+            width: 550px;
+            max-width: 90%;
+            text-align: left;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            font-size: 22px;
+        }
+        .modal-content ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+        .modal-content li {
+            margin: 10px 0;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+        .modal-content li strong {
+            color: var(--accent);
+        }
+        .closeModal {
+            display: block;
+            width: 100px;
+            margin: 15px auto 0 auto;
+            padding: 6px 14px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .closeModal:hover {
+            opacity: 0.8;
+        }
+        
+        /* INFO OKVIRČEK */
+        .info-box {
+            display: flex;
+            justify-content: space-between;
+            background: var(--bg-card);
+            padding: 8px 14px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            font-size: 15px;
+        }
+        .info-box .item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .info-box .label {
+            color: var(--text-muted);
+        }
+        .info-box .value {
+            font-weight: bold;
+            color: var(--text-secondary);
+        }
+        
+        /* Napredek */
+        .progress {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .progress strong {
+            color: var(--accent);
+            font-size: 19px;
+        }
+        
+        /* Vprašanje */
+        .vprasanje {
+            margin: 10px 0;
+            padding: 14px 16px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: background 0.3s, border 0.3s;
+        }
+        .vprasanje h3 {
+            margin-top: 0;
+            color: var(--text-secondary);
+            font-size: 20px;
+        }
+        
+        /* Možnosti - s številkami 1, 2, 3... */
+        .moznosti { margin: 8px 0; }
+        .moznost {
+            display: block;
+            padding: 10px 16px;
+            margin: 4px 0;
+            background: var(--bg-container);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 17px;
+            text-align: left;
+            width: 100%;
+            color: var(--text-primary);
+        }
+        .moznost:hover { 
+            background: var(--bg-hover); 
+            border-color: var(--accent); 
+        }
+        .moznost.izbrana { 
+            background: var(--accent); 
+            color: white; 
+            border-color: var(--accent); 
+        }
+        .moznost.pravilna { 
+            background: var(--correct); 
+            color: white; 
+            border-color: var(--correct); 
+        }
+        .moznost.napacna { 
+            background: var(--wrong); 
+            color: white; 
+            border-color: var(--wrong); 
+        }
+        .moznost.onemogocena {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        /* Pojasnilo */
+        .pojasnilo {
+            margin-top: 8px;
+            padding: 6px 10px;
+            background: var(--bg-card);
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+            font-size: 14px;
+            color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-left-width: 4px;
+        }
+        .pojasnilo strong {
+            color: var(--wrong);   /* RDEČA za Napačno */
+        }
+        
+        /* Tipka presledek */
+        .tipka-info {
+            text-align: center;
+            font-size: 16px;
+            font-weight: normal;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+        .tipka-info kbd {
+            background: var(--bg-card);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-size: 13px;
+            font-weight: normal;
+        }
+        
+        /* Rezultat */
+        .rezultat {
+            text-align: center;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 10px;
             margin-top: 15px;
+            border: 1px solid var(--border-color);
+        }
+        .rezultat .stevilka {
+            font-size: 52px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        .rezultat .ocena {
+            font-size: 26px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .rezultat .odstotek {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+        .rezultat .gumbi {
+            justify-content: center;
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .rezultat .gumbi .gumb {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+        }
+        .rezultat .gumbi .gumb:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        .rezultat .gumbi .gumb.potekaj {
+            background: var(--wrong);
+        }
+        .rezultat .gumbi .gumb.potekaj:hover {
+            background: #c0392b;
+        }
+        
+        /* Nalaganje */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+        .loading .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skupina-info {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        .skupina-info.zacetniki { background: #2ecc71; color: #1a1a2e; }
+        .skupina-info.srednji { background: #f39c12; color: #1a1a2e; }
+        .skupina-info.napredni { background: #e74c3c; color: white; }
+        
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: var(--wrong);
+            font-size: 18px;
+        }
+        .error .velik { font-size: 48px; }
+        .error a { color: var(--accent); }
+        
+        /* Footer */
+        .footer {
+            margin-top: 4px;
+            padding-top: 3px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .footer .deepseek {
+            color: #4a8a9a;
+            font-weight: bold;
+        }
+        .footer .zadnja-sprememba {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--bg-hover);
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="header">
-        <a href="index.html" id="back-link" class="back-btn">← Nazaj na seznam kvizov</a>
-        <div id="quiz-title" style="font-weight: bold;">Nalaganje...</div>
-        <div id="score-counter">Rezultat: 0</div>
-    </div>
-
-    <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-    </div>
-
-    <div id="quiz-content">
-        <div class="question-title" id="question-text">Pripravljam vprašanje...</div>
+    <div class="container" id="app">
+        <!-- Glava -->
+        <div class="header">
+            <h1>📝 <span id="kvizNaslov">Kviz</span></h1>
+            <div class="header-right">
+                <button class="info-btn" onclick="showInfoModal()">ℹ️ Info</button>
+                <button class="theme-toggle" onclick="toggleTheme()">🌓 Preklopi</button>
+                <button class="sound-toggle" onclick="toggleSound()" id="soundToggle">🔊 Zvok vklopljen</button>
+                <a href="index.html" id="menuLink">🏠 Meni</a>
+            </div>
+        </div>
         
-        <div class="options-grid" id="options-container">
-            <!-- Možnosti odgovorov se dinamično naložijo tukaj -->
+        <!-- Vsebina -->
+        <div id="vsebina">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Nalaganje kviza...</p>
+            </div>
         </div>
-
-        <div class="explanation" id="explanation">
-            <strong>Razlaga:</strong> <span id="explanation-text"></span>
+        
+        <!-- INFO OKNO (modal) -->
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <h3>ℹ️ Informacije o kvizu</h3>
+                <ul>
+                    <li><strong>📚 Izbira kviza:</strong> Na začetni strani izbereš temo, ki te zanima.</li>
+                    <li><strong>⏱️ Čas za razlago:</strong> Po odgovoru imaš <strong>20 sekund</strong> časa za branje razlage. Lahko pa prej pritisneš <strong>presledek</strong>.</li>
+                    <li><strong>🎯 Odgovori:</strong> Klikni na številko odgovora (1, 2, 3...).</li>
+                    <li><strong>🌙 Temni / ☀️ Svetli način:</strong> Preklapljaš z gumbom desno zgoraj.</li>
+                    <li><strong>🔊 Zvok:</strong> Z gumbom poleg lahko izklopiš ali vklopiš zvok ob odgovorih.</li>
+                    <li><strong>📊 Napredek:</strong> Slediš številu odgovorjenih in pravilnih odgovorov.</li>
+                    <li><strong>🏆 Rezultat:</strong> Na koncu dobiš oceno (1-5) in pregled odgovorov.</li>
+                </ul>
+                <button class="closeModal" onclick="closeInfoModal()">Zapri</button>
+            </div>
         </div>
-
-        <div class="controls">
-            <button class="btn btn-secondary" onclick="ponastaviKviz()">Ponastavi ta kviz</button>
-            <button class="btn btn-primary" id="next-btn" onclick="naslednjeVprasanje()" style="display: none;">Naprej →</button>
-        </div>
-
-        <div class="shortcut-hint" id="shortcut-hint">
-            💡 Namig: Odgovore lahko izbiraš tudi s tipkami <strong>1, 2, 3, 4</strong> na tipkovnici.
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>Ustvarjeno z 🐬 <span class="deepseek">Deep Seek</span> · <span class="zadnja-sprememba">📅 Zadnja sprememba: 2026-08-25</span></p>
         </div>
     </div>
-</div>
 
-<script>
-    // 1. PREBIRANJE PARAMETROV IZ URL-JA (npr. kviz.html?kviz=OR_01.json&skupina=zacetniki&naslov=...)
-    const urlParams = new URLSearchParams(window.location.search);
-    const jsonFile = urlParams.get('kviz') || urlParams.get('file') || 'OR_01.json';
-    const skupinaIzURL = urlParams.get('skupina');
-    const naslovIzURL = urlParams.get('naslov');
-
-    // Gumb "Nazaj" naj vrne uporabnika v isto skupino, iz katere je prišel
-    const backLink = document.getElementById('back-link');
-    if (skupinaIzURL) {
-        backLink.href = `index.html?skupina=${encodeURIComponent(skupinaIzURL)}`;
-    }
-    
-    // Unikatni ključ za spomin brskalnika za vsak JSON kviz posebej
-    const STORAGE_KEY = `dca_napredek_${jsonFile}`;
-
-    let vprasanja = [];
-    let trenutnoVprasanje = 0;
-    let rezultat = 0;
-    let odgovoreno = false;
-
-    // Elementi na strani
-    const questionText = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options-container');
-    const explanationDiv = document.getElementById('explanation');
-    const explanationText = document.getElementById('explanation-text');
-    const nextBtn = document.getElementById('next-btn');
-    const scoreCounter = document.getElementById('score-counter');
-    const progressFill = document.getElementById('progress-fill');
-    const quizTitle = document.getElementById('quiz-title');
-
-    // 2. NALAGANJE JSON DATOTEKE IN SHRANJENEGA STANJA
-    function zagonKviza() {
-        quizTitle.textContent = naslovIzURL || jsonFile.replace('.json', '');
-
-        fetch(jsonFile + '?v=' + Date.now())
-            .then(res => res.json())
-            .then(data => {
-                vprasanja = data; // Vprašanja v originalnem (fiksnem) vrstnem redu za tečaj
-                naloziNapredek();
-                prikaziVprasanje();
-            })
-            .catch(err => {
-                questionText.textContent = "Napaka pri nalaganju kviza. Preveri, ali datoteka obstaja.";
-                console.error("Napaka:", err);
-            });
-    }
-
-    // 3. NALAGANJE IN SHRANJEVANJE V LOCALSTORAGE
-    function naloziNapredek() {
-        const shranjeno = localStorage.getItem(STORAGE_KEY);
-        if (shranjeno) {
-            try {
-                const stanje = JSON.parse(shranjeno);
-                trenutnoVprasanje = stanje.trenutnoVprasanje || 0;
-                rezultat = stanje.rezultat || 0;
-            } catch (e) {
-                console.error("Napaka pri branju LocalStorage", e);
+    <script>
+        // ============================================================
+        // TEMNI / SVETLI NAČIN
+        // ============================================================
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('kvizTheme', isLight ? 'light' : 'dark');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('kvizTheme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        });
+        
+        // ============================================================
+        // ZVOK
+        // ============================================================
+        let soundEnabled = (localStorage.getItem('kvizSound') !== 'off');
+        let audioCtx = null;
+        
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('kvizSound', soundEnabled ? 'on' : 'off');
+            const btn = document.getElementById('soundToggle');
+            if (soundEnabled) {
+                btn.innerHTML = '🔊 Zvok vklopljen';
+            } else {
+                btn.innerHTML = '🔇 Zvok izklopljen';
             }
         }
-    }
-
-    function shraniNapredek() {
-        const stanje = {
-            trenutnoVprasanje: trenutnoVprasanje,
-            rezultat: rezultat
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stanje));
-    }
-
-    function ponastaviKviz() {
-        if (confirm("Ali res želiš ponastaviti napredek za ta kviz?")) {
-            localStorage.removeItem(STORAGE_KEY);
-            trenutnoVprasanje = 0;
-            rezultat = 0;
-            prikaziVprasanje();
-        }
-    }
-
-    // 4. PRIKAZ VPRAŠANJA IN ODGOVOROV
-    function prikaziVprasanje() {
-        odgovoreno = false;
-        explanationDiv.style.display = 'none';
-        nextBtn.style.display = 'none';
-
-        if (trenutnoVprasanje >= vprasanja.length) {
-            zakljuciKviz();
-            return;
-        }
-
-        const q = vprasanja[trenutnoVprasanje];
         
-        // Posodobitev indikatorjev
-        questionText.textContent = `${trenutnoVprasanje + 1}. ${q.question || q.vprasanje}`;
-        scoreCounter.textContent = `Rezultat: ${rezultat}/${vprasanja.length}`;
-        progressFill.style.width = `${((trenutnoVprasanje) / vprasanja.length) * 100}%`;
+        function initAudioOnUserInteraction() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+        
+        function playCorrect() {
+            if (!soundEnabled) return;
+            initAudioOnUserInteraction();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.value = 0.3;
+            osc.frequency.value = 900;
+            osc.type = 'sine';
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+        
+        function playWrong() {
+            if (!soundEnabled) return;
+            initAudioOnUserInteraction();
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.value = 0.3;
+            osc.frequency.value = 150;
+            osc.type = 'square';
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+            osc.stop(audioCtx.currentTime + 0.5);
+        }
+        
+        // ============================================================
+        // INFO OKNO
+        // ============================================================
+        function showInfoModal() {
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+        
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+        
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('infoModal');
+            if (e.target === modal) {
+                closeInfoModal();
+            }
+        });
+        
+        // ============================================================
+        // POMOŽNE FUNKCIJE
+        // ============================================================
+        function getParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        // ============================================================
+        // KONFIGURACIJA KVIZOV
+        // ============================================================
+        const KVIZI = {
+            zacetniki: [
+                { id: 'OR_01.json', naslov: 'Osnove dela z računalnikom – Windows 10/11', ikona: '💻' },
+                { id: 'OR_02.json', naslov: 'Datoteke in mape v Windows okolju', ikona: '📁' },
+                { id: 'OR_03.json', naslov: 'Internet in spletni brskalniki', ikona: '🌐' },
+                { id: 'OR_04.json', naslov: 'Elektronska pošta (e-pošta)', ikona: '✉️' },
+                { id: 'OR_05.json', naslov: 'Varnost na spletu', ikona: '🔒' },
+                { id: 'OR_06.json', naslov: 'Pametni telefon Android', ikona: '📱' },
+                { id: 'OR_07.json', naslov: 'Google Iskanje in napredno iskanje', ikona: '🔍' },
+                { id: 'OR_08.json', naslov: 'ChatGPT in umetna inteligenca', ikona: '🤖' },
+                { id: 'OR_09.json', naslov: 'Fotografije s telefonom in Google Fotografije', ikona: '📷' },
+                { id: 'OR_10.json', naslov: 'Spletno bančništvo in varni spletni nakupi', ikona: '🏦' }
+            ],
+            srednji: [
+                { id: 'OR_11.json', naslov: 'Google Drive, OneDrive in delo v oblaku', ikona: '☁️' },
+                { id: 'OR_12.json', naslov: 'Windows 10 – urejanje datotek, map in Raziskovalec', ikona: '🖥️' },
+                { id: 'OR_13.json', naslov: 'Elektronska pošta – napredna uporaba in varnost', ikona: '📧' },
+                { id: 'OR_14.json', naslov: 'Windows 10 – nastavitve in prilagajanje okolja', ikona: '⚙️' },
+                { id: 'OR_15.json', naslov: 'Pametni telefon – nastavitve, baterija in vzdrževanje', ikona: '🔋' },
+                { id: 'OR_16.json', naslov: 'Fotografije – urejanje, shranjevanje in deljenje', ikona: '🖼️' },
+                { id: 'OR_17.json', naslov: 'Internet – iskanje, Google in preverjanje virov', ikona: '🌍' },
+                { id: 'OR_18.json', naslov: 'Umetna inteligenca in ChatGPT – osnovna uporaba', ikona: '🧠' }
+            ],
+            napredni: [
+                { id: 'OR_19.json', naslov: 'Spletne prevare, phishing in varnost računov', ikona: '🛡️' },
+                { id: 'OR_20.json', naslov: 'Delo z dokumenti – Word, PDF in tiskanje', ikona: '📄' },
+                { id: 'OR_21.json', naslov: 'Windows 10 – bližnjice na tipkovnici', ikona: '⌨️' },
+                { id: 'OR_22.json', naslov: 'Pametni telefon – vsakodnevna uporaba', ikona: '📲' },
+                { id: 'OR_23.json', naslov: 'Elektronska pošta – pošiljanje in organizacija', ikona: '📨' },
+                { id: 'OR_24.json', naslov: 'Spletno bančništvo in spletni nakupi', ikona: '💳' },
+                { id: 'OR_25.json', naslov: 'Umetna inteligenca za vsakdanjo uporabo', ikona: '🤖' },
+                { id: 'OR_26.json', naslov: 'Naprednejša uporaba računalnika in interneta', ikona: '🚀' }
+            ]
+        };
+        
+        function najdiKategorijo(kvizId) {
+            for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
+                if (kvizi.some(k => k.id === kvizId)) {
+                    return kategorija;
+                }
+            }
+            return 'zacetniki';
+        }
+        
+        function najdiInfo(kvizId) {
+            for (const [kategorija, kvizi] of Object.entries(KVIZI)) {
+                const najden = kvizi.find(k => k.id === kvizId);
+                if (najden) return najden;
+            }
+            return null;
+        }
+        
+        function getSkupina(kvizId) {
+            const kategorija = najdiKategorijo(kvizId);
+            const imena = {
+                zacetniki: '🟢 Za začetnike',
+                srednji: '🟡 Srednja zahtevnost',
+                napredni: '🔴 Za napredne'
+            };
+            return imena[kategorija] || '🟢 Za začetnike';
+        }
+        
+        // ============================================================
+        // LOCALSTORAGE
+        // ============================================================
+        function getReseniKvizi() {
+            try {
+                return JSON.parse(localStorage.getItem('reseniKvizi')) || [];
+            } catch {
+                return [];
+            }
+        }
+        
+        function shraniResenKviz(kvizId) {
+            let reseni = getReseniKvizi();
+            if (!reseni.includes(kvizId)) {
+                reseni.push(kvizId);
+                localStorage.setItem('reseniKvizi', JSON.stringify(reseni));
+            }
+        }
+        
+        // ============================================================
+        // SPREMENLJIVKE
+        // ============================================================
+        let kvizPodatki = null;
+        let trenutnoVprasanje = 0;
+        let odgovori = [];
+        let zakljuceno = false;
+        let timerInterval = null;
+        let trenutnaKategorija = 'zacetniki';
+        const CAS_ZA_BRANJE = 20;
+        
+        // ============================================================
+        // NALAGANJE KVIZA
+        // ============================================================
+        async function loadQuiz() {
+            const vsebina = document.getElementById('vsebina');
+            const kvizIme = getParam('kviz');
+            
+            if (!kvizIme) {
+                vsebina.innerHTML = `
+                    <div class="error">
+                        <div class="velik">❌</div>
+                        <h2>Napaka</h2>
+                        <p>Kviz ni izbran. Vrnite se na <a href="index.html">meni</a>.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                const response = await fetch(kvizIme + '?v=' + Date.now());
+                if (!response.ok) {
+                    throw new Error(`Kviz "${kvizIme}" ni bil najden.`);
+                }
+                
+                kvizPodatki = await response.json();
+                
+                // Pretvori angleško strukturo v slovensko
+                if (kvizPodatki.questions && !kvizPodatki.vprasanja) {
+                    kvizPodatki.vprasanja = kvizPodatki.questions.map(q => ({
+                        vprasanje: q.question,
+                        moznosti: q.options,
+                        pravilni: q.correct,
+                        pojasnilo: q.explanation || ''
+                    }));
+                }
+                
+                if (!kvizPodatki.vprasanja || kvizPodatki.vprasanja.length === 0) {
+                    throw new Error('Kviz nima vprašanj.');
+                }
+                const info = najdiInfo(kvizIme);
+                // Uporabi ID iz JSON (npr. 1, 2, 3 ...)
+                const id = kvizPodatki.id || '';
+                document.getElementById('kvizNaslov').textContent = info ? `${id} - ${info.naslov}` : (kvizPodatki.title || kvizIme); 
 
-        optionsContainer.innerHTML = '';
-        const opcije = q.options || q.odgovori || [];
-        const crke = ['A', 'B', 'C', 'D'];
+                trenutnaKategorija = najdiKategorijo(kvizIme);
+                document.getElementById('menuLink').href = `index.html?skupina=${encodeURIComponent(trenutnaKategorija)}`;
+                
 
-        opcije.forEach((opt, idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerHTML = `<span class="option-badge">${crke[idx] || (idx + 1)}</span> ${opt}`;
-            btn.onclick = () => preveriOdgovor(idx);
-            optionsContainer.appendChild(btn);
+                odgovori = new Array(kvizPodatki.vprasanja.length).fill(null);
+                trenutnoVprasanje = 0;
+                zakljuceno = false;
+                
+                prikaziVprasanje(trenutnoVprasanje);
+                
+            } catch (error) {
+                vsebina.innerHTML = `
+                    <div class="error">
+                        <div class="velik">❌</div>
+                        <h2>Napaka pri nalaganju</h2>
+                        <p>${error.message}</p>
+                        <p><a href="index.html">↩ Nazaj na meni</a></p>
+                    </div>
+                `;
+            }
+        }
+        
+        // ============================================================
+        // TIMER (skrit - samo v ozadju)
+        // ============================================================
+        function startTimer() {
+            ustavTimer();
+            
+            timerInterval = setTimeout(() => {
+                if (!zakljuceno) {
+                    naslednjeVprasanje();
+                }
+            }, CAS_ZA_BRANJE * 1000);
+        }
+        
+        function ustavTimer() {
+            if (timerInterval) {
+                clearTimeout(timerInterval);
+                timerInterval = null;
+            }
+        }
+        
+        // ============================================================
+        // PRIKAZ VPRAŠANJA
+        // ============================================================
+        function prikaziVprasanje(index) {
+            const vsebina = document.getElementById('vsebina');
+            const skupaj = kvizPodatki.vprasanja.length;
+            
+            if (index >= skupaj) {
+                zakljuciKviz();
+                return;
+            }
+            
+            const vpr = kvizPodatki.vprasanja[index];
+            const izbran = odgovori[index];
+            const kvizIme = getParam('kviz');
+            const skupina = getSkupina(kvizIme);
+            const kategorija = najdiKategorijo(kvizIme);
+            
+            const odgovorjenih = odgovori.filter(o => o !== null).length;
+            const pravilniDoSedaj = prestejPravilne();
+            
+            let html = `
+                <!-- INFO OKVIRČEK -->
+                <div class="info-box">
+                    <div class="item">
+                        <span class="label">📊 Napredek:</span>
+                        <span class="value">${odgovorjenih} / ${skupaj}</span>
+                    </div>
+                    <div class="item">
+                        <span class="label">✅ Pravilnih:</span>
+                        <span class="value">${pravilniDoSedaj}</span>
+                    </div>
+                </div>
+                
+                <!-- NAPREDEK -->
+                <div class="progress">
+                    Vprašanje <strong>${index + 1}</strong> od <strong>${skupaj}</strong>
+                    <span class="skupina-info ${kategorija}">${skupina}</span>
+                </div>
+                
+                <!-- VPRAŠANJE -->
+                <div class="vprasanje">
+                    <h3>${vpr.vprasanje || 'Vprašanje'}</h3>
+                    
+                    <div class="moznosti">
+            `;
+            
+            if (vpr.moznosti && vpr.moznosti.length > 0) {
+                vpr.moznosti.forEach((moznost, i) => {
+                    let classNames = 'moznost';
+                    if (izbran !== null) {
+                        classNames += ' onemogocena';
+                        if (i === izbran) {
+                            classNames += i === vpr.pravilni ? ' pravilna' : ' napacna';
+                        }
+                        if (i === vpr.pravilni && izbran !== i) {
+                            classNames += ' pravilna';
+                        }
+                    }
+                    
+                    const stevilka = i + 1;
+                    html += `
+                        <button class="${classNames}" 
+                                onclick="${izbran === null ? `izberiOdgovor(${index}, ${i})` : ''}"
+                                ${izbran !== null ? 'disabled' : ''}>
+                            <strong>${stevilka}.</strong> ${moznost}
+                        </button>
+                    `;
+                });
+            }
+            
+            html += `
+                    </div>
+            `;
+            
+        if (izbran !== null && vpr.pojasnilo) {
+            const pravilno = izbran === vpr.pravilni;
+            html += `
+            <div class="pojasnilo" style="border-left-color: ${pravilno ? '#2ecc71' : '#e74c3c'};">
+            <strong style="color: ${pravilno ? '#2ecc71' : '#e74c3c'};">${pravilno ? '✅ Pravilno!' : '❌ Napačno.'}</strong>
+            <br>
+            ${vpr.pojasnilo}
+            </div>
+            `;
+        }           
+            html += `
+                </div>
+                
+                <div class="tipka-info">
+                    ${izbran !== null ? 'Za nadaljevanje pritisni <kbd>Presledek</kbd> ali počakaj, da poteče čas za branje razlage.' : 'Izberi odgovor (lahko tudi s tipkami 1, 2, 3 ...).'}
+                </div>
+            `;
+            
+            vsebina.innerHTML = html;
+            
+            // Zaženi timer samo, če je odgovor že izbran
+            if (izbran !== null) {
+                startTimer();
+            }
+            
+            const vprElement = document.querySelector('.vprasanje');
+            if (vprElement) {
+                vprElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // ============================================================
+        // PREŠTEJ PRAVILNE ODGOVORE
+        // ============================================================
+        function prestejPravilne() {
+            let pravilni = 0;
+            if (!kvizPodatki) return 0;
+            kvizPodatki.vprasanja.forEach((vpr, i) => {
+                if (odgovori[i] !== null && odgovori[i] === vpr.pravilni) {
+                    pravilni++;
+                }
+            });
+            return pravilni;
+        }
+        
+        // ============================================================
+        // FUNKCIJE ZA KRMILJENJE
+        // ============================================================
+        function izberiOdgovor(vprIndex, moznostIndex) {
+            if (zakljuceno) return;
+            if (odgovori[vprIndex] !== null) return;
+            
+            odgovori[vprIndex] = moznostIndex;
+            
+            // Predvajaj zvok
+            const vpr = kvizPodatki.vprasanja[vprIndex];
+            if (moznostIndex === vpr.pravilni) {
+                playCorrect();
+            } else {
+                playWrong();
+            }
+            
+            prikaziVprasanje(vprIndex);
+        }
+        
+        function naslednjeVprasanje() {
+            if (zakljuceno) return;
+            
+            ustavTimer();
+            
+            if (trenutnoVprasanje < kvizPodatki.vprasanja.length - 1) {
+                trenutnoVprasanje++;
+                prikaziVprasanje(trenutnoVprasanje);
+            } else {
+                zakljuciKviz();
+            }
+        }
+        
+        // ============================================================
+        // TIPKE 1, 2, 3 ... ZA IZBIRO ODGOVORA
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (zakljuceno || !kvizPodatki) return;
+            if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) {
+                const moznostIndex = parseInt(e.key) - 1;
+                const vpr = kvizPodatki.vprasanja[trenutnoVprasanje];
+                if (vpr && vpr.moznosti && moznostIndex < vpr.moznosti.length && odgovori[trenutnoVprasanje] === null) {
+                    izberiOdgovor(trenutnoVprasanje, moznostIndex);
+                }
+            }
         });
 
-        // Namig s tipkami naj kaže samo toliko številk, kolikor je res možnosti
-        const stevilkeZaNamig = opcije.map((_, idx) => idx + 1).join(', ');
-        document.getElementById('shortcut-hint').innerHTML =
-            `💡 Namig: Odgovore lahko izbiraš tudi s tipkami <strong>${stevilkeZaNamig}</strong> na tipkovnici.`;
-    }
-
-    // 5. PREVERJANJE ODGOVORA
-    function preveriOdgovor(izbraniIndeks) {
-        if (odgovoreno) return;
-        odgovoreno = true;
-
-        const q = vprasanja[trenutnoVprasanje];
-        const pravilniIndeks = q.correct !== undefined ? q.correct : q.pravilni;
-        const gumbi = optionsContainer.children;
-
-        if (izbraniIndeks === pravilniIndeks) {
-            gumbi[izbraniIndeks].classList.add('correct');
-            rezultat++;
-        } else {
-            gumbi[izbraniIndeks].classList.add('wrong');
-            if (gumbi[pravilniIndeks]) {
-                gumbi[pravilniIndeks].classList.add('correct');
+        // ============================================================
+        // TIPKA PRESLEDEK
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                const vsebina = document.getElementById('vsebina');
+                if (!zakljuceno && vsebina.querySelector('.vprasanje')) {
+                    if (odgovori[trenutnoVprasanje] !== null) {
+                        ustavTimer();
+                        naslednjeVprasanje();
+                    }
+                }
             }
-        }
-
-        // Onemogoči nadaljnje klike na gumbe
-        Array.from(gumbi).forEach(g => g.disabled = true);
-
-        // Prikaži razlago, če obstaja
-        if (q.explanation || q.razlaga) {
-            explanationText.textContent = q.explanation || q.razlaga;
-            explanationDiv.style.display = 'block';
-        }
-
-        scoreCounter.textContent = `Rezultat: ${rezultat}/${vprasanja.length}`;
-        nextBtn.style.display = 'inline-block';
+        });
         
-        shraniNapredek();
-    }
-
-    function naslednjeVprasanje() {
-        trenutnoVprasanje++;
-        shraniNapredek();
-        prikaziVprasanje();
-    }
-
-    function zakljuciKviz() {
-        progressFill.style.width = '100%';
-        questionText.textContent = "🎉 Kviz je zaključen!";
-        optionsContainer.innerHTML = `
-            <div style="text-align: center; padding: 20px;">
-                <h3>Tvoj končni rezultat: ${rezultat} od ${vprasanja.length} točk</h3>
-                <p>Uspešnost: ${Math.round((rezultat / vprasanja.length) * 100)}%</p>
-            </div>
-        `;
-        nextBtn.style.display = 'none';
-
-        oznaciKvizKotResen();
-    }
-
-    // Zabeleži ta kviz med rešene, da ga index.html upošteva pri
-    // odklepanju naslednje skupine (skupaj s pragom 70 % na glavni strani)
-    function oznaciKvizKotResen() {
-        let reseni = [];
-        try {
-            reseni = JSON.parse(localStorage.getItem('reseniKvizi')) || [];
-        } catch (e) {
-            reseni = [];
-        }
-        if (!reseni.includes(jsonFile)) {
-            reseni.push(jsonFile);
-            localStorage.setItem('reseniKvizi', JSON.stringify(reseni));
-        }
-    }
-
-    // 6. UPRAVLJANJE S TIPKOVNICO (Tipke 1, 2, 3, 4)
-    document.addEventListener('keydown', function(e) {
-        if (['1', '2', '3', '4'].includes(e.key)) {
-            const indeks = parseInt(e.key) - 1;
-            const gumbi = optionsContainer.children;
-            if (gumbi[indeks] && !odgovoreno) {
-                gumbi[indeks].click();
+        // ============================================================
+        // ZAKLJUČEK KVIZA
+        // ============================================================
+        function zakljuciKviz() {
+            if (zakljuceno) return;
+            zakljuceno = true;
+            ustavTimer();
+            
+            let pravilni = 0;
+            
+            kvizPodatki.vprasanja.forEach((vpr, i) => {
+                const odg = odgovori[i];
+                if (odg === vpr.pravilni) pravilni++;
+            });
+            
+            const skupaj = kvizPodatki.vprasanja.length;
+            const odstotek = Math.round((pravilni / skupaj) * 100);
+            
+            let ocenaBesedilo, ocenaBarva;
+            if (odstotek >= 90) { 
+                ocenaBesedilo = "ODLIČNO (5)"; 
+                ocenaBarva = "#2ecc71"; 
+            } else if (odstotek >= 75) { 
+                ocenaBesedilo = "PRAV DOBRO (4)"; 
+                ocenaBarva = "#f39c12"; 
+            } else if (odstotek >= 60) { 
+                ocenaBesedilo = "DOBRO (3)"; 
+                ocenaBarva = "#e67e22"; 
+            } else if (odstotek >= 40) { 
+                ocenaBesedilo = "ZAHTEVA VEČ VADE (2)"; 
+                ocenaBarva = "#e74c3c"; 
+            } else { 
+                ocenaBesedilo = "POSKUSI ZNOVA (1)"; 
+                ocenaBarva = "#e74c3c"; 
             }
-        } else if (e.key === 'Enter' && odgovoreno && nextBtn.style.display !== 'none') {
-            naslednjeVprasanje();
+            
+            const kvizIme = getParam('kviz');
+            shraniResenKviz(kvizIme);
+            
+            prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva);
         }
-    });
-
-    // Zagon
-    zagonKviza();
-</script>
-
+        
+        // ============================================================
+        // PRIKAZ REZULTATA
+        // ============================================================
+        function prikaziRezultat(pravilni, skupaj, odstotek, ocenaBesedilo, ocenaBarva) {
+            const vsebina = document.getElementById('vsebina');
+            
+            // ============================================================
+            // ČE JE OCENA MANJ KOT 3 - PRIKAŽI SAMO NAPAČNE ODGOVORE + obvestilo
+            // ============================================================
+            let ocenaStevilka = 1;
+            if (odstotek >= 90) ocenaStevilka = 5;
+            else if (odstotek >= 75) ocenaStevilka = 4;
+            else if (odstotek >= 60) ocenaStevilka = 3;
+            else if (odstotek >= 40) ocenaStevilka = 2;
+            else ocenaStevilka = 1;
+            
+            if (ocenaStevilka < 3) {
+                // Pregled samo napačnih odgovorov
+                let reviewHtml = "<h2 style='font-size:20px;'>📝 Pregled napačnih odgovorov:</h2>";
+                let hasWrong = false;
+                kvizPodatki.vprasanja.forEach((vpr, idx) => {
+                    const odg = odgovori[idx];
+                    if (odg !== null && odg !== vpr.pravilni) {
+                        hasWrong = true;
+                        const correctText = vpr.moznosti[vpr.pravilni];
+                        const userText = vpr.moznosti[odg];
+                        reviewHtml += `
+                            <div style="margin:10px auto;width:95%;max-width:600px;text-align:left;font-size:15px;border-left:3px solid var(--wrong);padding-left:12px;background:var(--bg-card);border-radius:6px;padding:10px 12px;">
+                                <div>❓ Vprašanje ${idx+1}: ${vpr.vprasanje}</div>
+                                <div style="color:var(--correct);">✔ Pravilen odgovor: ${correctText}</div>
+                                <div style="color:var(--wrong);">✘ Napačno: ${userText}</div>
+                            </div>
+                        `;
+                    }
+                });
+                if (!hasWrong) {
+                    reviewHtml = "<h2 style='font-size:20px;'>🎉 Zelo dobro! Vsi odgovori so pravilni, a žal premalo za pozitivno oceno. Preveri ocenjevanje.</h2>";
+                }
+                
+                let counter = 30;
+                const html = `
+                    <div class="rezultat">
+                        <h2>Dober poskus!</h2>
+                        <div class="stevilka">${pravilni} / ${skupaj}</div>
+                        <div class="odstotek">${odstotek}% uspešnosti</div>
+                        <div class="ocena" style="color: ${ocenaBarva};">Ocena: ${ocenaBesedilo}</div>
+                        
+                        ${reviewHtml}
+                        
+                        <div style="margin-top:20px; padding:15px; background:var(--bg-container); border-radius:8px; border:1px solid var(--border-color);">
+                            <div style="font-size:18px; color:var(--wrong);">Kviz boš moral/a ponoviti za uspešen zaključek.</div>
+                            <div style="font-size:16px; margin-top:8px;">Samodejna ponovitev čez:</div>
+                            <div id="count" style="font-size:48px;font-weight:bold;margin-top:8px;color:var(--wrong);">${counter}</div>
+                        </div>
+                    </div>
+                `;
+                vsebina.innerHTML = html;
+                
+                const interval = setInterval(() => {
+                    counter--;
+                    const countEl = document.getElementById('count');
+                    if (countEl) countEl.textContent = counter;
+                    if (counter === 0) {
+                        clearInterval(interval);
+                        ponovnoResi();
+                    }
+                }, 1000);
+                return;
+            }
+            
+            // ============================================================
+            // OCENA >= 3 - PRIKAŽI REZULTAT Z NAPAČNIMI ODGOVORI
+            // ============================================================
+            let reviewHtml = "<h2 style='font-size:20px;'>📝 Pregled napačnih odgovorov:</h2>";
+            let hasWrong = false;
+            kvizPodatki.vprasanja.forEach((vpr, idx) => {
+                const odg = odgovori[idx];
+                if (odg !== null && odg !== vpr.pravilni) {
+                    hasWrong = true;
+                    const correctText = vpr.moznosti[vpr.pravilni];
+                    const userText = vpr.moznosti[odg];
+                    reviewHtml += `
+                        <div style="margin:10px auto;width:95%;max-width:600px;text-align:left;font-size:15px;border-left:3px solid var(--wrong);padding-left:12px;background:var(--bg-card);border-radius:6px;padding:10px 12px;">
+                            <div>❓ Vprašanje ${idx+1}: ${vpr.vprasanje}</div>
+                            <div style="color:var(--correct);">✔ Pravilen odgovor: ${correctText}</div>
+                            <div style="color:var(--wrong);">✘ Napačno: ${userText}</div>
+                        </div>
+                    `;
+                }
+            });
+            if (!hasWrong) reviewHtml = "<h2 style='font-size:20px;'>🎉 Super! Vsi odgovori so pravilni.</h2>";
+            
+            const html = `
+                <div class="rezultat">
+                    <h2>🎉 Kviz zaključen!</h2>
+                    <div class="stevilka">${pravilni} / ${skupaj}</div>
+                    <div class="odstotek">${odstotek}% uspešnosti</div>
+                    <div class="ocena" style="color: ${ocenaBarva};">Ocena: ${ocenaBesedilo}</div>
+                    
+                    ${reviewHtml}
+                    
+                    <div class="gumbi">
+                        <a href="index.html?resen=true&skupina=${encodeURIComponent(trenutnaKategorija)}" class="gumb">🏠 Nazaj na meni</a>
+                        <button class="gumb potekaj" onclick="ponovnoResi()">🔄 Ponovno reši</button>
+                    </div>
+                </div>
+            `;
+            vsebina.innerHTML = html;
+        }
+        
+        // ============================================================
+        // PONOVNO REŠEVANJE
+        // ============================================================
+        function ponovnoResi() {
+            const skupaj = kvizPodatki.vprasanja.length;
+            odgovori = new Array(skupaj).fill(null);
+            trenutnoVprasanje = 0;
+            zakljuceno = false;
+            
+            const kvizIme = getParam('kviz');
+            const kljuc = 'kviz_odgovori_' + kvizIme;
+            localStorage.removeItem(kljuc);
+            
+            prikaziVprasanje(0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // ============================================================
+        // ZAŽENI
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obnovi stanje zvoka
+            const soundBtn = document.getElementById('soundToggle');
+            if (!soundEnabled) {
+                soundBtn.innerHTML = '🔇 Zvok izklopljen';
+            }
+            
+            const kvizIme = getParam('kviz');
+            if (!kvizIme) {
+                document.getElementById('vsebina').innerHTML = `
+                    <div class="error">
+                        <div class="velik">❌</div>
+                        <h2>Napaka</h2>
+                        <p>Kviz ni izbran. Vrnite se na <a href="index.html">meni</a>.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            loadQuiz();
+        });
+    </script>
 </body>
 </html>
