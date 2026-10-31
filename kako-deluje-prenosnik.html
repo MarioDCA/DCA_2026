@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kako deluje prenosni računalnik?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#173328;
+    --board-2:#1e4231;
+    --chalk:#f3efe3;
+    --chalk-dim:#c9d6cd;
+    --chalk-yellow:#f2cf5b;
+    --chalk-blue:#8ecbe0;
+    --chalk-coral:#ef9d8f;
+    --chalk-green:#a9d6a5;
+    --n1:#8ecbe0;
+    --n2:#a9d6a5;
+    --n3:#c9a3e0;
+    --n4:#ef9d8f;
+    --n5:#f2cf5b;
+    --n6:#8ecbe0;
+    --n7:#a9d6a5;
+    --n8:#c9a3e0;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:#0e2119;
+    color:var(--chalk);
+    font-family:'Atkinson Hyperlegible', sans-serif;
+    overflow:hidden;
+  }
+
+  .deck{
+    position:relative;
+    width:100vw;
+    height:100vh;
+  }
+
+  .page{
+    position:absolute;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:clamp(24px,4.5vh,48px) clamp(20px,4vw,64px) clamp(20px,3.4vh,56px);
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.035), transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(255,255,255,0.03), transparent 50%),
+      var(--board);
+  }
+  .page.active{ display:flex; }
+  .page .frame{
+    position:absolute;
+    inset:10px;
+    border:3px dashed rgba(243,239,227,0.25);
+    border-radius:18px;
+    pointer-events:none;
+  }
+  .page-inner{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(16px,2.6vh,34px);
+  }
+
+  /* Header */
+  header{ text-align:center; }
+  h1{
+    font-family:'Kalam', cursive;
+    font-weight:700;
+    font-size:clamp(2rem, 4.4vh, 3.2rem);
+    margin:0 0 6px 0;
+    color:var(--chalk);
+  }
+  h1 span{ color:var(--chalk-yellow); }
+  .subtitle{
+    font-size:clamp(1rem,1.8vh,1.3rem);
+    color:var(--chalk-dim);
+  }
+  .underline{
+    width:min(360px,50%);
+    height:8px;
+    margin:10px auto 0;
+    border-bottom:3px solid var(--chalk-yellow);
+    border-radius:50%;
+    opacity:0.85;
+  }
+  .page-title{
+    font-family:'Kalam',cursive;
+    font-size:clamp(1.3rem,2.6vh,1.9rem);
+    color:var(--chalk-green);
+    text-align:center;
+  }
+
+  /* HERO: short-term / long-term memory analogy */
+  .hero{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:clamp(20px,3vw,40px);
+    align-items:center;
+    background:rgba(255,255,255,0.035);
+    border:2px dashed rgba(243,239,227,0.25);
+    border-radius:20px;
+    padding:clamp(18px,2.6vh,30px);
+    width:100%;
+  }
+  .hero-text .eyebrow{
+    font-family:'Kalam',cursive;
+    color:var(--chalk-blue);
+    font-size:1.15rem;
+    margin-bottom:6px;
+  }
+  .hero-text p{
+    font-size:clamp(1.05rem,2vh,1.32rem);
+    line-height:1.5;
+    margin:0;
+    color:var(--chalk);
+  }
+  .hero-text strong{ color:var(--chalk-yellow); }
+  .hero-text strong.hl{ color:var(--chalk-coral); }
+
+  .deskbox{
+    justify-self:center;
+    width:min(420px,95%);
+    background:#0b1a14;
+    border:3px solid rgba(243,239,227,0.35);
+    border-radius:22px;
+    padding:18px 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .shelf{
+    background:var(--board-2);
+    border:2px solid rgba(243,239,227,0.2);
+    border-radius:14px;
+    padding:12px 14px;
+    margin-bottom:10px;
+  }
+  .shelf .shelf-label{
+    font-weight:700;
+    font-size:clamp(0.9rem,1.9vh,1.05rem);
+    color:var(--chalk-blue);
+    margin-bottom:3px;
+    white-space:nowrap;
+  }
+  .shelf.disk .shelf-label{ color:var(--chalk-yellow); }
+  .shelf .shelf-desc{
+    font-size:0.88rem;
+    color:var(--chalk-dim);
+    line-height:1.3;
+  }
+  .desk-arrow{
+    text-align:center;
+    font-size:1.3rem;
+    color:var(--chalk-dim);
+    opacity:0.6;
+    margin:2px 0 10px;
+  }
+
+  /* Steps */
+  .flow{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+  }
+  .step{
+    width:100%;
+    background:rgba(255,255,255,0.035);
+    border:2.5px dashed var(--step-color, var(--chalk-dim));
+    border-radius:16px;
+    padding:clamp(14px,2.2vh,22px) clamp(16px,2.4vw,26px);
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+  }
+  .step .num{
+    flex:0 0 auto;
+    width:clamp(36px,5.4vh,46px);
+    height:clamp(36px,5.4vh,46px);
+    border-radius:50%;
+    background:var(--step-color);
+    color:#132018;
+    font-family:'Kalam',cursive;
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.5rem);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step .body{ flex:1; }
+  .step .title{
+    font-weight:700;
+    font-size:clamp(1.15rem,2.4vh,1.55rem);
+    color:var(--step-color);
+    margin-bottom:6px;
+  }
+  .step .desc{
+    font-size:clamp(1.05rem,2vh,1.32rem);
+    line-height:1.45;
+    color:var(--chalk);
+  }
+  .arrow-down{
+    color:var(--chalk-dim);
+    font-size:clamp(1.3rem,2.6vh,1.8rem);
+    opacity:0.55;
+    line-height:1;
+    margin:clamp(2px,0.6vh,8px) 0;
+  }
+
+  /* Banner cards page */
+  .banner{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(14px,2.2vh,22px);
+    width:100%;
+  }
+  .cmd-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(14px,2.2vw,22px);
+    width:100%;
+  }
+  .code{
+    display:inline-block;
+    font-family:'Courier New', monospace;
+    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(243,239,227,0.25);
+    border-radius:8px;
+    padding:4px 10px;
+    color:var(--chalk-yellow);
+    font-size:0.95em;
+    letter-spacing:0.3px;
+  }
+  div.code{
+    display:block;
+    text-align:center;
+    font-size:1.15rem;
+    padding:10px 14px;
+    margin-top:8px;
+  }
+  .code-block{
+    display:block;
+    font-family:'Courier New', monospace;
+    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(243,239,227,0.25);
+    border-radius:8px;
+    padding:12px 16px;
+    color:var(--chalk-dim);
+    font-size:0.86rem;
+    line-height:1.5;
+    white-space:pre-wrap;
+    text-align:left;
+    margin-top:10px;
+  }
+  .code-block .hit{
+    color:var(--chalk-green);
+    font-weight:700;
+  }
+
+  /* Compact variant - stran 8 (bližnjice + preverjanje mirovanja) */
+  .compact-page{ gap:clamp(8px,1.4vh,14px) !important; }
+  .compact-page .flow{ gap:8px; }
+  .compact-page .step{
+    padding:clamp(8px,1.2vh,12px) clamp(12px,1.8vw,18px) !important;
+    gap:12px !important;
+  }
+  .compact-page .step .num{
+    width:clamp(26px,4vh,32px) !important;
+    height:clamp(26px,4vh,32px) !important;
+  }
+  .compact-page .step .title{
+    margin-bottom:2px !important;
+  }
+  .compact-page .cmd-grid{ gap:clamp(8px,1.4vw,14px); }
+  .compact-page .card{
+    padding:clamp(8px,1.2vh,14px) clamp(12px,1.8vw,18px) !important;
+  }
+  .compact-page .card h3{
+    margin:0 0 4px 0 !important;
+  }
+  .compact-page div.code{
+    padding:5px 10px !important;
+    margin-top:4px !important;
+  }
+  .compact-page .code-block{
+    font-size:0.7rem !important;
+    padding:6px 10px !important;
+    line-height:1.25 !important;
+    margin-top:6px !important;
+  }
+  .card{
+    border-radius:18px;
+    padding:clamp(18px,3vh,30px) clamp(18px,2.6vw,28px);
+    border:2.5px dashed;
+  }
+  .card.warn{
+    background:rgba(239,157,143,0.08);
+    border-color:var(--chalk-coral);
+  }
+  .card.compare{
+    background:rgba(142,203,224,0.08);
+    border-color:var(--chalk-blue);
+  }
+  .card h3{
+    margin:0 0 10px 0;
+    font-family:'Kalam',cursive;
+    font-size:clamp(1.2rem,2.4vh,1.55rem);
+  }
+  .card.warn h3{ color:var(--chalk-coral); }
+  .card.compare h3{ color:var(--chalk-blue); }
+  .card p{
+    margin:0;
+    font-size:clamp(0.98rem,1.9vh,1.2rem);
+    line-height:1.55;
+    color:var(--chalk);
+  }
+  .compare-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    font-size:clamp(0.95rem,1.8vh,1.15rem);
+  }
+  .compare-col{ flex:1; }
+  .compare-col b{ color:var(--chalk-yellow); }
+
+  footer.foot-note{
+    text-align:center;
+    font-size:0.85rem;
+    color:rgba(201,214,205,0.5);
+  }
+
+  /* Navigation */
+  .nav{
+    position:fixed;
+    left:0; right:0; bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    z-index:10;
+  }
+  .nav button{
+    background:rgba(255,255,255,0.06);
+    border:2px solid rgba(243,239,227,0.35);
+    color:var(--chalk);
+    font-family:'Atkinson Hyperlegible',sans-serif;
+    font-size:1rem;
+    font-weight:700;
+    border-radius:10px;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .nav button:hover{ background:rgba(255,255,255,0.14); }
+  .nav button:disabled{ opacity:0.3; cursor:default; }
+  .dots{ display:flex; gap:8px; }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:rgba(243,239,227,0.25);
+    border:1.5px solid rgba(243,239,227,0.4);
+    cursor:pointer;
+    padding:0;
+  }
+  .dot.active{ background:var(--chalk-yellow); border-color:var(--chalk-yellow); }
+  .page-count{
+    font-size:0.85rem;
+    color:var(--chalk-dim);
+    min-width:48px;
+    text-align:center;
+  }
+
+  /* Diagram pages */
+  .diagram-wrap{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(10px,2vh,20px);
+  }
+  .diagram-svg{
+    width:min(720px,94%);
+    height:auto;
+  }
+  .diagram-svg text{
+    font-family:'Atkinson Hyperlegible', sans-serif;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px clamp(14px,2.4vw,28px);
+    max-width:900px;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:clamp(0.92rem,1.7vh,1.1rem);
+    color:var(--chalk);
+  }
+  .legend-dot{
+    width:15px;height:15px;border-radius:50%;
+    flex:0 0 auto;
+    border:2px solid rgba(255,255,255,0.25);
+  }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; }
+    .deskbox{ order:-1; width:min(460px,98%); }
+    .banner{ grid-template-columns:1fr; }
+    .cmd-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:420px){
+    .shelf .shelf-label{ font-size:0.82rem; }
+    .shelf{ padding:10px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- PAGE 1: Title + hero analogy -->
+  <section class="page active" data-page="1">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <header>
+        <h1>Kako deluje <span>prenosni računalnik</span>?</h1>
+        <div class="subtitle">Enostavna razlaga za tečajnike</div>
+        <div class="underline"></div>
+      </header>
+
+      <div class="hero">
+        <div class="hero-text">
+          <div class="eyebrow">✏️ Predstavljajmo si...</div>
+          <p>
+            Prenosni računalnik ima <strong>spomin, podoben vašemu</strong>.
+            Ko si npr. zapomnite telefonsko številko, da jo takoj potipkate, uporabljate
+            <strong class="hl">kratkoročni spomin</strong> — hiter, a začasen.
+            Ko si kaj zapišete v beležko, da ne pozabite, pa gre za <strong>dolgoročni spomin</strong> — počasnejši, a trajen.
+            Prenosni računalnik ima oboje.
+          </p>
+        </div>
+        <div class="deskbox">
+          <div class="shelf disk">
+            <div class="shelf-label">📔 Dolgoročni spomin (trdi disk)</div>
+            <div class="shelf-desc">Tu se datoteke shranijo za stalno — ostanejo tudi, ko računalnik ugasnete.</div>
+          </div>
+          <div class="desk-arrow">↓</div>
+          <div class="shelf">
+            <div class="shelf-label">🧠 Kratkoročni spomin (RAM)</div>
+            <div class="shelf-desc">Tu so stvari, na katerih trenutno delate — hitro dostopne, a le začasno.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: Steps 1-4 -->
+  <section class="page" data-page="2">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Kaj se zgodi, ko ga vklopite (1&ndash;4)</div>
+      <div class="flow">
+        <div class="step" style="--step-color:var(--n1)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">🔌 Vklopite ga</div>
+            <div class="desc">Gumb za vklop požene "možgane" računalnika (procesor), ki začnejo delati.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n2)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">💡 Nalaga se operacijski sistem</div>
+            <div class="desc">Windows je shranjen na disku. Ob vklopu se prenese iz diska v RAM in od tam teče, ker je RAM veliko hitrejši od diska.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n4)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">🗄️ Trdi disk / SSD</div>
+            <div class="desc">Tu so trajno shranjeni operacijski sistem, vsi programi in vaše datoteke — tudi ko računalnik ugasnete.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n3)">
+          <div class="num">4</div>
+          <div class="body">
+            <div class="title">🧠 Delovni pomnilnik (RAM)</div>
+            <div class="desc">Ko kliknete na ikono programa (npr. brskalnika), se ta prenese z diska v RAM, da si ga procesor "zapomni" in ga lahko takoj uporablja. Ko program zaprete, ga RAM "pozabi".</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: Diagram - internal structure (CPU, RAM, disk) -->
+  <section class="page" data-page="3">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Kako je to videti "od znotraj"</div>
+      <div class="diagram-wrap">
+        <svg class="diagram-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowEnd" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--chalk-dim)"/>
+            </marker>
+            <marker id="arrowStart" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto">
+              <path d="M10,0 L0,5 L10,10 z" fill="var(--chalk-dim)"/>
+            </marker>
+          </defs>
+
+          <!-- Motherboard -->
+          <rect x="40" y="40" width="820" height="380" rx="24" fill="rgba(255,255,255,0.03)" stroke="var(--chalk-dim)" stroke-width="3" stroke-dasharray="10 8"/>
+          <text x="66" y="72" font-family="Kalam, cursive" font-size="22" fill="var(--chalk-dim)">matična plošča</text>
+
+          <!-- CPU -->
+          <rect x="405" y="150" width="180" height="160" rx="16" fill="rgba(142,203,224,0.15)" stroke="var(--n1)" stroke-width="4"/>
+          <line x1="440" y1="150" x2="440" y2="130" stroke="var(--n1)" stroke-width="3"/>
+          <line x1="480" y1="150" x2="480" y2="130" stroke="var(--n1)" stroke-width="3"/>
+          <line x1="520" y1="150" x2="520" y2="130" stroke="var(--n1)" stroke-width="3"/>
+          <line x1="440" y1="310" x2="440" y2="330" stroke="var(--n1)" stroke-width="3"/>
+          <line x1="480" y1="310" x2="480" y2="330" stroke="var(--n1)" stroke-width="3"/>
+          <line x1="520" y1="310" x2="520" y2="330" stroke="var(--n1)" stroke-width="3"/>
+          <text x="495" y="225" text-anchor="middle" font-family="Kalam, cursive" font-size="27" fill="var(--n1)">CPE</text>
+          <text x="495" y="250" text-anchor="middle" font-size="15" fill="var(--chalk-dim)">(procesor)</text>
+
+          <!-- RAM -->
+          <rect x="710" y="150" width="90" height="160" rx="10" fill="rgba(201,163,224,0.15)" stroke="var(--n3)" stroke-width="4"/>
+          <rect x="720" y="140" width="10" height="16" fill="var(--n3)"/>
+          <rect x="740" y="140" width="10" height="16" fill="var(--n3)"/>
+          <rect x="760" y="140" width="10" height="16" fill="var(--n3)"/>
+          <rect x="780" y="140" width="10" height="16" fill="var(--n3)"/>
+          <text x="755" y="116" text-anchor="middle" font-family="Kalam, cursive" font-size="24" fill="var(--n3)">RAM</text>
+
+          <!-- Disk -->
+          <rect x="100" y="150" width="180" height="160" rx="14" fill="rgba(239,157,143,0.15)" stroke="var(--n4)" stroke-width="4"/>
+          <circle cx="170" cy="215" r="28" fill="none" stroke="var(--n4)" stroke-width="3"/>
+          <circle cx="170" cy="215" r="5" fill="var(--n4)"/>
+          <text x="170" y="270" text-anchor="middle" font-family="Kalam, cursive" font-size="20" fill="var(--n4)">disk</text>
+
+          <!-- Connections -->
+          <line x1="587" y1="230" x2="708" y2="230" stroke="var(--chalk-dim)" stroke-width="3" marker-end="url(#arrowEnd)" marker-start="url(#arrowStart)"/>
+          <line x1="403" y1="230" x2="282" y2="230" stroke="var(--chalk-dim)" stroke-width="3" marker-end="url(#arrowEnd)" marker-start="url(#arrowStart)"/>
+        </svg>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n1)"></span>CPE (procesor) — "možgani" računalnika, ki obdelujejo podatke</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n3)"></span>RAM — kratkoročni spomin, kamor se nalagajo odprti programi</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n4)"></span>Trdi disk / SSD — dolgoročni spomin za trajno shranjevanje</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4: Steps 5-7 -->
+  <section class="page" data-page="4">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Vhodno-izhodne enote</div>
+      <div class="flow">
+        <div class="step" style="--step-color:var(--n5)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">⌨️ Tipkovnica in miška</div>
+            <div class="desc">To je vaš način "govorjenja" računalniku, kaj naj naredi.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n6)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">🖥️ Zaslon</div>
+            <div class="desc">Prikaže vam odgovor računalnika na vaša navodila — tisto, kar se trenutno dogaja.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n7)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">📷🎤 Kamera in mikrofona</div>
+            <div class="desc">Vgrajena kamera nad zaslonom omogoča video klice. Mikrofona (navadno sta dva) zajemata vaš glas — dva namesto enega poskrbita za jasnejši zvok in manj šuma iz okolice.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n8)">
+          <div class="num">4</div>
+          <div class="body">
+            <div class="title">📶 Poveže se v medmrežje (Wi-Fi)</div>
+            <div class="desc">Računalnik se prek brezžičnega omrežja poveže z internetom. Ko se enkrat poveže na določen ruter in vpišete geslo, si nastavitve zapomni — naslednjič se poveže samodejno.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 5: Diagram - external structure (screen, keyboard, camera, wifi) -->
+  <section class="page" data-page="5">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Kako je to videti "od zunaj"</div>
+      <div class="diagram-wrap">
+        <svg class="diagram-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+          <!-- Screen lid -->
+          <rect x="220" y="30" width="460" height="250" rx="20" fill="rgba(255,255,255,0.02)" stroke="var(--chalk)" stroke-width="4"/>
+          <rect x="240" y="50" width="420" height="205" rx="8" fill="rgba(142,203,224,0.08)" stroke="var(--n6)" stroke-width="2.5"/>
+
+          <!-- Camera + microphones -->
+          <circle cx="450" cy="40" r="6" fill="var(--n7)"/>
+          <circle cx="425" cy="40" r="3" fill="var(--n7)"/>
+          <circle cx="475" cy="40" r="3" fill="var(--n7)"/>
+
+          <!-- Base / keyboard deck -->
+          <rect x="220" y="300" width="460" height="130" rx="16" fill="rgba(255,255,255,0.02)" stroke="var(--chalk)" stroke-width="4"/>
+
+          <!-- Keyboard keys -->
+          <rect x="248" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="282" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="316" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="350" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="384" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="418" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="452" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="486" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="520" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="554" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="588" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="622" y="308" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="248" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="282" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="316" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="350" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="384" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="418" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="452" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="486" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="520" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="554" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="588" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="622" y="325" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="248" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="282" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="316" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="350" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="384" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="418" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="452" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="486" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="520" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="554" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="588" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="622" y="342" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="248" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="282" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="316" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="350" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="384" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="418" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="452" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="486" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="520" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="554" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="588" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <rect x="622" y="359" width="30" height="12" rx="2.5" fill="rgba(242,207,91,0.12)" stroke="var(--n5)" stroke-width="1"/>
+          <!-- Trackpad -->
+          <rect x="400" y="380" width="100" height="40" rx="8" fill="rgba(255,255,255,0.05)" stroke="var(--chalk-dim)" stroke-width="2"/>
+
+          <!-- Wifi symbol -->
+          <g transform="translate(790,150)">
+            <path d="M -30 10 A 42 42 0 0 1 30 10" fill="none" stroke="var(--n8)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M -18 22 A 25 25 0 0 1 18 22" fill="none" stroke="var(--n8)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="0" cy="34" r="5" fill="var(--n8)"/>
+          </g>
+        </svg>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n5)"></span>Tipkovnica — vnos ukazov in besedila</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n6)"></span>Zaslon — prikaz odgovora računalnika</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n7)"></span>Kamera in mikrofona — za video klice</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--n8)"></span>Wi-Fi — brezžična povezava z internetom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 6: RAM vs disk + warning -->
+  <section class="page" data-page="6">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Kar si velja zapomniti</div>
+      <div class="banner">
+        <div class="card compare">
+          <h3>RAM in trdi disk — različni vlogi</h3>
+          <div class="compare-row">
+            <div class="compare-col"><b>RAM (kratkoročni spomin)</b><br>hitro dostopen, a se ob izklopu "izprazni".</div>
+            <div class="compare-col"><b>Trdi disk (dolgoročni spomin)</b><br>počasnejši, a shrani stvari za stalno.</div>
+          </div>
+        </div>
+        <div class="card warn">
+          <h3>⚠️ Pomembno</h3>
+          <p>Preden računalnik izklopite, vedno <strong>shranite datoteko</strong>. Kar je le v kratkoročnem spominu (RAM-u) in ni shranjeno na disk (dolgoročni spomin), se ob izklopu izgubi — tako kot pozabite telefonsko številko, če si je ne zapišete.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 7: Sleep vs hibernate vs shutdown -->
+  <section class="page" data-page="7">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Zaprem pokrov ali izklopim?</div>
+      <div class="flow">
+        <div class="step" style="--step-color:var(--n1)">
+          <div class="num">😴</div>
+          <div class="body">
+            <div class="title">Spanje (zaprete pokrov)</div>
+            <div class="desc">Vsebina <strong>ostane v RAM-u</strong> — vse odprte programe najdete natanko tam, kjer ste jih pustili, računalnik se zbudi v hipu. Baterija se medtem počasi prazni.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n3)">
+          <div class="num">💤</div>
+          <div class="body">
+            <div class="title">Mirovanje (hibernacija)</div>
+            <div class="desc">Vsebina RAM-a se <strong>shrani na disk</strong>, računalnik se nato popolnoma ugasne — baterija se ne porablja. Zagon traja malo dlje kot pri spanju, a še vedno hitreje kot povsem od začetka.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n4)">
+          <div class="num">⏻</div>
+          <div class="body">
+            <div class="title">Izklop</div>
+            <div class="desc">RAM se <strong>povsem izprazni</strong>. Vse, kar ni bilo predhodno shranjeno na disk, je izgubljeno — zato pred izklopom vedno shranite datoteke, tako kot na prejšnji strani.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card compare" style="width:100%;">
+        <h3>💡 To je nastavljivo</h3>
+        <p>Kaj se zgodi ob zaprtju pokrova in po koliko minutah nedejavnosti, ni pri vseh prenosnikih enako — je pa nastavljivo v Windows: <strong>Nastavitve → Sistem → Napajanje in baterija → Gumbi za vklop/izklop in pokrov</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 8: Shortcuts for shutdown/hibernate + checking hibernation -->
+  <section class="page" data-page="8">
+    <div class="frame"></div>
+    <div class="page-inner compact-page" style="overflow-y:auto; max-height:100%;">
+      <div class="page-title">Bližnjica za izklop in mirovanje</div>
+
+      <div class="flow" style="gap:10px;">
+        <div class="step" style="--step-color:var(--n1)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">Ustvarite bližnjico</div>
+            <div class="desc">Desno kliknite na prazen del namizja → <strong>Novo</strong> → <strong>Bližnjica</strong>.</div>
+          </div>
+        </div>
+        <div class="step" style="--step-color:var(--n3)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">Vnesite ukaz in poimenujte</div>
+            <div class="desc">V polje "Vnesite mesto za predmet" prilepite enega od ukazov spodaj, kliknite <strong>Naprej</strong>, vnesite ime bližnjice (npr. "Izklop") in <strong>Dokončaj</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-grid">
+        <div class="card compare">
+          <h3>⏻ Bližnjica za izklop</h3>
+          <div class="code">shutdown.exe /s /t 0</div>
+        </div>
+        <div class="card compare">
+          <h3>💤 Bližnjica za mirovanje</h3>
+          <div class="code">shutdown /h</div>
+        </div>
+      </div>
+
+      <div class="card warn" style="width:100%;">
+        <h3>🔎 Ali je mirovanje omogočeno?</h3>
+        <p>Postopek je enak v <strong>Windows 10</strong> in <strong>Windows 11</strong>: odprite ukazno vrstico (cmd) <strong>kot skrbnik</strong> in vtipkajte <span class="code">powercfg /a</span>. Če je na seznamu navedeno "Hibernate" (Mirovanje), je funkcija na voljo. Če je ni, jo omogočite z ukazom <span class="code">powercfg /hibernate on</span> (prav tako kot skrbnik).</p>
+        <div class="code-block">The following sleep states are available on this system:
+    Standby (S0 Low Power Idle) Network Disconnected
+    <span class="hit">Hibernate</span> 👈 <em>mirovanje je omogočeno</em>
+
+The following sleep states are not available on this system:
+    Standby (S3)
+        The system firmware does not support this standby state.
+    ...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 9: Waking up from hibernation -->
+  <section class="page" data-page="9">
+    <div class="frame"></div>
+    <div class="page-inner">
+      <div class="page-title">Kako se zbudi iz mirovanja?</div>
+
+      <div class="flow">
+        <div class="step" style="--step-color:var(--n4)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">Računalnik je popolnoma ugasnjen</div>
+            <div class="desc">Ko gre v mirovanje, se vsebina RAM-a shrani na disk, nato pa se <strong>povsem ugasne</strong> — enako kot pri navadnem izklopu. To velja ne glede na to, ali je zaslon (pokrov) takrat odprt ali zaprt.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n1)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">Pritisnite gumb za vklop ⏻</div>
+            <div class="desc">Ker ni elektrike, tipkovnica ali sledilna ploščica ne pomagata — tako kot pri navadnem spanju. Potreben je pritisk na <strong>gumb za vklop</strong>, enako kot pri zagonu iz popolnega izklopa.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step" style="--step-color:var(--n3)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">Windows obnovi vse odprte programe</div>
+            <div class="desc">Vsebina se prebere z diska nazaj v RAM in vse odprte programe najdete natanko tam, kjer ste jih pustili. Traja malo dlje kot prebujanje iz spanja, a precej hitreje kot povsem nov zagon.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav">
+    <button id="prevBtn" aria-label="Prejšnja stran">← Nazaj</button>
+    <div class="dots" id="dots"></div>
+    <div class="page-count" id="pageCount"></div>
+    <button id="nextBtn" aria-label="Naslednja stran">Naprej →</button>
+  </div>
+
+</div>
+
+<script>
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageCount = document.getElementById('pageCount');
+  let current = 0;
+
+  pages.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Stran ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function render(){
+    pages.forEach((p, i) => p.classList.toggle('active', i === current));
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === pages.length - 1;
+    pageCount.textContent = (current + 1) + ' / ' + pages.length;
+  }
+
+  function goTo(i){
+    current = Math.max(0, Math.min(pages.length - 1, i));
+    render();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ goTo(current + 1); }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ goTo(current - 1); }
+  });
+
+  render();
+</script>
+
+</body>
+</html>
