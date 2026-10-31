@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kje UI ne more nadomestiti človeka?</title>
+<style>
+  :root{
+    --navy:#274B72;
+    --navy-deep:#0A1420;
+    --teal:#3FC6C6;
+    --coral:#FFA65C;
+    --paper:#121A24;
+    --panel:#1A2430;
+    --panel-soft:#1E2A38;
+    --ink:#E8EEF4;
+    --ink-soft:#AEBBCC;
+    --line:#2C3A4A;
+    --purple:#A78BFA;
+    --chalk-yellow:#f2cf5b;
+    --chalk-blue:#8ecbe0;
+    --chalk-coral:#ef9d8f;
+    --chalk-green:#a9d6a5;
+    --step-size: 18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    font-size: var(--step-size);
+    line-height:1.65;
+    overflow:hidden;
+  }
+  h1,h2,h3{
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    color:var(--ink);
+    line-height:1.2;
+    margin:0 0 .4em 0;
+  }
+  a{color:var(--teal);}
+
+  .deck{
+    position:relative;
+    width:100vw;
+    height:100vh;
+  }
+
+  .page{
+    position:absolute;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:clamp(24px,4.5vh,48px) clamp(20px,4vw,64px) clamp(90px,12vh,120px);
+    background:var(--paper);
+    overflow-y:auto;
+  }
+  .page.active{ display:flex; }
+  .page-inner{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(16px,2.6vh,34px);
+    margin-top:-20px;
+  }
+
+  /* Header */
+  .page-title{
+    font-size:clamp(1.5rem, 3vh, 2.2rem);
+    font-weight:700;
+    color:var(--teal);
+    text-align:center;
+    width:100%;
+    border-bottom:3px solid var(--teal);
+    padding-bottom:10px;
+    margin-top:-15px;
+  }
+  .page-number{
+    font-size:clamp(0.85rem, 1.4vh, 1rem);
+    color:var(--ink-soft);
+    text-align:center;
+    opacity:0.5;
+    width:100%;
+  }
+  .subtitle{
+    font-size:clamp(1rem,1.8vh,1.3rem);
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  /* Cards */
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:clamp(18px,2.6vh,28px);
+    width:100%;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+
+  /* Steps */
+  .flow{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+  }
+  .step{
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:clamp(14px,2.2vh,22px) clamp(16px,2.4vw,26px);
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .step .num{
+    flex:0 0 auto;
+    width:clamp(36px,5.4vh,46px);
+    height:clamp(36px,5.4vh,46px);
+    border-radius:50%;
+    background:var(--step-color, var(--teal));
+    color:var(--paper);
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.5rem);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step .body{ flex:1; }
+  .step .title{
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.4rem);
+    color:var(--step-color, var(--teal));
+    margin-bottom:4px;
+  }
+  .step .desc{
+    font-size:clamp(1rem,1.9vh,1.25rem);
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .arrow-down{
+    color:var(--ink-soft);
+    font-size:clamp(1.3rem,2.6vh,1.8rem);
+    opacity:0.4;
+    line-height:1;
+    margin:clamp(2px,0.6vh,8px) 0;
+  }
+  .step-compact{
+    padding:clamp(8px,1.3vh,13px) clamp(12px,1.8vw,18px) !important;
+    gap:12px !important;
+  }
+  .step-compact .num{
+    width:clamp(26px,3.8vh,32px) !important;
+    height:clamp(26px,3.8vh,32px) !important;
+    font-size:clamp(0.9rem,1.6vh,1.1rem) !important;
+  }
+  .step-compact .title{
+    font-size:clamp(0.95rem,1.7vh,1.15rem) !important;
+    margin-bottom:2px !important;
+  }
+  .step-compact .desc{
+    font-size:clamp(0.85rem,1.4vh,1rem) !important;
+    line-height:1.35 !important;
+  }
+  .flow-compact .arrow-down{
+    margin:clamp(0px,0.2vh,3px) 0 !important;
+    font-size:clamp(1rem,1.8vh,1.3rem) !important;
+  }
+
+  /* Note boxes */
+  .note{
+    background:rgba(63,198,198,0.06);
+    border-left:5px solid var(--teal);
+    padding:14px 18px;
+    border-radius:8px;
+    font-size:.98em;
+    color:var(--ink);
+    width:100%;
+  }
+  .note strong{color:var(--teal);}
+  .note.coral{
+    border-left-color:var(--coral);
+  }
+  .note.coral strong{color:var(--coral);}
+  .note.purple{
+    border-left-color:var(--purple);
+  }
+  .note.purple strong{color:var(--purple);}
+
+  /* Compare cards */
+  .compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    width:100%;
+  }
+  .compare-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+  }
+  .compare-card h3{
+    font-size:1.15em;
+    margin-bottom:6px;
+  }
+  .compare-card.warn h3{ color:var(--coral); }
+  .compare-card.info h3{ color:var(--teal); }
+  .compare-card p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:.95em;
+  }
+  @media (max-width:600px){
+    .compare-grid{grid-template-columns:1fr;}
+  }
+
+  /* Klepetalniki chips */
+  .chat-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    width:100%;
+  }
+  .chat-chip{
+    background:var(--panel-soft);
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:0.95rem;
+  }
+  .chat-chip .emoji{font-size:1.4rem; line-height:1;}
+  .chat-chip.highlight{
+    border-color:var(--chalk-yellow);
+    background:rgba(242,207,91,0.10);
+    color:var(--chalk-yellow);
+  }
+  .chat-chip.highlight .label{
+    color:var(--chalk-yellow);
+    font-size:0.75rem;
+    font-weight:600;
+    margin-left:4px;
+  }
+
+  /* Pogovor bubbles */
+  .chat-demo{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+  .bubble{
+    max-width:80%;
+    padding:10px 16px;
+    border-radius:14px;
+    font-size:0.95rem;
+    line-height:1.4;
+  }
+  .bubble.user{
+    align-self:flex-end;
+    background:rgba(63,198,198,0.15);
+    border:1px solid var(--teal);
+    color:var(--ink);
+  }
+  .bubble.bot{
+    align-self:flex-start;
+    background:var(--panel-soft);
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+  .bubble .who{
+    display:block;
+    font-size:0.75rem;
+    font-weight:700;
+    margin-bottom:2px;
+    opacity:0.7;
+  }
+  .bubble.user .who{color:var(--teal);}
+  .bubble.bot .who{color:var(--coral);}
+
+  .foot-note{
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    opacity:0.5;
+    width:100%;
+  }
+
+  /* Navigation */
+  .nav{
+    position:fixed;
+    left:0; right:0; bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    z-index:10;
+  }
+  .nav button{
+    background:rgba(255,255,255,0.06);
+    border:2px solid rgba(255,255,255,0.2);
+    color:var(--ink);
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    font-size:1rem;
+    font-weight:700;
+    border-radius:10px;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .nav button:hover{ background:rgba(255,255,255,0.12); }
+  .nav button:disabled{ opacity:0.3; cursor:default; }
+  .dots{ display:flex; gap:8px; }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    border:1.5px solid rgba(255,255,255,0.2);
+    cursor:pointer;
+    padding:0;
+  }
+  .dot.active{ background:var(--teal); border-color:var(--teal); }
+  .page-count{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    min-width:48px;
+    text-align:center;
+  }
+
+  body.large{ --step-size: 22px; }
+
+  .compare-card ul li{margin-bottom:4px; list-style:disc;}
+</style>
+</head>
+<body class="large">
+
+<div class="deck">
+
+  <!-- SLIDE 1 -->
+  <section class="page active" data-page="1">
+    <div class="page-inner">
+      <div class="page-title">🤝 Kje UI ne more nadomestiti človeka?</div>
+      <div class="subtitle">Razmislek ob članku »Tehnološki velikani ne razumejo življenja«</div>
+      <div class="compare-grid">
+        <div class="compare-card info">
+          <h3>🚀 Obljube tehnoloških velikanov</h3>
+          <p style="margin-bottom:8px;">Po Zuckerbergovem manifestu bo UI:</p>
+          <ul style="text-align:left;margin:0;padding-left:1.2em;color:var(--ink-soft);font-size:.95em;line-height:1.45;">
+            <li>vsem pomagala izboljšati vse vidike življenja: kariero in posel, odnose, hobije, zdravje,</li>
+            <li>postala osebni tutor in učitelj z doktoratom na vseh področjih,</li>
+            <li>omogočila personalizirano zdravstvo,</li>
+            <li>vsakomur omogočila ustvariti nov posel.</li>
+          </ul>
+        </div>
+        <div class="compare-card warn">
+          <h3>🧭 Mnenje avtorja članka</h3>
+          <p>Svet je neskončno kompleksnejši. Največji problemi niso tehnološki, temveč družbeni.</p>
+        </div>
+      </div>
+      <div class="note coral">
+        <strong>Vprašanje za danes:</strong> Kje je človek res nenadomestljiv?
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="page" data-page="2">
+    <div class="page-inner">
+      <div class="page-title">📚 Učenje, zdravje in delo</div>
+      <div class="flow">
+        <div class="step" style="--step-color:var(--chalk-yellow)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">🎓 Učenje</div>
+            <div class="desc">UI kot osebni tutor je lahko v pomoč. A učenje na daljavo med covidom je dalo tako slabe rezultate, da se po petih letih še vedno poznajo v raziskavi PISA.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step" style="--step-color:var(--chalk-blue)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">🩺 Zdravje</div>
+            <div class="desc">Tudi ob personaliziranem zdravstvu bomo še vedno potrebovali zdravnika, ki si bo dejansko vzel čas za nas.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step" style="--step-color:var(--chalk-green)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">💼 Podjetništvo in delo</div>
+            <div class="desc">Podjetništvo je nujno potrebno, a se ga ne morejo lotiti vsi. Nekdo mora še vedno opravljati poklice, ki skrbijo za druge.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2b -->
+  <section class="page" data-page="3">
+    <div class="page-inner">
+      <div class="page-title">🏙️ Mesta in vsakdanje življenje</div>
+      <div class="flow">
+        <div class="step" style="--step-color:var(--coral)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">🚗 Promet in samovozeči avtomobili</div>
+            <div class="desc">Mobilnost v mestih je dobro raziskan družbeni problem z znanimi rešitvami: javni prevoz, kolesa, kompaktna mesta. Ljudje se raje zadržujejo na ulicah, kjer avtomobilov ni.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step" style="--step-color:var(--purple)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">⚙️ Optimizacija življenja</div>
+            <div class="desc">Tehnološki velikani povsod vidijo optimizacijski problem. A nekatere »neučinkovitosti« našega življenja sploh niso problem.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step" style="--step-color:var(--teal)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">😊 Srečno življenje</div>
+            <div class="desc">Kaj potrebujemo za srečno življenje, vemo že desetletja. In to ni več tehnologije.</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <strong>Misel:</strong> Največji akutni problemi niso tehnološki, temveč družbeni.
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 -->
+  <section class="page" data-page="3">
+    <div class="page-inner">
+      <div class="page-title">🧑‍🤝‍🧑 Poklici s človeškim stikom</div>
+      <div class="chat-chips">
+        <div class="chat-chip"><span class="emoji">🩺</span> Zdravljenje in oskrba bolnikov</div>
+        <div class="chat-chip"><span class="emoji">🧒</span> Poučevanje otrok</div>
+        <div class="chat-chip"><span class="emoji">🍽️</span> Gostinstvo: stik z gosti</div>
+        <div class="chat-chip"><span class="emoji">🎭</span> Igranje na odru</div>
+      </div>
+      <div class="note purple">
+        <strong>Zakaj?</strong> Tehnološko morda ne bi bilo ovir, družbeno pa se to najbrž ne bo zgodilo, ker je človeški stik pri teh delih nujna sestavina.
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 -->
+  <section class="page" data-page="4">
+    <div class="page-inner">
+      <div class="page-title">❤️ Odnosi</div>
+      <div class="card">
+        <p style="margin:0 0 10px 0;">Odnosi zahtevajo <strong style="color:var(--teal);">čas in trud</strong>. Tega ne more opraviti nihče namesto nas.</p>
+        <p style="margin:0;"><strong>Znamenita raziskava, ki so jo na Harvardu začeli leta 1938, je jasna: za srečno življenje je najpomembnejša kakovost odnosov z drugimi ljudmi.</strong></p>
+      </div>
+      <div class="note coral">
+        <strong>Ni tehnologija, ni genetika:</strong> najpomembnejši dejavnik je prav tisto, česar nam UI ne more dati.
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: HARVARD -->
+  <section class="page" data-page="5">
+    <div class="page-inner">
+      <div class="page-title">🎓 Harvardska raziskava o odraslem življenju</div>
+      <div class="flow flow-compact">
+        <div class="step step-compact" style="--step-color:var(--chalk-yellow)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">📅 Kdaj in koga?</div>
+            <div class="desc">Od leta 1938 spremljajo 724 mladih moških: 268 harvardskih študentov in 456 dečkov iz revnih bostonskih četrti. Danes vključuje tudi več kot 1300 potomcev.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step step-compact" style="--step-color:var(--chalk-blue)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">🔎 Kako?</div>
+            <div class="desc">Z intervjuji, zdravniškimi pregledi in spremljanjem skozi vse življenje. Je ena najdaljših raziskav življenja odraslih na svetu.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step step-compact" style="--step-color:var(--chalk-green)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">💡 Kaj so ugotovili?</div>
+            <div class="desc">Kdor je bil pri 50 letih najbolj zadovoljen v odnosih, je bil pri 80 telesno in duševno najbolj zdrav. Pomembna je kakovost odnosov, ne njihovo število.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step step-compact" style="--step-color:var(--chalk-coral)">
+          <div class="num">4</div>
+          <div class="body">
+            <div class="title">🧠 Kaj še?</div>
+            <div class="desc">Topli odnosi varujejo tudi spomin. Osamljenost pa po besedah vodje raziskave Roberta Waldingerja škoduje zdravju podobno kot kajenje.</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-note">Viri: Waldinger in Schulz, The Good Life; Harvard Gazette; The Christian Science Monitor.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: POGOVOR -->
+  <section class="page" data-page="7">
+    <div class="page-inner">
+      <div class="page-title">💬 Za pogovor</div>
+      <div class="flow">
+        <div class="step" style="--step-color:var(--teal)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">Kje v svojem življenju bi z veseljem uporabili UI in kje ne?</div>
+            <div class="desc">Pomislite na učenje, zdravje in prosti čas. Kaj vam UI olajša? Česa ne bi prepustili stroju?</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step" style="--step-color:var(--coral)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">Kaj pri zdravniku ali učitelju cenite bolj kot samo znanje?</div>
+            <div class="desc">Spomnite se dobrega zdravnika ali učitelja. Kaj je naredil, da ste se počutili slišane? Koliko pomeni, da si vzame čas?</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+        <div class="step" style="--step-color:var(--purple)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">Ali so največji problemi res družbeni in ne tehnološki?</div>
+            <div class="desc">Zamislite si težavo v svojem kraju. Bi jo rešila tehnologija ali ljudje? Kaj sami potrebujete za srečno življenje?</div>
+          </div>
+        </div>
+      </div>
+      <div class="foot-note">Vir: članek »Tehnološki velikani ne razumejo življenja«.</div>
+    </div>
+  </section>
+
+  <div class="nav">
+    <button id="prevBtn" aria-label="Prejšnja stran">← Nazaj</button>
+    <div class="dots" id="dots"></div>
+    <div class="page-count" id="pageCount"></div>
+    <button id="nextBtn" aria-label="Naslednja stran">Naprej →</button>
+  </div>
+
+</div>
+
+<script>
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageCount = document.getElementById('pageCount');
+  let current = 0;
+
+  pages.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Stran ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function render(){
+    pages.forEach((p, i) => p.classList.toggle('active', i === current));
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === pages.length - 1;
+    pageCount.textContent = (current + 1) + ' / ' + pages.length;
+  }
+
+  function goTo(i){
+    current = Math.max(0, Math.min(pages.length - 1, i));
+    render();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){
+      e.preventDefault();
+      goTo(current + 1);
+    }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){
+      e.preventDefault();
+      goTo(current - 1);
+    }
+  });
+
+
+  render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prvi koraki z Gemini</title>
+<style>
+  :root { --ink:#1b2430; --accent:#1f5f6b; --soft:#e8f1f2; --warn:#fff3d6; --warnline:#b7791f; }
+  @page { size: A4; margin: 16mm; }
+  * { box-sizing: border-box; }
+  html { font-size: 19px; }
+  body { margin:0 auto; max-width: 780px; padding: 20px; color: var(--ink); background:#fff;
+         font-family: "Atkinson Hyperlegible", Verdana, "DejaVu Sans", sans-serif; line-height: 1.5; }
+  h1 { font-size: 2rem; margin: 0 0 .3rem; color: var(--accent); }
+  h2 { font-size: 1.3rem; margin: 1.4rem 0 .5rem; }
+  p { margin: .3rem 0 .8rem; }
+  .intro { font-size: 1.05rem; }
+  ol.koraki { list-style: none; counter-reset: k; padding: 0; margin: 0; }
+  ol.koraki li { counter-increment: k; display: flex; gap: .8rem; align-items: flex-start;
+                 padding: .55rem 0; border-bottom: 1px solid #cfd8da; }
+  ol.koraki li::before { content: counter(k); flex: 0 0 2.1rem; height: 2.1rem; border-radius: 50%;
+                 background: var(--accent); color: #fff; font-weight: 700; text-align: center; line-height: 2.1rem; }
+  .naslov { font-family: Consolas, "DejaVu Sans Mono", monospace; background: var(--soft);
+            padding: 0 .35rem; border-radius: 4px; font-weight: 700; }
+  .opomba { background: var(--soft); border-left: 6px solid var(--accent); padding: .6rem .9rem; margin-top: 1rem; }
+  .pazi { background: var(--warn); border-left: 6px solid var(--warnline); padding: .6rem .9rem; margin: 1rem 0; }
+  .pazi ul { margin: .3rem 0 0; padding-left: 1.2rem; }
+  .vaje { padding-left: 1.3rem; }
+  .vaje li { margin-bottom: .7rem; }
+  .vaje q { font-style: normal; font-weight: 700; quotes: "„" "“"; }
+  .stran2 { break-before: page; }
+  @media screen { .stran2 { margin-top: 3rem; border-top: 2px dashed #b9c4c6; padding-top: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<section>
+  <h1>Prvi koraki z Gemini</h1>
+  <p class="intro">Gemini je program, ki mu lahko pišete vprašanja kot človeku in vam odgovori. Uporabite ga z istim računom, ki ga imate za pošto Gmail.</p>
+
+  <ol class="koraki">
+    <li>Odprite brskalnik in v zgornjo vrstico vpišite <span class="naslov">gemini.google.com</span> ter pritisnite Enter.</li>
+    <li>Kliknite gumb za prijavo (angleško <em>Sign in</em>) in izberite svoj Gmail naslov.</li>
+    <li>Vpišite geslo, ki ga uporabljate za pošto.</li>
+    <li>Če se prikaže okno s pogoji, preberite in kliknite gumb za nadaljevanje.</li>
+    <li>Na dnu strani je prazno polje za vprašanje. Kliknite vanj in napišite vprašanje.</li>
+    <li>Pritisnite Enter ali puščico na desni strani polja.</li>
+    <li>Počakajte nekaj sekund. Odgovor se bo izpisal pod vprašanjem.</li>
+    <li>Če odgovor ni dober, napišite novo vprašanje, na primer <strong>„Povej krajše.“</strong> ali <strong>„Povej bolj preprosto.“</strong></li>
+  </ol>
+
+  <p class="opomba">Besedila na gumbih se lahko malo razlikujejo od tistih na listu. Če se zataknete, vprašajte soseda ali predavatelja.</p>
+</section>
+
+<section class="stran2">
+  <h1>Vaje</h1>
+  <p>Poskusite eno za drugo. Vprašanja lahko prepišete ali pa jih napišete po svoje.</p>
+
+  <ol class="vaje">
+    <li><q>Kaj naj skuham iz krompirja, jajc in čebule?</q></li>
+    <li><q>Napiši kratko voščilo vnuku za rojstni dan.</q></li>
+    <li><q>Razloži mi, kaj je oblak (cloud) v računalništvu, kot da sem začetnik.</q></li>
+    <li><q>Kako v telefonu povečam pisavo? Napiši korake enega za drugim.</q></li>
+    <li><q>Predlagaj enodnevni izlet v okolici Maribora, primeren za upokojence.</q></li>
+    <li><q>Pomagaj mi napisati vljudno pismo, s katerim zavarovalnico prosim za pojasnilo računa.</q></li>
+  </ol>
+
+  <h2>Preverite, ali ima prav</h2>
+  <p>Vprašajte nekaj, kar dobro poznate: kraj, kjer ste odraščali, družinski recept ali pesnika, ki vam je ljub. Primerjajte odgovor s tem, kar veste sami. Ali se je kje zmotil?</p>
+
+  <div class="pazi">
+    <strong>Pravila za varno uporabo</strong>
+    <ul>
+      <li>Ne pišite osebnih podatkov: EMŠO, številk kartic ali računov, gesel.</li>
+      <li>Gemini se lahko zmoti in odgovori zveni kljub temu prepričljivo.</li>
+      <li>Za zdravje in denar vedno vprašajte tudi zdravnika, banko ali koga, ki mu zaupate.</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

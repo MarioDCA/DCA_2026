@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikacija eOsebna</title>
+<style>
+  :root{
+    --navy:#274B72;
+    --navy-deep:#0A1420;
+    --teal:#3FC6C6;
+    --coral:#FFA65C;
+    --paper:#121A24;
+    --panel:#1A2430;
+    --panel-soft:#1E2A38;
+    --ink:#E8EEF4;
+    --ink-soft:#AEBBCC;
+    --line:#2C3A4A;
+    --purple:#A78BFA;
+    --chalk-yellow:#f2cf5b;
+    --chalk-blue:#8ecbe0;
+    --chalk-coral:#ef9d8f;
+    --chalk-green:#a9d6a5;
+    --step-size: 20px;
+    /* imena iz prejšnje različice (uporabljena v telesu strani) */
+    --chalk:var(--ink);
+    --chalk-dim:var(--ink-soft);
+    --n1:#8ecbe0; --n2:#a9d6a5; --n3:#c9a3e0; --n4:#ef9d8f;
+    --n5:#f2cf5b; --n6:#8ecbe0; --n7:#a9d6a5; --n8:#c9a3e0;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    font-size: var(--step-size);
+    line-height:1.65;
+    overflow:hidden;
+  }
+  h1,h2,h3{
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    color:var(--ink);
+    line-height:1.2;
+    margin:0 0 .4em 0;
+  }
+  a{color:var(--teal);}
+
+  .deck{ position:relative; width:100vw; height:100vh; }
+
+  .page{
+    position:absolute;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:clamp(24px,4.5vh,48px) clamp(20px,4vw,64px) clamp(64px,9vh,90px);
+    background:var(--paper);
+    overflow-y:auto;
+  }
+  .page.active{ display:flex; }
+  .page-inner{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(16px,2.6vh,34px);
+    margin-top:-20px;
+  }
+
+  /* Header */
+  header{ text-align:center; padding:20px 0 0; }
+  header h1{
+    font-size:clamp(2.2rem,5vh,3.2rem);
+    margin:0;
+  }
+  h1 span{ color:var(--teal); }
+  .page-title{
+    font-size:clamp(1.5rem, 3vh, 2.2rem);
+    font-weight:700;
+    color:var(--teal);
+    text-align:center;
+    width:100%;
+    border-bottom:3px solid var(--teal);
+    padding-bottom:10px;
+    margin-top:-15px;
+  }
+  .subtitle{
+    font-size:clamp(1rem,1.8vh,1.3rem);
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  /* Uvodna primerjava: kratkoročni in dolgoročni spomin */
+  .hero{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:clamp(20px,3vw,40px);
+    align-items:center;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:clamp(18px,2.6vh,30px);
+    width:100%;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  .hero-text .eyebrow{
+    color:var(--teal);
+    font-weight:700;
+    font-size:1.05rem;
+    margin-bottom:6px;
+  }
+  .hero-text p{
+    font-size:clamp(1.05rem,2vh,1.3rem);
+    line-height:1.6;
+    margin:0;
+    color:var(--ink);
+  }
+  .hero-text strong{ color:var(--teal); }
+  .hero-text strong.hl{ color:var(--coral); }
+
+  .deskbox{
+    justify-self:center;
+    width:min(420px,95%);
+    background:var(--panel-soft);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 16px;
+  }
+  .shelf{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-bottom:10px;
+  }
+  .shelf .shelf-label{
+    font-weight:700;
+    font-size:clamp(0.9rem,1.9vh,1.05rem);
+    color:var(--teal);
+    margin-bottom:3px;
+  }
+  .shelf.disk .shelf-label{ color:var(--coral); }
+  .shelf .shelf-desc{
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    line-height:1.35;
+  }
+  .desk-arrow{
+    text-align:center;
+    font-size:1.3rem;
+    color:var(--ink-soft);
+    opacity:0.5;
+    margin:2px 0 10px;
+  }
+
+  /* Steps */
+  .flow{ width:100%; display:flex; flex-direction:column; align-items:center; gap:0; }
+  .step{
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:clamp(14px,2.2vh,22px) clamp(16px,2.4vw,26px);
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .step .num{
+    flex:0 0 auto;
+    width:clamp(36px,5.4vh,46px);
+    height:clamp(36px,5.4vh,46px);
+    border-radius:50%;
+    background:var(--step-color, var(--teal));
+    color:var(--paper);
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.5rem);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step .body{ flex:1; }
+  .step .title{
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.4rem);
+    color:var(--step-color, var(--teal));
+    margin-bottom:4px;
+  }
+  .step .desc{
+    font-size:clamp(1rem,1.9vh,1.25rem);
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .arrow-down{
+    color:var(--ink-soft);
+    font-size:clamp(1.3rem,2.6vh,1.8rem);
+    opacity:0.4;
+    line-height:1;
+    margin:clamp(2px,0.6vh,8px) 0;
+  }
+
+  /* Kartice */
+  .banner{ display:grid; grid-template-columns:1fr; gap:clamp(14px,2.2vh,22px); width:100%; }
+  .cmd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2.2vw,22px); width:100%; }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:clamp(18px,2.6vh,28px);
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  .card.warn{
+    background:rgba(255,166,92,0.07);
+    border-left:5px solid var(--coral);
+  }
+  .card.compare{
+    background:rgba(63,198,198,0.06);
+    border-left:5px solid var(--teal);
+  }
+  .card h3{
+    margin:0 0 10px 0;
+    font-size:clamp(1.1rem,2.2vh,1.4rem);
+  }
+  .card.warn h3{ color:var(--coral); }
+  .card.compare h3{ color:var(--teal); }
+  .card p{
+    margin:0;
+    font-size:clamp(1rem,1.9vh,1.2rem);
+    line-height:1.55;
+    color:var(--ink);
+  }
+  .compare-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    font-size:clamp(0.98rem,1.8vh,1.15rem);
+  }
+  .compare-col{ flex:1; }
+  .compare-col b{ color:var(--chalk-yellow); }
+
+  /* Ukazi */
+  .code{
+    display:inline-block;
+    font-family:Consolas, "Courier New", monospace;
+    background:rgba(0,0,0,0.3);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:4px 10px;
+    color:var(--chalk-yellow);
+    font-size:0.95em;
+  }
+  div.code{
+    display:block;
+    text-align:center;
+    font-size:1.15rem;
+    padding:10px 14px;
+    margin-top:8px;
+  }
+  .code-block{
+    display:block;
+    font-family:Consolas, "Courier New", monospace;
+    background:rgba(0,0,0,0.3);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:12px 16px;
+    color:var(--ink-soft);
+    font-size:0.86rem;
+    line-height:1.5;
+    white-space:pre-wrap;
+    text-align:left;
+    margin-top:10px;
+  }
+  .code-block .hit{ color:var(--chalk-green); font-weight:700; }
+
+  /* Strstrnjena stran (bližnjice) */
+  .compact-page{ gap:clamp(8px,1.4vh,14px) !important; }
+  .compact-page .flow{ gap:8px; }
+  .compact-page .step{
+    padding:clamp(8px,1.2vh,12px) clamp(12px,1.8vw,18px) !important;
+    gap:12px !important;
+  }
+  .compact-page .step .num{
+    width:clamp(26px,4vh,32px) !important;
+    height:clamp(26px,4vh,32px) !important;
+  }
+  .compact-page .step .title{ margin-bottom:2px !important; }
+  .compact-page .cmd-grid{ gap:clamp(8px,1.4vw,14px); }
+  .compact-page .card{ padding:clamp(8px,1.2vh,14px) clamp(12px,1.8vw,18px) !important; }
+  .compact-page .card h3{ margin:0 0 4px 0 !important; }
+  .compact-page div.code{ padding:5px 10px !important; margin-top:4px !important; }
+  .compact-page .code-block{
+    font-size:0.7rem !important;
+    padding:6px 10px !important;
+    line-height:1.25 !important;
+    margin-top:6px !important;
+  }
+
+  /* Diagrami */
+  .diagram-wrap{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(10px,2vh,20px);
+  }
+  .diagram-svg{ width:min(720px,94%); height:auto; }
+  .diagram-svg text{ font-family:"Segoe UI", Verdana, Arial, sans-serif; }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px clamp(14px,2.4vw,28px);
+    max-width:900px;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:clamp(0.92rem,1.7vh,1.1rem);
+    color:var(--ink);
+  }
+  .legend-dot{
+    width:15px;height:15px;border-radius:50%;
+    flex:0 0 auto;
+    border:2px solid rgba(255,255,255,0.25);
+  }
+
+  .foot-note{
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    opacity:0.5;
+    width:100%;
+  }
+
+  /* Navigacija */
+  .nav{
+    position:fixed;
+    left:0; right:0; bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    z-index:10;
+  }
+  .nav button{
+    background:rgba(255,255,255,0.06);
+    border:2px solid rgba(255,255,255,0.2);
+    color:var(--ink);
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    font-size:1rem;
+    font-weight:700;
+    border-radius:10px;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .nav button:hover{ background:rgba(255,255,255,0.12); }
+  .nav button:disabled{ opacity:0.3; cursor:default; }
+  .dots{ display:flex; gap:8px; }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    border:1.5px solid rgba(255,255,255,0.2);
+    cursor:pointer;
+    padding:0;
+  }
+  .dot.active{ background:var(--teal); border-color:var(--teal); }
+  .page-count{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    min-width:48px;
+    text-align:center;
+  }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; }
+    .deskbox{ order:-1; width:min(460px,98%); }
+    .cmd-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:420px){
+    .shelf .shelf-label{ font-size:0.82rem; }
+    .shelf{ padding:10px 10px; }
+  }
+
+  /* Seznami, opombe in dva stolpca (eOsebna) */
+  .page-inner ul, .page-inner ol{ margin:0; padding-left:1.3em; width:100%; }
+  .page-inner li{ font-size:clamp(1.05rem,2vh,1.3rem); line-height:1.55; margin:.4em 0; color:var(--ink); }
+  .page-inner li::marker{ color:var(--teal); font-weight:700; }
+  .page-inner b{ color:var(--teal); }
+  .card.warn b{ color:var(--coral); }
+  .card.warn li::marker{ color:var(--coral); }
+  .listcard{ width:100%; }
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2.2vw,22px); width:100%; }
+  .note{
+    width:100%;
+    background:rgba(63,198,198,0.07);
+    border-left:5px solid var(--teal);
+    border-radius:8px;
+    padding:12px 18px;
+    font-size:clamp(1rem,1.9vh,1.2rem);
+    line-height:1.5;
+  }
+  .note p{ margin:0; }
+  .note.coral{ background:rgba(255,166,92,0.08); border-left-color:var(--coral); }
+  .note.coral b{ color:var(--coral); }
+  @media (max-width:760px){ .cols{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <section class="page active" data-page="1">
+    <div class="page-inner">
+      <header>
+        <h1>Aplikacija <span>eOsebna</span></h1>
+        <div class="subtitle">Prijava v e-storitve s pametnim telefonom, brez gesel in brez računalniškega čitalnika.</div>
+      </header>
+      <div class="note"><p>S to aplikacijo se na spletu <b>izkažete, kdo ste</b>. Namesto uporabniškega imena in gesla uporabite osebno izkaznico ali svoj prstni odtis oziroma obraz.</p></div>
+    </div>
+  </section>
+
+  <section class="page" data-page="2">
+    <div class="page-inner">
+      <div class="page-title">📋 Kaj potrebujete?</div>
+      <div class="card listcard"><ul>
+        <li>Osebno izkaznico s čipom (izdano po 28. 3. 2022), ki je <b>aktivirana</b> in ima nastavljen <b>PIN</b></li>
+        <li>Pametni telefon z <b>NFC</b>, povezan v internet (Android 8 ali novejši, iPhone 7 ali novejši)</li>
+        <li>Zaklep telefona z geslom ali kodo (samo vzorec ne zadošča)</li>
+        <li>Nastavljen prstni odtis ali prepoznavo obraza</li>
+      </ul></div>
+      <div class="note"><p>Če PIN še ni nastavljen, izkaznico aktivirate kar v aplikaciji z <b>začetnim geslom</b> iz ovojnice.</p></div>
+    </div>
+  </section>
+
+  <section class="page" data-page="3">
+    <div class="page-inner">
+      <div class="page-title">📲 Namestitev: prvi koraki</div>
+      <div class="card listcard"><ol>
+        <li>V trgovini <b>Google Play</b> (Android) ali <b>App Store</b> (iPhone) poiščite in namestite aplikacijo <b>eOsebna</b>.</li>
+        <li>Odprite aplikacijo in sledite navodilom.</li>
+        <li>Vpišite <b>kodo CAN</b>: 6 številk, natisnjenih navpično na sprednji strani izkaznice, desno spodaj.</li>
+      </ol></div>
+      <div class="note"><p>Koda CAN ni geslo. Služi samo za vzpostavitev povezave med izkaznico in telefonom.</p></div>
+    </div>
+  </section>
+
+  <section class="page" data-page="4">
+    <div class="page-inner">
+      <div class="page-title">🪪 Namestitev: virtualna izkaznica</div>
+      <div class="card listcard"><ol>
+        <li>Izkaznico <b>prislonite k anteni NFC</b> na telefonu in je ne premikajte, dokler aplikacija ne prebere podatkov.</li>
+        <li>Izberite <b>„Virtualiziraj“</b> in vpišite <b>PIN</b> izkaznice.</li>
+        <li>Potrdite in izkaznico ponovno prislonite k telefonu.</li>
+        <li>Ko se odpre okno <b>„Virtualna osebna izkaznica“</b>, je namestitev končana.</li>
+      </ol></div>
+      <div class="note"><p><b>Android:</b> izkaznica na zadnji strani telefona. <b>iPhone:</b> antena je zgoraj, izkaznico prislonite spredaj ali zadaj.</p></div>
+    </div>
+  </section>
+
+  <section class="page" data-page="5">
+    <div class="page-inner">
+      <div class="page-title">🔐 Prijava v e-storitev</div>
+      <div class="cols">
+        <div class="card compare"><h3>Na telefonu</h3>
+          <ol><li>Na strani storitve izberite <b>prijava prek SI-PASS</b></li><li>Izberite <b>Mobilna aplikacija eOsebna</b></li><li>Potrdite s prstnim odtisom ali obrazom</li></ol></div>
+        <div class="card compare"><h3>Na računalniku</h3>
+          <ol><li>Izberite SI-PASS in <b>Mobilna aplikacija eOsebna</b></li><li>V aplikaciji izberite <b>Skeniraj kodo QR</b></li><li>Potrdite s prstnim odtisom ali obrazom</li></ol></div>
+      </div>
+      <div class="note"><p>Primeri storitev: eUprava, zVem, eDavki, ZPIZ, ZZZS, SPOT.</p></div>
+    </div>
+  </section>
+
+  <section class="page" data-page="6">
+    <div class="page-inner">
+      <div class="page-title">⚠️ Česa aplikacija ne zmore</div>
+      <div class="cols">
+        <div class="card warn"><h3>Ne velja kot dokument</h3>
+          <ul><li>Ni dokazilo o identiteti v banki, na pošti ali drugje v živo</li><li>Ne nadomešča kartice zdravstvenega zavarovanja</li><li>Ne deluje brez izkaznice s čipom</li></ul></div>
+        <div class="card warn"><h3>Omejitve</h3>
+          <ul><li>Virtualna izkaznica je lahko le na enem telefonu</li><li>Ne deluje na iPadu (nima NFC)</li><li>Ne deluje v čezmejnih portalih EU (tam: prislanjanje izkaznice in PIN)</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" data-page="7">
+    <div class="page-inner">
+      <div class="page-title">🔒 Varnost: PIN in PUK</div>
+      <div class="card listcard"><ul>
+        <li>PIN nikomur ne povejte in ga ne shranjujte v telefon.</li>
+        <li>Po <b>6 napačnih vnosih PIN-a</b> se izkaznica zaklene. Odklenete jo s kodo <b>PUK</b>, ki jo naročite v aplikaciji ali na upravni enoti.</li>
+        <li>Po <b>10 napačnih vnosih PUK-a</b> je izkaznica zaklenjena trajno in potrebujete novo.</li>
+      </ul></div>
+      <div class="note coral"><p>Izgubljena izkaznica ali ukraden telefon? Izkaznico takoj prekličite prek spleta ali na upravni enoti.</p></div>
+      <div class="foot-note">DCA · Računalniška pismenost · Aplikacija eOsebna</div>
+    </div>
+  </section>
+
+  <div class="nav">
+    <button id="prevBtn" aria-label="Prejšnja stran">← Nazaj</button>
+    <div class="dots" id="dots"></div>
+    <div class="page-count" id="pageCount"></div>
+    <button id="nextBtn" aria-label="Naslednja stran">Naprej →</button>
+  </div>
+
+</div>
+
+<script>
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageCount = document.getElementById('pageCount');
+  let current = 0;
+
+  pages.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Stran ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function render(){
+    pages.forEach((p, i) => p.classList.toggle('active', i === current));
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === pages.length - 1;
+    pageCount.textContent = (current + 1) + ' / ' + pages.length;
+  }
+
+  function goTo(i){
+    current = Math.max(0, Math.min(pages.length - 1, i));
+    render();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){
+      e.preventDefault();
+      goTo(current + 1);
+    }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){
+      e.preventDefault();
+      goTo(current - 1);
+    }
+  });
+
+  render();
+</script>
+
+</body>
+</html>
