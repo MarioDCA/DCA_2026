@@ -553,7 +553,7 @@ const KVIZI = {
                 const resen = jeKvizResen(kviz.id);
                 const gumb = document.createElement('a');
                 gumb.className = `kviz-gumb ${barva}`;
-                gumb.href = `kviz.html?kviz=${kviz.id}`;
+                gumb.href = `kviz.html?kviz=${encodeURIComponent(kviz.id)}&skupina=${encodeURIComponent(skupina)}&naslov=${encodeURIComponent(kviz.naslov)}`;
                 gumb.innerHTML = `
                     ${kviz.ikona} ${kviz.naslov}
                     ${resen ? '<span class="reseno">✅</span>' : ''}

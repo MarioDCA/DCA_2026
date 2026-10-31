@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Ustvari ključ</title>
+<style>
+  body { font-family: Verdana, Arial, sans-serif; background: #11162b; color: #eef0f8; max-width: 720px; margin: 0 auto; padding: 28px 20px; line-height: 1.6; font-size: 18px; }
+  h1 { font-family: Georgia, serif; font-size: 1.6rem; margin-top: 0; }
+  input { width: 100%; min-height: 46px; padding: 8px 12px; font: inherit; background: #1a2142; color: #eef0f8; border: 2px solid #2d3866; border-radius: 6px; }
+  button { min-height: 46px; padding: 8px 20px; font: inherit; font-weight: 700; background: #93a7ff; color: #0d1330; border: 0; border-radius: 6px; cursor: pointer; margin-top: 10px; }
+  code { display: block; background: #1a2142; border: 1px solid #2d3866; border-radius: 6px; padding: 12px; margin-top: 12px; word-break: break-all; }
+  .opomba { color: #a9b3d6; font-size: .85rem; }
+  :focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+</style>
+</head>
+<body>
+  <h1>Ustvari ključ za zaklep</h1>
+  <p class="opomba">Vpišite ključ, ki ga boste sporočili tečajnikom. Velike in male črke ter presledki na robovih se pri vnosu ne upoštevajo. Spodaj dobite vrstico za <code style="display:inline;padding:1px 6px;">hash:</code> v datoteki index.html.</p>
+  <label for="k">Ključ</label>
+  <input id="k" type="text" autocomplete="off" spellcheck="false">
+  <button id="b" type="button">Izračunaj</button>
+  <code id="izhod" aria-live="polite">–</code>
+  <p class="opomba">Ključ se v index.html ne shrani kot besedilo, ampak kot zgoščena vrednost. Opozorilo: to je zaklep za usmerjanje tečajnikov, ne pravo varovanje podatkov. Kdor pozna naslov datoteke, jo lahko odpre neposredno.</p>
+<script>
+const SOL = 'dca2026:'; /* mora biti enaka kot v index.html */
+async function h(k) {
+  const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SOL + k.trim().toLowerCase()));
+  return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+async function izracunaj() {
+  const k = document.getElementById('k').value;
+  const o = document.getElementById('izhod');
+  if (!k.trim()) { o.textContent = 'Vpišite ključ.'; return; }
+  o.textContent = "hash: '" + await h(k) + "'";
+}
+document.getElementById('b').addEventListener('click', izracunaj);
+document.getElementById('k').addEventListener('keydown', e => { if (e.key === 'Enter') izracunaj(); });
+</script>
+</body>
+</html>

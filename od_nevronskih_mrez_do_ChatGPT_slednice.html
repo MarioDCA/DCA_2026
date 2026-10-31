@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umetna inteligenca - od nevronskih mrež do ChatGPT</title>
+<style>
+  :root{
+    --navy:#274B72;
+    --navy-deep:#0A1420;
+    --teal:#3FC6C6;
+    --coral:#FFA65C;
+    --paper:#121A24;
+    --panel:#1A2430;
+    --panel-soft:#1E2A38;
+    --ink:#E8EEF4;
+    --ink-soft:#AEBBCC;
+    --line:#2C3A4A;
+    --purple:#A78BFA;
+    --chalk-yellow:#f2cf5b;
+    --chalk-blue:#8ecbe0;
+    --chalk-coral:#ef9d8f;
+    --chalk-green:#a9d6a5;
+    --step-size: 20px;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    font-size: var(--step-size);
+    line-height:1.65;
+    overflow:hidden;
+  }
+  h1,h2,h3{
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    color:var(--ink);
+    line-height:1.2;
+    margin:0 0 .4em 0;
+  }
+  a{color:var(--teal);}
+
+  .deck{
+    position:relative;
+    width:100vw;
+    height:100vh;
+  }
+
+  .page{
+    position:absolute;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:clamp(24px,4.5vh,48px) clamp(20px,4vw,64px) clamp(20px,3.4vh,56px);
+    background:var(--paper);
+    overflow-y:auto;
+  }
+  .page.active{ display:flex; }
+  .page-inner{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(16px,2.6vh,34px);
+    margin-top:-20px; /* Potegne vsebino za 20px višje */
+  }
+
+  /* Header */
+  .page-title{
+    font-size:clamp(1.5rem, 3vh, 2.2rem);
+    font-weight:700;
+    color:var(--teal);
+    text-align:center;
+    width:100%;
+    border-bottom:3px solid var(--teal);
+    padding-bottom:10px;
+    margin-top:-15px; /* Potegne naslov za 15px višje */
+  }
+  .page-number{
+    font-size:clamp(0.85rem, 1.4vh, 1rem);
+    color:var(--ink-soft);
+    text-align:center;
+    opacity:0.5;
+    width:100%;
+  }
+  .subtitle{
+    font-size:clamp(1rem,1.8vh,1.3rem);
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  /* Cards */
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:clamp(18px,2.6vh,28px);
+    width:100%;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+
+  /* Steps */
+  .flow{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+  }
+  .step{
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:clamp(14px,2.2vh,22px) clamp(16px,2.4vw,26px);
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .step .num{
+    flex:0 0 auto;
+    width:clamp(36px,5.4vh,46px);
+    height:clamp(36px,5.4vh,46px);
+    border-radius:50%;
+    background:var(--step-color, var(--teal));
+    color:var(--paper);
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.5rem);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step .body{ flex:1; }
+  .step .title{
+    font-weight:700;
+    font-size:clamp(1.1rem,2.2vh,1.4rem);
+    color:var(--step-color, var(--teal));
+    margin-bottom:4px;
+  }
+  .step .desc{
+    font-size:clamp(1rem,1.9vh,1.25rem);
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .arrow-down{
+    color:var(--ink-soft);
+    font-size:clamp(1.3rem,2.6vh,1.8rem);
+    opacity:0.4;
+    line-height:1;
+    margin:clamp(2px,0.6vh,8px) 0;
+  }
+  .step-compact{
+    padding:clamp(8px,1.3vh,13px) clamp(12px,1.8vw,18px) !important;
+    gap:12px !important;
+  }
+  .step-compact .num{
+    width:clamp(26px,3.8vh,32px) !important;
+    height:clamp(26px,3.8vh,32px) !important;
+    font-size:clamp(0.9rem,1.6vh,1.1rem) !important;
+  }
+  .step-compact .title{
+    font-size:clamp(0.95rem,1.7vh,1.15rem) !important;
+    margin-bottom:2px !important;
+  }
+  .step-compact .desc{
+    font-size:clamp(0.85rem,1.4vh,1rem) !important;
+    line-height:1.35 !important;
+  }
+  .flow-compact .arrow-down{
+    margin:clamp(0px,0.2vh,3px) 0 !important;
+    font-size:clamp(1rem,1.8vh,1.3rem) !important;
+  }
+
+  /* Word map */
+  .word-map{
+    position:relative; height:200px; margin-top:10px;
+    background:var(--panel-soft);
+    border:1px solid var(--line);
+    border-radius:12px;
+  }
+  .word-map .word{
+    position:absolute; transform:translate(-50%,-50%);
+    padding:7px 16px; border-radius:20px; white-space:nowrap;
+    background:var(--panel);
+    border:1.5px solid var(--line);
+    font-weight:700; font-size:.92em; color:var(--ink);
+  }
+  .word-map .word.animal{color:var(--teal); border-color:var(--teal);}
+  .word-map .word.royal{color:var(--purple); border-color:var(--purple);}
+  .word-map .word.vehicle{color:var(--coral); border-color:var(--coral);}
+  @media (max-width:600px){
+    .word-map{height:280px;}
+    .word-map .word{font-size:.82em; padding:5px 10px;}
+  }
+
+  /* Note boxes */
+  .note{
+    background:rgba(63,198,198,0.06);
+    border-left:5px solid var(--teal);
+    padding:14px 18px;
+    border-radius:8px;
+    font-size:.98em;
+    color:var(--ink);
+    width:100%;
+  }
+  .note strong{color:var(--teal);}
+  .note.coral{
+    border-left-color:var(--coral);
+  }
+  .note.coral strong{color:var(--coral);}
+  .note.purple{
+    border-left-color:var(--purple);
+  }
+  .note.purple strong{color:var(--purple);}
+
+  /* Compare cards */
+  .compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    width:100%;
+  }
+  .compare-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+  }
+  .compare-card h3{
+    font-size:1.15em;
+    margin-bottom:6px;
+  }
+  .compare-card.warn h3{ color:var(--coral); }
+  .compare-card.info h3{ color:var(--teal); }
+  .compare-card p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:.95em;
+  }
+  @media (max-width:600px){
+    .compare-grid{grid-template-columns:1fr;}
+  }
+
+  /* Type grid */
+  .type-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;
+    width:100%;
+  }
+  .type-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px;
+  }
+  .type-card .abbr{
+    font-size:1.3em;
+    font-weight:800;
+    color:var(--teal);
+  }
+  .type-card .full{
+    font-size:.85em;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .type-card p{
+    margin:0 0 8px 0;
+    font-size:.95em;
+    color:var(--ink);
+  }
+  .type-card .example{
+    margin:0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    font-style:italic;
+    border-top:1px solid var(--line);
+    padding-top:8px;
+  }
+
+  /* RNN box */
+  .rnn-box{
+    background:var(--panel-soft);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 20px;
+    width:100%;
+  }
+  .rnn-box .highlight{
+    color:var(--teal);
+    font-weight:700;
+  }
+  .rnn-box .word-highlight{
+    display:inline-block;
+    background:rgba(63,198,198,0.12);
+    padding:2px 10px;
+    border-radius:6px;
+    border:1px solid rgba(63,198,198,0.2);
+    margin:2px 2px;
+    color:var(--teal);
+  }
+  .rnn-box .arrow-flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    flex-wrap:wrap;
+    font-size:1.1rem;
+    margin:8px 0;
+    color:var(--ink-soft);
+  }
+
+  /* Formula */
+  .formula{
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-weight:700;
+    text-align:center;
+    overflow-x:auto;
+    padding-bottom:6px;
+    width:100%;
+  }
+  .formula .piece{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    min-width:90px;
+    color:var(--ink);
+    flex:0 0 auto;
+  }
+  .formula .piece .big{font-size:1.2em; display:block; margin-bottom:2px;}
+  .formula .piece .small{font-weight:400; font-size:.75em; color:var(--ink-soft);}
+  .formula .op{
+    font-size:1.3em;
+    color:var(--ink-soft);
+    flex:0 0 auto;
+  }
+  .formula .result{
+    background:var(--teal);
+    color:var(--paper);
+    border-color:var(--teal);
+  }
+  .formula .result .small{color:var(--paper); opacity:.7;}
+  @media (max-width:640px){
+    .formula{gap:6px;}
+    .formula .piece{padding:10px 10px; min-width:70px;}
+    .formula .piece .big{font-size:1em;}
+    .formula .piece .small{font-size:.65em;}
+    .formula .op{font-size:1em;}
+  }
+
+  /* Apps list */
+  .apps-list{
+    margin-top:0;
+    list-style:none;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+  .apps-list li{
+    padding-left:28px;
+    position:relative;
+    font-size:1em;
+    color:var(--ink-soft);
+  }
+  .apps-list li strong{color:var(--ink);}
+  .apps-list li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--teal);
+    font-weight:800;
+  }
+
+  .foot-note{
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    opacity:0.5;
+    width:100%;
+  }
+
+  /* Layers */
+  .layers-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px;
+    width:100%;
+    overflow-x:auto;
+  }
+  .layers-title{
+    font-weight:700;
+    text-align:center;
+    margin-bottom:14px;
+    font-size:1.05em;
+    color:var(--ink);
+  }
+  .layers{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+    min-width:680px;
+  }
+  .layer-col{display:flex; flex-direction:column; align-items:center; gap:12px; flex:1;}
+  .layer-name{
+    font-size:.8em;
+    font-weight:700;
+    color:var(--ink-soft);
+    text-align:center;
+    min-height:2.2em;
+  }
+  .layer-dot{
+    width:24px; height:24px; border-radius:50%;
+    border:2px solid var(--panel);
+    box-shadow:0 0 0 2px var(--line);
+  }
+  .layer-dot.in{background:#5C9CE6;}
+  .layer-dot.hidden{background:var(--teal);}
+  .layer-dot.out{background:var(--coral);}
+  .arrow-between{
+    font-size:1.4em;
+    color:var(--ink-soft);
+    padding:0 2px;
+  }
+  .out-label{
+    font-size:.75em;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  /* Grid for input types */
+  .input-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
+    width:100%;
+  }
+  .input-chip{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 2px 4px rgba(0,0,0,.15);
+  }
+  .input-chip .icon{font-size:1.6em; line-height:1;}
+  .input-chip strong{font-size:.95em;}
+  .input-desc{font-size:.8em; color:var(--ink-soft);}
+
+  /* Navigation */
+  .nav{
+    position:fixed;
+    left:0; right:0; bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    z-index:10;
+  }
+  .nav button{
+    background:rgba(255,255,255,0.06);
+    border:2px solid rgba(255,255,255,0.2);
+    color:var(--ink);
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    font-size:1rem;
+    font-weight:700;
+    border-radius:10px;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .nav button:hover{ background:rgba(255,255,255,0.12); }
+  .nav button:disabled{ opacity:0.3; cursor:default; }
+  .dots{ display:flex; gap:8px; }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    border:1.5px solid rgba(255,255,255,0.2);
+    cursor:pointer;
+    padding:0;
+  }
+  .dot.active{ background:var(--teal); border-color:var(--teal); }
+  .page-count{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    min-width:48px;
+    text-align:center;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ========== SLIDE 1: NASLOVNICA ========== -->
+  <section class="page active" data-page="1">
+    <div class="page-inner">
+      <div style="text-align:center; padding:20px 0;">
+        <svg viewBox="0 0 140 190" style="width:80px; height:auto; margin-bottom:6px;" aria-hidden="true">
+          <line x1="70" y1="6" x2="70" y2="26" stroke="var(--teal)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="70" cy="6" r="6" fill="var(--coral)"/>
+          <rect x="26" y="24" width="88" height="64" rx="26" fill="#F2F8FA"/>
+          <path d="M48,52 Q56,44 64,52" stroke="var(--navy-deep)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M76,52 Q84,44 92,52" stroke="var(--navy-deep)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M54,66 Q70,78 86,66" stroke="var(--navy-deep)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="24" cy="56" r="7" fill="var(--teal)"/>
+          <circle cx="116" cy="56" r="7" fill="var(--teal)"/>
+          <rect x="18" y="96" width="104" height="78" rx="22" fill="#F2F8FA"/>
+          <rect x="2" y="108" width="16" height="42" rx="8" fill="#F2F8FA"/>
+          <rect x="122" y="108" width="16" height="42" rx="8" fill="#F2F8FA"/>
+          <rect x="48" y="124" width="44" height="30" rx="9" fill="var(--coral)"/>
+          <text x="70" y="145" text-anchor="middle" font-family="Segoe UI, Verdana, sans-serif" font-weight="800" font-size="17" fill="#fff">UI</text>
+        </svg>
+        <h1 style="font-size:clamp(2.2rem,5vh,3.2rem); margin:0;">Od nevronskih mrež do <span style="color:var(--teal);">ChatGPT</span></h1>
+        <p class="subtitle">Najprej razumimo osnove, nato konkretni primer</p>
+      </div>
+
+      <div class="card" style="text-align:center; padding:30px; margin-top:-30px;">
+        <p style="font-size:clamp(1.1rem,2.2vh,1.4rem); line-height:1.6; color:var(--ink-soft); margin:0;">
+          <strong style="color:var(--ink);">Nevronske mreže</strong> so temelj sodobne umetne inteligence.<br>
+          <strong style="color:var(--teal);">ChatGPT</strong> je ena izmed njihovih najbolj znanih uporab.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; margin-top:16px; flex-wrap:wrap;">
+          <span style="background:rgba(63,198,198,0.12); padding:6px 18px; border-radius:20px; border:1px solid var(--teal); color:var(--teal);">🧩 Vzorci</span>
+          <span style="background:rgba(242,207,91,0.12); padding:6px 18px; border-radius:20px; border:1px solid var(--chalk-yellow); color:var(--chalk-yellow);">📚 Učenje</span>
+          <span style="background:rgba(142,203,224,0.12); padding:6px 18px; border-radius:20px; border:1px solid var(--chalk-blue); color:var(--chalk-blue);">💬 Napovedovanje</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 2: KAJ SO NEVRONSKE MREŽE ========== -->
+  <section class="page" data-page="2">
+    <div class="page-inner">
+      <div class="page-title">Kaj je nevronska mreža?</div>
+
+      <div class="card">
+        <p style="font-size:clamp(1.05rem,2vh,1.3rem); line-height:1.6; margin:0 0 16px 0;">
+          Nevronska mreža je sestavljena iz množice zelo preprostih enot, ki jim pravimo <strong style="color:var(--teal);">vozlišča</strong>. Vsako vozlišče si lahko predstavljate kot <strong style="color:var(--teal);">majhno sito</strong>, ki prepušča naprej le toliko "signala", kolikor se podatek ujema z njegovim kriterijem — eno sito prepušča glede na barvo, drugo glede na obliko, tretje glede na velikost.
+        </p>
+        <div style="background:var(--panel-soft); border-radius:10px; padding:16px; border:1px solid var(--line);">
+          <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap; align-items:center;">
+            <div style="text-align:center;">
+              <div style="font-size:1.8rem;">🍎</div>
+              <div style="font-size:0.8rem; color:var(--ink-soft); margin-top:2px;">Fotografija</div>
+            </div>
+            <div style="font-size:1.5rem; color:var(--ink-soft);">→</div>
+            <div style="text-align:center;">
+              <div style="display:flex; gap:8px; justify-content:center;">
+                <span style="width:28px; height:28px; border-radius:50%; background:var(--teal); display:inline-block;"></span>
+                <span style="width:28px; height:28px; border-radius:50%; background:var(--teal); display:inline-block;"></span>
+                <span style="width:28px; height:28px; border-radius:50%; background:var(--teal); display:inline-block;"></span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--ink-soft); margin-top:4px;">Vozlišča (sita)</div>
+            </div>
+            <div style="font-size:1.5rem; color:var(--ink-soft);">→</div>
+            <div style="text-align:center;">
+              <div style="font-size:1.8rem;">🍎</div>
+              <div style="font-size:0.8rem; color:var(--ink-soft); margin-top:2px;">Odločitev</div>
+            </div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:16px;">
+          <strong>Primer:</strong> podobno kot ko fotografijo jabolka spustite skozi vrsto sit z različno velikimi luknjami — eno sito prepusti "koliko je rdeče", drugo "koliko je okroglo", tretje "kako veliko je". Vsako vozlišče torej odda samo eno majhno oceno; ko na tisoče takih ocen seštejemo skupaj, dobimo končni odgovor: "to je jabolko".
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 3: VHODNI PODATKI ========== -->
+  <section class="page" data-page="3">
+    <div class="page-inner">
+      <div class="page-title">Preden se nevronska mreža karkoli nauči, mora dobiti podatke:</div>
+
+      <div class="card">
+        <div class="input-grid">
+          <div class="input-chip">
+            <span class="icon">🖼️</span>
+            <div><strong>Slike</strong><br><span class="input-desc">fotografije, posnetki</span></div>
+          </div>
+          <div class="input-chip">
+            <span class="icon">💬</span>
+            <div><strong>Besedilo</strong><br><span class="input-desc">vprašanja, e-pošta</span></div>
+          </div>
+          <div class="input-chip">
+            <span class="icon">🔊</span>
+            <div><strong>Zvok</strong><br><span class="input-desc">govor, glasba</span></div>
+          </div>
+          <div class="input-chip">
+            <span class="icon">📊</span>
+            <div><strong>Številke</strong><br><span class="input-desc">tabele, meritve</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Te podatke — pogledali bomo primer s fotografijo — nato spustimo skozi nevronsko mrežo (to lahko primerjamo s siti).
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 4: ZGRADBA ========== -->
+  <section class="page" data-page="4">
+    <div class="page-inner">
+      <div class="page-title">🧱 Globoka nevronska mreža</div>
+
+      <div class="layers-card">
+        <div class="layers-title">Fotografija → Vhodna plast → Skrite plasti → Izhodna plast</div>
+        <div class="layers">
+          <div class="layer-col">
+            <div class="layer-name">Fotografija<br>jabolka</div>
+            <span style="font-size:1.8em; line-height:1;">🍎</span>
+          </div>
+          <div class="arrow-between">→</div>
+          <div class="layer-col">
+            <div class="layer-name">Vhodna plast</div>
+            <span class="layer-dot in"></span><span class="layer-dot in"></span><span class="layer-dot in"></span>
+          </div>
+          <div class="arrow-between">→</div>
+          <div class="layer-col">
+            <div class="layer-name">Skrite plasti</div>
+            <span class="layer-dot hidden"></span><span class="layer-dot hidden"></span><span class="layer-dot hidden"></span><span class="layer-dot hidden"></span>
+          </div>
+          <div class="arrow-between">→</div>
+          <div class="layer-col">
+            <div class="layer-name">Izhodna plast</div>
+            <span class="layer-dot out"></span>
+            <span class="out-label">🍎 Jabolko</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Število krogov je zgolj ponazoritev — v resnici jih je lahko na tisoče. Več plasti pomeni globlje razumevanje podatkov.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 5: PRIMER POMARANČA ========== -->
+  <section class="page" data-page="5">
+    <div class="page-inner">
+      <div class="page-title">🍊 Ista mreža, drugačen vhod</div>
+
+      <div class="layers-card">
+        <div class="layers-title">Fotografija → Vhodna plast → Skrite plasti → Izhodna plast</div>
+        <div class="layers">
+          <div class="layer-col">
+            <div class="layer-name">Fotografija<br>pomaranče</div>
+            <span style="font-size:1.8em; line-height:1;">🍊</span>
+          </div>
+          <div class="arrow-between">→</div>
+          <div class="layer-col">
+            <div class="layer-name">Vhodna plast</div>
+            <span class="layer-dot in"></span><span class="layer-dot in"></span><span class="layer-dot in"></span>
+          </div>
+          <div class="arrow-between">→</div>
+          <div class="layer-col">
+            <div class="layer-name">Skrite plasti</div>
+            <span class="layer-dot hidden"></span><span class="layer-dot hidden"></span><span class="layer-dot hidden"></span><span class="layer-dot hidden"></span>
+          </div>
+          <div class="arrow-between">→</div>
+          <div class="layer-col">
+            <div class="layer-name">Izhodna plast</div>
+            <span class="layer-dot out"></span>
+            <span class="out-label">🍊 Pomaranča</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note coral">
+        <strong>Ista mreža — drugačen vhod:</strong> oblika je pri obeh sadežih podobna (okrogla), zato se mreža odloči predvsem na podlagi <strong>barve</strong>. Bolj rdeči odtenki vodijo k odgovoru "jabolko", bolj oranžni pa k odgovoru "pomaranča".
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 5: ZAKAJ DELUJE ========== -->
+  <section class="page" data-page="6">
+    <div class="page-inner">
+      <div class="page-title">✨ Zakaj nevronske mreže delujejo?</div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; width:100%;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;">🧠</div>
+          <h3 style="font-size:1.1rem; color:var(--ink); margin:8px 0 4px;">Sama prepozna vzorce</h3>
+          <p style="font-size:0.95rem; color:var(--ink-soft); margin:0;">Brez ročnih pravil</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;">🧩</div>
+          <h3 style="font-size:1.1rem; color:var(--ink); margin:8px 0 4px;">Obvlada zapletenost</h3>
+          <p style="font-size:0.95rem; color:var(--ink-soft); margin:0;">Povezave, ki jih človek ne vidi</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;">📈</div>
+          <h3 style="font-size:1.1rem; color:var(--ink); margin:8px 0 4px;">Izboljšuje se s časom</h3>
+          <p style="font-size:0.95rem; color:var(--ink-soft); margin:0;">Več podatkov = boljša</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 6: KAKO SE UČI (1-3) ========== -->
+  <section class="page" data-page="7">
+    <div class="page-inner">
+      <div class="page-title">📚 Kako se mreža uči? (1–4)</div>
+
+      <div class="flow flow-compact">
+        <div class="step step-compact" style="--step-color:var(--chalk-blue)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">📸 Zbiranje podatkov</div>
+            <div class="desc">Na tisoče fotografij jabolk in pomaranč, pri vsaki že poznamo odgovor.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--teal)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">🧹 Priprava podatkov</div>
+            <div class="desc">Odstranimo slabe fotografije, vse uredimo na enako velikost.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--chalk-yellow)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">🧠 Učenje modela</div>
+            <div class="desc">Mreža poskuša uganiti, kaj je na sliki — sprva skoraj naključno.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--coral)">
+          <div class="num">4</div>
+          <div class="body">
+            <div class="title">🎯 Optimizacija</div>
+            <div class="desc">Ko se zmoti, popravi svoje ocenjevanje, da bo naslednjič bliže pravemu odgovoru.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:8px;">
+        <strong>🔁 Ponovi. Izboljšaj. Razvijaj.</strong> Koraka 3 in 4 se ponovita na tisoče krat.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 7: KAKO SE UČI (4-6) ========== -->
+  <section class="page" data-page="8">
+    <div class="page-inner">
+      <div class="page-title">📚 Kako se mreža uči? (5–6)</div>
+
+      <div class="flow flow-compact">
+        <div class="step step-compact" style="--step-color:var(--purple)">
+          <div class="num">5</div>
+          <div class="body">
+            <div class="title">✅ Vrednotenje</div>
+            <div class="desc">Preizkus na novih fotografijah, ki jih še ni videla.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--chalk-green)">
+          <div class="num">6</div>
+          <div class="body">
+            <div class="title">🚀 Napovedovanje</div>
+            <div class="desc">Ko je dovolj natančna, jo uporabimo za nove primere.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 8: BESEDE KOT ŠTEVILKE - UVOD ========== -->
+  <section class="page" data-page="9">
+    <div class="page-inner">
+      <div class="page-title">🔢 Besede kot številke</div>
+
+      <div class="card">
+        <p style="font-size:clamp(1.05rem,2vh,1.3rem); line-height:1.6; margin:0 0 12px 0;">
+          Mreža zna računati samo s številkami. Vsako besedo spremeni v številke — podobne besede dobijo podobne številke.
+        </p>
+
+        <div class="word-map">
+          <span class="word animal" style="top:28%; left:18%;">pes</span>
+          <span class="word animal" style="top:48%; left:30%;">mačka</span>
+          <span class="word animal" style="top:64%; left:14%;">konj</span>
+          <span class="word royal" style="top:18%; left:52%;">kralj</span>
+          <span class="word royal" style="top:38%; left:62%;">kraljica</span>
+          <span class="word vehicle" style="top:22%; left:82%;">avto</span>
+          <span class="word vehicle" style="top:45%; left:88%;">kolo</span>
+          <span class="word vehicle" style="top:66%; left:78%;">vlak</span>
+        </div>
+
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:12px; font-size:0.85rem;">
+          <span style="color:var(--teal);">● Domače živali</span>
+          <span style="color:var(--coral);">● Vozila</span>
+          <span style="color:var(--purple);">● Kraljevska naziva</span>
+        </div>
+      </div>
+
+      <div class="note teal">
+        <strong>Vprašanje:</strong> Kako pa mreža ve, da da živalim podobne številke, vozilom pa drugačne? <span style="color:var(--ink-soft);">— Odgovor na naslednji strani!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 9: KAKO MREŽA DOBI PODOBNE ŠTEVILKE ========== -->
+  <section class="page" data-page="10">
+    <div class="page-inner">
+      <div class="page-title">🎯 Kako mreža dobi podobne številke?</div>
+
+      <div class="card">
+        <p style="font-size:clamp(1rem,1.8vh,1.2rem); color:var(--ink-soft); margin:0 0 16px 0;">
+          <strong style="color:var(--ink);">Mreža tega ne ve vnaprej</strong> — <strong style="color:var(--teal);">nauči se tega sama</strong> iz podatkov. Poglejmo korake:
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <!-- 1. Začetek: naključne številke -->
+          <div style="background:var(--panel-soft); border-radius:10px; padding:9px 14px; border:1px solid var(--line);">
+            <div style="font-weight:700; color:var(--chalk-blue); font-size:0.95rem;">1. Začetek: naključne številke</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft); margin:3px 0 6px;">Vsaka beseda dobi povsem naključne številke — ni nobenega reda.</div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; font-family:monospace; font-size:0.9rem; background:rgba(0,0,0,0.2); padding:8px 14px; border-radius:8px;">
+              <span>pes = [0.3, 0.8, 0.1]</span>
+              <span style="color:var(--ink-soft);">|</span>
+              <span>avto = [0.9, 0.2, 0.7]</span>
+              <span style="color:var(--ink-soft);">|</span>
+              <span>mačka = [0.5, 0.4, 0.6]</span>
+              <span style="color:var(--ink-soft);">|</span>
+              <span>vlak = [0.1, 0.9, 0.3]</span>
+            </div>
+          </div>
+
+          <!-- 2. Učenje iz konteksta -->
+          <div style="background:var(--panel-soft); border-radius:10px; padding:9px 14px; border:1px solid var(--line);">
+            <div style="font-weight:700; color:var(--teal); font-size:0.95rem;">2. Učenje iz konteksta</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft); margin:3px 0 6px;">Mreža dobi na tisoče stavkov in se uči <strong style="color:var(--ink);">iz tega, katere besede se pogosto pojavljajo skupaj</strong>.</div>
+            <div style="background:rgba(0,0,0,0.2); padding:8px 14px; border-radius:8px; font-size:0.9rem; color:var(--ink-soft);">
+              <div>📖 "Pes laja."</div>
+              <div>📖 "Mačka prede."</div>
+              <div>📖 "Avto vozi."</div>
+              <div>📖 "Vlak pelje."</div>
+              <div style="margin-top:3px; color:var(--ink);">📖 "Pes in mačka sta hišni živali."</div>
+              <div style="color:var(--ink);">📖 "Avto in vlak sta prevozni sredstvi."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 10: PRILAGAJANJE ŠTEVILK ========== -->
+  <section class="page" data-page="11">
+    <div class="page-inner">
+      <div class="page-title">🔄 Prilagajanje številk</div>
+
+      <div class="card">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+
+          <!-- 3. Kaj mreža opazi -->
+          <div style="background:var(--panel-soft); border-radius:10px; padding:9px 14px; border:1px solid var(--line);">
+            <div style="font-weight:700; color:var(--chalk-yellow); font-size:0.95rem;">3. Kaj mreža opazi?</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft); margin:3px 0 6px;">
+              <span style="color:var(--teal);">✔</span> "pes" in "mačka" se pogosto pojavljata v <strong style="color:var(--ink);">podobnih stavkih</strong> (živali)<br>
+              <span style="color:var(--coral);">✔</span> "avto" in "vlak" se pogosto pojavljata v <strong style="color:var(--ink);">podobnih stavkih</strong> (prevoz)<br>
+              <span style="color:var(--ink-soft);">✖</span> "pes" in "avto" se skoraj nikoli ne pojavita v istih vrstah stavkov
+            </div>
+          </div>
+
+          <!-- 4. Prilagajanje -->
+          <div style="background:var(--panel-soft); border-radius:10px; padding:9px 14px; border:1px solid var(--line);">
+            <div style="font-weight:700; color:var(--coral); font-size:0.95rem;">4. Prilagajanje številk</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft); margin:3px 0 6px;">
+              Ko mreža vidi, da se "pes" in "mačka" pojavljata v podobnih okoljih, <strong style="color:var(--ink);">malenkost popravi</strong> njuni številki, da postaneta <strong style="color:var(--teal);">bolj podobni</strong>.
+            </div>
+            <div style="background:rgba(0,0,0,0.2); padding:8px 14px; border-radius:8px; font-size:0.9rem; font-family:monospace;">
+              <div style="color:var(--teal);">pes = [0.3, 0.8, 0.1] → [0.4, 0.7, 0.2]</div>
+              <div style="color:var(--teal);">mačka = [0.5, 0.4, 0.6] → [0.5, 0.6, 0.3]</div>
+              <div style="color:var(--coral); margin-top:3px;">avto = [0.9, 0.2, 0.7] → [0.1, 0.3, 0.8]</div>
+              <div style="color:var(--coral);">vlak = [0.1, 0.9, 0.3] → [0.2, 0.1, 0.7]</div>
+            </div>
+            <div style="font-size:0.85rem; color:var(--ink-soft); margin-top:5px;">
+              <span style="color:var(--teal);">●</span> Pes in mačka sta <strong style="color:var(--teal);">bolj podobni</strong>.<br>
+              <span style="color:var(--coral);">●</span> Avto in vlak sta <strong style="color:var(--coral);">bolj podobni</strong>.<br>
+              <span style="color:var(--ink-soft);">●</span> Obe skupini sta <strong style="color:var(--ink-soft);">bolj različni</strong> med seboj.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 11b: PRILAGAJANJE ŠTEVILK (5-6) ========== -->
+  <section class="page" data-page="12">
+    <div class="page-inner">
+      <div class="page-title">🔄 Prilagajanje številk (5–6)</div>
+
+      <div class="card">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+
+          <!-- 5. Ponavljanje -->
+          <div style="background:var(--panel-soft); border-radius:10px; padding:9px 14px; border:1px solid var(--line);">
+            <div style="font-weight:700; color:var(--purple); font-size:0.95rem;">5. Ponavljanje veliko krat</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft);">
+              To se ponovi <strong style="color:var(--ink);">veliko krat</strong> — vsakič se številke malenkost popravijo.
+            </div>
+            <div style="background:rgba(0,0,0,0.2); padding:8px 14px; border-radius:8px; font-size:0.9rem; font-family:monospace; margin-top:5px;">
+              <div style="color:var(--teal);">pes    = [0.8, 0.9, 0.1]  ← podobni</div>
+              <div style="color:var(--teal);">mačka  = [0.7, 0.8, 0.2]  ← podobni</div>
+              <div style="color:var(--coral); margin-top:3px;">avto   = [0.1, 0.2, 0.9]  ← podobni</div>
+              <div style="color:var(--coral);">vlak   = [0.2, 0.1, 0.8]  ← podobni</div>
+            </div>
+          </div>
+
+          <!-- 6. Končni rezultat -->
+          <div style="background:rgba(63,198,198,0.06); border:1px solid var(--teal); border-radius:10px; padding:9px 14px;">
+            <div style="font-weight:700; color:var(--teal); font-size:0.95rem;">6. Končni rezultat: zemljevid besed</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft);">
+              Besede <strong style="color:var(--teal);">sorodnega pomena</strong> pristanejo <strong style="color:var(--teal);">blizu skupaj</strong>.<br>
+              Besede <strong style="color:var(--coral);">različnega pomena</strong> pa <strong style="color:var(--coral);">daleč narazen</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Bistvo:</strong> Mreža <strong>ni dobila nobenega pravila</strong> (npr. "živali so živa bitja"). <strong>Sama je ugotovila</strong>, katere besede so si podobne, <strong>samo iz tega, kako se besede uporabljajo v stavkih</strong>.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 11c: VMESNIK VS MODEL ========== -->
+  <section class="page" data-page="13">
+    <div class="page-inner">
+      <div class="page-title">🚗 ChatGPT: vmesnik ali model?</div>
+
+      <p style="text-align:center; color:var(--ink-soft); max-width:640px; margin:0 auto 6px;">
+        Beseda "ChatGPT" pravzaprav pomeni dve stvari hkrati — zato je zmeda povsem razumljiva.
+      </p>
+
+      <div class="compare-grid">
+        <div class="compare-card info" style="border:2px solid var(--teal);">
+          <h3 style="color:var(--teal);">💬 ChatGPT (vmesnik)</h3>
+          <p>To je <strong>klepetalniško okno</strong>, kamor vtipkate vprašanje in dobite odgovor — prijazna "lupina" okoli modela.</p>
+        </div>
+        <div class="compare-card warn" style="border:2px solid var(--coral);">
+          <h3 style="color:var(--coral);">🧠 GPT (jezikovni model)</h3>
+          <p>To so "možgani" v ozadju — nevronska mreža, ki dejansko <strong>napove besedo za besedo</strong> in sestavi odgovor.</p>
+        </div>
+      </div>
+
+      <div class="note coral" style="margin-top:4px;">
+        <strong>Primerjava:</strong> podobno kot avto in motor. Ko vozite avto (= uporabljate ChatGPT), vidite volan in armaturno ploščo (= vmesnik). V ozadju motor (= jezikovni model) poganja vožnjo tako, da zgoreva gorivo (= napoveduje besedo za besedo). Kot voznik eksplozij v motorju ne vidite — vidite le rezultat: avto se premika. Podobno pri ChatGPT ne vidite napovedovanja besed v ozadju — vidite le tekoč, berljiv odgovor.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 11: CHATGPT - UVOD ========== -->
+  <section class="page" data-page="14">
+    <div class="page-inner">
+      <div class="page-title">💬 ChatGPT — konkreten primer</div>
+
+      <div class="card" style="border-color:var(--teal); border-width:2px;">
+        <p style="font-size:clamp(1.05rem,2vh,1.3rem); line-height:1.6; margin:0 0 8px 0;">
+          ChatGPT je posebna vrsta nevronske mreže, ki se je naučila <strong style="color:var(--teal);">napovedovati besede</strong>.
+        </p>
+        <div style="background:rgba(63,198,198,0.06); border-radius:10px; padding:12px 16px; border:1px solid rgba(63,198,198,0.2);">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <span style="font-size:1.8rem;">💬</span>
+            <span style="color:var(--ink-soft);">Napove <strong style="color:var(--teal);">besedo za besedo</strong>, kaj bo najverjetneje sledilo — in tako sestavi celoten odgovor.</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 20px; width:100%;">
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:center;">
+          <div style="text-align:center;">
+            <div style="font-size:1.6rem;">❓</div>
+            <div style="font-size:0.8rem; color:var(--ink-soft);">Vprašanje</div>
+          </div>
+          <div style="font-size:1.3rem; color:var(--ink-soft);">→</div>
+          <div style="text-align:center;">
+            <div style="font-size:1.6rem;">🔍</div>
+            <div style="font-size:0.8rem; color:var(--ink-soft);">Kontekst</div>
+          </div>
+          <div style="font-size:1.3rem; color:var(--ink-soft);">→</div>
+          <div style="text-align:center;">
+            <div style="font-size:1.6rem;">📚</div>
+            <div style="font-size:0.8rem; color:var(--ink-soft);">Vzorci</div>
+          </div>
+          <div style="font-size:1.3rem; color:var(--ink-soft);">→</div>
+          <div style="text-align:center;">
+            <div style="font-size:1.6rem;">💬</div>
+            <div style="font-size:0.8rem; color:var(--ink-soft);">Odgovor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 12: KAKO CHATGPT DELUJE (1-3) ========== -->
+  <section class="page" data-page="15">
+    <div class="page-inner">
+      <div class="page-title">⚙️ Kako ChatGPT sestavi odgovor? (1–3)</div>
+
+      <div class="flow flow-compact">
+        <div class="step step-compact" style="--step-color:var(--chalk-blue)">
+          <div class="num">1</div>
+          <div class="body">
+            <div class="title">🙋 Vi vprašate</div>
+            <div class="desc">Na primer: »Kaj je sončna elektrarna?«</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--teal)">
+          <div class="num">2</div>
+          <div class="body">
+            <div class="title">🔎 Prebere kontekst</div>
+            <div class="desc">Razume, ali sprašujete po ceni, lokaciji ali razlagi.</div>
+            <div class="note" style="margin-top:6px; border-left-color:var(--chalk-blue); background:rgba(142,203,224,0.04);">
+              <div style="font-size:0.85rem; color:var(--ink-soft);">»Koliko elektrike proizvede <strong style="color:var(--ink);">sončna elektrarna</strong> pozimi?« → želimo številko</div>
+              <div style="font-size:0.85rem; color:var(--ink-soft);">»Kako deluje <strong style="color:var(--ink);">sončna elektrarna</strong>?« → želimo razlago</div>
+              <div style="font-size:0.8rem; color:var(--chalk-blue); font-style:italic; margin-top:3px;">Ista beseda, a namen povsem drugačen.</div>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--chalk-yellow)">
+          <div class="num">3</div>
+          <div class="body">
+            <div class="title">📚 Uporabi vzorce</div>
+            <div class="desc">Med učenjem je prebral ogromno besedil in ve, kako si besede sledijo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 13: KAKO CHATGPT DELUJE (4-6) ========== -->
+  <section class="page" data-page="16">
+    <div class="page-inner">
+      <div class="page-title">⚙️ Kako ChatGPT sestavi odgovor? (4–6)</div>
+
+      <div class="flow flow-compact">
+        <div class="step step-compact" style="--step-color:var(--coral)">
+          <div class="num">4</div>
+          <div class="body">
+            <div class="title">🧮 Napove naslednjo besedo</div>
+            <div class="desc">Za vsak naslednji del odgovora izračuna najbolj smiselno nadaljevanje.</div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--purple)">
+          <div class="num">5</div>
+          <div class="body">
+            <div class="title">🧩 Sestavi odgovor</div>
+            <div class="desc">Odgovor napove <strong style="color:var(--ink);">besedo za besedo</strong>.</div>
+            <div style="background:rgba(0,0,0,0.15); border-radius:8px; padding:8px 14px; margin-top:6px; border:1px solid var(--line);">
+              <div style="display:flex; flex-wrap:wrap; gap:6px; font-weight:700; font-size:0.9rem;">
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">Sončna</span>
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">elektrarna</span>
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">pretvarja</span>
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">sončno</span>
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">energijo</span>
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">v</span>
+                <span style="background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:3px 9px;">električno</span>
+                <span style="background:rgba(242,207,91,0.12); border:2px solid var(--chalk-yellow); border-radius:6px; padding:3px 9px; color:var(--chalk-yellow);">energijo?</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--ink-soft); margin-top:3px;">Napove eno besedo, nato naslednjo — in tako naprej.</div>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <div class="step step-compact" style="--step-color:var(--chalk-green)">
+          <div class="num">6</div>
+          <div class="body">
+            <div class="title">💬 Dobite odgovor</div>
+            <div class="desc">Napovedane besede se povežejo v celoten, berljiv odgovor.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:4px; border-left-color:var(--coral); background:rgba(255,166,92,0.06);">
+        <strong style="color:var(--coral);">⚠️ Pomembno razlikovanje:</strong>
+        Sistem dejansko <strong style="color:var(--ink);">ne razmišlja</strong>, ne razume pomena in nima zavedanja v človeškem smislu — pač pa gre za <strong style="color:var(--teal);">statistiko</strong>: mreža oceni, kako blizu je posamezen odgovor resnici, in izbere najverjetnejšega glede na primere, ki jih je videla med učenjem.
+        <span style="color:var(--ink-soft);">Izraz "umetna inteligenca" je torej bolj ustaljeno ime za to področje kot dobesedna trditev, da stroj "misli" kot človek.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 14: CHATGPT VS GOOGLE ========== -->
+  <section class="page" data-page="17">
+    <div class="page-inner">
+      <div class="page-title">🔍 ChatGPT ni Google</div>
+
+      <div class="compare-grid">
+        <div class="compare-card info" style="border:2px solid var(--teal);">
+          <h3 style="color:var(--teal);">🔍 Google</h3>
+          <p>Poišče <strong>obstoječe strani</strong> na spletu in vam pokaže povezave.</p>
+        </div>
+        <div class="compare-card warn" style="border:2px solid var(--coral);">
+          <h3 style="color:var(--coral);">💬 ChatGPT</h3>
+          <p>Odgovor <strong>sproti sestavi na novo</strong>, besedo za besedo, glede na naučene vzorce.</p>
+        </div>
+      </div>
+
+      <div class="note coral" style="margin-top:4px;">
+        <strong>⚠️ Pomembno:</strong> ChatGPT lahko zveni zelo samozavestno tudi takrat, ko se moti. Pomembne informacije vedno preverite.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 16: KJE VSE SREČAMO ========== -->
+  <section class="page" data-page="18">
+    <div class="page-inner">
+      <div class="page-title">🌍 Kje vse srečamo umetno inteligenco?</div>
+
+      <div style="width:100%;">
+        <ul class="apps-list">
+          <li><strong>🖼️ Prepoznavanje slik</strong> — varnostne kamere ločijo med človekom in živaljo; zdravniki dobijo pomoč pri diagnostiki.</li>
+          <li><strong>🎤 Prepoznavanje govora</strong> — telefon vaš govor pretvori v besedilo, ko narekujete sporočilo.</li>
+          <li><strong>💬 Obdelava naravnega jezika</strong> — Google Translate, klepetalni pomočniki (ChatGPT), boti na spletnih straneh.</li>
+          <li><strong>📺 Priporočilni sistemi</strong> — YouTube, Netflix in TikTok predlagajo vsebine glede na vaše navade.</li>
+          <li><strong>🏥 Zdravstvo</strong> — pomaga pri prepoznavanju sprememb na rentgenskih slikah ali kožnih znamenjih.</li>
+          <li><strong>🚗 Avtonomna vozila</strong> — avto sam prepozna pešca na cesti in pravočasno zavre.</li>
+          <li><strong>💰 Finance</strong> — banke zaznajo nenavadne transakcije in preprečijo goljufije.</li>
+          <li><strong>🎮 Igre in zabava</strong> — nasprotniki v računalniških igrah se učijo iz vaših potez.</li>
+          <li><strong>🏠 Pametni domovi</strong> — termostati se učijo vaših navad in samodejno uravnavajo temperaturo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SLIDE 19: ALI LAHKO UI NADZORUJEMO? ========== -->
+  <section class="page" data-page="19">
+    <div class="page-inner">
+      <div class="page-title">🤔 Ali lahko umetno inteligenco tudi nadzorujemo?</div>
+      <div class="subtitle">Nekaj za razmislek za konec</div>
+
+      <div class="compare-grid">
+        <div class="compare-card" style="border:2px solid var(--chalk-blue); text-align:left;">
+          <h3 style="color:var(--chalk-blue); text-align:center;">🕵️ Sistem lahko sam najde bližnjico</h3>
+          <p style="color:var(--ink);">Poleti 2026 je sistem umetne inteligence pri enem vodilnih podjetij med internim testom kibernetskih zmožnosti <strong style="color:var(--ink);">sam, brez ukaza</strong>, vdrl v računalniški sistem drugega podjetja — ugotovil je, da je to najhitrejša pot do rešitve naloge, ki so mu jo dali za vajo.</p>
+        </div>
+        <div class="compare-card" style="border:2px solid var(--purple); text-align:left;">
+          <h3 style="color:var(--purple); text-align:center;">⚖️ Bolj pameten ≠ bolj "dober"</h3>
+          <p style="color:var(--ink);">Zelo inteligenten sistem <strong style="color:var(--ink);">ne izbere samodejno</strong> ciljev, ki so dobri za ljudi — inteligenca in "prave" vrednote sta dve različni stvari. Zato inženirji posebej skrbijo, da sistemom med učenjem vcepijo cilje, skladne s človeškimi vrednotami.</p>
+        </div>
+      </div>
+
+      <div class="note coral" style="margin-top:4px;">
+        <strong>💡 Zato:</strong> po svetu poteka vse več razprav o tem, kako umetno inteligenco varno razvijati in nadzorovati. To ni le tehnično vprašanje za inženirje, temveč tudi družbeno vprašanje, ki zadeva nas vse.
+      </div>
+
+      <div class="foot-note">DCA · Računalniška pismenost · Od nevronskih mrež do ChatGPT</div>
+    </div>
+  </section>
+
+  <!-- ========== NAVIGACIJA ========== -->
+  <div class="nav">
+    <button id="prevBtn" aria-label="Prejšnja stran">← Nazaj</button>
+    <div class="dots" id="dots"></div>
+    <div class="page-count" id="pageCount"></div>
+    <button id="nextBtn" aria-label="Naslednja stran">Naprej →</button>
+  </div>
+
+</div>
+
+<script>
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageCount = document.getElementById('pageCount');
+  let current = 0;
+
+  pages.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Stran ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function render(){
+    pages.forEach((p, i) => p.classList.toggle('active', i === current));
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === pages.length - 1;
+    pageCount.textContent = (current + 1) + ' / ' + pages.length;
+  }
+
+  function goTo(i){
+    current = Math.max(0, Math.min(pages.length - 1, i));
+    render();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){
+      e.preventDefault();
+      goTo(current + 1);
+    }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){
+      e.preventDefault();
+      goTo(current - 1);
+    }
+  });
+
+  render();
+</script>
+
+</body>
+</html>
