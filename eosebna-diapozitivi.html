@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikacija eOsebna</title>
+<style>
+:root{--paper:#fbfaf6;--ink:#14213d;--blue:#1b4f9c;--tint:#e6edf8;--ok:#176b4d;--okt:#e3f3ec;--no:#a8231b;--not:#fbe7e5;--mute:#4a5568}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:Verdana,Tahoma,"Segoe UI",sans-serif;overflow:hidden}
+.slide{display:none;height:100%;padding:5vh 7vw 9vh;flex-direction:column;justify-content:center}
+.slide.on{display:flex}
+h1{font-size:clamp(2rem,5.6vw,4.6rem);line-height:1.1;margin:0 0 .5em;color:var(--blue)}
+h2{font-size:clamp(1.6rem,4vw,3.2rem);line-height:1.15;margin:0 0 .6em;color:var(--blue)}
+p,li{font-size:clamp(1.1rem,2.5vw,2rem);line-height:1.45;margin:.2em 0}
+ul,ol{padding-left:1.3em;margin:0}
+li{margin:.45em 0}
+.lead{font-size:clamp(1.3rem,3vw,2.4rem);color:var(--mute);max-width:26em}
+.box{background:var(--tint);border-left:.5em solid var(--blue);padding:.6em 1em;margin-top:1em;border-radius:.2em}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:3vw}
+.col{padding:.4em 1.1em 1em;border-radius:.3em}
+.col h3{margin:.4em 0;font-size:clamp(1.2rem,2.8vw,2.2rem)}
+.can{background:var(--okt);border-top:.4em solid var(--ok)}.can h3{color:var(--ok)}
+.cant{background:var(--not);border-top:.4em solid var(--no)}.cant h3{color:var(--no)}
+.cols.three{grid-template-columns:1fr 1fr 1fr}
+.pin{background:var(--not);border-left:.5em solid var(--no)}
+b{color:var(--ink)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:1.2vh 4vw;background:var(--paper);border-top:1px solid #d5d9e0}
+button{font:inherit;font-size:clamp(1rem,1.8vw,1.4rem);padding:.5em 1.4em;border:2px solid var(--blue);background:#fff;color:var(--blue);border-radius:.3em;cursor:pointer}
+button:hover{background:var(--blue);color:#fff}
+button:focus-visible{outline:4px solid #f2a900;outline-offset:2px}
+#n{font-size:clamp(1rem,1.8vw,1.4rem);color:var(--mute)}
+@media(max-width:700px){.cols,.cols.three{grid-template-columns:1fr}.slide{overflow:auto;justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<section class="slide on">
+<h1>Aplikacija eOsebna</h1>
+<p class="lead">Prijava v e-storitve s pametnim telefonom, brez gesel in brez računalniškega čitalnika.</p>
+<div class="box"><p>S to aplikacijo se na spletu <b>izkažete, kdo ste</b>. Namesto uporabniškega imena in gesla uporabite osebno izkaznico ali svoj prstni odtis oziroma obraz.</p></div>
+</section>
+
+<section class="slide">
+<h2>Kaj potrebujete?</h2>
+<ul>
+<li>Osebno izkaznico s čipom (izdano po 28. 3. 2022), ki je <b>aktivirana</b> in ima nastavljen <b>PIN</b></li>
+<li>Pametni telefon z <b>NFC</b>, povezan v internet (Android 8 ali novejši, iPhone 7 ali novejši)</li>
+<li>Zaklep telefona z geslom ali kodo (samo vzorec ne zadošča)</li>
+<li>Nastavljen prstni odtis ali prepoznavo obraza</li>
+</ul>
+<div class="box"><p>Če PIN še ni nastavljen, izkaznico aktivirate kar v aplikaciji z <b>začetnim geslom</b> iz ovojnice.</p></div>
+</section>
+
+<section class="slide">
+<h2>Namestitev: prvi koraki</h2>
+<ol>
+<li>V trgovini <b>Google Play</b> (Android) ali <b>App Store</b> (iPhone) poiščite in namestite aplikacijo <b>eOsebna</b>.</li>
+<li>Odprite aplikacijo in sledite navodilom.</li>
+<li>Vpišite <b>kodo CAN</b>: 6 številk, natisnjenih navpično na sprednji strani izkaznice, desno spodaj.</li>
+</ol>
+<div class="box"><p>Koda CAN ni geslo. Služi samo za vzpostavitev povezave med izkaznico in telefonom.</p></div>
+</section>
+
+<section class="slide">
+<h2>Namestitev: virtualna izkaznica</h2>
+<ol>
+<li>Izkaznico <b>prislonite k anteni NFC</b> na telefonu in je ne premikajte, dokler aplikacija ne prebere podatkov.</li>
+<li>Izberite <b>„Virtualiziraj“</b> in vpišite <b>PIN</b> izkaznice.</li>
+<li>Potrdite in izkaznico ponovno prislonite k telefonu.</li>
+<li>Ko se odpre okno <b>„Virtualna osebna izkaznica“</b>, je namestitev končana.</li>
+</ol>
+<div class="box"><p><b>Android:</b> izkaznica na zadnji strani telefona. <b>iPhone:</b> antena je zgoraj, izkaznico prislonite spredaj ali zadaj.</p></div>
+</section>
+
+<section class="slide">
+<h2>Prijava v e-storitev</h2>
+<div class="cols">
+<div class="col can"><h3>Na telefonu</h3>
+<ol><li>Na strani storitve izberite <b>prijava prek SI-PASS</b></li><li>Izberite <b>Mobilna aplikacija eOsebna</b></li><li>Potrdite s prstnim odtisom ali obrazom</li></ol></div>
+<div class="col can"><h3>Na računalniku</h3>
+<ol><li>Izberite SI-PASS in <b>Mobilna aplikacija eOsebna</b></li><li>V aplikaciji izberite <b>Skeniraj kodo QR</b></li><li>Potrdite s prstnim odtisom ali obrazom</li></ol></div>
+</div>
+<div class="box"><p>Primeri storitev: eUprava, zVem, eDavki, ZPIZ, ZZZS, SPOT.</p></div>
+</section>
+
+<section class="slide">
+<h2>Česa aplikacija ne zmore</h2>
+<div class="cols">
+<div class="col cant"><h3>Ne velja kot dokument</h3>
+<ul><li>Ni dokazilo o identiteti v banki, na pošti ali drugje v živo</li><li>Ne nadomešča kartice zdravstvenega zavarovanja</li><li>Ne deluje brez izkaznice s čipom</li></ul></div>
+<div class="col cant"><h3>Omejitve</h3>
+<ul><li>Virtualna izkaznica je lahko le na enem telefonu</li><li>Ne deluje na iPadu (nima NFC)</li><li>Ne deluje v čezmejnih portalih EU (tam: prislanjanje izkaznice in PIN)</li></ul></div>
+</div>
+</section>
+
+<section class="slide">
+<h2>Varnost: PIN in PUK</h2>
+<ul>
+<li>PIN nikomur ne povejte in ga ne shranjujte v telefon.</li>
+<li>Po <b>6 napačnih vnosih PIN-a</b> se izkaznica zaklene. Odklenete jo s kodo <b>PUK</b>, ki jo naročite v aplikaciji ali na upravni enoti.</li>
+<li>Po <b>10 napačnih vnosih PUK-a</b> je izkaznica zaklenjena trajno in potrebujete novo.</li>
+</ul>
+<div class="box pin"><p>Izgubljena izkaznica ali ukraden telefon? Izkaznico takoj prekličite prek spleta ali na upravni enoti.</p></div>
+</section>
+
+<nav><button id="p" type="button">Nazaj</button><span id="n"></span><button id="x" type="button">Naprej</button></nav>
+
+<script>
+(function(){
+var s=document.querySelectorAll('.slide'),i=0,n=document.getElementById('n');
+function show(k){i=Math.max(0,Math.min(s.length-1,k));for(var j=0;j<s.length;j++)s[j].classList.toggle('on',j===i);n.textContent=(i+1)+' / '+s.length;}
+document.getElementById('p').onclick=function(){show(i-1)};
+document.getElementById('x').onclick=function(){show(i+1)};
+document.addEventListener('keydown',function(e){
+if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();show(i+1)}
+if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();show(i-1)}
+if(e.key==='Home')show(0);if(e.key==='End')show(s.length-1);});
+show(0);
+})();
+</script>
+</body>
+</html>
