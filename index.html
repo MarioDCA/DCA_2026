@@ -23,44 +23,45 @@
     background: var(--ink);
     color: var(--text);
     font-family: "Segoe UI", Verdana, Arial, sans-serif;
-    line-height: 1.65;
+    line-height: 1.5;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 28px 20px 40px; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 20px 28px; }
 
   h1, h2, h3 { font-family: "Segoe UI", Verdana, Arial, sans-serif; font-weight: 700; line-height: 1.25; }
-  h1 { font-size: 1.6rem; margin: 0 0 10px; color: var(--teal); border-bottom: 3px solid var(--teal); padding-bottom: 10px; }
-  .podnaslov { color: var(--muted); margin: 0 0 36px; max-width: 34em; }
+  h1 { font-size: 1.6rem; margin: 0 0 8px; color: var(--teal); border-bottom: 3px solid var(--teal); padding-bottom: 8px; }
+  .podnaslov { color: var(--muted); margin: 0 0 18px; max-width: 34em; font-size: .9rem; }
 
   .uvod {
     background: rgba(63,198,198,0.06);
     border-left: 5px solid var(--teal);
     border-radius: 8px;
-    padding: 14px 18px;
-    margin: -12px 0 36px;
-    max-width: 38em;
+    padding: 8px 14px;
+    margin: 0 0 14px;
+    font-size: .88rem;
+    line-height: 1.45;
   }
   .uvod strong { color: var(--teal); }
 
-  section { margin-bottom: 44px; }
+  section { margin-bottom: 26px; }
   h2 { font-size: 1.2rem; margin: 0 0 4px; }
-  .sklop-opis { color: var(--muted); margin: 0 0 18px; font-size: .9rem; }
+  .sklop-opis { color: var(--muted); margin: 0 0 10px; font-size: .85rem; }
 
   /* ---------- Predavanja: zaporedje ---------- */
   .zaporedje { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 3px solid var(--teal); }
-  .zaporedje li { position: relative; padding: 0 0 20px 22px; }
+  .zaporedje li { position: relative; padding: 0 0 12px 22px; }
   .zaporedje li:last-child { padding-bottom: 0; }
   .zaporedje .st {
     position: absolute; left: -22px; top: 0;
     transform: translateX(-50%);
-    width: 40px; height: 40px; border-radius: 50%;
+    width: 34px; height: 34px; border-radius: 50%;
     background: var(--ink); border: 3px solid var(--teal);
     color: var(--teal);
-    font-weight: 700; font-size: 1.15rem;
+    font-weight: 700; font-size: 1rem;
     display: flex; align-items: center; justify-content: center;
   }
-  .predmet { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
-  .predmet h3 { font-size: 1rem; margin: 0 0 4px; }
-  .predmet p { margin: 0 0 12px; color: var(--muted); font-size: .9rem; }
+  .predmet { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .predmet h3 { font-size: 1rem; margin: 0 0 3px; }
+  .predmet p { margin: 0 0 8px; color: var(--muted); font-size: .85rem; line-height: 1.4; }
   .predmet p:empty { display: none; }
 
   /* ---------- Gumbi ---------- */
@@ -79,16 +80,20 @@
   }
 
   /* ---------- Kvizi: ključavnica ---------- */
-  .kvizi { border: 2px solid var(--coral); border-radius: 10px; padding: 14px 16px 16px; background: var(--panel); max-width: 460px; }
+  .kvizi { border: 2px solid var(--coral); border-radius: 10px; padding: 10px 14px 12px; background: var(--panel); max-width: 380px; }
   .kvizi h3 { font-size: 1.05rem; margin: 0 0 4px; display: flex; align-items: center; gap: 10px; }
-  .kvizi p { margin: 0 0 10px; color: var(--muted); font-size: .9rem; }
+  .kvizi p { margin: 0 0 8px; color: var(--muted); font-size: .85rem; line-height: 1.4; }
   .kvizi .ikona { font-size: 1.15rem; }
   .kvizi .gumb, .kvizi .vnos input { min-height: 38px; font-size: .85rem; }
   .kvizi .gumb { padding: 5px 16px; }
   .kvizi .vnos input { padding: 4px 12px; }
-  .kvizi .vnos { gap: 8px; }
+  .kvizi .vnos { gap: 6px; }
+  .kvizi .vnos label { font-size: .8rem; }
+  .kvizi .vnos input { flex: 1 1 120px; }
+  .kvizi .sporocilo { margin: 6px 0 0; min-height: 0; font-size: .8rem; }
+  .sporocilo:empty { display: none; }
   .vnos { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
-  .vnos label { flex-basis: 100%; font-size: .9rem; }
+  .vnos label { flex-basis: 100%; font-size: .9rem; line-height: 1.2; }
   .vnos input {
     flex: 1 1 200px; min-height: 48px; padding: 8px 14px;
     font: inherit; font-size: 1.05rem;
@@ -99,7 +104,7 @@
   .sporocilo.napaka { color: var(--err); }
   .sporocilo.ok { color: var(--ok); }
 
-  footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); padding-top: 14px; }
+  footer { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); padding-top: 10px; }
   footer button { background: none; border: 0; padding: 0; color: var(--muted); font: inherit; text-decoration: underline; cursor: pointer; }
 
   @media (max-width: 480px) {
@@ -113,13 +118,11 @@
 <main>
   <h1>DCA – Računalniška pismenost</h1>
   <p class="podnaslov">Gradivo za tečajnike. Najprej preberite predavanja po vrstnem redu, nato preverite znanje s kvizi.</p>
-  <div class="uvod">
-    <strong>Za začetek:</strong> večina vas ima prenosni računalnik, zato je prav, da se vsaj informativno seznanite z njegovo zgradbo. Prvo predavanje vas popelje skozi to, kaj je v prenosniku in kaj se v njem dogaja, ko ga vklopite.
-  </div>
 
   <section id="predavanja" aria-labelledby="h-predavanja">
     <h2 id="h-predavanja">Predavanja</h2>
-    <p class="sklop-opis">Slednice (diapozitivi), ki jih odprete kar v brskalniku. Berite jih po vrstnem redu.</p>
+    <p class="sklop-opis">Slednice (diapozitivi), ki jih odprete kar v brskalniku.</p>
+    <div class="uvod">Za začetek bi bilo smiselno, glede na to da na tečaju (in najbrž tudi doma) delate na prenosnem računalniku, da se vsaj informativno seznanite z njegovo zgradbo. Prvo predavanje vas popelje skozi to, kaj je v prenosniku in kaj se v njem dogaja, ko ga vklopite.</div>
     <ol class="zaporedje" id="seznamPredavanj"></ol>
   </section>
 
@@ -167,6 +170,12 @@ const PREDAVANJA = [
     naslov: 'Kje UI ne more nadomestiti človeka?',
     opis: 'Razmislek ob članku »Tehnološki velikani ne razumejo življenja«: učenje, zdravje, poklici s človeškim stikom in odnosi.',
     url: 'kje_ui_ne_more_nadomestiti_cloveka.html'
+  },
+  {
+    id: 'eosebna',
+    naslov: 'Aplikacija eOsebna',
+    opis: 'Prijava v e-storitve (eUprava, zVem, eDavki …) s pametnim telefonom in osebno izkaznico, brez gesel.',
+    url: 'eosebna-diapozitivi.html'
   }
   /* Novo predavanje dodate tako, da sem prepišete blok { id, naslov, opis, url }.
      Če ga želite zakleniti, dodajte še  hash: '...'  */
