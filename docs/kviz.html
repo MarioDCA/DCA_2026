@@ -441,7 +441,7 @@
                 <button class="info-btn" onclick="showInfoModal()">ℹ️ Info</button>
                 <button class="theme-toggle" onclick="toggleTheme()">🌓 Preklopi</button>
                 <button class="sound-toggle" onclick="toggleSound()" id="soundToggle">🔊 Zvok vklopljen</button>
-                <a href="index.html">🏠 Meni</a>
+                <a href="index.html" id="menuLink">🏠 Meni</a>
             </div>
         </div>
         
@@ -669,6 +669,7 @@
         let odgovori = [];
         let zakljuceno = false;
         let timerInterval = null;
+        let trenutnaKategorija = 'zacetniki';
         const CAS_ZA_BRANJE = 20;
         
         // ============================================================
@@ -690,7 +691,7 @@
             }
             
             try {
-                const response = await fetch(kvizIme);
+                const response = await fetch(kvizIme + '?v=' + Date.now());
                 if (!response.ok) {
                     throw new Error(`Kviz "${kvizIme}" ni bil najden.`);
                 }
@@ -714,6 +715,9 @@
                 // Uporabi ID iz JSON (npr. 1, 2, 3 ...)
                 const id = kvizPodatki.id || '';
                 document.getElementById('kvizNaslov').textContent = info ? `${id} - ${info.naslov}` : (kvizPodatki.title || kvizIme); 
+
+                trenutnaKategorija = najdiKategorijo(kvizIme);
+                document.getElementById('menuLink').href = `index.html?skupina=${encodeURIComponent(trenutnaKategorija)}`;
                 
 
                 odgovori = new Array(kvizPodatki.vprasanja.length).fill(null);
@@ -843,7 +847,7 @@
                 </div>
                 
                 <div class="tipka-info">
-                    ${izbran !== null ? 'Za nadaljevanje pritisni <kbd>Presledek</kbd> ali počakaj, da poteče čas za branje razlage.' : 'Izberi odgovor.'}
+                    ${izbran !== null ? 'Za nadaljevanje pritisni <kbd>Presledek</kbd> ali počakaj, da poteče čas za branje razlage.' : 'Izberi odgovor (lahko tudi s tipkami 1, 2, 3 ...).'}
                 </div>
             `;
             
@@ -907,6 +911,20 @@
             }
         }
         
+        // ============================================================
+        // TIPKE 1, 2, 3 ... ZA IZBIRO ODGOVORA
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (zakljuceno || !kvizPodatki) return;
+            if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) {
+                const moznostIndex = parseInt(e.key) - 1;
+                const vpr = kvizPodatki.vprasanja[trenutnoVprasanje];
+                if (vpr && vpr.moznosti && moznostIndex < vpr.moznosti.length && odgovori[trenutnoVprasanje] === null) {
+                    izberiOdgovor(trenutnoVprasanje, moznostIndex);
+                }
+            }
+        });
+
         // ============================================================
         // TIPKA PRESLEDEK
         // ============================================================
@@ -1067,7 +1085,7 @@
                     ${reviewHtml}
                     
                     <div class="gumbi">
-                        <a href="index.html?resen=true" class="gumb">🏠 Nazaj na meni</a>
+                        <a href="index.html?resen=true&skupina=${encodeURIComponent(trenutnaKategorija)}" class="gumb">🏠 Nazaj na meni</a>
                         <button class="gumb potekaj" onclick="ponovnoResi()">🔄 Ponovno reši</button>
                     </div>
                 </div>

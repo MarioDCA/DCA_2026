@@ -6,6 +6,12 @@
 <!-- ============================================================ -->
 <html>
 <head>
+<script>
+/* Zaklep: brez ključa z index.html se kvizi ne odprejo */
+(function(){var ok=false;try{ok=JSON.parse(localStorage.getItem('dca_odklep')||'[]').indexOf('kvizi')>=0;}catch(e){}
+if(!ok){location.replace('index.html#kvizi');}})();
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kviz</title>
@@ -441,7 +447,7 @@
                 <button class="info-btn" onclick="showInfoModal()">ℹ️ Info</button>
                 <button class="theme-toggle" onclick="toggleTheme()">🌓 Preklopi</button>
                 <button class="sound-toggle" onclick="toggleSound()" id="soundToggle">🔊 Zvok vklopljen</button>
-                <a href="index.html" id="menuLink">🏠 Meni</a>
+                <a href="kvizi.html" id="menuLink">🏠 Meni</a>
             </div>
         </div>
         
@@ -684,7 +690,7 @@
                     <div class="error">
                         <div class="velik">❌</div>
                         <h2>Napaka</h2>
-                        <p>Kviz ni izbran. Vrnite se na <a href="index.html">meni</a>.</p>
+                        <p>Kviz ni izbran. Vrnite se na <a href="kvizi.html">meni</a>.</p>
                     </div>
                 `;
                 return;
@@ -717,7 +723,7 @@
                 document.getElementById('kvizNaslov').textContent = info ? `${id} - ${info.naslov}` : (kvizPodatki.title || kvizIme); 
 
                 trenutnaKategorija = najdiKategorijo(kvizIme);
-                document.getElementById('menuLink').href = `index.html?skupina=${encodeURIComponent(trenutnaKategorija)}`;
+                document.getElementById('menuLink').href = `kvizi.html?skupina=${encodeURIComponent(trenutnaKategorija)}`;
                 
 
                 odgovori = new Array(kvizPodatki.vprasanja.length).fill(null);
@@ -732,7 +738,7 @@
                         <div class="velik">❌</div>
                         <h2>Napaka pri nalaganju</h2>
                         <p>${error.message}</p>
-                        <p><a href="index.html">↩ Nazaj na meni</a></p>
+                        <p><a href="kvizi.html">↩ Nazaj na meni</a></p>
                     </div>
                 `;
             }
@@ -1085,7 +1091,7 @@
                     ${reviewHtml}
                     
                     <div class="gumbi">
-                        <a href="index.html?resen=true&skupina=${encodeURIComponent(trenutnaKategorija)}" class="gumb">🏠 Nazaj na meni</a>
+                        <a href="kvizi.html?resen=true&skupina=${encodeURIComponent(trenutnaKategorija)}" class="gumb">🏠 Nazaj na meni</a>
                         <button class="gumb potekaj" onclick="ponovnoResi()">🔄 Ponovno reši</button>
                     </div>
                 </div>
@@ -1126,7 +1132,7 @@
                     <div class="error">
                         <div class="velik">❌</div>
                         <h2>Napaka</h2>
-                        <p>Kviz ni izbran. Vrnite se na <a href="index.html">meni</a>.</p>
+                        <p>Kviz ni izbran. Vrnite se na <a href="kvizi.html">meni</a>.</p>
                     </div>
                 `;
                 return;
