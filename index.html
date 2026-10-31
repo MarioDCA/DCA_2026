@@ -6,50 +6,60 @@
 <title>DCA – Računalniška pismenost</title>
 <style>
   :root {
-    --ink: #11162b;
-    --panel: #1a2142;
-    --line: #2d3866;
-    --text: #eef0f8;
-    --muted: #a9b3d6;
-    --amber: #f2b84b;
-    --peri: #93a7ff;
-    --err: #ff9b9b;
-    --ok: #7be0a6;
+    --ink: #121A24;
+    --panel: #1A2430;
+    --line: #2C3A4A;
+    --text: #E8EEF4;
+    --muted: #AEBBCC;
+    --teal: #3FC6C6;
+    --coral: #FFA65C;
+    --err: #ef9d8f;
+    --ok: #a9d6a5;
   }
   * { box-sizing: border-box; }
-  html { font-size: 19px; }
+  html { font-size: 20px; }
   body {
     margin: 0;
     background: var(--ink);
     color: var(--text);
-    font-family: Verdana, "Segoe UI", Arial, sans-serif;
-    line-height: 1.6;
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    line-height: 1.65;
   }
   main { max-width: 760px; margin: 0 auto; padding: 28px 20px 40px; }
 
-  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; line-height: 1.25; }
-  h1 { font-size: 2rem; margin: 0 0 6px; }
+  h1, h2, h3 { font-family: "Segoe UI", Verdana, Arial, sans-serif; font-weight: 700; line-height: 1.25; }
+  h1 { font-size: 1.6rem; margin: 0 0 10px; color: var(--teal); border-bottom: 3px solid var(--teal); padding-bottom: 10px; }
   .podnaslov { color: var(--muted); margin: 0 0 36px; max-width: 34em; }
 
+  .uvod {
+    background: rgba(63,198,198,0.06);
+    border-left: 5px solid var(--teal);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: -12px 0 36px;
+    max-width: 38em;
+  }
+  .uvod strong { color: var(--teal); }
+
   section { margin-bottom: 44px; }
-  h2 { font-size: 1.45rem; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 0 0 4px; }
   .sklop-opis { color: var(--muted); margin: 0 0 18px; font-size: .9rem; }
 
   /* ---------- Predavanja: zaporedje ---------- */
-  .zaporedje { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 3px solid var(--amber); }
+  .zaporedje { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 3px solid var(--teal); }
   .zaporedje li { position: relative; padding: 0 0 20px 22px; }
   .zaporedje li:last-child { padding-bottom: 0; }
   .zaporedje .st {
     position: absolute; left: -22px; top: 0;
     transform: translateX(-50%);
     width: 40px; height: 40px; border-radius: 50%;
-    background: var(--ink); border: 3px solid var(--amber);
-    color: var(--amber);
-    font-family: Georgia, serif; font-weight: 700; font-size: 1.15rem;
+    background: var(--ink); border: 3px solid var(--teal);
+    color: var(--teal);
+    font-weight: 700; font-size: 1.15rem;
     display: flex; align-items: center; justify-content: center;
   }
   .predmet { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
-  .predmet h3 { font-size: 1.15rem; margin: 0 0 4px; }
+  .predmet h3 { font-size: 1rem; margin: 0 0 4px; }
   .predmet p { margin: 0 0 12px; color: var(--muted); font-size: .9rem; }
   .predmet p:empty { display: none; }
 
@@ -58,20 +68,25 @@
     display: inline-block; min-height: 48px; padding: 10px 22px;
     border-radius: 6px; border: 2px solid transparent;
     font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
-    background: var(--amber); color: #1b1500;
+    background: var(--teal); color: #0A1420;
   }
+  .gumb.ozek { min-height: 38px; padding: 5px 16px; font-size: .85rem; }
   .gumb:hover { filter: brightness(1.08); }
-  .gumb.peri { background: var(--peri); color: #0d1330; }
+  .gumb.koral { background: var(--coral); color: #0A1420; }
   .gumb.rob { background: transparent; border-color: var(--line); color: var(--text); font-weight: 400; }
   a:focus-visible, button:focus-visible, input:focus-visible {
     outline: 3px solid #ffffff; outline-offset: 3px;
   }
 
   /* ---------- Kvizi: ključavnica ---------- */
-  .kvizi { border: 2px solid var(--peri); border-radius: 10px; padding: 20px 20px 22px; background: var(--panel); }
-  .kvizi h3 { font-size: 1.25rem; margin: 0 0 4px; display: flex; align-items: center; gap: 10px; }
-  .kvizi p { margin: 0 0 14px; color: var(--muted); font-size: .9rem; }
-  .kvizi .ikona { font-size: 1.4rem; }
+  .kvizi { border: 2px solid var(--coral); border-radius: 10px; padding: 14px 16px 16px; background: var(--panel); max-width: 460px; }
+  .kvizi h3 { font-size: 1.05rem; margin: 0 0 4px; display: flex; align-items: center; gap: 10px; }
+  .kvizi p { margin: 0 0 10px; color: var(--muted); font-size: .9rem; }
+  .kvizi .ikona { font-size: 1.15rem; }
+  .kvizi .gumb, .kvizi .vnos input { min-height: 38px; font-size: .85rem; }
+  .kvizi .gumb { padding: 5px 16px; }
+  .kvizi .vnos input { padding: 4px 12px; }
+  .kvizi .vnos { gap: 8px; }
   .vnos { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
   .vnos label { flex-basis: 100%; font-size: .9rem; }
   .vnos input {
@@ -89,7 +104,7 @@
 
   @media (max-width: 480px) {
     html { font-size: 18px; }
-    h1 { font-size: 1.7rem; }
+    h1 { font-size: 1.4rem; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
@@ -98,10 +113,13 @@
 <main>
   <h1>DCA – Računalniška pismenost</h1>
   <p class="podnaslov">Gradivo za tečajnike. Najprej preberite predavanja po vrstnem redu, nato preverite znanje s kvizi.</p>
+  <div class="uvod">
+    <strong>Za začetek:</strong> večina vas ima prenosni računalnik, zato je prav, da se vsaj informativno seznanite z njegovo zgradbo. Prvo predavanje vas popelje skozi to, kaj je v prenosniku in kaj se v njem dogaja, ko ga vklopite.
+  </div>
 
   <section id="predavanja" aria-labelledby="h-predavanja">
     <h2 id="h-predavanja">Predavanja</h2>
-    <p class="sklop-opis">Slednice (diapozitivi), ki jih odprete kar v brskalniku.</p>
+    <p class="sklop-opis">Slednice (diapozitivi), ki jih odprete kar v brskalniku. Berite jih po vrstnem redu.</p>
     <ol class="zaporedje" id="seznamPredavanj"></ol>
   </section>
 
@@ -127,16 +145,28 @@
    ========================================================================== */
 const PREDAVANJA = [
   {
+    id: 'prenosnik',
+    naslov: 'Kako deluje prenosni računalnik',
+    opis: 'Zgradba prenosnika: procesor, spomin (RAM), disk, zaslon, tipkovnica in Wi-Fi. Kaj se zgodi ob vklopu, spanju in izklopu.',
+    url: 'kako-deluje-prenosnik.html'
+  },
+  {
+    id: 'brskalnik',
+    naslov: 'Brskalnik, iskalnik in oblak',
+    opis: 'Kaj so internet, brskalnik, iskalnik in oblak ter kje so shranjena naša e-sporočila (Gmail). Na koncu je vaja.',
+    url: 'brskalnik_iskalnik_oblak.html'
+  },
+  {
     id: 'nevronske',
     naslov: 'Od nevronskih mrež do ChatGPT',
     opis: 'Kako delujejo nevronske mreže in kako iz njih nastane pogovorni model, kot je ChatGPT.',
     url: 'od_nevronskih_mrez_do_ChatGPT_slednice.html'
   },
   {
-    id: 'osebna',
-    naslov: 'Osebna – diapozitivi',          /* ← popravite naslov */
-    opis: '',                                /* ← dodajte kratek opis */
-    url: 'osebna-diapozitivi.html'           /* ← preverite ime datoteke */
+    id: 'clovek',
+    naslov: 'Kje UI ne more nadomestiti človeka?',
+    opis: 'Razmislek ob članku »Tehnološki velikani ne razumejo življenja«: učenje, zdravje, poklici s človeškim stikom in odnosi.',
+    url: 'kje_ui_ne_more_nadomestiti_cloveka.html'
   }
   /* Novo predavanje dodate tako, da sem prepišete blok { id, naslov, opis, url }.
      Če ga želite zakleniti, dodajte še  hash: '...'  */
@@ -195,9 +225,9 @@ function narisiPredavanja() {
       el('p', { text: p.opis || '' })
     );
     if (jeOdklenjen(p)) {
-      kartica.append(el('a', { class: 'gumb', href: p.url, text: 'Odpri predavanje' }));
+      kartica.append(el('a', { class: 'gumb ozek', href: p.url, text: 'Odpri predavanje' }));
     } else {
-      kartica.append(vnosKljuca(p, 'amber'));
+      kartica.append(vnosKljuca(p, 'teal'));
     }
     li.append(kartica);
     ol.append(li);
@@ -215,9 +245,9 @@ function narisiKvize() {
       el('p', { text: odklenjen ? k.opis : (k.opisZaklenjeno || k.opis) })
     );
     if (odklenjen) {
-      kartica.append(el('a', { class: 'gumb peri', href: k.url, text: 'Odpri kvize' }));
+      kartica.append(el('a', { class: 'gumb koral', href: k.url, text: 'Odpri kvize' }));
     } else {
-      kartica.append(vnosKljuca(k, 'peri'));
+      kartica.append(vnosKljuca(k, 'koral'));
     }
     okvir.append(kartica);
   });
@@ -231,7 +261,7 @@ function vnosKljuca(vnos, barva) {
     id: idInput, type: 'text', autocomplete: 'off', autocapitalize: 'off',
     spellcheck: 'false', 'aria-describedby': idSporocilo
   });
-  const gumb = el('button', { class: 'gumb ' + (barva === 'peri' ? 'peri' : ''), type: 'submit', text: 'Odkleni' });
+  const gumb = el('button', { class: 'gumb ' + (barva === 'koral' ? 'koral' : ''), type: 'submit', text: 'Odkleni' });
   const sporocilo = el('p', { class: 'sporocilo', id: idSporocilo, role: 'status', 'aria-live': 'polite' });
   const obrazec = el('form', { class: 'vnos', novalidate: '' },
     el('label', { for: idInput, text: 'Geslo' }), input, gumb
