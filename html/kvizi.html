@@ -9,7 +9,7 @@
 <script>
 /* Zaklep: brez ključa z index.html se kvizi ne odprejo */
 (function(){var ok=false;try{ok=JSON.parse(localStorage.getItem('dca_odklep')||'[]').indexOf('kvizi')>=0;}catch(e){}
-if(!ok){location.replace('index.html#kvizi');}})();
+if(!ok){location.replace('../index.html#kvizi');}})();
 </script>
 
     <meta charset="UTF-8">
@@ -285,7 +285,7 @@ if(!ok){location.replace('index.html#kvizi');}})();
     <!-- GLAVNA VSEBINA                                              -->
     <!-- ========================================================== -->
     <div class="container">
-        <p style="margin:0 0 4px;font-size:13px;"><a href="index.html" style="color:#a8b5e0;">← Nazaj na predavanja in kvize</a></p>
+        <p style="margin:0 0 4px;font-size:13px;"><a href="../index.html" style="color:#a8b5e0;">← Nazaj na predavanja in kvize</a></p>
 <h1>🎯 Kvizi iz osnov računalništva in UI</h1>
         
         <!-- STATISTIKA -->

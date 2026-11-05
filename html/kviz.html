@@ -9,7 +9,7 @@
 <script>
 /* Zaklep: brez ključa z index.html se kvizi ne odprejo */
 (function(){var ok=false;try{ok=JSON.parse(localStorage.getItem('dca_odklep')||'[]').indexOf('kvizi')>=0;}catch(e){}
-if(!ok){location.replace('index.html#kvizi');}})();
+if(!ok){location.replace('../index.html#kvizi');}})();
 </script>
 
     <meta charset="UTF-8">
@@ -697,7 +697,7 @@ if(!ok){location.replace('index.html#kvizi');}})();
             }
             
             try {
-                const response = await fetch(kvizIme + '?v=' + Date.now());
+                const response = await fetch('../json/' + kvizIme + '?v=' + Date.now());
                 if (!response.ok) {
                     throw new Error(`Kviz "${kvizIme}" ni bil najden.`);
                 }

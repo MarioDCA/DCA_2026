@@ -400,6 +400,14 @@
   .nav .domov:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
   .nav .domov span{ display:none; }
   @media (min-width:700px){ .nav .domov span{ display:inline; } }
+
+  /* Strnjeni deli (legenda risbe, okvir z ukazi) */
+  .legend.tesna{ gap:2px 24px; }
+  .legend.tesna .legend-item{ line-height:1.3; }
+  .card.tesna{ padding:clamp(10px,1.6vh,16px) clamp(14px,2vw,20px); }
+  .card.tesna h3{ margin:0 0 6px 0; }
+  .card.tesna p{ line-height:1.4; }
+  .card.tesna .code-block{ font-size:.8rem; line-height:1.3; padding:8px 12px; margin-top:6px; }
 </style>
 </head>
 <body>
@@ -443,7 +451,7 @@
   <!-- PAGE 2: Steps 1-4 -->
   <section class="page" data-page="2">
     <div class="page-inner">
-      <div class="page-title">Kaj se zgodi, ko ga vklopite (1&ndash;4)</div>
+      <div class="page-title">Kaj se zgodi, ko ga vklopite (1&ndash;2)</div>
       <div class="flow">
         <div class="step" style="--step-color:var(--n1)">
           <div class="num">1</div>
@@ -461,8 +469,14 @@
             <div class="desc">Windows je shranjen na disku. Ob vklopu se prenese iz diska v RAM in od tam teče, ker je RAM veliko hitrejši od diska.</div>
           </div>
         </div>
-        <div class="arrow-down">↓</div>
+      </div>
+    </div>
+  </section>
 
+  <section class="page" data-page="3">
+    <div class="page-inner">
+      <div class="page-title">Kaj se zgodi, ko ga vklopite (3&ndash;4)</div>
+      <div class="flow">
         <div class="step" style="--step-color:var(--n4)">
           <div class="num">3</div>
           <div class="body">
@@ -484,11 +498,11 @@
   </section>
 
   <!-- PAGE 3: Diagram - internal structure (CPU, RAM, disk) -->
-  <section class="page" data-page="3">
-    <div class="page-inner">
+  <section class="page" data-page="4">
+    <div class="page-inner" style="gap:10px;">
       <div class="page-title">Kako je to videti "od znotraj"</div>
-      <div class="diagram-wrap">
-        <svg class="diagram-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+      <div class="diagram-wrap" style="gap:8px;">
+        <svg class="diagram-svg" viewBox="0 30 900 400" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arrowEnd" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
               <path d="M0,0 L10,5 L0,10 z" fill="var(--chalk-dim)"/>
@@ -531,7 +545,7 @@
           <line x1="587" y1="230" x2="708" y2="230" stroke="var(--chalk-dim)" stroke-width="3" marker-end="url(#arrowEnd)" marker-start="url(#arrowStart)"/>
           <line x1="403" y1="230" x2="282" y2="230" stroke="var(--chalk-dim)" stroke-width="3" marker-end="url(#arrowEnd)" marker-start="url(#arrowStart)"/>
         </svg>
-        <div class="legend">
+        <div class="legend tesna">
           <div class="legend-item"><span class="legend-dot" style="background:var(--n1)"></span>CPE (procesor) — "možgani" računalnika, ki obdelujejo podatke</div>
           <div class="legend-item"><span class="legend-dot" style="background:var(--n3)"></span>RAM — kratkoročni spomin, kamor se nalagajo odprti programi</div>
           <div class="legend-item"><span class="legend-dot" style="background:var(--n4)"></span>Trdi disk / SSD — dolgoročni spomin za trajno shranjevanje</div>
@@ -541,9 +555,9 @@
   </section>
 
   <!-- PAGE 4: Steps 5-7 -->
-  <section class="page" data-page="4">
+  <section class="page" data-page="5">
     <div class="page-inner">
-      <div class="page-title">Vhodno-izhodne enote</div>
+      <div class="page-title">Vhodno-izhodne enote (1&ndash;2)</div>
       <div class="flow">
         <div class="step" style="--step-color:var(--n5)">
           <div class="num">1</div>
@@ -561,8 +575,14 @@
             <div class="desc">Prikaže vam odgovor računalnika na vaša navodila — tisto, kar se trenutno dogaja.</div>
           </div>
         </div>
-        <div class="arrow-down">↓</div>
+      </div>
+    </div>
+  </section>
 
+  <section class="page" data-page="6">
+    <div class="page-inner">
+      <div class="page-title">Vhodno-izhodne enote (3)</div>
+      <div class="flow">
         <div class="step" style="--step-color:var(--n7)">
           <div class="num">3</div>
           <div class="body">
@@ -570,8 +590,14 @@
             <div class="desc">Vgrajena kamera nad zaslonom omogoča video klice. Mikrofona (navadno sta dva) zajemata vaš glas — dva namesto enega poskrbita za jasnejši zvok in manj šuma iz okolice.</div>
           </div>
         </div>
-        <div class="arrow-down">↓</div>
+      </div>
+    </div>
+  </section>
 
+  <section class="page" data-page="7">
+    <div class="page-inner">
+      <div class="page-title">Vhodno-izhodne enote (4)</div>
+      <div class="flow">
         <div class="step" style="--step-color:var(--n8)">
           <div class="num">4</div>
           <div class="body">
@@ -584,7 +610,7 @@
   </section>
 
   <!-- PAGE 5: Diagram - external structure (screen, keyboard, camera, wifi) -->
-  <section class="page" data-page="5">
+  <section class="page" data-page="8">
     <div class="page-inner">
       <div class="page-title">Kako je to videti "od zunaj"</div>
       <div class="diagram-wrap">
@@ -671,7 +697,7 @@
   </section>
 
   <!-- PAGE 6: RAM vs disk + warning -->
-  <section class="page" data-page="6">
+  <section class="page" data-page="9">
     <div class="page-inner">
       <div class="page-title">Kar si velja zapomniti</div>
       <div class="banner">
@@ -691,7 +717,7 @@
   </section>
 
   <!-- PAGE 7: Sleep vs hibernate vs shutdown -->
-  <section class="page" data-page="7">
+  <section class="page" data-page="10">
     <div class="page-inner">
       <div class="page-title">Zaprem pokrov ali izklopim?</div>
       <div class="flow">
@@ -708,16 +734,22 @@
           <div class="num">💤</div>
           <div class="body">
             <div class="title">Mirovanje (hibernacija)</div>
-            <div class="desc">Vsebina RAM-a se <strong>shrani na disk</strong>, računalnik se nato popolnoma ugasne — baterija se ne porablja. Zagon traja malo dlje kot pri spanju, a še vedno hitreje kot povsem od začetka.</div>
+            <div class="desc">Vsebina RAM-a se <strong>shrani na disk</strong>, računalnik se nato popolnoma ugasne — baterija se ne porablja. Ne zapirajte pokrova, dokler se računalnik ne ugasne. Shranjevanje obstoječih odprtih opravil zahteva malo več časa. Tudi zagon traja malo dlje kot pri spanju, a še vedno hitreje kot pri povsem izklopljenem računalniku.</div>
           </div>
         </div>
-        <div class="arrow-down">↓</div>
+      </div>
+    </div>
+  </section>
 
+  <section class="page" data-page="11">
+    <div class="page-inner">
+      <div class="page-title">Zaprem pokrov ali izklopim? (nadaljevanje)</div>
+      <div class="flow">
         <div class="step" style="--step-color:var(--n4)">
           <div class="num">⏻</div>
           <div class="body">
             <div class="title">Izklop</div>
-            <div class="desc">RAM se <strong>povsem izprazni</strong>. Vse, kar ni bilo predhodno shranjeno na disk, je izgubljeno — zato pred izklopom vedno shranite datoteke, tako kot na prejšnji strani.</div>
+            <div class="desc">RAM se <strong>povsem izprazni</strong>. Vse, kar ni bilo predhodno shranjeno na disk, je izgubljeno — zato pred izklopom vedno shranite datoteke, tako kot piše na strani »Kar si velja zapomniti« (slednica 9).</div>
           </div>
         </div>
       </div>
@@ -729,10 +761,9 @@
   </section>
 
   <!-- PAGE 8: Shortcuts for shutdown/hibernate + checking hibernation -->
-  <section class="page" data-page="8">
-    <div class="page-inner compact-page" style="overflow-y:auto; max-height:100%;">
-      <div class="page-title">Bližnjica za izklop in mirovanje</div>
-
+  <section class="page" data-page="12">
+    <div class="page-inner">
+      <div class="page-title">Bližnjica za izklop in mirovanje (postopek)</div>
       <div class="flow" style="gap:10px;">
         <div class="step" style="--step-color:var(--n1)">
           <div class="num">1</div>
@@ -741,15 +772,22 @@
             <div class="desc">Desno kliknite na prazen del namizja → <strong>Novo</strong> → <strong>Bližnjica</strong>.</div>
           </div>
         </div>
+        <div class="arrow-down">↓</div>
+
         <div class="step" style="--step-color:var(--n3)">
           <div class="num">2</div>
           <div class="body">
             <div class="title">Vnesite ukaz in poimenujte</div>
-            <div class="desc">V polje "Vnesite mesto za predmet" prilepite enega od ukazov spodaj, kliknite <strong>Naprej</strong>, vnesite ime bližnjice (npr. "Izklop") in <strong>Dokončaj</strong>.</div>
+            <div class="desc">V polje "Vnesite mesto za predmet" prilepite enega od ukazov z naslednje strani, kliknite <strong>Naprej</strong>, vnesite ime bližnjice (npr. "Izklop") in <strong>Dokončaj</strong>.</div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
+  <section class="page" data-page="13">
+    <div class="page-inner">
+      <div class="page-title">Bližnjica za izklop in mirovanje (ukazi)</div>
       <div class="cmd-grid">
         <div class="card compare">
           <h3>⏻ Bližnjica za izklop</h3>
@@ -761,7 +799,7 @@
         </div>
       </div>
 
-      <div class="card warn" style="width:100%;">
+      <div class="card warn tesna" style="width:100%;">
         <h3>🔎 Ali je mirovanje omogočeno?</h3>
         <p>Postopek je enak v <strong>Windows 10</strong> in <strong>Windows 11</strong>: odprite ukazno vrstico (cmd) <strong>kot skrbnik</strong> in vtipkajte <span class="code">powercfg /a</span>. Če je na seznamu navedeno "Hibernate" (Mirovanje), je funkcija na voljo. Če je ni, jo omogočite z ukazom <span class="code">powercfg /hibernate on</span> (prav tako kot skrbnik).</p>
         <div class="code-block">The following sleep states are available on this system:
@@ -777,7 +815,7 @@ The following sleep states are not available on this system:
   </section>
 
   <!-- PAGE 9: Waking up from hibernation -->
-  <section class="page" data-page="9">
+  <section class="page" data-page="14">
     <div class="page-inner">
       <div class="page-title">Kako se zbudi iz mirovanja?</div>
 
@@ -813,7 +851,7 @@ The following sleep states are not available on this system:
   </section>
 
   <div class="nav">
-    <a class="domov" href="index.html" aria-label="Začetna stran" title="Začetna stran">🏠<span>Začetna stran</span></a>
+    <a class="domov" href="../index.html" aria-label="Začetna stran" title="Začetna stran">🏠<span>Začetna stran</span></a>
     <button id="prevBtn" aria-label="Prejšnja stran">← Nazaj</button>
     <div class="dots" id="dots"></div>
     <div class="page-count" id="pageCount"></div>
