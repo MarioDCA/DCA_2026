@@ -62,7 +62,7 @@
   .predmet { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
   .predmet .bes { flex: 1 1 320px; min-width: 0; }
   .predmet > .gumb { flex: 0 0 auto; }
-  .predmet > div:last-child:not(.bes) { flex: 0 1 320px; }
+  .predmet > div:last-child:not(.bes) { flex: 0 0 auto; }
   .predmet h3 { font-size: 1rem; margin: 0 0 2px; }
   .predmet h3 .dat { font-weight: 400; font-size: .8rem; color: var(--muted); margin-left: .5em; white-space: nowrap; }
   .predmet p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.4; }
@@ -90,12 +90,11 @@
   .kvizi h3 .dat { margin-left: 0; }
   .kvizi p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.4; }
   .kvizi .ikona { font-size: 1.15rem; }
-  .kvizi .gumb, .kvizi .vnos input { min-height: 38px; font-size: .85rem; }
-  .kvizi .gumb { padding: 4px 14px; }
-  .kvizi .vnos input { padding: 4px 12px; }
-  .kvizi .vnos { gap: 6px; }
-  .kvizi .vnos label { font-size: .8rem; }
-  .kvizi .vnos input { flex: 1 1 120px; }
+  .kvizi .gumb, .kvizi .vnos input { min-height: 30px; font-size: .85rem; }
+  .kvizi .gumb { padding: 2px 12px; font-weight: 400; }
+  .kvizi .vnos input { padding: 2px 8px; width: 10ch; flex: 0 0 auto; }
+  .kvizi .vnos { gap: 6px; align-items: center; flex-wrap: nowrap; }
+  .kvizi .vnos label { flex: 0 0 auto; font-size: .8rem; }
   .kvizi .sporocilo { margin: 6px 0 0; min-height: 0; font-size: .8rem; }
   .sporocilo:empty { display: none; }
   .vnos { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
@@ -134,7 +133,7 @@
 
 
   <footer>
-    <span>Zadnja posodobitev: <span id="datum">7. 11. 2026</span> · Ustvarjeno s pomočjo Claude Sonnet 5.5</span>
+    <span>Zadnja posodobitev: <span id="datum">8. 11. 2026</span> · Ustvarjeno s pomočjo Claude Sonnet 5.5</span>
     <span id="zakleniZnovaOkvir" hidden> · <button type="button" id="zakleniZnova">Zakleni znova na tem računalniku</button></span>
   </footer>
 </main>
@@ -209,7 +208,7 @@ const KVIZI = [
 
 /* ========================================================================== */
 /* Datum zadnje posodobitve: popravite ob vsaki spremembi strani */
-const ZADNJA_POSODOBITEV = '7. 11. 2026';
+const ZADNJA_POSODOBITEV = '8. 11. 2026';
 
 const SOL = 'dca2026:';
 const SHRAMBA = 'dca_odklep';
@@ -296,7 +295,7 @@ function vnosKljuca(vnos, barva) {
   const gumb = el('button', { class: 'gumb ' + (barva === 'koral' ? 'koral' : ''), type: 'submit', text: 'Odkleni' });
   const sporocilo = el('p', { class: 'sporocilo', id: idSporocilo, role: 'status', 'aria-live': 'polite' });
   const obrazec = el('form', { class: 'vnos', novalidate: '' },
-    el('label', { for: idInput, text: 'Geslo' }), input, gumb
+    el('label', { for: idInput, text: 'Vnesi geslo' }), input, gumb
   );
   const ovojnica = el('div', {}, obrazec, sporocilo);
 
