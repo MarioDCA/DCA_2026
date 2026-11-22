@@ -32,7 +32,16 @@ p{font-size:clamp(17px,1.7vw,22px);line-height:1.48;color:#e7eaf0;margin:0 0 15p
 .pill{display:inline-block;border:1px solid rgba(111,194,179,.55);color:var(--teal);padding:7px 11px;border-radius:30px;font-size:13px;margin:5px 6px 0 0}
 .two{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
 .two-aconcagua{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
-.two-book{display:grid;grid-template-columns:1.12fr .88fr;gap:28px;align-items:start}
+.two-book{display:grid;grid-template-columns:1.12fr .88fr;gap:28px;align-items:stretch}
+.book-media-col{display:flex;flex-direction:column;justify-content:flex-end}
+.aconcagua-gallery-page{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%}
+.aconcagua-gallery-page img{width:100%;height:260px;object-fit:cover;background:#0c1420;border-radius:14px;border:1px solid var(--line)}
+.buenos-gallery-page{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%}
+.buenos-gallery-page img{width:100%;height:265px;object-fit:cover;background:#0c1420;border-radius:14px;border:1px solid var(--line)}
+.gallery-footer-label{text-align:center;margin-top:16px;font-size:clamp(16px,1.5vw,20px);color:var(--muted);letter-spacing:.04em}
+.who-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%}
+.who-gallery img{width:100%;height:220px;object-fit:cover;background:#0c1420;border-radius:16px;border:1px solid var(--line)}
+.who-gallery img.mirror-x{transform:scaleX(-1)}
 .portrait{width:min(100%,330px);max-height:430px;object-fit:cover;object-position:center;border-radius:18px;border:1px solid var(--line);filter:grayscale(100%)}
 .photo-box{background:var(--panel);border:1px dashed rgba(111,194,179,.55);border-radius:18px;padding:18px;text-align:center}
 .photo-box img{width:100%;max-height:330px;object-fit:contain;background:#0c1420;border-radius:12px;border:1px solid var(--line)}
@@ -40,6 +49,8 @@ p{font-size:clamp(17px,1.7vw,22px);line-height:1.48;color:#e7eaf0;margin:0 0 15p
 .photo-box-lg img{max-height:460px}
 .photo-box-book{width:fit-content;max-width:100%;margin:0 auto;padding:10px 12px;border-radius:14px}
 .photo-box-book img{width:auto;max-width:100%;max-height:450px}
+.photo-box-book-tall{display:flex;flex-direction:column;justify-content:space-between;height:100%}
+.photo-box-book-tall img{flex:1;min-height:0;max-height:540px;object-fit:contain}
 .photo-placeholder{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;background:rgba(255,255,255,.03);border-radius:12px;color:var(--muted)}
 .photo-placeholder b{color:var(--teal);font-size:16px}
 .caption{font-size:12px;color:var(--muted);margin-top:8px}
@@ -93,16 +104,22 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
 @media(max-width:850px){
  .grid-3{grid-template-columns:1fr}
  .toc-list{grid-template-columns:1fr}
+ .aconcagua-gallery-page{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:700px){
  .stage{align-items:flex-start;padding:22px 18px}
  .slide{min-height:0}
  .grid,.two,.two-aconcagua,.two-book{grid-template-columns:1fr}
+ .aconcagua-gallery-page,.buenos-gallery-page{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .aconcagua-gallery-page img,.buenos-gallery-page img{height:160px}
+ .who-gallery img{height:170px}
  .books-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .portrait{width:160px;max-height:210px}
  .photo-box-lg img{max-height:300px}
  .photo-box-book{width:100%}
  .photo-box-book img{max-height:320px}
+ .photo-box-book-tall{height:auto}
+ .photo-box-book-tall img{max-height:380px}
  .footer{height:auto;min-height:62px;padding:10px;gap:8px;flex-wrap:wrap}
  .dots{order:3;width:100%}
  .shortcuts{display:none}
@@ -133,6 +150,18 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
+  <section class="slide" data-title="Opomba predavatelja">
+   <div class="kicker">Opomba predavatelja</div>
+   <h2>Od obletnice do današnjega izbora</h2>
+   <p class="lead">Prvo predstavitev o Tiboru Sekelju sem pripravil pred 14 leti ob 100. obletnici njegovega rojstva – takrat še nisem vodil društva. Takratna predstavitev je sicer služila kot osnova, vendar sem jo v veliki meri spremenil.</p>
+   <div class="card" style="margin-top:14px">
+    <h3>Toliko različnih plati enega življenja</h3>
+    <p style="margin-bottom:10px">Sekeljevo življenje je bilo tako bogato, da bi lahko pripravili precej več samostojnih predstavitev – med drugim o njem kot:</p>
+    <p style="font-size:clamp(15px,1.4vw,18px);color:var(--orange);font-weight:bold">geografu, novinarju, filmarju, alpinistu, etnologu, pustolovcu, političnem aktivistu, poliglotu, esperantistu, izobraževalcu, umetniku in pisatelju.</p>
+   </div>
+   <p class="small note">Danes bom izpostavil le nekaj teh plati – po lastni izbiri.</p>
+  </section>
+
   <!-- 2 -->
   <section class="slide" data-title="Kdo je bil?">
    <div class="two">
@@ -142,9 +171,11 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
      <p class="lead">Tibor Sekelj (1912–1988) je bil novinar, raziskovalec, etnograf, pisatelj, muzealec in eden vidnejših esperantistov svojega časa.</p>
      <p>Njegovo življenje je bilo zaznamovano s stalnimi selitvami in raziskovanjem že od zgodnjega otroštva, kar ga je oblikovalo v svetovljana in poliglota.</p>
     </div>
-    <div>
-     <img class="portrait" src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Tibor_Sekelj_1983.jpg" alt="Portret Tibora Sekelja iz leta 1983">
-     <div class="caption">Tibor Sekelj, 1983 (foto I. Špoljarec)</div>
+    <div class="who-gallery">
+     <img src="Sekelj/Tibor_1.jpg" alt="" onerror="this.style.display='none';">
+     <img src="Sekelj/Tibor_2.jpg" alt="" onerror="this.style.display='none';">
+     <img src="Sekelj/Tibor_3.jpg" alt="" onerror="this.style.display='none';">
+     <img class="mirror-x" src="Sekelj/Tibor_4.jpg" alt="" onerror="this.style.display='none';">
     </div>
    </div>
   </section>
@@ -182,6 +213,36 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
+<section class="slide" data-title="Kraji bivanja">
+   <div class="two-book">
+    <div>
+     <div class="kicker kicker-tight">Zemljevid in letnice</div>
+     <h2>Kraji bivanja</h2>
+     <p class="lead">Pregled krajev, kjer je Tibor Sekelj živel, se šolal ali deloval med letoma 1912 in 1988.</p>
+     <div class="grid" style="margin-top:14px;gap:12px">
+      <div class="card">
+       <h3>Rojstvo in zgodnja leta</h3>
+       <p>Spišská Sobota (1912) in Cenei (1912–1922) ter šolanje v Kikindi (1922–1926), Nikšiću (1926–1929) in Zagrebu (1929–1939).</p>
+      </div>
+      <div class="card">
+       <h3>Poznejša obdobja</h3>
+       <p>Po vrnitvi iz Južne Amerike bivanje v Beogradu (1954–1972) in Subotici (1972–1988).</p>
+      </div>
+     </div>
+    </div>
+    <div class="book-media-col">
+     <div class="photo-box photo-box-book photo-box-book-tall">
+      <img src="Sekelj/Tibor_Sekelj_loĝlokoj_en_Eŭropo.png" alt="Kraji bivanja Tiborja Sekelja v Evropi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="photo-placeholder" style="display:none">
+       <b>Slika ni najdena</b>
+       <span>Preveri, ali obstaja datoteka <code>Sekelj/Tibor_Sekelj_loĝlokoj_en_Eŭropo.png</code> glede na to HTML-datoteko.</span>
+      </div>
+      <div class="caption">Kraji bivanja Tiborja Sekelja v Evropi</div>
+     </div>
+    </div>
+   </div>
+  </section>
+
   <!-- 5 -->
   <section class="slide" data-title="Leta 1939: odhod v Argentino">
    <div class="kicker">Začetek poti</div>
@@ -194,6 +255,17 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
   </section>
 
   <!-- 6 -->
+  <section class="slide" data-title="Fotografije Buenos Airesa">
+   <div class="buenos-gallery-page">
+    <img src="Sekelj/Buenos_Aires_1940 .jpg" alt="Buenos Aires – pristanišče in Luna Park" onerror="this.style.display='none';">
+    <img src="Sekelj/Argentina_02.jpg" alt="Buenos Aires – avenija z obeliskom" onerror="this.style.display='none';">
+    <img src="Sekelj/Argentina_03.jpg" alt="Buenos Aires – živahna ulica" onerror="this.style.display='none';">
+    <img src="Sekelj/Argentina_04.jpg" alt="Buenos Aires – mestni vrvež" onerror="this.style.display='none';">
+   </div>
+   <div class="gallery-footer-label">Buenos Aires, Argentina, 1939, 1940</div>
+  </section>
+
+  <!-- 7 -->
   <section class="slide" data-title="Aconcagua (1944)">
    <div class="kicker">Gore in preizkušnje</div>
    <h2>Zgodovinska odprava na Aconcagvo (1944)</h2>
@@ -212,19 +284,19 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
      </div>
     </div>
     <div>
-     <div class="photo-box photo-box-lg">
-      <img src="Sekelj/Sekelj_z_Zechnerjem.jpg" alt="Sekelj z Zechnerjem" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+     <div class="photo-box photo-box-book">
+      <img src="Sekelj/Sekelj_z_alpinistom_Zechnerjem.jpg" alt="Sekelj z alpinistom Zechnerjem v ozadju Aconkagva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="photo-placeholder" style="display:none">
        <b>Slika ni najdena</b>
-       <span>Preveri, ali obstaja datoteka <code>Sekelj/Sekelj_z_Zechnerjem.jpg</code> glede na to HTML-datoteko.</span>
+       <span>Preveri, ali obstaja datoteka <code>Sekelj/Sekelj_z_alpinistom_Zechnerjem.jpg</code> glede na to HTML-datoteko.</span>
       </div>
-      <div class="caption">Sekelj z Zechnerjem</div>
+      <div class="caption">Sekelj z alpinistom Zechnerjem v ozadju Aconkagva</div>
      </div>
     </div>
    </div>
   </section>
 
-  <!-- 7 -->
+  <!-- 8 -->
   <section class="slide" data-title="Vihar nad Aconcaguo">
    <div class="two-book">
     <div>
@@ -242,20 +314,32 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
       </div>
      </div>
     </div>
-    <div>
-     <div class="photo-box photo-box-book">
+    <div class="book-media-col">
+     <div class="photo-box photo-box-book photo-box-book-tall">
       <img src="Sekelj/Tibor_Sekelj_Tempesta_sobre_el_Aconcagua.jpg" alt="Naslovnica knjige Tempestad sobre el Aconcagua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="photo-placeholder" style="display:none">
        <b>Slika ni najdena</b>
        <span>Preveri, ali obstaja datoteka <code>Sekelj/Tibor_Sekelj_Tempesta_sobre_el_Aconcagua.jpg</code> glede na to HTML-datoteko.</span>
       </div>
-      <div class="caption">Tempestad sobre el Aconcagua · Editorial Albatros, Buenos Aires</div>
+      <div class="caption">Vihar nad Aconcagvo v izvirniku</div>
      </div>
     </div>
    </div>
   </section>
 
-  <!-- 8 -->
+  <!-- 9 -->
+  <section class="slide" data-title="Fotografije z Aconcagve">
+   <div class="aconcagua-gallery-page">
+    <img src="Sekelj/Aconcagua_01.jpg" alt="" onerror="this.style.display='none';">
+    <img src="Sekelj/Aconcagua_02.jpg" alt="" onerror="this.style.display='none';">
+    <img src="Sekelj/Aconcagua_03.jpg" alt="" onerror="this.style.display='none';">
+    <img src="Sekelj/Aconcagua_04.jpg" alt="" onerror="this.style.display='none';">
+    <img src="Sekelj/Aconcagua_05.jpg" alt="" onerror="this.style.display='none';">
+    <img src="Sekelj/Aconcagua_08.jpg" alt="" onerror="this.style.display='none';">
+   </div>
+  </section>
+
+  <!-- 10 -->
   <section class="slide" data-title="Odprave po Ameriki (1939–1954)">
    <div class="kicker">Odprave v Južni in Srednji Ameriki</div>
    <h2>Kje vse je bil v letih 1939–1954</h2>
@@ -268,18 +352,18 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 9 -->
+  <!-- 11 -->
   <section class="slide" data-title="Vrnitev v Jugoslavijo (1954)">
    <div class="kicker">Vrnitev in odmev</div>
    <h2>Leta 1954: vrnitev v Jugoslavijo in Beograd</h2>
-   <p class="lead">Leta 1954 se je ob vrnitvi v Jugoslavijo naselil v Beogradu, kjer sta ga toplo sprejela tako vlada kakor tudi ljudstvo zaradi njegovih zanimivih doživetij in človekoljubnega sporočila.</p>
+   <p class="lead">Leta 1954 se je ob vrnitvi v Jugoslavijo naselil v Beogradu, kjer sta ga toplo sprejela tako vlada kakor tudi javnost zaradi njegovih zanimivih doživetij in človekoljubnega sporočila.</p>
    <div class="grid">
     <div class="card"><h3>Časopisni članki</h3><p>Številni njegovi članki so bili objavljeni v časopisih.</p></div>
     <div class="card"><h3>Knjige v več jezikih</h3><p>Več njegovih knjig je bilo prevedenih v srbski, slovenski, madžarski, albanski jezik in mednarodni jezik esperanto.</p></div>
    </div>
   </section>
 
-  <!-- 10 -->
+  <!-- 12 -->
   <section class="slide" data-title="1956–1957: Indija, Kitajska, Nepal">
    <div class="kicker">1956–1957 · Azija</div>
    <h2>Indija, Kitajska in Nepal</h2>
@@ -290,7 +374,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 11 -->
+  <!-- 13 -->
   <section class="slide" data-title="Nepal odpira vrata in pot po Indiji">
    <div class="kicker">1957–1959 · Knjiga in Indija</div>
    <h2>Nepalo malfermas la pordon in pot po Indiji</h2>
@@ -301,7 +385,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 12 -->
+  <!-- 14 -->
   <section class="slide" data-title="1958–1960: Vinoba Bhave, Japonska, Šrilanka">
    <div class="kicker">1958–1960 · Indija, Japonska in vrnitev</div>
    <h2>Vinoba Bhave, Japonska in Šrilanka</h2>
@@ -312,7 +396,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 13 -->
+  <!-- 15 -->
   <section class="slide" data-title="1961–1963: Maroko in Karavana prijateljstva">
    <div class="kicker">1961–1963 · Afrika</div>
    <h2>Maroko in »Karavano de Amikeco«</h2>
@@ -323,7 +407,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 14 -->
+  <!-- 16 -->
   <section class="slide" data-title="1965–1966: Rusija, Japonska, Mongolija, Evropa">
    <div class="kicker">1965–1966 · Sibirija, Mongolija in Evropa</div>
    <h2>Od Tokia in Mongolije do Evrope</h2>
@@ -334,7 +418,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 15 -->
+  <!-- 17 -->
   <section class="slide" data-title="1970: Avstralija, Nova Zelandija, Nova Gvineja">
    <div class="kicker">1970 · Oceanija</div>
    <h2>Avstralija, Nova Zelandija in Nova Gvineja</h2>
@@ -345,7 +429,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 16 -->
+  <!-- 18 -->
   <section class="slide" data-title="1972–1980: Severna Amerika, Rusija, Uzbekistan, Nigerija, Ekvador">
    <div class="kicker">1972–1980 · Mednarodna srečanja in odprave</div>
    <h2>Od Chicaga in Leningrada do Ekvadorja</h2>
@@ -356,7 +440,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 17 -->
+  <!-- 19 -->
   <section class="slide" data-title="Zbiranje predmetov (1970)">
    <div class="kicker">Muzejske zbirke</div>
    <h2>Popotnik, ki je zbiral tudi predmete</h2>
@@ -368,7 +452,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    <p class="small note">Etnografski muzej v Zagrebu je leta 2022 pripravil razstavo »Tibor Sekelj u Okeaniji«.</p>
   </section>
 
-  <!-- 18 -->
+  <!-- 20 -->
   <section class="slide" data-title="Esperanto: most med ljudmi">
    <div class="kicker">Esperanto</div>
    <h2>Jezik kot most med ljudmi</h2>
@@ -379,7 +463,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 19 -->
+  <!-- 21 -->
   <section class="slide" data-title="Esperanto in večjezičnost">
    <div class="kicker">Jezikovna radovednost</div>
    <h2>Od lokalnih govorov do mednarodnega jezika</h2>
@@ -391,7 +475,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 20 -->
+  <!-- 22 -->
   <section class="slide" data-title="Pisatelj in knjige">
    <div class="kicker">Pisatelj</div>
    <h2>Potovanja, ki so postala knjige</h2>
@@ -435,11 +519,11 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    <p class="small note">Njegova dela so izhajala v več jezikih – med drugim v španščini, esperantu in različnih jezikih jugoslovanskega prostora.</p>
   </section>
 
-  <!-- 21 -->
+  <!-- 23 -->
   <section class="slide" data-title="Kumevava, sin pragozda">
    <div class="kicker kicker-tight">Mladinski pustolovski roman · 1979</div>
    <h2 style="margin-bottom:10px">Kumevava, sin pragozda</h2>
-   <p class="lead" style="margin-bottom:10px">Prvotno v esperantu (<i>Kumeŭaŭa, la filo de la ĝangalo</i>, 1979): po brodolomu na reki Araguaia popotniki spoznajo iznajdljivega brazilskega dečka Kumevavo, ki pragozd pozna kot svoj dom.</p>
+   <p class="lead" style="margin-bottom:10px">Izvirno v esperantu (<i>Kumeŭaŭa, la filo de la ĝangalo</i>, 1979): po brodolomu na reki Araguaia popotniki spoznajo iznajdljivega brazilskega dečka Kumevavo, ki pragozd pozna kot svoj dom.</p>
    <div class="grid" style="margin-top:10px;gap:12px">
     <div class="card" style="padding:15px 18px">
      <h3 style="margin-bottom:6px">Glavno sporočilo knjige</h3>
@@ -452,7 +536,34 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 22 -->
+  <!-- 24 -->
+  <section class="slide" data-title="Kumevava (1/2): Zgodba v pragozdu">
+   <div class="kicker kicker-tight">Kumevava · 1 / 2</div>
+   <h2 style="margin-bottom:12px">Zgodba in srečanje v pragozdu</h2>
+   <p style="font-size:clamp(15px,1.45vw,18px);line-height:1.45;margin-bottom:10px">Zgodba se odvija v amazonskem pragozdu v Braziliji. Popotniška skupina med plovbo po reki Araguaia doživi brodolom oziroma nesrečo s čolnom. Ob tem spoznajo mladega Indijanca Kumevavo, ki živi v pragozdu in ga pozna kot svoj dom.</p>
+   <p style="font-size:clamp(15px,1.45vw,18px);line-height:1.45;margin-bottom:10px">Kumevava je sprva za prišleke nenavaden deček, vendar hitro pokaže, da je izjemno spreten, iznajdljiv in bister. Medtem ko se popotniki v neznanem okolju počutijo negotove, je zanj pragozd povsem domač svet. Pozna njegove poti, rastline, živali in nevarnosti.</p>
+   <p style="font-size:clamp(15px,1.45vw,18px);line-height:1.45;margin-bottom:0">Deček popotnikom postopoma razkriva skrivnosti pragozda. Pokaže jim, kako se je mogoče znajti v naravi, kako prepoznati nevarnosti, kako uporabljati naravne vire in kako preživeti v okolju, kjer človek ne more računati na udobje sodobne civilizacije.</p>
+  </section>
+
+  <!-- 25 -->
+  <section class="slide" data-title="Kumevava (2/2): Prijateljstvo in sporočilo">
+   <div class="kicker kicker-tight">Kumevava · 2 / 2</div>
+   <h2 style="margin-bottom:10px">Dogodivščine in glavno sporočilo knjige</h2>
+   <p style="font-size:clamp(15px,1.4vw,17.5px);line-height:1.42;margin-bottom:8px">Skozi dogodivščine spoznavajo, da pragozd ni samo lep in bogat svet, temveč tudi nepredvidljivo in nevarno okolje. Kumevava se izkaže za odličnega poznavalca narave, ki s svojim znanjem pogosto pomaga tudi odraslim.</p>
+   <p style="font-size:clamp(15px,1.4vw,17.5px);line-height:1.42;margin-bottom:10px">Ob tem se med njim in popotniki razvije prijateljski odnos. Njihovo srečanje postane tudi priložnost za spoznavanje drugačnega načina življenja, kulture in vrednot domorodnih prebivalcev.</p>
+   <div class="card" style="padding:14px 18px">
+    <h3 style="margin-bottom:6px">Glavno sporočilo knjige</h3>
+    <p style="font-size:15px;line-height:1.4;margin-bottom:6px">Knjiga presega okvir običajnega pustolovskega romana. Sekelj z njo opozarja na nekaj pomembnih spoznanj:</p>
+    <ul style="margin:4px 0 0;padding-left:20px;font-size:14.5px;line-height:1.42;color:#dce3eb">
+     <li>Znanje ni odvisno od šolske izobrazbe. Kumevava ima znanje, ki ga odrasli obiskovalci pragozda nimajo.</li>
+     <li>Človek mora spoštovati naravo. Za preživetje je potrebno naravo razumeti, ne pa se boriti proti njej.</li>
+     <li>Različne kulture se lahko veliko naučijo druga od druge. Ni nujno, da je način življenja civiliziranega človeka tudi edini ali najboljši.</li>
+     <li>Prijateljstvo presega kulturne in jezikovne razlike.</li>
+    </ul>
+   </div>
+  </section>
+
+  <!-- 26 -->
   <section class="slide" data-title="Muzealec">
    <div class="kicker">Muzealec</div>
    <h2>Od raziskovalca do direktorja muzeja</h2>
@@ -464,14 +575,14 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    </div>
   </section>
 
-  <!-- 23 -->
+  <!-- 27 -->
   <section class="slide" data-title="Njegov pogled na svet">
    <div class="kicker">Njegov pogled na svet</div>
    <div class="quote">»V resnici so razlike med nami le površinske.«<small>Misli Tibora Sekelja, povzeto po njegovem zapisu na portalu Putnici</small></div>
    <p class="lead" style="margin-top:30px">Potovanja zanj niso bila samo premikanje iz kraja v kraj. Želel je razumeti ljudi – njihove navade, razmišljanje in način življenja.</p>
   </section>
 
-  <!-- 24 -->
+  <!-- 28 -->
   <section class="slide" data-title="Zaključek">
    <div class="kicker">Zaključek</div>
    <h2>Zakaj se ga še spominjamo?</h2>
@@ -485,7 +596,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    <p class="small note">Tibor Sekelj · 14. februar 1912 – 20. september 1988 (v virih se datum smrti ponekod razlikuje).</p>
   </section>
 
-  <!-- 25 -->
+  <!-- 29 -->
   <section class="slide" data-title="Video za predavanje">
    <div class="kicker kicker-tight">Video za predavanje</div>
    <h2 style="margin-bottom:12px">Naj spregovori tudi slika</h2>
@@ -515,7 +626,7 @@ button.primary{background:var(--orange);color:#172235;border-color:var(--orange)
    <button id="full" aria-label="Celozaslonski način">⛶ Celozaslonsko</button>
   </div>
   <div class="dots" id="dots" aria-label="Izbira diapozitiva"></div>
-  <div class="counter" id="counter">1 / 25</div>
+  <div class="counter" id="counter">1 / 30</div>
   <div class="shortcuts">←/→ · G kazalo · F cel zaslon</div>
  </footer>
 </div>
